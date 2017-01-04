@@ -5,7 +5,7 @@
 //
 
 import XCTest
-@testable import GenumKit
+@testable import StencilSwiftKit
 
 class StringFiltersTests: XCTestCase {
 
