@@ -1,0 +1,30 @@
+PODS:
+  - PathKit (0.7.0)
+  - Stencil (0.7.1):
+    - PathKit (~> 0.7.0)
+  - StencilSwiftKit (0.0.1):
+    - Stencil (~> 0.7.0)
+
+DEPENDENCIES:
+  - Stencil (from `https://github.com/kylef/Stencil`)
+  - StencilSwiftKit (from `.`)
+
+EXTERNAL SOURCES:
+  Stencil:
+    :git: https://github.com/kylef/Stencil
+  StencilSwiftKit:
+    :path: .
+
+CHECKOUT OPTIONS:
+  Stencil:
+    :commit: 99efba56e942270780a452e5dcdfa1a839839cf4
+    :git: https://github.com/kylef/Stencil
+
+SPEC CHECKSUMS:
+  PathKit: f8260c3e41bf4d552f3603853e32a5b325a176d4
+  Stencil: 4177c0cabcdc40dd9be9b7f701d710d0a121023a
+  StencilSwiftKit: e06089cf69771405f2afabe48df97ed9ac159593
+
+PODFILE CHECKSUM: 254c61439b3ceadef162f42c05a5d1c157f1a6df
+
+COCOAPODS: 1.2.0.beta.3
