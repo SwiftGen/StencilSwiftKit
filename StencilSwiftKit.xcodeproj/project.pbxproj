@@ -10,6 +10,10 @@
 		82EF0CC0752D216C67279A16 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */; };
 		DD5F34161E21657700AEB5DA /* StringFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F34131E21657700AEB5DA /* StringFiltersTests.swift */; };
 		DD5F34171E21657700AEB5DA /* SwiftIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F34141E21657700AEB5DA /* SwiftIdentifierTests.swift */; };
+		DD5F34191E21976100AEB5DA /* SetNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F34181E21976100AEB5DA /* SetNodeTests.swift */; };
+		DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */; };
+		DD5F34251E219A7200AEB5DA /* expected in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34231E219A7200AEB5DA /* expected */; };
+		DD5F34261E219A7200AEB5DA /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34241E219A7200AEB5DA /* fixtures */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -50,9 +54,13 @@
 		47888DD528DEC4C84FD8F15B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD5F34121E21657700AEB5DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD5F34131E21657700AEB5DA /* StringFiltersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFiltersTests.swift; sourceTree = "<group>"; };
 		DD5F34141E21657700AEB5DA /* SwiftIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIdentifierTests.swift; sourceTree = "<group>"; };
+		DD5F34181E21976100AEB5DA /* SetNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNodeTests.swift; sourceTree = "<group>"; };
+		DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsHelper.swift; sourceTree = "<group>"; };
+		DD5F34201E2199ED00AEB5DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD5F34231E219A7200AEB5DA /* expected */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expected; sourceTree = "<group>"; };
+		DD5F34241E219A7200AEB5DA /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,11 +116,23 @@
 		DD5F34111E21657700AEB5DA /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DD5F34121E21657700AEB5DA /* Info.plist */,
+				DD5F341C1E2199ED00AEB5DA /* Resources */,
+				DD5F34181E21976100AEB5DA /* SetNodeTests.swift */,
 				DD5F34131E21657700AEB5DA /* StringFiltersTests.swift */,
 				DD5F34141E21657700AEB5DA /* SwiftIdentifierTests.swift */,
+				DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		DD5F341C1E2199ED00AEB5DA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				DD5F34231E219A7200AEB5DA /* expected */,
+				DD5F34241E219A7200AEB5DA /* fixtures */,
+				DD5F34201E2199ED00AEB5DA /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -180,6 +200,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD5F34261E219A7200AEB5DA /* fixtures in Resources */,
+				DD5F34251E219A7200AEB5DA /* expected in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,8 +260,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD5F34191E21976100AEB5DA /* SetNodeTests.swift in Sources */,
 				DD5F34171E21657700AEB5DA /* SwiftIdentifierTests.swift in Sources */,
 				DD5F34161E21657700AEB5DA /* StringFiltersTests.swift in Sources */,
+				DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +360,7 @@
 			baseConfigurationReference = 47888DD528DEC4C84FD8F15B /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.SwiftGenKitTests;
@@ -350,7 +374,7 @@
 			baseConfigurationReference = 4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Tests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.SwiftGenKitTests;

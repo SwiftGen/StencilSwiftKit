@@ -1,0 +1,20 @@
+// before set
+x = "{{x}}"
+y = "{{y}}"
+
+// set value
+{% set x %}hello{% endset %}
+{% set y %}world{% endset %}
+x = "{{x}}"
+y = "{{y}}"
+
+// set inside for loop
+{% for item in items %}
+  {% set x %}item #{{item}}{% endset %}
+  x = "{{x}}"
+  y = "{{y}}"
+{% endfor %}
+
+// after for loop
+x = "{{x}}"
+y = "{{y}}"
