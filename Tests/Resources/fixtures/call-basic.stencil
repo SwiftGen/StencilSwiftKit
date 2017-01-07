@@ -1,0 +1,35 @@
+{% set p1 %}1{% endset %}
+{% set p2 %}hey{% endset %}
+{% set p3 %}1234{% endset %}
+{% set globalVarA %}Hello World!{% endset %}
+
+// define test
+{% macro test %}
+  Hello world! (inside test)
+  globalVarA = "{{globalVarA}}"
+{% endmacro %}
+
+// define test2
+{% macro test2 %}
+  Hello universe! (inside test2)
+{% endmacro %}
+
+// define test3
+{% macro test3 a b c %}
+  Received parameters in test3:
+  - a = "{{a}}"
+  - b = "{{b}}"
+  - c = "{{c}}"
+
+  // calling test2
+  {% call test2 %}
+{% endmacro %}
+
+// calling test
+{% call test %}
+
+// calling test2
+{% call test2 %}
+
+// calling test3
+{% call test3 p1 p2 p3 %}

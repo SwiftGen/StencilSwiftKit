@@ -1,0 +1,13 @@
+// define test
+{% macro test p %}
+  p = "{{p}}"
+  {% if p == "11111" %}
+    Stopping recursion.
+  {% else %}
+    {% set p %}{{p}}1{% endset %}
+    {% call test p %}
+  {% endif %}
+{% endmacro %}
+
+// calling test
+{% call test "" %}

@@ -14,6 +14,7 @@
 		DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */; };
 		DD5F34251E219A7200AEB5DA /* expected in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34231E219A7200AEB5DA /* expected */; };
 		DD5F34261E219A7200AEB5DA /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34241E219A7200AEB5DA /* fixtures */; };
+		DD5F34281E219D0100AEB5DA /* CallNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F34271E219D0100AEB5DA /* CallNodeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -61,6 +62,7 @@
 		DD5F34201E2199ED00AEB5DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD5F34231E219A7200AEB5DA /* expected */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expected; sourceTree = "<group>"; };
 		DD5F34241E219A7200AEB5DA /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
+		DD5F34271E219D0100AEB5DA /* CallNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallNodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				DD5F341C1E2199ED00AEB5DA /* Resources */,
+				DD5F34271E219D0100AEB5DA /* CallNodeTests.swift */,
 				DD5F34181E21976100AEB5DA /* SetNodeTests.swift */,
 				DD5F34131E21657700AEB5DA /* StringFiltersTests.swift */,
 				DD5F34141E21657700AEB5DA /* SwiftIdentifierTests.swift */,
@@ -263,6 +266,7 @@
 				DD5F34191E21976100AEB5DA /* SetNodeTests.swift in Sources */,
 				DD5F34171E21657700AEB5DA /* SwiftIdentifierTests.swift in Sources */,
 				DD5F34161E21657700AEB5DA /* StringFiltersTests.swift in Sources */,
+				DD5F34281E219D0100AEB5DA /* CallNodeTests.swift in Sources */,
 				DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
