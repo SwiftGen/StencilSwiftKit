@@ -5,7 +5,10 @@ Pod::Spec.new do |s|
   s.summary      = "Stencil additions dedicated for Swift code generation"
 
   s.description  = <<-DESC
-                   TODO
+                   This pod contains some additional nodes and filters for
+                   [Stencil](https://github.com/kylef/Stencil).
+                   These additional nodes & filters are mainly dedicated
+                   for writing Stencil templates generating *Swift* code.
                    DESC
 
   s.homepage     = "https://github.com/SwiftGen/StencilSwiftKit"
