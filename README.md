@@ -7,16 +7,14 @@
 
 `StencilSwiftKit` is a framework bringing additional [Stencil](https://github.com/kylef/Stencil) nodes & filters dedicated to Swift code generation.
 
-## Nodes
+## Tags
 
-_TODO: [Write more extension Documentation](https://github.com/SwiftGen/StencilSwiftKit/issues/4)_
-
-* `MacroNode` & `CallNode`
+* [Macro](Documentation/tag-macro.md) & [Call](Documentation/tag-call.md)
   * `{% macro <Name> <Params> %}…{% endmacro %}`
   * Defines a macro that will be replaced by the nodes inside of this block later when called
-  * `{% call <Name> <Params> %}`
-  * Calls a previously defined macro, passing it some parameters
-* `SetNode`
+  * `{% call <Name> <Args> %}`
+  * Calls a previously defined macro, passing it some arguments
+* [Set](Documentation/tag-set.md)
   * `{% set <Name> %}…{% endset %}`
   * Renders the nodes inside this block immediately, and stores the result in the `<Name`>  variable of the current context.
 * `MapNode`
