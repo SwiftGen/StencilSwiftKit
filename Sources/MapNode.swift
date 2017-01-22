@@ -9,22 +9,26 @@ import Stencil
 
 public class MapNode: NodeType {
 	let variable: Variable
-	let mapVariable: String
 	let resultName: String
+	let mapVariable: String?
 	let nodes: [NodeType]
 	
 	public class func parse(parser: TokenParser, token: Token) throws -> NodeType {
 		let components = token.components()
 		
-		guard components.count == 6 && components[2] == "with" && components[4] == "set" else {
+		guard components.count == 4 && components[2] == "into" ||
+			components.count == 6 && components[2] == "into" && components[4] == "using" else {
 			let error = "'map' statements should use the following " +
-			"'map {array} with {element} set {varname}' `\(token.contents)`."
+			"'map {array} into {varname} [using {element}]' `\(token.contents)`."
 			throw TemplateSyntaxError(error)
 		}
 		
 		let variable = components[1]
-		let mapVariable = components[3]
-		let resultName = components[5]
+		let resultName = components[3]
+		var mapVariable: String? = nil
+		if components.count > 4 {
+			mapVariable = components[5]
+		}
 		
 		let mapNodes = try parser.parse(until(["endmap", "empty"]))
 		
@@ -36,13 +40,13 @@ public class MapNode: NodeType {
 			_ = parser.nextToken()
 		}
 		
-		return MapNode(variable: variable, mapVariable: mapVariable, resultName: resultName, nodes: mapNodes)
+		return MapNode(variable: variable, resultName: resultName, mapVariable: mapVariable, nodes: mapNodes)
 	}
 	
-	public init(variable: String, mapVariable: String, resultName: String, nodes: [NodeType]) {
+	public init(variable: String, resultName: String, mapVariable: String?, nodes: [NodeType]) {
 		self.variable = Variable(variable)
-		self.mapVariable = mapVariable
 		self.resultName = resultName
+		self.mapVariable = mapVariable
 		self.nodes = nodes
 	}
 	
@@ -51,8 +55,19 @@ public class MapNode: NodeType {
 		
 		if let values = values as? [Any], values.count > 0 {
 			let mappedValues: [String] = try values.enumerated().map { (index, item) in
-				let mapInfo: [String: Any] = ["counter": index, "first": index == 0, "last": index == (values.count - 1)]
-				return try context.push(dictionary: [mapVariable: item, "maploop": mapInfo]) {
+				var mapContext: [String: Any] = [
+					"maploop": [
+						"counter": index,
+						"first": index == 0,
+						"last": index == (values.count - 1),
+						"item": item
+					]
+				]
+				if let mapVariable = mapVariable {
+					mapContext[mapVariable] = item
+				}
+				
+				return try context.push(dictionary: mapContext) {
 					try renderNodes(nodes, context)
 				}
 			}
