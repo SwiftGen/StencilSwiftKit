@@ -1,11 +1,15 @@
+# Tag: "Call"
+
+This tag _calls_ a macro previously defined using the [macro tag](tag-macro.md).
+
 ## Node Information
 
-| Name      | Description                                                  |
-|-----------|--------------------------------------------------------------|
-| Tag Name  | `call`                                                       |
-| End Tag   | N/A                                                          |
-| Rendering | Directly, output is the rendering of the called macro block  |
-| Example   | `{% call myBlock "Dave" %}`                                  |
+| Name      | Description                                                     |
+|-----------|-----------------------------------------------------------------|
+| Tag Name  | `call`                                                          |
+| End Tag   | N/A                                                             |
+| Rendering | Immediately; output is the rendering of the called macro block  |
+| Example   | `{% call myBlock "Dave" %}`                                     |
 
 
 | Parameter  | Description                                               | 
@@ -15,23 +19,15 @@
 
 ## When to use it
 
-This node only works together with the `macro` tag. You must define a macro
-block before you can call it.
+This node only works together with the `macro` tag. You must define a macro block first, using the [macro tag](tag-macro.md), before you can call the define block using this `call` tag.
 
-In contrast to the `set` tag, the `call` and `macro` tags can be used for
-delayed execution of blocks. When the renderer encounters a `macro` block, it
-won't be rendered, but it's contents stored as a body of the block. When the
-renderer encounters a `call` tag, it will look up any matching block (by name),
-and will then invoke it using the context from the invocation point.
+The number of arguments in a `call` invocation must match the number of parameters in a `macro` definition.
 
-The number of arguments in a `call` invocation must match the number of
-parameters in a `macro` definition.
+_Note: In contrast to the `set` tag, the `call` and `macro` tags can be used for delayed execution of blocks. When the renderer encounters a `macro` block, it won't render it immediately, but instead it's contents are stored as a body of the block. When the renderer encounters a `call` tag, it will look up any matching block (by name), and will then invoke it using the context from the invocation point._
 
-Do note that, due to the delayed invocation, a `macro` block can contain `call`
-tags that invoke the `macro` block again, thus allowing for scenarios such as
-recursion.
+Do note that, due to the delayed invocation, a `macro` block can contain `call` tags that invoke the `macro` block again, thus allowing for scenarios such as recursion.
 
-See the documentation for the [macro tag](tag-macro.md).
+See the documentation for the [macro tag](tag-macro.md) for more information.
 
 ## Usage example
 
