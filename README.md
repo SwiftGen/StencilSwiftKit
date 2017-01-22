@@ -19,6 +19,9 @@ _TODO: [Write more extension Documentation](https://github.com/SwiftGen/StencilS
 * `SetNode`
   * `{% set <Name> %}…{% endset %}`
   * Renders the nodes inside this block immediately, and stores the result in the `<Name`>  variable of the current context.
+* `MapNode`
+  * `{% map <Variable> into <Name> using <ItemName> %}…{% endmap %}`
+  * Apply a `map` operator to an array, and store the result into a new array variable `<Name>` in the current context.
 
 ## Filters
 
