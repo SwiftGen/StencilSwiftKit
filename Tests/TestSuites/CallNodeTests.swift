@@ -9,7 +9,7 @@ import XCTest
 
 class CallNodeTests: XCTestCase {
   func testBasic() {
-    let template = SwiftTemplate(templateString: Fixtures.string(for: "call-basic.stencil"), environment: stencilSwiftEnvironment())
+    let template = StencilSwiftTemplate(templateString: Fixtures.string(for: "call-basic.stencil"), environment: stencilSwiftEnvironment())
     let result = try! template.render([:])
     
     let expected = Fixtures.string(for: "call-basic.out")
@@ -17,7 +17,7 @@ class CallNodeTests: XCTestCase {
   }
   
   func testWithRecursion() {
-    let template = SwiftTemplate(templateString: Fixtures.string(for: "call-with-recursion.stencil"), environment: stencilSwiftEnvironment())
+    let template = StencilSwiftTemplate(templateString: Fixtures.string(for: "call-with-recursion.stencil"), environment: stencilSwiftEnvironment())
     let result = try! template.render([:])
     
     let expected = Fixtures.string(for: "call-with-recursion.out")

@@ -7,7 +7,7 @@
 import Stencil
 
 // Workaround until Stencil fixes https://github.com/kylef/Stencil/issues/22
-open class SwiftTemplate: Template {
+open class StencilSwiftTemplate: Template {
   public required init(templateString: String, environment: Environment? = nil, name: String? = nil) {
     let templateStringWithMarkedNewlines = templateString
         .replacingOccurrences(of: "\n\n", with: "\n\u{000b}\n")
@@ -61,5 +61,5 @@ func stencilSwiftExtension() -> Extension {
 }
 
 public func stencilSwiftEnvironment() -> Environment {
-  return Environment(extensions: [stencilSwiftExtension()], templateClass: SwiftTemplate.self)
+  return Environment(extensions: [stencilSwiftExtension()], templateClass: StencilSwiftTemplate.self)
 }
