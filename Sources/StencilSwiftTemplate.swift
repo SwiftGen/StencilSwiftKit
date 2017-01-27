@@ -40,26 +40,3 @@ open class StencilSwiftTemplate: Template {
     return unmarkedNewlines
   }
 }
-
-// Create StencilSwiftKit-specific namespace including custom tags & filters
-func stencilSwiftExtension() -> Extension {
-  let namespace = Extension()
-  namespace.registerTag("set", parser: SetNode.parse)
-  namespace.registerTag("macro", parser: MacroNode.parse)
-  namespace.registerTag("call", parser: CallNode.parse)
-  namespace.registerFilter("swiftIdentifier", filter: StringFilters.stringToSwiftIdentifier)
-  namespace.registerFilter("join", filter: ArrayFilters.join)
-  namespace.registerFilter("lowerFirstWord", filter: StringFilters.lowerFirstWord)
-  namespace.registerFilter("snakeToCamelCase", filter: StringFilters.snakeToCamelCase)
-  namespace.registerFilter("snakeToCamelCaseNoPrefix", filter: StringFilters.snakeToCamelCaseNoPrefix)
-  namespace.registerFilter("titlecase", filter: StringFilters.titlecase)
-  namespace.registerFilter("hexToInt", filter: NumFilters.hexToInt)
-  namespace.registerFilter("int255toFloat", filter: NumFilters.int255toFloat)
-  namespace.registerFilter("percent", filter: NumFilters.percent)
-  namespace.registerFilter("escapeReservedKeywords", filter: StringFilters.escapeReservedKeywords)
-  return namespace
-}
-
-public func stencilSwiftEnvironment() -> Environment {
-  return Environment(extensions: [stencilSwiftExtension()], templateClass: StencilSwiftTemplate.self)
-}
