@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		82EF0CC0752D216C67279A16 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */; };
-		DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */; };
-		DD5F34251E219A7200AEB5DA /* expected in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34231E219A7200AEB5DA /* expected */; };
-		DD5F34261E219A7200AEB5DA /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34241E219A7200AEB5DA /* fixtures */; };
-		DD5F342E1E21A3A200AEB5DA /* CallNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */; };
-		DD5F342F1E21A3A200AEB5DA /* SetNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */; };
-		DD5F34301E21A3A200AEB5DA /* StringFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */; };
-		DD5F34311E21A3A200AEB5DA /* SwiftIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */; };
+		CDAAC1B81E3B8D0700439CCD /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CDAAC1A91E3B8D0700439CCD /* Info.plist */; };
+		CDAAC1B91E3B8D0700439CCD /* TestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAC1AA1E3B8D0700439CCD /* TestsHelper.swift */; };
+		CDAAC1BA1E3B8D0700439CCD /* CallNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAC1AC1E3B8D0700439CCD /* CallNodeTests.swift */; };
+		CDAAC1BB1E3B8D0700439CCD /* SetNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAC1AD1E3B8D0700439CCD /* SetNodeTests.swift */; };
+		CDAAC1BC1E3B8D0700439CCD /* StringFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAC1AE1E3B8D0700439CCD /* StringFiltersTests.swift */; };
+		CDAAC1BD1E3B8D0700439CCD /* SwiftIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDAAC1AF1E3B8D0700439CCD /* SwiftIdentifierTests.swift */; };
+		CDAAC1C01E3B8E1B00439CCD /* expected in Resources */ = {isa = PBXBuildFile; fileRef = CDAAC1BE1E3B8E1B00439CCD /* expected */; };
+		CDAAC1C11E3B8E1B00439CCD /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = CDAAC1BF1E3B8E1B00439CCD /* fixtures */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -55,14 +56,14 @@
 		47888DD528DEC4C84FD8F15B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsHelper.swift; sourceTree = "<group>"; };
-		DD5F34201E2199ED00AEB5DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD5F34231E219A7200AEB5DA /* expected */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expected; sourceTree = "<group>"; };
-		DD5F34241E219A7200AEB5DA /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
-		DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallNodeTests.swift; sourceTree = "<group>"; };
-		DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNodeTests.swift; sourceTree = "<group>"; };
-		DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFiltersTests.swift; sourceTree = "<group>"; };
-		DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIdentifierTests.swift; sourceTree = "<group>"; };
+		CDAAC1A91E3B8D0700439CCD /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CDAAC1AA1E3B8D0700439CCD /* TestsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsHelper.swift; sourceTree = "<group>"; };
+		CDAAC1AC1E3B8D0700439CCD /* CallNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallNodeTests.swift; sourceTree = "<group>"; };
+		CDAAC1AD1E3B8D0700439CCD /* SetNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNodeTests.swift; sourceTree = "<group>"; };
+		CDAAC1AE1E3B8D0700439CCD /* StringFiltersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFiltersTests.swift; sourceTree = "<group>"; };
+		CDAAC1AF1E3B8D0700439CCD /* SwiftIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIdentifierTests.swift; sourceTree = "<group>"; };
+		CDAAC1BE1E3B8E1B00439CCD /* expected */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expected; sourceTree = "<group>"; };
+		CDAAC1BF1E3B8E1B00439CCD /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +81,7 @@
 		09030B621B6D254200275BF5 = {
 			isa = PBXGroup;
 			children = (
-				DD5F34111E21657700AEB5DA /* Tests */,
+				CDAAC19D1E3B8D0700439CCD /* XCTests */,
 				09030B6C1B6D254200275BF5 /* Products */,
 				D1F9C04627199F451C124975 /* Pods */,
 				B57827B6D44D535FA2E05E60 /* Frameworks */,
@@ -106,6 +107,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		CDAAC19D1E3B8D0700439CCD /* XCTests */ = {
+			isa = PBXGroup;
+			children = (
+				CDAAC19E1E3B8D0700439CCD /* Resources */,
+				CDAAC1AA1E3B8D0700439CCD /* TestsHelper.swift */,
+				CDAAC1AB1E3B8D0700439CCD /* TestSuites */,
+			);
+			path = XCTests;
+			sourceTree = "<group>";
+		};
+		CDAAC19E1E3B8D0700439CCD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CDAAC1BE1E3B8E1B00439CCD /* expected */,
+				CDAAC1BF1E3B8E1B00439CCD /* fixtures */,
+				CDAAC1A91E3B8D0700439CCD /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		CDAAC1AB1E3B8D0700439CCD /* TestSuites */ = {
+			isa = PBXGroup;
+			children = (
+				CDAAC1AC1E3B8D0700439CCD /* CallNodeTests.swift */,
+				CDAAC1AD1E3B8D0700439CCD /* SetNodeTests.swift */,
+				CDAAC1AE1E3B8D0700439CCD /* StringFiltersTests.swift */,
+				CDAAC1AF1E3B8D0700439CCD /* SwiftIdentifierTests.swift */,
+			);
+			path = TestSuites;
+			sourceTree = "<group>";
+		};
 		D1F9C04627199F451C124975 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,37 +145,6 @@
 				4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		DD5F34111E21657700AEB5DA /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				DD5F34291E21A3A200AEB5DA /* TestSuites */,
-				DD5F341C1E2199ED00AEB5DA /* Resources */,
-				DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */,
-			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		DD5F341C1E2199ED00AEB5DA /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				DD5F34231E219A7200AEB5DA /* expected */,
-				DD5F34241E219A7200AEB5DA /* fixtures */,
-				DD5F34201E2199ED00AEB5DA /* Info.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		DD5F34291E21A3A200AEB5DA /* TestSuites */ = {
-			isa = PBXGroup;
-			children = (
-				DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */,
-				DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */,
-				DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */,
-				DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */,
-			);
-			path = TestSuites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,8 +212,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5F34261E219A7200AEB5DA /* fixtures in Resources */,
-				DD5F34251E219A7200AEB5DA /* expected in Resources */,
+				CDAAC1C01E3B8E1B00439CCD /* expected in Resources */,
+				CDAAC1B81E3B8D0700439CCD /* Info.plist in Resources */,
+				CDAAC1C11E3B8E1B00439CCD /* fixtures in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,11 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5F342F1E21A3A200AEB5DA /* SetNodeTests.swift in Sources */,
-				DD5F34311E21A3A200AEB5DA /* SwiftIdentifierTests.swift in Sources */,
-				DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */,
-				DD5F34301E21A3A200AEB5DA /* StringFiltersTests.swift in Sources */,
-				DD5F342E1E21A3A200AEB5DA /* CallNodeTests.swift in Sources */,
+				CDAAC1BB1E3B8D0700439CCD /* SetNodeTests.swift in Sources */,
+				CDAAC1BD1E3B8D0700439CCD /* SwiftIdentifierTests.swift in Sources */,
+				CDAAC1B91E3B8D0700439CCD /* TestsHelper.swift in Sources */,
+				CDAAC1BC1E3B8D0700439CCD /* StringFiltersTests.swift in Sources */,
+				CDAAC1BA1E3B8D0700439CCD /* CallNodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,7 +374,7 @@
 			baseConfigurationReference = 47888DD528DEC4C84FD8F15B /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = XCTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.SwiftGenKitTests;
@@ -386,7 +388,7 @@
 			baseConfigurationReference = 4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = XCTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.SwiftGenKitTests;
