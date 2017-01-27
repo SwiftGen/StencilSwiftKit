@@ -10,6 +10,9 @@
 
 ### Internal Changes
 
+* Renamed `SwiftTemplate` to `StencilSwiftTemplate`.  
+  [David Jennes](https://github.com/djbe)
+  [#14](https://github.com/SwiftGen/StencilSwiftKit/issues/14)
 
 ## Before 5.0.0
 
