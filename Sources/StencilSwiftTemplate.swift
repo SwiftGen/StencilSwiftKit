@@ -3,14 +3,12 @@
 // Copyright (c) 2017 SwiftGen
 // MIT Licence
 //
+
 import Foundation
 import Stencil
 
-#if os(Linux)
-#if swift(>=3.1)
-#else
-public typealias NSRegularExpression = RegularExpression
-#endif
+#if os(Linux) && !swift(>=3.1)
+typealias NSRegularExpression = RegularExpression
 #endif
 
 // Workaround until Stencil fixes https://github.com/kylef/Stencil/issues/22
