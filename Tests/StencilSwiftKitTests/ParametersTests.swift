@@ -54,87 +54,96 @@ class ParametersTests: XCTestCase {
   func testInvalidSyntax() {
     do {
       let items = ["foo:1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidSyntax {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidSyntax = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
     
     do {
       let items = ["foo!1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidSyntax {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidSyntax = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
     
     do {
       let items = [""]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidSyntax {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidSyntax = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
   }
   
   func testInvalidKey() {
     do {
       let items = ["foo:bar=1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidKey {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidKey = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
     
     do {
       let items = [".=1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidKey {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidKey = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
     
     do {
       let items = ["foo.=1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidKey {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidKey = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
   }
   
   func testInvalidStructure() {
     do {
       let items = ["foo=1", "foo.bar=1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidStructure {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidStructure = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
     
     do {
       let items = ["foo.bar=1", "foo=1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidStructure {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidStructure = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
     
     do {
       let items = ["foo=1", "foo=2", "foo.bar=1"]
-      _ = try Parameters.parse(items: items)
-    } catch ParametersError.invalidStructure {
-      // That's the expected exception we want to happen
-    } catch let error {
-      XCTFail("Unexpected error occured while parsing: \(error)")
+      XCTAssertThrowsError(try Parameters.parse(items: items)) {
+        guard case ParametersError.invalidStructure = $0 else {
+          XCTFail("Unexpected error occured while parsing: \($0)")
+          return
+        }
+      }
     }
   }
 }
