@@ -25,41 +25,40 @@ public enum Parameters {
     
     var result = StringDict()
     for parameter in parameters {
-      result = try parse(item: parameter, result: result)
+      result = try parse(parameter: parameter, result: result)
     }
     
     return result
   }
   
-  private static func parse(item: Parameter, result: StringDict) throws -> StringDict {
-    let parts = item.key.components(separatedBy: ".")
+  private static func parse(parameter: Parameter, result: StringDict) throws -> StringDict {
+    let parts = parameter.key.components(separatedBy: ".")
     let key = parts.first ?? ""
-    
     var result = result
     
     // validate key
-    guard validate(key: key) else { throw ParametersError.invalidKey(key: item.key, value: item.value) }
+    guard validate(key: key) else { throw ParametersError.invalidKey(key: parameter.key, value: parameter.value) }
     
     // no sub keys, may need to convert to array if repeat key if possible
     if parts.count == 1 {
       if let current = result[key] as? [String] {
-        result[key] = current + [item.value]
+        result[key] = current + [parameter.value]
       } else if let current = result[key] as? String {
-        result[key] = [current, item.value]
+        result[key] = [current, parameter.value]
       } else if let current = result[key] {
-        throw ParametersError.invalidStructure(key: key, oldValue: current, newValue: item.value)
+        throw ParametersError.invalidStructure(key: key, oldValue: current, newValue: parameter.value)
       } else {
-        result[key] = item.value
+        result[key] = parameter.value
       }
     } else if parts.count > 1 {
       guard result[key] is StringDict || result[key] == nil else {
-        throw ParametersError.invalidStructure(key: key, oldValue: result[key], newValue: item.value)
+        throw ParametersError.invalidStructure(key: key, oldValue: result[key], newValue: parameter.value)
       }
       
       // recurse into sub keys
       let current = result[key] as? StringDict ?? StringDict()
-      let sub = (key: parts.suffix(from: 1).joined(separator: "."), value: item.value)
-      result[key] = try parse(item: sub, result: current)
+      let sub = (key: parts.suffix(from: 1).joined(separator: "."), value: parameter.value)
+      result[key] = try parse(parameter: sub, result: current)
     }
     
     return result
