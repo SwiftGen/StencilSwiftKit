@@ -23,12 +23,9 @@ public enum Parameters {
       return (key: parts[0], value: parts[1])
     }
     
-    var result = StringDict()
-    for parameter in parameters {
-      result = try parse(parameter: parameter, result: result)
+    return try parameters.reduce(StringDict()) {
+      try parse(parameter: $1, result: $0)
     }
-    
-    return result
   }
   
   private static func parse(parameter: Parameter, result: StringDict) throws -> StringDict {
