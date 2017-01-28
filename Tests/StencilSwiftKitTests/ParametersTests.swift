@@ -108,4 +108,33 @@ class ParametersTests: XCTestCase {
       XCTFail("Unexpected error occured while parsing: \(error)")
     }
   }
+  
+  func testInvalidStructure() {
+    do {
+      let items = ["foo=1", "foo.bar=1"]
+      _ = try Parameters.parse(items: items)
+    } catch ParametersError.invalidStructure {
+      // That's the expected exception we want to happen
+    } catch let error {
+      XCTFail("Unexpected error occured while parsing: \(error)")
+    }
+    
+    do {
+      let items = ["foo.bar=1", "foo=1"]
+      _ = try Parameters.parse(items: items)
+    } catch ParametersError.invalidStructure {
+      // That's the expected exception we want to happen
+    } catch let error {
+      XCTFail("Unexpected error occured while parsing: \(error)")
+    }
+    
+    do {
+      let items = ["foo=1", "foo=2", "foo.bar=1"]
+      _ = try Parameters.parse(items: items)
+    } catch ParametersError.invalidStructure {
+      // That's the expected exception we want to happen
+    } catch let error {
+      XCTFail("Unexpected error occured while parsing: \(error)")
+    }
+  }
 }

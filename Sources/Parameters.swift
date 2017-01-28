@@ -9,6 +9,7 @@ import Foundation
 public enum ParametersError: Error {
   case invalidSyntax(value: String)
   case invalidKey(key: String, value: String)
+  case invalidStructure(key: String, oldValue: Any, newValue: Any)
 }
 
 public enum Parameters {
@@ -33,25 +34,31 @@ public enum Parameters {
   private static func parse(item: Parameter, result: StringDict) throws -> StringDict {
     let parts = item.key.components(separatedBy: ".")
     let key = parts.first ?? ""
+    
     var result = result
     
     // validate key
     guard validate(key: key) else { throw ParametersError.invalidKey(key: item.key, value: item.value) }
     
-    // no sub keys, may need to convert to array if repeat key
+    // no sub keys, may need to convert to array if repeat key if possible
     if parts.count == 1 {
       if let current = result[key] as? [String] {
         result[key] = current + [item.value]
-      } else if let current = result[item.key] {
+      } else if let current = result[key] as? String {
         result[key] = [current, item.value]
+      } else if let current = result[key] {
+        throw ParametersError.invalidStructure(key: key, oldValue: current, newValue: item.value)
       } else {
         result[key] = item.value
       }
     } else if parts.count > 1 {
-      // recurse into sub keys
-      let sub = (key: parts.suffix(from: 1).joined(separator: "."), value: item.value)
-      let current = result[key] as? StringDict ?? StringDict()
+      guard result[key] is StringDict || result[key] == nil else {
+        throw ParametersError.invalidStructure(key: key, oldValue: result[key], newValue: item.value)
+      }
       
+      // recurse into sub keys
+      let current = result[key] as? StringDict ?? StringDict()
+      let sub = (key: parts.suffix(from: 1).joined(separator: "."), value: item.value)
       result[key] = try parse(item: sub, result: current)
     }
     
