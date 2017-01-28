@@ -36,7 +36,7 @@ _TODO: [Write more extension Documentation](https://github.com/SwiftGen/StencilS
 
 ## SwiftTemplate
 
-This framwork also contains [a `SwiftTemplate` class](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Sources/SwiftTemplate.swift#L10), which is a subclass of `Stencil.Template` dedicated to remove extra newlines when rendering the template.
+This framework also contains [a `SwiftTemplate` class](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Sources/SwiftTemplate.swift#L10), which is a subclass of `Stencil.Template` dedicated to remove extra newlines when rendering the template.
 
 Indeed, such extra newlines could otherwise be inserted  in the generated output because you want your template to be well formatted, and that can end up with Stencil nodes like `{% for … %}` and `{% if … %}` be alone in some lines of your template and that would render into nothing by themselves, generating empty lines in the output.
 
