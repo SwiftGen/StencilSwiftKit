@@ -17,10 +17,16 @@ class MacroNodeTests: XCTestCase {
     ]
     
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
-    guard let nodes = try? parser.parse(), let _ = nodes.first as? MacroNode else {
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? MacroNode else {
       XCTFail("Unable to parse tokens")
       return
     }
+    
+    XCTAssertEqual(node.variableName, "myFunc")
+    XCTAssertEqual(node.parameters, [])
+    XCTAssertEqual(node.nodes.count, 1)
+    XCTAssert(node.nodes.first is TextNode)
   }
   
   func testParserWithParameters() {
@@ -31,10 +37,16 @@ class MacroNodeTests: XCTestCase {
     ]
     
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
-    guard let nodes = try? parser.parse(), let _ = nodes.first as? MacroNode else {
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? MacroNode else {
       XCTFail("Unable to parse tokens")
       return
     }
+    
+    XCTAssertEqual(node.variableName, "myFunc")
+    XCTAssertEqual(node.parameters, ["a", "b", "c"])
+    XCTAssertEqual(node.nodes.count, 1)
+    XCTAssert(node.nodes.first is TextNode)
   }
   
   func testParserFail() {

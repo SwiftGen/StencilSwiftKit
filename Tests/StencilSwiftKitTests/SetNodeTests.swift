@@ -17,10 +17,15 @@ class SetNodeTests: XCTestCase {
     ]
     
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
-    guard let nodes = try? parser.parse(), let _ = nodes.first as? SetNode else {
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? SetNode else {
       XCTFail("Unable to parse tokens")
       return
     }
+    
+    XCTAssertEqual(node.variableName, "value")
+    XCTAssertEqual(node.nodes.count, 1)
+    XCTAssert(node.nodes.first is TextNode)
   }
   
   func testParserFail() {
