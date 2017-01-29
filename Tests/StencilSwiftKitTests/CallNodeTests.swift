@@ -5,22 +5,119 @@
 //
 
 import XCTest
+@testable import Stencil
 @testable import StencilSwiftKit
 
 class CallNodeTests: XCTestCase {
-  func testBasic() {
-    let template = StencilSwiftTemplate(templateString: Fixtures.string(for: "call-basic.stencil"), environment: stencilSwiftEnvironment())
-    let result = try! template.render([:])
+  func testParser() {
+    let tokens: [Token] = [
+      .block(value: "call myFunc"),
+    ]
     
-    let expected = Fixtures.string(for: "call-basic.out")
-    XCTDiffStrings(result, expected)
+    let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? CallNode else {
+      XCTFail("Unable to parse tokens")
+      return
+    }
+    
+    XCTAssertEqual(node.variableName, "myFunc")
+    XCTAssertEqual(node.arguments, [])
   }
   
-  func testWithRecursion() {
-    let template = StencilSwiftTemplate(templateString: Fixtures.string(for: "call-with-recursion.stencil"), environment: stencilSwiftEnvironment())
-    let result = try! template.render([:])
+  func testParserWithArguments() {
+    let tokens: [Token] = [
+      .block(value: "call myFunc a b c"),
+    ]
     
-    let expected = Fixtures.string(for: "call-with-recursion.out")
-    XCTDiffStrings(result, expected)
+    let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? CallNode else {
+      XCTFail("Unable to parse tokens")
+      return
+    }
+    
+    XCTAssertEqual(node.variableName, "myFunc")
+    XCTAssertEqual(node.arguments, [Variable("a"), Variable("b"), Variable("c")])
+  }
+  
+  func testParserFail() {
+    do {
+      let tokens: [Token] = [
+        .block(value: "call")
+      ]
+      
+      let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+      XCTAssertThrowsError(try parser.parse())
+    }
+  }
+  
+  func testRender() {
+    let block = CallableBlock(parameters: [], nodes: [TextNode(text: "hello")])
+    let context = Context(dictionary: ["myFunc": block])
+    let node = CallNode(variableName: "myFunc", arguments: [])
+    let output = try! node.render(context)
+    
+    XCTAssertEqual(output, "hello")
+  }
+  
+  func testRenderFail() {
+    let context = Context(dictionary: [:])
+    let node = CallNode(variableName: "myFunc", arguments: [])
+    
+    XCTAssertThrowsError(try node.render(context))
+  }
+  
+  func testRenderWithParameters() {
+    let block = CallableBlock(parameters: ["a", "b", "c"], nodes: [
+      TextNode(text: "variables: "),
+      VariableNode(variable: "a"),
+      VariableNode(variable: "b"),
+      VariableNode(variable: "c")
+    ])
+    let context = Context(dictionary: ["myFunc": block])
+    let node = CallNode(variableName: "myFunc", arguments: [
+      Variable("\"hello\""),
+      Variable("\"world\""),
+      Variable("\"test\"")
+    ])
+    let output = try! node.render(context)
+    
+    XCTAssertEqual(output, "variables: helloworldtest")
+  }
+  
+  func testRenderWithParametersFail() {
+    let block = CallableBlock(parameters: ["a", "b", "c"], nodes: [
+      TextNode(text: "variables: "),
+      VariableNode(variable: "a"),
+      VariableNode(variable: "b"),
+      VariableNode(variable: "c")
+    ])
+    let context = Context(dictionary: ["myFunc": block])
+    
+    // must pass arguments
+    do {
+      let node = CallNode(variableName: "myFunc", arguments: [])
+      XCTAssertThrowsError(try node.render(context))
+    }
+    
+    // not enough arguments
+    do {
+      let node = CallNode(variableName: "myFunc", arguments: [
+        Variable("\"hello\"")
+      ])
+      XCTAssertThrowsError(try node.render(context))
+    }
+    
+    // too many arguments
+    do {
+      let node = CallNode(variableName: "myFunc", arguments: [
+        Variable("\"hello\""),
+        Variable("\"world\""),
+        Variable("\"test\""),
+        Variable("\"test\"")
+      ])
+      XCTAssertThrowsError(try node.render(context))
+    }
   }
 }
