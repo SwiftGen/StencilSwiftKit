@@ -20,6 +20,9 @@
 * Refactor stencil swift extensions registration for easier use with an existing `Extension`.  
   [David Jennes](https://github.com/djbe)
   [#16](https://github.com/SwiftGen/StencilSwiftKit/issues/16)
+* Refactor stencil node tests to not use templates and output files.  
+  [David Jennes](https://github.com/djbe)
+  [#17](https://github.com/SwiftGen/StencilSwiftKit/issues/17)
 
 ## Before 5.0.0
 
