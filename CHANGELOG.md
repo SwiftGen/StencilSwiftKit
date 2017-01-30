@@ -8,6 +8,10 @@
 
 ### New Features
 
+* Added support for Swift Package Manager.  
+  [Krzysztof Zabłocki](https://github.com/krzysztofzablocki)
+  [#15](https://github.com/SwiftGen/StencilSwiftKit/issues/15)
+
 ### Internal Changes
 
 * Renamed `SwiftTemplate` to `StencilSwiftTemplate`.  

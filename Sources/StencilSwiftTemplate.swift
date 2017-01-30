@@ -4,7 +4,12 @@
 // MIT Licence
 //
 
+import Foundation
 import Stencil
+
+#if os(Linux) && !swift(>=3.1)
+typealias NSRegularExpression = RegularExpression
+#endif
 
 // Workaround until Stencil fixes https://github.com/kylef/Stencil/issues/22
 open class StencilSwiftTemplate: Template {

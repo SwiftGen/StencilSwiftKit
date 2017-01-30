@@ -53,24 +53,27 @@ func XCTDiffStrings(_ result: String, _ expected: String, file: StaticString = #
 }
 
 class Fixtures {
-  private static let testBundle = Bundle(for: Fixtures.self)
+  private static let resources: Path = {
+    if let path = Bundle(for: Fixtures.self).resourceURL?.path,
+      Path(path).exists {
+      return Path(path)
+    } else {
+      return Path(#file).parent() + "Resources"
+    }
+  }()
   private init() {}
 
   static func directory(subDirectory subDir: String? = nil) -> Path {
-    guard let rsrcURL = testBundle.resourceURL else {
-      fatalError("Unable to find resource directory URL")
-    }
-    let rsrc = Path(rsrcURL.path)
-
-    guard let dir = subDir else { return rsrc }
-    return rsrc + dir
+    guard let dir = subDir else { return resources }
+    return resources + dir
   }
 
   static func path(for name: String, subDirectory: String? = nil) -> Path {
-    guard let path = testBundle.path(forResource: name, ofType: "", inDirectory: subDirectory) else {
-      fatalError("Unable to find fixture \"\(name)\"")
+    if let subDirectory = subDirectory {
+      return resources + subDirectory + name
+    } else {
+      return resources + name
     }
-    return Path(path)
   }
 
   static func string(for name: String, encoding: String.Encoding = .utf8) -> String {

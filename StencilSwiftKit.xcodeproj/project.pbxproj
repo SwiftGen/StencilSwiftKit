@@ -118,9 +118,7 @@
 		DD5F34111E21657700AEB5DA /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DD5F34291E21A3A200AEB5DA /* TestSuites */,
-				DD5F341C1E2199ED00AEB5DA /* Resources */,
-				DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */,
+				DD5F34291E21A3A200AEB5DA /* StencilSwiftKitTests */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -135,15 +133,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		DD5F34291E21A3A200AEB5DA /* TestSuites */ = {
+		DD5F34291E21A3A200AEB5DA /* StencilSwiftKitTests */ = {
 			isa = PBXGroup;
 			children = (
 				DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */,
 				DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */,
 				DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */,
 				DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */,
+				DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */,
+				DD5F341C1E2199ED00AEB5DA /* Resources */,
 			);
-			path = TestSuites;
+			path = StencilSwiftKitTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,7 +372,7 @@
 			baseConfigurationReference = 47888DD528DEC4C84FD8F15B /* Pods-Tests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Tests/StencilSwiftKitTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.SwiftGenKitTests;
@@ -386,7 +386,7 @@
 			baseConfigurationReference = 4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Resources/Info.plist;
+				INFOPLIST_FILE = Tests/StencilSwiftKitTests/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.alisoftware.SwiftGenKitTests;
