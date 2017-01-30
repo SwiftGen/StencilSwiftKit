@@ -7,11 +7,13 @@ def xcpretty(cmd)
 end
 
 task :build_for_testing do
+  sh "swift build"
   xcpretty "xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests build-for-testing"
 end
 
 desc 'Run Unit Tests'
 task :test => :build_for_testing do
+  sh "swift test"
   xcpretty "xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests test-without-building"
 end
 
