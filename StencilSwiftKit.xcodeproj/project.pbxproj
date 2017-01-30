@@ -138,10 +138,10 @@
 		DD5F34291E21A3A200AEB5DA /* StencilSwiftKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				DD4393FE1E2D3EEB0047A332 /* MapNodeTests.swift */,
 				DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */,
 				DDFD1F681E5358C70023AE2B /* ContextTests.swift */,
 				DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */,
+				DD4393FE1E2D3EEB0047A332 /* MapNodeTests.swift */,
 				DDE1E2F81E3FABE70043367C /* ParametersTests.swift */,
 				DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */,
 				DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */,
