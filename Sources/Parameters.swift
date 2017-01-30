@@ -49,7 +49,7 @@ public enum Parameters {
       }
     } else if parts.count > 1 {
       guard result[key] is StringDict || result[key] == nil else {
-        throw ParametersError.invalidStructure(key: key, oldValue: result[key], newValue: parameter.value)
+        throw ParametersError.invalidStructure(key: key, oldValue: result[key] ?? "", newValue: parameter.value)
       }
       
       // recurse into sub keys
