@@ -27,4 +27,13 @@ class JSFiltersTests: XCTestCase {
     XCTDiffStrings(result, "Hello, World!")
   }
   
+  func testJSSimpleTag() {
+    let template = StencilSwiftTemplate(templateString: "{% jshello %}", environment: stencilSwiftEnvironment({ ext in
+      ext.registerJSSimpleTag("jshello", code: "var jshello = function(context) { return \"Hello, \" + context.name }")
+    }))
+    let result = try! template.render(["name": "World"])
+    
+    XCTDiffStrings(result, "Hello, World")
+  }
+  
 }

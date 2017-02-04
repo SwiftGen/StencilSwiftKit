@@ -28,6 +28,16 @@ public extension Extension {
             return result?.toObject()
         })
     }
+
+    public func registerJSSimpleTag(_ name: String, code: String) {
+        self.registerSimpleTag(name) { (context) -> String in
+            let jsContext = JSContext()!
+            try self.inJSContext(jsContext) { jsContext.evaluateScript(code) }
+            let tag = try self.inJSContext(jsContext) { jsContext.objectForKeyedSubscript(name) }
+            let result = try self.inJSContext(jsContext) { tag?.call(withArguments: [context.flatten()]) }
+            return result?.toString() ?? ""
+        }
+    }
     
 }
 
