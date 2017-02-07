@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		09C0D28A1E466E46006CA48A /* JSFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C0D2891E466E46006CA48A /* JSFiltersTests.swift */; };
+		09C0D2AB1E494B3C006CA48A /* greet-tag.js in Resources */ = {isa = PBXBuildFile; fileRef = 09C0D2AA1E494B3C006CA48A /* greet-tag.js */; };
 		82EF0CC0752D216C67279A16 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */; };
 		DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */; };
 		DD5F34251E219A7200AEB5DA /* expected in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34231E219A7200AEB5DA /* expected */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		09A87B501BCCA2C600D9B9F5 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C0D2891E466E46006CA48A /* JSFiltersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSFiltersTests.swift; sourceTree = "<group>"; };
+		09C0D2AA1E494B3C006CA48A /* greet-tag.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = "greet-tag.js"; sourceTree = "<group>"; };
 		47888DD528DEC4C84FD8F15B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 		DD5F341C1E2199ED00AEB5DA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				09C0D2AA1E494B3C006CA48A /* greet-tag.js */,
 				DD5F34231E219A7200AEB5DA /* expected */,
 				DD5F34241E219A7200AEB5DA /* fixtures */,
 				DD5F34201E2199ED00AEB5DA /* Info.plist */,
@@ -214,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C0D2AB1E494B3C006CA48A /* greet-tag.js in Resources */,
 				DD5F34261E219A7200AEB5DA /* fixtures in Resources */,
 				DD5F34251E219A7200AEB5DA /* expected in Resources */,
 			);

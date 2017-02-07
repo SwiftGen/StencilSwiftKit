@@ -8,12 +8,21 @@ import Stencil
 import JavaScriptCore
 
 @discardableResult
-private func inJSContext<T>(_ jsContext: JSContext, _ block: () -> T) throws -> T {
+private func inJSContext(_ jsContext: JSContext, _ block: () -> JSValue?) throws -> JSValue? {
     let result = block()
     if let exception = jsContext.exception {
         throw JSException(exception)
     } else {
         return result
+    }
+}
+
+private func bridgingError<T>(_ expression: () throws -> T) -> T? {
+    do {
+        return try expression()
+    } catch {
+        JSContext.current().evaluateScript("throw \"\(error)\"")
+        return nil
     }
 }
 
@@ -104,9 +113,15 @@ public extension Extension {
     public func registerJSTag(_ name: String, code: String) {
         self.registerTag(name, parser: { parser, token in
             let jsContext = JSContext()!
-            jsContext.setObject(unsafeBitCast(JSResolvable.constructor, to: AnyObject.self), forKeyedSubscript: "Variable" as NSString)
-            jsContext.setObject(unsafeBitCast(JSVariableNode.constructor, to: AnyObject.self), forKeyedSubscript: "VariableNode" as NSString)
+            
+            let newVariable: @convention(block) (String) -> JSResolvable = JSResolvable.init
+            jsContext.setObject(unsafeBitCast(newVariable, to: AnyObject.self), forKeyedSubscript: "Variable" as NSString)
+            
+            let newVariableNode: @convention(block) (JSResolvable) -> (JSVariableNode) = JSVariableNode.init
+            jsContext.setObject(unsafeBitCast(newVariableNode, to: AnyObject.self), forKeyedSubscript: "VariableNode" as NSString)
+            
             jsContext.setObject(unsafeBitCast(renderNodes, to: AnyObject.self), forKeyedSubscript: "renderNodes" as NSString)
+            
             try inJSContext(jsContext) { jsContext.evaluateScript(code) }
             let prototype = try inJSContext(jsContext) { jsContext.objectForKeyedSubscript(name) }
             let node = try inJSContext(jsContext) { prototype?.construct(withArguments: [JSTokenParser(parser), JSToken(token)]) }
@@ -120,7 +135,7 @@ public extension Extension {
     func parse() -> [JSNode]
     func nextToken() -> JSToken?
     func compileFilter(_ token: String) -> JSResolvable!
-    func parse_until(_ strings: [String]) -> [JSNode]
+    func parse_until(_ tags: [String]?) -> [JSNode]
 }
 
 /// JS wrapper for TokenParser to access basic parser functionality from JS
@@ -131,20 +146,21 @@ class JSTokenParser: NSObject, JSExportableTokenParser {
     }
 
     func parse() -> [JSNode] {
-        return try! parser.parse().map(JSNode.init)
+        return parse_until(nil)
     }
     
-    func parse_until(_ tags: [String]) -> [JSNode] {
-        return try! parser.parse(until(tags)).map(JSNode.init)
+    func parse_until(_ tags: [String]?) -> [JSNode] {
+        return bridgingError {
+            try parser.parse(tags.map(until)).map(JSNode.init)
+            } ?? []
     }
     
     func nextToken() -> JSToken? {
         return parser.nextToken().map(JSToken.init)
     }
     
-    func compileFilter(_ token: String) -> JSResolvable! {
-        let resolvable = try! parser.compileFilter(token)
-        return JSResolvable(resolvable)
+    func compileFilter(_ token: String) -> JSResolvable? {
+        return bridgingError { try JSResolvable(parser.compileFilter(token)) }
     }
 
 }
@@ -218,19 +234,18 @@ class JSResolvable: NSObject, JSExportableResolvable {
         self.resolvable = resolvable
     }
 
-    /// Implementation for `new Variable(string)`
-    static let constructor: @convention(block) (String) -> (JSResolvable) = { variable in
-        return JSResolvable(Variable(variable))
+    init(_ variable: String) {
+        self.resolvable = Variable(variable)
     }
 
     func resolve(_ context: JSStencilContext) -> Any? {
-        return try! resolvable.resolve(context.context)
+        return bridgingError { try resolvable.resolve(context.context) as Any }
     }
 
 }
 
 @objc protocol JSExportableVariableNode: JSExport {
-    func render(_ context: JSStencilContext) -> String
+    func render(_ context: JSStencilContext) -> String?
 }
 
 /// JS wrapper for VariableNode
@@ -241,13 +256,8 @@ class JSVariableNode : NSObject, JSExportableVariableNode {
         self.node = VariableNode(variable: resolvable.resolvable)
     }
     
-    /// Implementation for `new VariableNode(resolvable)`
-    static let constructor: @convention(block) (JSResolvable) -> (JSVariableNode) = { resolvable in
-        return JSVariableNode(resolvable)
-    }
-
-    func render(_ context: JSStencilContext) -> String {
-        return try! node.render(context.context)
+    func render(_ context: JSStencilContext) -> String? {
+        return bridgingError { try node.render(context.context) }
     }
 }
 
@@ -283,6 +293,6 @@ class JSNode: NSObject, NodeType {
 }
 
 /// Renders collection of nodes using provided context
-private let renderNodes: @convention(block) ([JSNode], JSStencilContext) -> String = { nodes, context in
-    return try! nodes.map({ try $0.render(context.context) }).joined(separator: "")
+private let renderNodes: @convention(block) ([JSNode], JSStencilContext) -> String? = { nodes, context in
+    return bridgingError { try nodes.map({ try $0.render(context.context) }).joined(separator: "") }
 }
