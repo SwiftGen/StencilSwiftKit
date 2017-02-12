@@ -9,12 +9,11 @@
 /* Begin PBXBuildFile section */
 		82EF0CC0752D216C67279A16 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */; };
 		DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */; };
-		DD5F34251E219A7200AEB5DA /* expected in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34231E219A7200AEB5DA /* expected */; };
-		DD5F34261E219A7200AEB5DA /* fixtures in Resources */ = {isa = PBXBuildFile; fileRef = DD5F34241E219A7200AEB5DA /* fixtures */; };
 		DD5F342E1E21A3A200AEB5DA /* CallNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */; };
 		DD5F342F1E21A3A200AEB5DA /* SetNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */; };
 		DD5F34301E21A3A200AEB5DA /* StringFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */; };
 		DD5F34311E21A3A200AEB5DA /* SwiftIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */; };
+		DDE1E2F61E3E33E30043367C /* MacroNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -57,12 +56,11 @@
 		8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestsHelper.swift; sourceTree = "<group>"; };
 		DD5F34201E2199ED00AEB5DA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DD5F34231E219A7200AEB5DA /* expected */ = {isa = PBXFileReference; lastKnownFileType = folder; path = expected; sourceTree = "<group>"; };
-		DD5F34241E219A7200AEB5DA /* fixtures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fixtures; sourceTree = "<group>"; };
 		DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CallNodeTests.swift; sourceTree = "<group>"; };
 		DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetNodeTests.swift; sourceTree = "<group>"; };
 		DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFiltersTests.swift; sourceTree = "<group>"; };
 		DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIdentifierTests.swift; sourceTree = "<group>"; };
+		DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacroNodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +124,6 @@
 		DD5F341C1E2199ED00AEB5DA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				DD5F34231E219A7200AEB5DA /* expected */,
-				DD5F34241E219A7200AEB5DA /* fixtures */,
 				DD5F34201E2199ED00AEB5DA /* Info.plist */,
 			);
 			path = Resources;
@@ -137,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */,
+				DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */,
 				DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */,
 				DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */,
 				DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */,
@@ -211,8 +208,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD5F34261E219A7200AEB5DA /* fixtures in Resources */,
-				DD5F34251E219A7200AEB5DA /* expected in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +268,7 @@
 			files = (
 				DD5F342F1E21A3A200AEB5DA /* SetNodeTests.swift in Sources */,
 				DD5F34311E21A3A200AEB5DA /* SwiftIdentifierTests.swift in Sources */,
+				DDE1E2F61E3E33E30043367C /* MacroNodeTests.swift in Sources */,
 				DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */,
 				DD5F34301E21A3A200AEB5DA /* StringFiltersTests.swift in Sources */,
 				DD5F342E1E21A3A200AEB5DA /* CallNodeTests.swift in Sources */,
