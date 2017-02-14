@@ -7,20 +7,25 @@
 import Foundation
 
 public enum ParametersError: Error {
-  case invalidSyntax(value: String)
-  case invalidKey(key: String, value: String)
+  case invalidSyntax(value: Any)
+  case invalidKey(key: String, value: Any)
   case invalidStructure(key: String, oldValue: Any, newValue: Any)
 }
 
 public enum Parameters {
-  typealias Parameter = (key: String, value: String)
+  typealias Parameter = (key: String, value: Any)
   public typealias StringDict = [String: Any]
   
   public static func parse(items: [String]) throws -> StringDict {
     let parameters: [Parameter] = try items.map { item in
       let parts = item.components(separatedBy: "=")
-      guard parts.count == 2 else { throw ParametersError.invalidSyntax(value: item) }
-      return (key: parts[0], value: parts[1])
+      if parts.count == 2 {
+        return (key: parts[0], value: parts[1])
+      } else if let part = parts.first, parts.count == 1 && validate(key: part) {
+        return (key: part, value: true)
+      } else {
+        throw ParametersError.invalidSyntax(value: item)
+      }
     }
     
     return try parameters.reduce(StringDict()) {
@@ -38,7 +43,7 @@ public enum Parameters {
     
     // no sub keys, may need to convert to array if repeat key if possible
     if parts.count == 1 {
-      if let current = result[key] as? [String] {
+      if let current = result[key] as? [Any] {
         result[key] = current + [parameter.value]
       } else if let current = result[key] as? String {
         result[key] = [current, parameter.value]
