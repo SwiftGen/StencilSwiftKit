@@ -20,13 +20,14 @@ class ParametersTests: XCTestCase {
   }
   
   func testStructured() {
-    let items = ["foo.baz=1", "foo.bar=2"]
+    let items = ["foo.baz=1", "foo.bar=2", "foo.test"]
     let result = try! Parameters.parse(items: items)
     
     XCTAssertEqual(result.count, 1, "1 parameter should have been parsed")
-    guard let sub = result["foo"] as? [String: String] else { XCTFail("Parsed parameter should be a dictionary"); return }
-    XCTAssertEqual(sub["baz"], "1")
-    XCTAssertEqual(sub["bar"], "2")
+    guard let sub = result["foo"] as? [String: Any] else { XCTFail("Parsed parameter should be a dictionary"); return }
+    XCTAssertEqual(sub["baz"] as? String, "1")
+    XCTAssertEqual(sub["bar"] as? String, "2")
+    XCTAssertEqual(sub["test"] as? Bool, true)
   }
   
   func testDeepStructured() {
@@ -54,6 +55,7 @@ class ParametersTests: XCTestCase {
   }
   
   func testInvalidSyntax() {
+    // invalid character
     do {
       let items = ["foo:1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -64,6 +66,7 @@ class ParametersTests: XCTestCase {
       }
     }
     
+    // invalid character
     do {
       let items = ["foo!1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -74,6 +77,7 @@ class ParametersTests: XCTestCase {
       }
     }
     
+    // cannot be empty
     do {
       let items = [""]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -86,6 +90,7 @@ class ParametersTests: XCTestCase {
   }
   
   func testInvalidKey() {
+    // key may only be alfanumeric or '.'
     do {
       let items = ["foo:bar=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -96,6 +101,7 @@ class ParametersTests: XCTestCase {
       }
     }
     
+    // can't have empty key or sub-key
     do {
       let items = [".=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -106,6 +112,7 @@ class ParametersTests: XCTestCase {
       }
     }
     
+    // can't have empty sub-key
     do {
       let items = ["foo.=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -118,6 +125,7 @@ class ParametersTests: XCTestCase {
   }
   
   func testInvalidStructure() {
+    // can't switch from string to dictionary
     do {
       let items = ["foo=1", "foo.bar=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -128,6 +136,7 @@ class ParametersTests: XCTestCase {
       }
     }
     
+    // can't switch from dictionary to array
     do {
       let items = ["foo.bar=1", "foo=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
@@ -138,6 +147,7 @@ class ParametersTests: XCTestCase {
       }
     }
     
+    // can't switch from array to dictionary
     do {
       let items = ["foo=1", "foo=2", "foo.bar=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
