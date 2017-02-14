@@ -71,3 +71,8 @@ will become
   something: true
 ]
 ```
+
+For easier use, you can use the `enrich(context:parameters:)` function to add the following variables to a context:
+
+- `param`: the parsed parameters using the parser mentioned above.
+- `env`: a dictionary with all available environment variables (such as `PATH`).
