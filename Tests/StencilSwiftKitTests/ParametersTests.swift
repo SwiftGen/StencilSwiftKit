@@ -9,13 +9,14 @@ import StencilSwiftKit
 
 class ParametersTests: XCTestCase {
   func testBasic() {
-    let items = ["a=1", "b=hello", "c"]
+    let items = ["a=1", "b=hello", "c=x=y", "d"]
     let result = try! Parameters.parse(items: items)
     
-    XCTAssertEqual(result.count, 3, "3 parameters should have been parsed")
+    XCTAssertEqual(result.count, 4, "4 parameters should have been parsed")
     XCTAssertEqual(result["a"] as? String, "1")
     XCTAssertEqual(result["b"] as? String, "hello")
-    XCTAssertEqual(result["c"] as? Bool, true)
+    XCTAssertEqual(result["c"] as? String, "x=y")
+    XCTAssertEqual(result["d"] as? Bool, true)
   }
   
   func testStructured() {

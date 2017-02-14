@@ -52,7 +52,7 @@ This framework also contains [helper methods for `Stencil.Extension` and `Stenci
 This framework contains an additional parser, meant to parse a list of parameters from the CLI. For example, using [Commander](https://github.com/kylef/Commander), if you receive a `[String]` from a `VariadicOption<String>`, you can use the parser to convert it into a structured dictionary. For example:
 
 ```swift
-["foo=1", "bar=2", "baz.qux=hello", "baz.items=a", "baz.items=b"]
+["foo=1", "bar=2", "baz.qux=hello", "baz.items=a", "baz.items=b", "something"]
 ```
 
 will become
@@ -67,6 +67,7 @@ will become
       "a",
       "b"
     ]
-  ]
+  ],
+  something: true
 ]
 ```

@@ -19,8 +19,8 @@ public enum Parameters {
   public static func parse(items: [String]) throws -> StringDict {
     let parameters: [Parameter] = try items.map { item in
       let parts = item.components(separatedBy: "=")
-      if parts.count == 2 {
-        return (key: parts[0], value: parts[1])
+      if parts.count >= 2 {
+        return (key: parts[0], value: parts.dropFirst().joined(separator: "="))
       } else if let part = parts.first, parts.count == 1 && validate(key: part) {
         return (key: part, value: true)
       } else {
