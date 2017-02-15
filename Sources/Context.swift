@@ -8,7 +8,7 @@
 
 import Foundation
 
-public func enrich(context: [AnyHashable: Any], parameters: [String]) throws -> [AnyHashable: Any] {
+public func enrich(context: [String: Any], parameters: [String]) throws -> [String: Any] {
   var context = context
   
   context["env"] = ProcessInfo().environment

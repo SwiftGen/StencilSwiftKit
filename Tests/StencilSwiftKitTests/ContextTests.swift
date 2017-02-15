@@ -16,9 +16,9 @@ class ContextTests: XCTestCase {
     let result = try! enrich(context: context, parameters: [])
     XCTAssertEqual(result.count, 2, "2 items have been added")
     
-    guard let env = result["env"] as? [AnyHashable: Any] else { XCTFail("`env` should be a dictionary"); return }
+    guard let env = result["env"] as? [String: Any] else { XCTFail("`env` should be a dictionary"); return }
     XCTAssertNotNil(env["PATH"] as? String)
-    guard let params = result["param"] as? [AnyHashable: Any] else { XCTFail("`param` should be a dictionary"); return }
+    guard let params = result["param"] as? [String: Any] else { XCTFail("`param` should be a dictionary"); return }
     XCTAssertEqual(params.count, 0)
   }
   
@@ -30,9 +30,9 @@ class ContextTests: XCTestCase {
     XCTAssertEqual(result["foo"] as? String, "bar")
     XCTAssertEqual(result["hello"] as? Bool, true)
     
-    guard let env = result["env"] as? [AnyHashable: Any] else { XCTFail("`env` should be a dictionary"); return }
+    guard let env = result["env"] as? [String: Any] else { XCTFail("`env` should be a dictionary"); return }
     XCTAssertNotNil(env["PATH"] as? String)
-    guard let params = result["param"] as? [AnyHashable: Any] else { XCTFail("`param` should be a dictionary"); return }
+    guard let params = result["param"] as? [String: Any] else { XCTFail("`param` should be a dictionary"); return }
     XCTAssertEqual(params.count, 0)
   }
   
@@ -42,9 +42,9 @@ class ContextTests: XCTestCase {
     let result = try! enrich(context: context, parameters: ["foo=bar", "hello"])
     XCTAssertEqual(result.count, 2, "2 items have been added")
     
-    guard let env = result["env"] as? [AnyHashable: Any] else { XCTFail("`env` should be a dictionary"); return }
+    guard let env = result["env"] as? [String: Any] else { XCTFail("`env` should be a dictionary"); return }
     XCTAssertNotNil(env["PATH"] as? String)
-    guard let params = result["param"] as? [AnyHashable: Any] else { XCTFail("`param` should be a dictionary"); return }
+    guard let params = result["param"] as? [String: Any] else { XCTFail("`param` should be a dictionary"); return }
     XCTAssertEqual(params["foo"] as? String, "bar")
     XCTAssertEqual(params["hello"] as? Bool, true)
   }
