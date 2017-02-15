@@ -1,0 +1,12 @@
+machine:
+  xcode:
+    version: 8.2
+
+dependencies:
+  pre:
+    - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+
+test:
+  override:
+    - rake test
+    - rake lint
