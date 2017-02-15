@@ -90,7 +90,7 @@ class ParametersTests: XCTestCase {
   }
   
   func testInvalidKey() {
-    // key may only be alfanumeric or '.'
+    // key may only be alphanumeric or '.'
     do {
       let items = ["foo:bar=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {

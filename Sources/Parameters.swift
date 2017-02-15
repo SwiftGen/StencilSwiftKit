@@ -69,10 +69,10 @@ public enum Parameters {
   // a valid key is not empty and only alphanumerical or dot
   private static func validate(key: String) -> Bool {
     return !key.isEmpty &&
-      key.rangeOfCharacter(from: notAlfanumericsAndDot) == nil
+      key.rangeOfCharacter(from: notAlphanumericsAndDot) == nil
   }
   
-  private static let notAlfanumericsAndDot: CharacterSet = {
+  private static let notAlphanumericsAndDot: CharacterSet = {
     var result = CharacterSet.alphanumerics
     result.insert(".")
     return result.inverted
