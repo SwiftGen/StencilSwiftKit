@@ -5,6 +5,9 @@ machine:
 dependencies:
   pre:
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+    - pod setup
+  cache_directories:
+    -  "~/.cocoapods/repos/master"
 
 test:
   override:
