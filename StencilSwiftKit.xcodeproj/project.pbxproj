@@ -14,6 +14,8 @@
 		DD5F34301E21A3A200AEB5DA /* StringFiltersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */; };
 		DD5F34311E21A3A200AEB5DA /* SwiftIdentifierTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */; };
 		DDE1E2F61E3E33E30043367C /* MacroNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */; };
+		DDE1E2F91E3FABE70043367C /* ParametersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDE1E2F81E3FABE70043367C /* ParametersTests.swift */; };
+		DDFD1F691E5358C70023AE2B /* ContextTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD1F681E5358C70023AE2B /* ContextTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXBuildRule section */
@@ -61,6 +63,8 @@
 		DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringFiltersTests.swift; sourceTree = "<group>"; };
 		DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftIdentifierTests.swift; sourceTree = "<group>"; };
 		DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacroNodeTests.swift; sourceTree = "<group>"; };
+		DDE1E2F81E3FABE70043367C /* ParametersTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParametersTests.swift; sourceTree = "<group>"; };
+		DDFD1F681E5358C70023AE2B /* ContextTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContextTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +137,9 @@
 			isa = PBXGroup;
 			children = (
 				DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */,
+				DDFD1F681E5358C70023AE2B /* ContextTests.swift */,
 				DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */,
+				DDE1E2F81E3FABE70043367C /* ParametersTests.swift */,
 				DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */,
 				DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */,
 				DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */,
@@ -271,7 +277,9 @@
 				DDE1E2F61E3E33E30043367C /* MacroNodeTests.swift in Sources */,
 				DD5F341B1E21993A00AEB5DA /* TestsHelper.swift in Sources */,
 				DD5F34301E21A3A200AEB5DA /* StringFiltersTests.swift in Sources */,
+				DDFD1F691E5358C70023AE2B /* ContextTests.swift in Sources */,
 				DD5F342E1E21A3A200AEB5DA /* CallNodeTests.swift in Sources */,
+				DDE1E2F91E3FABE70043367C /* ParametersTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,6 +44,8 @@
 		B65CC4D6EE2210495A18E7695A3E6DC5 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AB13C581DBF4D4B41876C69872B183 /* Extension.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C22E1920B40D3E75EE6C1B253A0B3E91 /* IfTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = D887BD539929925B9535E5136F861F20 /* IfTag.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		DD426D511E3B8E9B007D843B /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD426D4F1E3B8E90007D843B /* Environment.swift */; };
+		DD426D5D1E3CE811007D843B /* Parameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD426D5C1E3CE811007D843B /* Parameters.swift */; };
+		DDFD1F671E5357BF0023AE2B /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = DDFD1F661E5357BF0023AE2B /* Context.swift */; };
 		E436943415A371D33CD28BF20935A2F9 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2497E0C37C035DB8276C0C7335E3FC93 /* Cocoa.framework */; };
 		F83DF009352A70B747BDA63DBF87103F /* ForTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CCB7B571DD30214319D05B2A2D01268 /* ForTag.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F93EC375CD4D233014C44DBDE515C6D2 /* Lexer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31A007C042C580A003C9B6DB5AD1B534 /* Lexer.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -158,8 +160,10 @@
 		D5846CC8D36C9B97B51ACC82399D6A12 /* PathKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PathKit-prefix.pch"; sourceTree = "<group>"; };
 		D6C2D28B3980163C3F38852C8437E5C2 /* Stencil.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Stencil.modulemap; sourceTree = "<group>"; };
 		D887BD539929925B9535E5136F861F20 /* IfTag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IfTag.swift; path = Sources/IfTag.swift; sourceTree = "<group>"; };
-		E09480DB5774EB9FBBAE030F88F5BCC3 /* StencilSwiftTemplate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StencilSwiftTemplate.swift; sourceTree = "<group>"; };
 		DD426D4F1E3B8E90007D843B /* Environment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
+		DD426D5C1E3CE811007D843B /* Parameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Parameters.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
+		DDFD1F661E5357BF0023AE2B /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; tabWidth = 2; usesTabs = 0; };
+		E09480DB5774EB9FBBAE030F88F5BCC3 /* StencilSwiftTemplate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StencilSwiftTemplate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,8 +218,10 @@
 			isa = PBXGroup;
 			children = (
 				95F48C2804B8C05C9EE9EB78ACC7C2E5 /* CallNode.swift */,
+				DDFD1F661E5357BF0023AE2B /* Context.swift */,
 				DD426D4F1E3B8E90007D843B /* Environment.swift */,
 				B9C2D0FB00398A5111567EEFD1CCB01B /* Filters.swift */,
+				DD426D5C1E3CE811007D843B /* Parameters.swift */,
 				A03EA653264F980DD920923E3D631E27 /* SetNode.swift */,
 				E09480DB5774EB9FBBAE030F88F5BCC3 /* StencilSwiftTemplate.swift */,
 				268C13CD136CE7EDCA3ABF3F31928DD5 /* SwiftIdentifier.swift */,
@@ -576,7 +582,9 @@
 				A082AAC03E6892EC107B7421BC93838D /* SetNode.swift in Sources */,
 				59F231D22411C3AA93D3D9B9D9E555F5 /* StencilSwiftKit-dummy.m in Sources */,
 				02A898432BFB56500E31943EA2E63D91 /* SwiftIdentifier.swift in Sources */,
+				DDFD1F671E5357BF0023AE2B /* Context.swift in Sources */,
 				24DD620B7037C62A14EA6FD0AE38FF3D /* StencilSwiftTemplate.swift in Sources */,
+				DD426D5D1E3CE811007D843B /* Parameters.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
