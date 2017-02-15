@@ -8,11 +8,23 @@
 
 import Foundation
 
-public func enrich(context: [String: Any], parameters: [String]) throws -> [String: Any] {
+public enum StencilContext {
+  static let environment = "env"
+  static let parameters = "param"
+}
+
+/**
+ Enriches a stencil context with parsed parameters and environment variables
+ 
+ - Parameter context: The stencil context
+ - Parameter parameters: List of strings, will be parsed using the `Parameters.parse(items:)` method
+ - Parameter environment: Environment variables, defaults to `ProcessInfo().environment`
+ */
+public func enrich(context: [String: Any], parameters: [String], environment: [String: String] = ProcessInfo().environment) throws -> [String: Any] {
   var context = context
   
-  context["env"] = ProcessInfo().environment
-  context["param"] = try Parameters.parse(items: parameters)
+  context[StencilContext.environment] = environment
+  context[StencilContext.parameters] = try Parameters.parse(items: parameters)
   
   return context
 }
