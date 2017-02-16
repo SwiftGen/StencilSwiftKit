@@ -22,6 +22,7 @@ _TODO: [Write more extension Documentation](https://github.com/SwiftGen/StencilS
 * `MapNode`
   * `{% map <Variable> into <Name> using <ItemName> %}…{% endmap %}`
   * Apply a `map` operator to an array, and store the result into a new array variable `<Name>` in the current context.
+  * Inside the map loop, a `maploop` special variable is available (akin to the `forloop` variable in `for` nodes). It exposes `maploop.count`, `maploop.first`, `maploop.last` and `maploop.item`.
 
 ## Filters
 
