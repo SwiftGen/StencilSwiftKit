@@ -72,7 +72,7 @@ will become
 ]
 ```
 
-For easier use, you can use the `enrich(context:parameters:)` function to add the following variables to a context:
+For easier use, you can use the `StencilContext.enrich(context:parameters:environment:)` function to add the following variables to a context:
 
 - `param`: the parsed parameters using the parser mentioned above.
 - `env`: a dictionary with all available environment variables (such as `PATH`).
