@@ -11,6 +11,11 @@
 * Added support for Swift Package Manager.  
   [Krzysztof Zabłocki](https://github.com/krzysztofzablocki)
   [#15](https://github.com/SwiftGen/StencilSwiftKit/issues/15)
+* Added `MapNode` to apply a `map` operator to an array.
+  You can now use `{% map someArray into result using item %}`
+  to do the equivalent of the `result = someArray.map { item in … }` Swift code.  
+  [David Jennes](https://github.com/djbe)
+  [#11](https://github.com/SwiftGen/StencilSwiftKit/pull/11)
 
 ### Internal Changes
 
