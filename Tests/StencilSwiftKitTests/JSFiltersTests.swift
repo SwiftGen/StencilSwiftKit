@@ -38,8 +38,8 @@ class JSFiltersTests: XCTestCase {
   
   func testJSTag() {
     let template = StencilSwiftTemplate(templateString: "{% greet name|capitalize %}Hello, {{ name }}{% endgreet %}", environment: stencilSwiftEnvironment({ ext in
-      let code = try! Fixtures.path(for: "greet-tag.js").read(.utf8)
-      ext.registerTag("greet", script: code)
+      let path = Bundle(for: JSFiltersTests.self).path(forResource: "greet-tag", ofType: "js")!
+      try! ext.registerTag("greet", script: String(contentsOfFile: path, encoding: .utf8))
     }))
     let result = try! template.render(["name": "world"])
     
