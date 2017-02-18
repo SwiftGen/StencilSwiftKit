@@ -2,9 +2,11 @@
 
 ---
 
-## Master (to be 5.0.0)
+## 1.0.0
 
 ### Bug Fixes
+
+_None_
 
 ### New Features
 
@@ -32,10 +34,6 @@
   [David Jennes](https://github.com/djbe)
   [#8](https://github.com/SwiftGen/StencilSwiftKit/pull/8)
 
-## Before 5.0.0
+## Pre-1.0.0
 
-This first version of `StencilSwiftKit` is numbered `5.0.0` because it's the result of splitting the parts of `SwiftGen` into separate frameworks during its `5.0.0` release. This way, all parts of SwiftGen will start up with matching versions.
-
-`StencilSwiftKit` is the framework used by SwiftGen to extend the Stencil template engine with nodes and filters specialized in generating Swift code. It is used at least by both `SwiftGen` and `Sourcery`, as both tools use Stencil templates to generate Swift code.
-
-_For the list of older `CHANGELOG` history, see SwiftGen's own `CHANGELOG` for changes listed before `5.0.0` and before SwiftGen was split in separate frameworks._
+_See SwitftGen's own CHANGELOG pre SwiftGen 4.2 version, before the refactoring that led us to split the code in frameworks_
