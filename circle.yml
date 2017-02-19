@@ -11,13 +11,7 @@ dependencies:
 
 test:
   override:
-    - set -o pipefail
-    - swift test | tee $CIRCLE_ARTIFACTS/spm_test_raw.log
-    - xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests build-for-testing build-for-testing |
-        tee $CIRCLE_ARTIFACTS/xcode_build_raw.log |
-        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/build.xml
-    - xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests build-for-testing test-without-building |
-        tee $CIRCLE_ARTIFACTS/xcode_test_raw.log |
-        xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/xcode/test.xml
+    - rake xcode_test
+    - rake spm_test
   post:
     - if [[ $CIRCLE_BRANCH == master ]]; then rake lint; fi
