@@ -16,22 +16,28 @@ def plain(cmd, name)
   end
 end
 
-task :spm_build do
-  plain("swift build", "spm_build")
+namespace :spm do
+  desc 'Build using SPM'
+  task :build do
+    plain("swift build", "spm_build")
+  end
+
+  desc 'Run SPM Unit Tests'
+  task :test => :build do
+    plain("swift test", "spm_build")
+  end
 end
 
-task :xcode_build do
-  xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests build-for-testing", "xcode_build")
-end
+namespace :xcode do
+  desc 'Build using Xcode'
+  task :build do
+    xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests build-for-testing", "xcode_build")
+  end
 
-desc 'Run Xcode Unit Tests'
-task :xcode_test => :xcode_build do
-  xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests test-without-building", "xcode_test")
-end
-
-desc 'Run SPM Unit Tests'
-task :spm_test => :spm_build do
-  plain("swift test", "spm_build")
+  desc 'Run Xcode Unit Tests'
+  task :test => :build do
+    xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests test-without-building", "xcode_test")
+  end
 end
 
 desc 'Lint the Pod'
@@ -39,4 +45,4 @@ task :lint do
   plain("pod lib lint StencilSwiftKit.podspec --quick", "lint")
 end
 
-task :default => :xcode_test
+task :default => "xcode:test"
