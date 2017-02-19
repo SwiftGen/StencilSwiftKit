@@ -1,4 +1,5 @@
 def xcpretty(cmd, name)
+  name = name.gsub(/:/,"_")
   if ENV['CI']
     sh "set -o pipefail && #{cmd} | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\" | xcpretty --color --report junit --output \"#{ENV['CIRCLE_TEST_REPORTS']}/xcode/#{name}.xml\""
   elsif `which xcpretty` && $?.success?
@@ -9,6 +10,7 @@ def xcpretty(cmd, name)
 end
 
 def plain(cmd, name)
+  name = name.gsub(/:/,"_")
   if ENV['CI']
     sh "set -o pipefail && #{cmd} | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\""
   else
@@ -19,24 +21,24 @@ end
 namespace :spm do
   desc 'Build using SPM'
   task :build do
-    plain("swift build", "spm_build")
+    plain("swift build", "spm:build")
   end
 
   desc 'Run SPM Unit Tests'
   task :test => :build do
-    plain("swift test", "spm_build")
+    plain("swift test", "spm:test")
   end
 end
 
 namespace :xcode do
   desc 'Build using Xcode'
   task :build do
-    xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests build-for-testing", "xcode_build")
+    xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests build-for-testing", "xcode:build")
   end
 
   desc 'Run Xcode Unit Tests'
   task :test => :build do
-    xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests test-without-building", "xcode_test")
+    xcpretty("xcodebuild -workspace StencilSwiftKit.xcworkspace -scheme Tests test-without-building", "xcode:test")
   end
 end
 
