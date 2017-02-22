@@ -89,6 +89,11 @@ struct StringFilters {
     }
   }
 
+  static func camelToSnakeCase(_ value: Any?) throws -> Any? {
+    guard let string = value as? String else { throw FilterError.invalidInputType }
+    return try snakecase(string).lowercased()
+  }
+
   /**
   This returns the string with its first parameter uppercased.
   - note: This is quite similar to `capitalise` except that this filter doesn't lowercase
