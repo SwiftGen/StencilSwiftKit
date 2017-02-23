@@ -42,9 +42,16 @@ namespace :xcode do
   end
 end
 
-desc 'Lint the Pod'
-task :lint do |task|
-  plain("pod lib lint StencilSwiftKit.podspec --quick", task)
+namespace :lint do
+  desc 'Lint the Pod'
+  task :pod do |task|
+    plain("pod lib lint StencilSwiftKit.podspec --quick", task)
+  end
+  
+  desc 'Lint the code'
+  task :code do |task|
+    plain("PROJECT_DIR=. ./Scripts/swiftlint-code.sh", task)
+  end
 end
 
 task :default => "xcode:test"
