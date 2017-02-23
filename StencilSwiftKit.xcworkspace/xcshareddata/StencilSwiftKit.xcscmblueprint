@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "804E0A642F9B0288E24EC6843BD9BD71D8BD7EA7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1C691C45EB07884E9E7AB882733104E0E0271849" : 9223372036854775807,
+    "804E0A642F9B0288E24EC6843BD9BD71D8BD7EA7" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "08CB119C-11A8-4FE5-97FA-6DD41A991EE6",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1C691C45EB07884E9E7AB882733104E0E0271849" : "",
+    "804E0A642F9B0288E24EC6843BD9BD71D8BD7EA7" : "StencilSwiftKit\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "StencilSwiftKit",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "StencilSwiftKit.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:SwiftGen\/Eve.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1C691C45EB07884E9E7AB882733104E0E0271849"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:SwiftGen\/StencilSwiftKit.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "804E0A642F9B0288E24EC6843BD9BD71D8BD7EA7"
+    }
+  ]
+}
