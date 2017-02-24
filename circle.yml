@@ -5,7 +5,7 @@ machine:
 dependencies:
   pre:
     - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-    - Scripts/install_swiftlint.sh
+    - rake lint:install
     - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
 
 test:
@@ -15,4 +15,4 @@ test:
     - rake xcode:test
     - rake spm:test
   post:
-    - rake lint:pod
+    - rake pod:lint
