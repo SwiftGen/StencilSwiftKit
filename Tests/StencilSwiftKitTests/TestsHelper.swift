@@ -45,12 +45,14 @@ func diff(_ result: String, _ expected: String) -> String? {
     }
     let lhsNum = addLineNumbers(slice(lhsLines, 4)).joined(separator: "\n")
     let rhsNum = addLineNumbers(slice(rhsLines, 4)).joined(separator: "\n")
-    return "\(msgColor)Mismatch at line \(badLineIdx)\(reset)\n" +
-      ">>>>>> result\n" +
-      "\(lhsNum)\n" +
-      "======\n" +
-      "\(rhsNum)\n" +
+    return [
+      "\(msgColor)Mismatch at line \(badLineIdx)\(reset)\n",
+      ">>>>>> result",
+      "\(lhsNum)",
+      "======",
+      "\(rhsNum)",
       "<<<<<< expected"
+    ].joined(separator: "\n")
   }
   return nil
 }
