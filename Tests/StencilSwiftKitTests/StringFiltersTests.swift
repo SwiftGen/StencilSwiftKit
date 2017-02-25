@@ -9,7 +9,7 @@ import XCTest
 
 class StringFiltersTests: XCTestCase {
 
-  func testLowerFirstWord() {
+  func testLowerFirstWord() throws {
     let expectations = [
       "string": "string",
       "String": "string",
@@ -35,12 +35,12 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.lowerFirstWord(input) as? String
+      let result = try StringFilters.lowerFirstWord(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
 
-  func testTitlecase() {
+  func testTitlecase() throws {
     let expectations = [
       "string": "String",
       "String": "String",
@@ -66,12 +66,12 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.titlecase(input) as? String
+      let result = try StringFilters.titlecase(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
 
-  func testSnakeToCamelCase() {
+  func testSnakeToCamelCase() throws {
     let expectations = [
       "string": "String",
       "String": "String",
@@ -97,12 +97,12 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.snakeToCamelCase(input) as? String
+      let result = try StringFilters.snakeToCamelCase(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
 
-  func testSnakeToCamelCaseNoPrefix() {
+  func testSnakeToCamelCaseNoPrefix() throws {
     let expectations = [
       "string": "String",
       "String": "String",
@@ -128,7 +128,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.snakeToCamelCaseNoPrefix(input) as? String
+      let result = try StringFilters.snakeToCamelCaseNoPrefix(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
@@ -199,7 +199,7 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
-  func testEscapeReservedKeywords() {
+  func testEscapeReservedKeywords() throws {
     let expectations = [
       "self": "`self`",
       "foo": "foo",
@@ -211,7 +211,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.escapeReservedKeywords(value: input) as? String
+      let result = try StringFilters.escapeReservedKeywords(value: input) as? String
       XCTAssertEqual(result, expected)
     }
   }

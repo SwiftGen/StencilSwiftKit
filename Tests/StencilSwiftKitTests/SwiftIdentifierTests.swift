@@ -42,7 +42,8 @@ class SwiftIdentifierTests: XCTestCase {
   }
 
   func testForbiddenChars() {
-    XCTAssertEqual(swiftIdentifier(from: "hello$world^this*contains%a=lot@of<forbidden>chars!does#it/still:work.anyway?"),
+    XCTAssertEqual(
+      swiftIdentifier(from: "hello$world^this*contains%a=lot@of<forbidden>chars!does#it/still:work.anyway?"),
       "HelloWorldThisContainsALotOfForbiddenCharsDoesItStillWorkAnyway")
   }
 }
