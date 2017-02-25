@@ -7,7 +7,14 @@
 import Stencil
 import JavaScriptCore
 
-public extension Extension {
+public class JSExtension: Extension {
+    
+    public let jsContext: JSContext
+    
+    public init(jsContext: JSContext = JSContext()) {
+        jsContext.registerStencilTypes()
+        self.jsContext = jsContext
+    }
     
     /// Registers JavaScript function as a filter. Function should have the same name as `name` parameter,
     /// should accept two parameters for value and filter parameters (can be empty)
@@ -24,12 +31,12 @@ public extension Extension {
     ///   return value.toUpperCase()
     /// }
     /// ```
-    public func registerFilter(_ name: String, script code: String, jsContext: JSContext = JSContext()!) {
-        self.registerFilter(name, filter: { (value: Any?, params: [Any?]) throws -> Any? in
+    public func registerFilter(_ name: String, script code: String) {
+        self.registerFilter(name, filter: { [unowned self] (value: Any?, params: [Any?]) throws -> Any? in
             guard let value = value else { return nil }
-            try inJSContext(jsContext) { jsContext.evaluateScript(code) }
-            let filter = try inJSContext(jsContext) { jsContext.objectForKeyedSubscript(name) }
-            let result = try inJSContext(jsContext) { filter?.call(withArguments: [value, params]) }
+            try inJSContext(self.jsContext) { self.jsContext.evaluateScript(code) }
+            let filter = try inJSContext(self.jsContext) { self.jsContext.objectForKeyedSubscript(name) }
+            let result = try inJSContext(self.jsContext) { filter?.call(withArguments: [value, params]) }
             return result?.toObject()
         })
     }
@@ -48,12 +55,11 @@ public extension Extension {
     ///   return \"Hello, \" + context.valueForKey('name')
     /// }
     /// ```
-    public func registerSimpleTag(_ name: String, script code: String, jsContext: JSContext = JSContext()!) {
-        jsContext.registerStencilTypes()
-        self.registerSimpleTag(name) { (context) -> String in
-            try inJSContext(jsContext) { jsContext.evaluateScript(code) }
-            let tag = try inJSContext(jsContext) { jsContext.objectForKeyedSubscript(name) }
-            let result = try inJSContext(jsContext) { tag?.call(withArguments: [JSStencilContext(context)]) }
+    public func registerSimpleTag(_ name: String, script code: String) {
+        self.registerSimpleTag(name) { [unowned self] (context) -> String in
+            try inJSContext(self.jsContext) { self.jsContext.evaluateScript(code) }
+            let tag = try inJSContext(self.jsContext) { self.jsContext.objectForKeyedSubscript(name) }
+            let result = try inJSContext(self.jsContext) { tag?.call(withArguments: [JSStencilContext(context)]) }
             return result?.toString() ?? ""
         }
     }
@@ -77,13 +83,12 @@ public extension Extension {
     ///  }
     /// }
     /// ```
-    public func registerTag(_ name: String, script code: String, jsContext: JSContext = JSContext()!) {
-        jsContext.registerStencilTypes()
-        self.registerTag(name, parser: { parser, token in
-            try inJSContext(jsContext) { jsContext.evaluateScript(code) }
-            let prototype = try inJSContext(jsContext) { jsContext.objectForKeyedSubscript(name) }
-            let node = try inJSContext(jsContext) { prototype?.construct(withArguments: [JSTokenParser(parser), JSToken(token)]) }
-            return JSNode(node, context: jsContext)
+    public func registerTag(_ name: String, script code: String) {
+        self.registerTag(name, parser: { [unowned self] parser, token in
+            try inJSContext(self.jsContext) { self.jsContext.evaluateScript(code) }
+            let prototype = try inJSContext(self.jsContext) { self.jsContext.objectForKeyedSubscript(name) }
+            let node = try inJSContext(self.jsContext) { prototype?.construct(withArguments: [JSTokenParser(parser), JSToken(token)]) }
+            return JSNode(node, context: self.jsContext)
         })
     }
     
@@ -91,7 +96,7 @@ public extension Extension {
 
 extension JSContext {
     
-    public func registerStencilTypes() {
+    func registerStencilTypes() {
         let newVariable: @convention(block) (String) -> JSResolvable = JSResolvable.init
         setObject(unsafeBitCast(newVariable, to: AnyObject.self), forKeyedSubscript: "Variable" as NSString)
         
@@ -111,7 +116,7 @@ extension JSContext {
 /// - Returns: result of block
 /// - Throws: JSException if JavaScript context has associated exception
 @discardableResult
-public func inJSContext(_ jsContext: JSContext, _ block: () -> JSValue?) throws -> JSValue? {
+func inJSContext(_ jsContext: JSContext, _ block: () -> JSValue?) throws -> JSValue? {
     let result = block()
     if let exception = jsContext.exception {
         throw JSException(exception)
@@ -124,7 +129,7 @@ public func inJSContext(_ jsContext: JSContext, _ block: () -> JSValue?) throws 
 ///
 /// - Parameter expression: block to run
 /// - Returns: result of expression
-public func bridgingError<T>(_ expression: () throws -> T) -> T? {
+func bridgingError<T>(_ expression: () throws -> T) -> T? {
     do {
         return try expression()
     } catch {
@@ -146,8 +151,8 @@ public struct JSException: Error, CustomStringConvertible {
 @objc protocol JSExportableTokenParser: JSExport {
     func parse() -> [JSNode]
     func nextToken() -> JSToken?
-    func compileFilter(_ token: String) -> JSResolvable!
-    func parse_until(_ tags: [String]?) -> [JSNode]
+    func compileFilter(_ token: String) -> JSResolvable?
+    func parseUntil(_ tags: [String]?) -> [JSNode]
 }
 
 /// JS wrapper for TokenParser to access basic parser functionality from JS
@@ -158,15 +163,11 @@ class JSTokenParser: NSObject, JSExportableTokenParser {
     }
 
     func parse() -> [JSNode] {
-        return bridgingError {
-            try parser.parse().map(JSNode.init)
-            } ?? []
+        return bridgingError { try parser.parse().map(JSNode.init) } ?? []
     }
     
-    func parse_until(_ tags: [String]?) -> [JSNode] {
-        return bridgingError {
-            try parser.parse(tags.map(until)).map(JSNode.init)
-            } ?? []
+    func parseUntil(_ tags: [String]?) -> [JSNode] {
+        return bridgingError { try parser.parse(tags.map(until)).map(JSNode.init) } ?? []
     }
     
     func nextToken() -> JSToken? {

@@ -5,7 +5,7 @@ function greet(parser, token) {
     }
     
     this.variable = bits[1].split("|")[0];
-    this.nodes = parser.parse_until(["endgreet"], function(e) { throw e });
+    this.nodes = parser.parseUntil(["endgreet"], function(e) { throw e });
     
     if (parser.nextToken() === null) {
         throw "'endgreet' not found"

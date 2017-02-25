@@ -38,7 +38,7 @@
 		82671E88F0AC858A867928AB0088BBFC /* Stencil.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A68FA9661EC6B4BA5415DDD474F7F00 /* Stencil.framework */; };
 		874B546A75EE513B966CCE41CBBA6AD7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2497E0C37C035DB8276C0C7335E3FC93 /* Cocoa.framework */; };
 		885DE8DB15D3EA1BA82F5A13E807916E /* Stencil-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B1C96CDE10E0238E81B06BD4DF23DAE /* Stencil-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8A62604CEC71F47DC726D25AD955FFD8 /* JSEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13B9B260628D1AC7F5FE3C4355CA366 /* JSEnvironment.swift */; };
+		8A62604CEC71F47DC726D25AD955FFD8 /* JSExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B13B9B260628D1AC7F5FE3C4355CA366 /* JSExtension.swift */; };
 		8FA5114518281D3F199FBC0E7C026DAA /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFDC1D3EADE4703881DF92C53FFF464 /* Node.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		9BC80B3F2EE018C2BB483457AA07ACFF /* Pods-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 52E08CA96B2F20724148FF5361AD7206 /* Pods-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9E557C62C7C6D8FAF19396B45EDDFD31 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E001094F65D072A6D5E4A0C7F419BD /* Variable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -148,7 +148,7 @@
 		A5E20637D178539A5F5705320E6AAD3F /* Include.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Include.swift; path = Sources/Include.swift; sourceTree = "<group>"; };
 		AC1C27BBE8F5E3FAFA6F012BFF89E01C /* StencilSwiftTemplate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StencilSwiftTemplate.swift; sourceTree = "<group>"; };
 		B0A2858DB038304C5239C4738D8E3643 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B13B9B260628D1AC7F5FE3C4355CA366 /* JSEnvironment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSEnvironment.swift; sourceTree = "<group>"; };
+		B13B9B260628D1AC7F5FE3C4355CA366 /* JSExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = JSExtension.swift; sourceTree = "<group>"; };
 		B40D2EA1B76284D2E987C4FD200B228E /* Errors.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Errors.swift; path = Sources/Errors.swift; sourceTree = "<group>"; };
 		B51EE1F2CACBC9829B2FEC2985DEA9D2 /* Stencil.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Stencil.xcconfig; sourceTree = "<group>"; };
 		B931321BC2896B8D740787C047ED03A9 /* CallNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CallNode.swift; sourceTree = "<group>"; };
@@ -308,14 +308,13 @@
 				2BB412713E5615FAE530253FEA6D4059 /* Context.swift */,
 				C9502C550B0C6AB6AE74C9C80099E207 /* Environment.swift */,
 				BC1B035576B32F59083D0436A11DDFE7 /* Filters.swift */,
-				B13B9B260628D1AC7F5FE3C4355CA366 /* JSEnvironment.swift */,
+				B13B9B260628D1AC7F5FE3C4355CA366 /* JSExtension.swift */,
 				5825CFC21E9845A16084ECA855BBFC2B /* MapNode.swift */,
 				E1DB2AB79965BF34F94ACBFB28633223 /* Parameters.swift */,
 				DB6C243B73670E6EEF790A8C0C8738CC /* SetNode.swift */,
 				AC1C27BBE8F5E3FAFA6F012BFF89E01C /* StencilSwiftTemplate.swift */,
 				FFFE7EA7D4EDAFEC7E265305A080C88C /* SwiftIdentifier.swift */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -553,7 +552,7 @@
 				A4D34203E51AA0910E01542D75CF7215 /* Context.swift in Sources */,
 				7CA033BD0784A1AC456A6DC0630194D0 /* Environment.swift in Sources */,
 				3EDA7263A8105CC71D9EF4B1292DA30E /* Filters.swift in Sources */,
-				8A62604CEC71F47DC726D25AD955FFD8 /* JSEnvironment.swift in Sources */,
+				8A62604CEC71F47DC726D25AD955FFD8 /* JSExtension.swift in Sources */,
 				AEB674A0863CD197A5C2ED9BC8A159BD /* MapNode.swift in Sources */,
 				29BCD445DDCF7AE2829B9D7C4F68950D /* Parameters.swift in Sources */,
 				63BB62715A60F5AAEAEFB5C7B0558D77 /* SetNode.swift in Sources */,
