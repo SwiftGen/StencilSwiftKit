@@ -89,9 +89,29 @@ struct StringFilters {
     }
   }
 
-  static func camelToSnakeCase(_ value: Any?) throws -> Any? {
+  /// Converts camelCase to snake_case. Takes an optional Bool argument for making the string lower case,
+  /// which defaults to true
+  ///
+  /// - parameter value: the value to be processed
+  /// - parameter arguments: the arguments to the function
+  /// - returns: the snake case string
+  static func camelToSnakeCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
+    var toLower = true
+    if arguments.count ==  1 {
+      // We have an argument, make sure its a bool
+      if let toLowerArg = arguments.first as? Bool {
+        toLower = toLowerArg
+      } else {
+        throw TemplateSyntaxError("camelToSnakeCase must be called without arguments or with a single boolean argument")
+      }
+    }
+
     guard let string = value as? String else { throw FilterError.invalidInputType }
-    return try snakecase(string).lowercased()
+    let result = try snakecase(string)
+    if toLower {
+      return result.lowercased()
+    }
+    return result
   }
 
   /**

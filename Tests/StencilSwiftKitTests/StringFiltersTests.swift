@@ -133,7 +133,7 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
-  func testCamelToSnakeCase() {
+  func testCamelToSnakeCase_NoArguments() {
     let expectations = [
             "string": "string",
             "String": "string",
@@ -161,7 +161,40 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.camelToSnakeCase(input) as? String
+      let result = try! StringFilters.camelToSnakeCase(input, arguments: []) as? String
+       XCTAssertEqual(result, expected)
+    }
+  }
+
+  func testCamelToSnakeCase_OneArgumentAsFalse() {
+    let expectations = [
+            "string": "string",
+            "String": "String",
+            "strIng": "str_Ing",
+            "strING": "str_ING",
+            "X": "X",
+            "x": "x",
+            "SomeCapString": "Some_Cap_String",
+            "someCapString": "some_Cap_String",
+            "string_with_words": "string_with_words",
+            "String_with_words": "String_with_words",
+            "String_With_Words": "String_With_Words",
+            "String_With_WoRds": "String_With_Wo_Rds",
+            "STRing_with_words": "ST_Ring_with_words",
+            "string_wiTH_WOrds": "string_wi_TH_W_Ords",
+            "": "",
+            "URLChooser": "URL_Chooser",
+            "UrlChooser": "Url_Chooser",
+            "a__b__c": "a__b__c",
+            "__y_z!": "__y_z!",
+            "PLEASESTOPSCREAMING": "PLEASESTOPSCREAMING",
+            "PLEASESTOPSCREAMING!": "PLEASESTOPSCREAMING!",
+            "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
+            "PLEASE_STOP_SCREAMING!": "PLEASE_STOP_SCREAMING!"
+    ]
+
+    for (input, expected) in expectations {
+      let result = try! StringFilters.camelToSnakeCase(input, arguments: [false]) as? String
       XCTAssertEqual(result, expected)
     }
   }

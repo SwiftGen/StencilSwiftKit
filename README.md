@@ -31,7 +31,8 @@ _TODO: [Write more extension Documentation](https://github.com/SwiftGen/StencilS
 * `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference)
 * `join`: Deprecated. Will be removed now that the same filter exists in Stencil proper.
 * `lowerFirstWord`
-* `snakeToCamelCase` / `snakeToCamelCaseNoPrefix` / `camelToSnakeCase`
+* `snakeToCamelCase` / `snakeToCamelCaseNoPrefix` /
+* `camelToSnakeCase`: This filter transforms text from camelCase to snake_case. It has a single optional argument, if true (default), will convert to lower case.
 * `titlecase`
 * `hexToInt`
 * `int255toFloat`
