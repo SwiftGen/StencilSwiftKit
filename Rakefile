@@ -1,3 +1,11 @@
-TARGET_NAME = 'StencilSwiftKit'
+#!/usr/bin/rake
 
-task :default => "xcode:test"
+## [ Constants ] ##############################################################
+
+WORKSPACE = 'StencilSwiftKit'
+TARGET_NAME = 'Tests'
+CONFIGURATION = 'Debug'
+POD_NAME = 'StencilSwiftKit'
+
+
+task :default => 'xcode:test'

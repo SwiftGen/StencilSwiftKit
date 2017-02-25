@@ -1,11 +1,11 @@
 namespace :xcode do
   desc 'Build using Xcode'
   task :build do |task|
-    xcpretty("xcodebuild -workspace #{TARGET_NAME}.xcworkspace -scheme Tests build-for-testing", task)
+    xcrun(%Q(xcodebuild -workspace "#{WORKSPACE}.xcworkspace" -scheme "#{TARGET_NAME}" -configuration "#{CONFIGURATION}" build-for-testing), task)
   end
 
   desc 'Run Xcode Unit Tests'
   task :test => :build do |task|
-    xcpretty("xcodebuild -workspace #{TARGET_NAME}.xcworkspace -scheme Tests test-without-building", task)
+    xcrun(%Q(xcodebuild -workspace "#{WORKSPACE}.xcworkspace" -scheme "#{TARGET_NAME}" -configuration "#{CONFIGURATION}" test-without-building), task)
   end
 end
