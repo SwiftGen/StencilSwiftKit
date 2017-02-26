@@ -32,7 +32,7 @@ _TODO: [Write more extension Documentation](https://github.com/SwiftGen/StencilS
 * `join`: Deprecated. Will be removed now that the same filter exists in Stencil proper.
 * `lowerFirstWord`
 * `snakeToCamelCase` / `snakeToCamelCaseNoPrefix` /
-* `camelToSnakeCase`: This filter transforms text from camelCase to snake_case. It has a single optional argument, if true (default), will convert to lower case.
+* `camelToSnakeCase`: Transforms text from camelCase to snake_case. By default it converts to lower case, unless a single optional argument is set to "false", "no" or "0".
 * `titlecase`
 * `hexToInt`
 * `int255toFloat`

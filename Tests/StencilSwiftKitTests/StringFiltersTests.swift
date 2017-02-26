@@ -161,8 +161,16 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.camelToSnakeCase(input, arguments: []) as? String
-       XCTAssertEqual(result, expected)
+      let trueArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["true"]) as? String
+      XCTAssertEqual(trueArgResult, expected)
+      let yesArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["yes"]) as? String
+      XCTAssertEqual(yesArgResult, expected)
+      let oneArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["1"]) as? String
+      XCTAssertEqual(oneArgResult, expected)
+      let emptyArgResult = try! StringFilters.camelToSnakeCase(input, arguments: []) as? String
+      XCTAssertEqual(emptyArgResult, expected)
+      let unknownArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["unknown"]) as? String
+      XCTAssertEqual(unknownArgResult, expected)
     }
   }
 
@@ -194,8 +202,12 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try! StringFilters.camelToSnakeCase(input, arguments: [false]) as? String
-      XCTAssertEqual(result, expected)
+      let falseArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["false"]) as? String
+      XCTAssertEqual(falseArgResult, expected)
+      let noArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["no"]) as? String
+      XCTAssertEqual(noArgResult, expected)
+      let zeroArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["0"]) as? String
+      XCTAssertEqual(zeroArgResult, expected)
     }
   }
 

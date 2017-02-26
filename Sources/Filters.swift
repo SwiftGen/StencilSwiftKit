@@ -93,25 +93,28 @@ struct StringFilters {
   /// which defaults to true
   ///
   /// - parameter value: the value to be processed
-  /// - parameter arguments: the arguments to the function
+  /// - parameter arguments: the arguments to the function, expecting zero or one argument
   /// - returns: the snake case string
+  /// - throws: FilterError.invalidInputType if the value parameter isn't a string
   static func camelToSnakeCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
     var toLower = true
     if arguments.count ==  1 {
-      // We have an argument, make sure its a bool
-      if let toLowerArg = arguments.first as? Bool {
-        toLower = toLowerArg
-      } else {
-        throw TemplateSyntaxError("camelToSnakeCase must be called without arguments or with a single boolean argument")
+      let firstArg = (arguments.first as? String ?? "").lowercased()
+      switch firstArg {
+      case "false", "no", "0":
+        toLower = false
+      default:
+        toLower = true
       }
     }
 
     guard let string = value as? String else { throw FilterError.invalidInputType }
-    let result = try snakecase(string)
+
+    let snakeCase = try snakecase(string)
     if toLower {
-      return result.lowercased()
+      return snakeCase.lowercased()
     }
-    return result
+    return snakeCase
   }
 
   /**
