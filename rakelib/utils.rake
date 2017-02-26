@@ -38,6 +38,7 @@ def version_select
   %Q(DEVELOPER_DIR="#{latest_xcode_version}/Contents/Developer")
 end
 
+# run a command using xcrun and xcpretty if applicable
 def xcrun(cmd, task, subtask = '')
   commands = [*cmd].map { |cmd|
     "#{version_select} xcrun #{cmd}"
@@ -48,4 +49,10 @@ def xcrun(cmd, task, subtask = '')
   else
     plain(commands, task, subtask)
   end
+end
+
+# print an info header
+def print_info(str)
+  (red,clr) = (`tput colors`.chomp.to_i >= 8) ? %W(\e[33m \e[m) : ["", ""]
+  puts red, "== #{str.chomp} ==", clr
 end

@@ -16,11 +16,13 @@ namespace :lint do
   
   desc 'Lint the code'
   task :code => :install do |task|
+    print_info 'Linting the code'
     plain(%Q(swiftlint lint --no-cache --strict --path Sources), task)
   end
   
   desc 'Lint the tests'
   task :tests => :install do |task|
+    print_info 'Linting the unit test code'
     plain(%Q(swiftlint lint --no-cache --strict --path "Tests/#{POD_NAME}Tests"), task)
   end
 end
