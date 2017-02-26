@@ -91,7 +91,6 @@ struct StringFilters {
 
   /// Converts camelCase to snake_case. Takes an optional Bool argument for making the string lower case,
   /// which defaults to true
-  ///
   /// - parameter value: the value to be processed
   /// - parameter arguments: the arguments to the function, expecting zero or one argument
   /// - returns: the snake case string
@@ -107,10 +106,11 @@ struct StringFilters {
     return snakeCase
   }
 
-  /// Parses first of filter arguments for a boolean value. true can by any one of: "true", "yes", "1", while
+  /// Parses filter arguments for a boolean value, where true can by any one of: "true", "yes", "1", and
   /// false can be any one of: "false", "no", "0".
   /// - parameter arguments: an array of argument values, may be empty
-  /// - returns: true or false if a value was parsed, or nil if not.
+  /// - parameter index: the index in the arguments array
+  /// - returns: true or false if a value was parsed, or nil if it wasn't able to
   static func parseBool(from arguments: [Any?], index: Int) -> Bool? {
     guard index + 1 <= arguments.count else {
       return nil

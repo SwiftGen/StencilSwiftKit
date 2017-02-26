@@ -133,58 +133,53 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
-  func testParseBoolFromArguments_WithTrueString() throws {
+  func testParseBool_WithTrueString() throws {
     let value = try StringFilters.parseBool(from: ["true"], index: 0)
     XCTAssertTrue(value!)
   }
 
-  func testParseBoolFromArguments_WithFalseString() throws {
+  func testParseBool_WithFalseString() throws {
     let value = try StringFilters.parseBool(from: ["false"], index: 0)
     XCTAssertFalse(value!)
   }
 
-  func testParseBoolFromArguments_WithYesString() throws {
+  func testParseBool_WithYesString() throws {
     let value = try StringFilters.parseBool(from: ["yes"], index: 0)
     XCTAssertTrue(value!)
   }
 
-  func testParseBoolFromArguments_WithNoString() throws {
+  func testParseBool_WithNoString() throws {
     let value = try StringFilters.parseBool(from: ["no"], index: 0)
     XCTAssertFalse(value!)
   }
 
-  func testParseBoolFromArguments_WithOneString() throws {
+  func testParseBool_WithOneString() throws {
     let value = try StringFilters.parseBool(from: ["1"], index: 0)
     XCTAssertTrue(value!)
   }
 
-  func testParseBoolFromArguments_WithZeroString() throws {
+  func testParseBool_WithZeroString() throws {
     let value = try StringFilters.parseBool(from: ["0"], index: 0)
     XCTAssertFalse(value!)
   }
 
-  func testParseBoolFromArguments_WithInt() throws {
+  func testParseBool_WithInt() throws {
     let value = try StringFilters.parseBool(from: [1], index: 0)
     XCTAssertNil(value)
   }
 
-  func testParseBoolFromArguments_WithDouble() throws {
+  func testParseBool_WithDouble() throws {
     let value = try StringFilters.parseBool(from: [1.0], index: 0)
     XCTAssertNil(value)
   }
 
-  func testParseBoolFromArguments_WithEmptyString() throws {
+  func testParseBool_WithEmptyString() throws {
     let value = try StringFilters.parseBool(from: [""], index: 0)
     XCTAssertNil(value)
   }
 
-  func testParseBoolFromArguments_WithEmptyArray() throws {
+  func testParseBool_WithEmptyArray() throws {
     let value = try StringFilters.parseBool(from: [], index: 0)
-    XCTAssertNil(value)
-  }
-
-  func testParseBoolFromArguments_WithIncorrectIndex() throws {
-    let value = try StringFilters.parseBool(from: [], index: 1)
     XCTAssertNil(value)
   }
 
