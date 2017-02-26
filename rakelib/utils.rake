@@ -1,6 +1,6 @@
 # run a command, pipe output through 'xcpretty' and store the output in CI artifacts
-def xcpretty(cmd, task)
-  name = task.name.gsub(/:/,"_")
+def xcpretty(cmd, task, subtask = '')
+  name = (task.name + (subtask.empty? ? '' : "_#{subtask}")).gsub(/[:-]/, "_")
   xcpretty = `which xcpretty`
 
   if ENV['CI']
@@ -13,8 +13,8 @@ def xcpretty(cmd, task)
 end
 
 # run a command and store the output in CI artifacts
-def plain(cmd, task)
-  name = task.name.gsub(/:/,"_")
+def plain(cmd, task, subtask = '')
+  name = (task.name + (subtask.empty? ? '' : "_#{subtask}")).gsub(/[:-]/, "_")
   if ENV['CI']
     sh "set -o pipefail && #{cmd} | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\""
   else
@@ -35,10 +35,10 @@ def version_select
   %Q(DEVELOPER_DIR="#{latest_xcode_version}/Contents/Developer")
 end
 
-def xcrun(cmd, task, pretty=true)
-  if pretty
-    xcpretty("#{version_select} xcrun #{cmd}", task)
+def xcrun(cmd, task, subtask = '')
+  if cmd.match('xcodebuild')
+    xcpretty("#{version_select} xcrun #{cmd}", task, subtask)
   else
-    plain("#{version_select} xcrun #{cmd}", task)
+    plain("#{version_select} xcrun #{cmd}", task, subtask)
   end
 end
