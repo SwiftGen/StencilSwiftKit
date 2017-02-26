@@ -97,17 +97,7 @@ struct StringFilters {
   /// - returns: the snake case string
   /// - throws: FilterError.invalidInputType if the value parameter isn't a string
   static func camelToSnakeCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
-    var toLower = true
-    if arguments.count ==  1 {
-      let firstArg = (arguments.first as? String ?? "").lowercased()
-      switch firstArg {
-      case "false", "no", "0":
-        toLower = false
-      default:
-        toLower = true
-      }
-    }
-
+    let toLower = parseBool(from: arguments, index: 0) ?? true
     guard let string = value as? String else { throw FilterError.invalidInputType }
 
     let snakeCase = try snakecase(string)
@@ -115,6 +105,26 @@ struct StringFilters {
       return snakeCase.lowercased()
     }
     return snakeCase
+  }
+
+  /// Parses first of filter arguments for a boolean value. true can by any one of: "true", "yes", "1", while
+  /// false can be any one of: "false", "no", "0".
+  /// - parameter arguments: an array of argument values, may be empty
+  /// - returns: true or false if a value was parsed, or nil if not.
+  static func parseBool(from arguments: [Any?], index: Int) -> Bool? {
+    guard index + 1 <= arguments.count else {
+      return nil
+    }
+
+    let boolArg = (arguments[index] as? String ?? "").lowercased()
+    switch boolArg {
+    case "false", "no", "0":
+      return false
+    case "true", "yes", "1":
+      return true
+    default:
+      return nil
+    }
   }
 
   /**

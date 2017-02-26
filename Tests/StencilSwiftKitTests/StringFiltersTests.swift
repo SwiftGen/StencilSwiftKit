@@ -133,44 +133,91 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
+  func testParseBoolFromArguments_WithTrueString() throws {
+    let value = try StringFilters.parseBool(from: ["true"], index: 0)
+    XCTAssertTrue(value!)
+  }
+
+  func testParseBoolFromArguments_WithFalseString() throws {
+    let value = try StringFilters.parseBool(from: ["false"], index: 0)
+    XCTAssertFalse(value!)
+  }
+
+  func testParseBoolFromArguments_WithYesString() throws {
+    let value = try StringFilters.parseBool(from: ["yes"], index: 0)
+    XCTAssertTrue(value!)
+  }
+
+  func testParseBoolFromArguments_WithNoString() throws {
+    let value = try StringFilters.parseBool(from: ["no"], index: 0)
+    XCTAssertFalse(value!)
+  }
+
+  func testParseBoolFromArguments_WithOneString() throws {
+    let value = try StringFilters.parseBool(from: ["1"], index: 0)
+    XCTAssertTrue(value!)
+  }
+
+  func testParseBoolFromArguments_WithZeroString() throws {
+    let value = try StringFilters.parseBool(from: ["0"], index: 0)
+    XCTAssertFalse(value!)
+  }
+
+  func testParseBoolFromArguments_WithInt() throws {
+    let value = try StringFilters.parseBool(from: [1], index: 0)
+    XCTAssertNil(value)
+  }
+
+  func testParseBoolFromArguments_WithDouble() throws {
+    let value = try StringFilters.parseBool(from: [1.0], index: 0)
+    XCTAssertNil(value)
+  }
+
+  func testParseBoolFromArguments_WithEmptyString() throws {
+    let value = try StringFilters.parseBool(from: [""], index: 0)
+    XCTAssertNil(value)
+  }
+
+  func testParseBoolFromArguments_WithEmptyArray() throws {
+    let value = try StringFilters.parseBool(from: [], index: 0)
+    XCTAssertNil(value)
+  }
+
+  func testParseBoolFromArguments_WithIncorrectIndex() throws {
+    let value = try StringFilters.parseBool(from: [], index: 1)
+    XCTAssertNil(value)
+  }
+
   func testCamelToSnakeCase_NoArguments() {
     let expectations = [
-            "string": "string",
-            "String": "string",
-            "strIng": "str_ing",
-            "strING": "str_ing",
-            "X": "x",
-            "x": "x",
-            "SomeCapString": "some_cap_string",
-            "someCapString": "some_cap_string",
-            "string_with_words": "string_with_words",
-            "String_with_words": "string_with_words",
-            "String_With_Words": "string_with_words",
-            "String_With_WoRds": "string_with_wo_rds",
-            "STRing_with_words": "st_ring_with_words",
-            "string_wiTH_WOrds": "string_wi_th_w_ords",
-            "": "",
-            "URLChooser": "url_chooser",
-            "UrlChooser": "url_chooser",
-            "a__b__c": "a__b__c",
-            "__y_z!": "__y_z!",
-            "PLEASESTOPSCREAMING": "pleasestopscreaming",
-            "PLEASESTOPSCREAMING!": "pleasestopscreaming!",
-            "PLEASE_STOP_SCREAMING": "please_stop_screaming",
-            "PLEASE_STOP_SCREAMING!": "please_stop_screaming!"
+        "string": "string",
+        "String": "string",
+        "strIng": "str_ing",
+        "strING": "str_ing",
+        "X": "x",
+        "x": "x",
+        "SomeCapString": "some_cap_string",
+        "someCapString": "some_cap_string",
+        "string_with_words": "string_with_words",
+        "String_with_words": "string_with_words",
+        "String_With_Words": "string_with_words",
+        "String_With_WoRds": "string_with_wo_rds",
+        "STRing_with_words": "st_ring_with_words",
+        "string_wiTH_WOrds": "string_wi_th_w_ords",
+        "": "",
+        "URLChooser": "url_chooser",
+        "UrlChooser": "url_chooser",
+        "a__b__c": "a__b__c",
+        "__y_z!": "__y_z!",
+        "PLEASESTOPSCREAMING": "pleasestopscreaming",
+        "PLEASESTOPSCREAMING!": "pleasestopscreaming!",
+        "PLEASE_STOP_SCREAMING": "please_stop_screaming",
+        "PLEASE_STOP_SCREAMING!": "please_stop_screaming!"
     ]
 
     for (input, expected) in expectations {
       let trueArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["true"]) as? String
       XCTAssertEqual(trueArgResult, expected)
-      let yesArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["yes"]) as? String
-      XCTAssertEqual(yesArgResult, expected)
-      let oneArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["1"]) as? String
-      XCTAssertEqual(oneArgResult, expected)
-      let emptyArgResult = try! StringFilters.camelToSnakeCase(input, arguments: []) as? String
-      XCTAssertEqual(emptyArgResult, expected)
-      let unknownArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["unknown"]) as? String
-      XCTAssertEqual(unknownArgResult, expected)
     }
   }
 
@@ -204,10 +251,6 @@ class StringFiltersTests: XCTestCase {
     for (input, expected) in expectations {
       let falseArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["false"]) as? String
       XCTAssertEqual(falseArgResult, expected)
-      let noArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["no"]) as? String
-      XCTAssertEqual(noArgResult, expected)
-      let zeroArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["0"]) as? String
-      XCTAssertEqual(zeroArgResult, expected)
     }
   }
 
