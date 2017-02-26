@@ -7,7 +7,10 @@ namespace :lint do
       url = 'https://github.com/realm/SwiftLint/releases/download/0.16.1/SwiftLint.pkg'
       tmppath = '/tmp/SwiftLint.pkg'
 
-      plain("curl -Lo #{tmppath} #{url} && sudo installer -pkg #{tmppath} -target /", task)
+      plain([
+        "curl -Lo #{tmppath} #{url}",
+        "sudo installer -pkg #{tmppath} -target /"
+      ], task)
     end
   end
   
