@@ -32,7 +32,7 @@ def version_select
   # Order by version and get the latest one
   vers = lambda { |path| `mdls -name kMDItemVersion -raw "#{path}"` }
   latest_xcode_version = xcodes.sort { |p1, p2| vers.call(p1) <=> vers.call(p2) }.last
-  %Q(DEVELOPER_DIR="#{latest_xcode_version}/Contents/Developer" TOOLCHAINS=com.apple.dt.toolchain.XcodeDefault.xctoolchain)
+  %Q(DEVELOPER_DIR="#{latest_xcode_version}/Contents/Developer")
 end
 
 def xcrun(cmd, task, pretty=true)
