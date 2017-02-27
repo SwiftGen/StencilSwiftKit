@@ -133,57 +133,12 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
-  func testParseBool_WithTrueString() throws {
-    let value = try StringFilters.parseBool(from: ["true"], index: 0)
-    XCTAssertTrue(value!)
+  func testCamelToSnakeCase_WithNoArgsDefaultsToTrue() {
+    let result = try! StringFilters.camelToSnakeCase("StringWithWords", arguments: []) as? String
+    XCTAssertEqual(result, "string_with_words")
   }
-
-  func testParseBool_WithFalseString() throws {
-    let value = try StringFilters.parseBool(from: ["false"], index: 0)
-    XCTAssertFalse(value!)
-  }
-
-  func testParseBool_WithYesString() throws {
-    let value = try StringFilters.parseBool(from: ["yes"], index: 0)
-    XCTAssertTrue(value!)
-  }
-
-  func testParseBool_WithNoString() throws {
-    let value = try StringFilters.parseBool(from: ["no"], index: 0)
-    XCTAssertFalse(value!)
-  }
-
-  func testParseBool_WithOneString() throws {
-    let value = try StringFilters.parseBool(from: ["1"], index: 0)
-    XCTAssertTrue(value!)
-  }
-
-  func testParseBool_WithZeroString() throws {
-    let value = try StringFilters.parseBool(from: ["0"], index: 0)
-    XCTAssertFalse(value!)
-  }
-
-  func testParseBool_WithInt() throws {
-    let value = try StringFilters.parseBool(from: [1], index: 0)
-    XCTAssertNil(value)
-  }
-
-  func testParseBool_WithDouble() throws {
-    let value = try StringFilters.parseBool(from: [1.0], index: 0)
-    XCTAssertNil(value)
-  }
-
-  func testParseBool_WithEmptyString() throws {
-    let value = try StringFilters.parseBool(from: [""], index: 0)
-    XCTAssertNil(value)
-  }
-
-  func testParseBool_WithEmptyArray() throws {
-    let value = try StringFilters.parseBool(from: [], index: 0)
-    XCTAssertNil(value)
-  }
-
-  func testCamelToSnakeCase_NoArguments() {
+  
+  func testCamelToSnakeCase_WithTrue() {
     let expectations = [
         "string": "string",
         "String": "string",
@@ -216,7 +171,7 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
-  func testCamelToSnakeCase_OneArgumentAsFalse() {
+  func testCamelToSnakeCase_WithFalse() {
     let expectations = [
             "string": "string",
             "String": "String",
