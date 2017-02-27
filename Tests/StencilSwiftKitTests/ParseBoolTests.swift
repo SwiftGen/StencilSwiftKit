@@ -58,8 +58,7 @@ class ParseBoolTests: XCTestCase {
   }
 
   func testParseBool_WithEmptyString() throws {
-    let value = try StringFilters.parseBool(from: [""], index: 0, required: false)
-    XCTAssertNil(value)
+    XCTAssertThrows(try StringFilters.parseBool(from: [""], index: 0, required: false))
   }
 
   func testParseBool_WithEmptyStringAndRequiredArg() throws {

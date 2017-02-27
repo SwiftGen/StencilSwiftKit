@@ -114,7 +114,7 @@ struct StringFilters {
   /// - parameter required: if true, the argument is required and function throws if missing. If false, returns nil on missing args.
   /// - returns: true or false if a value was parsed, or nil if it wasn't able to
   static func parseBool(from arguments: [Any?], index: Int, required: Bool = true) throws -> Bool? {
-    guard index < arguments.count else {
+    guard index < arguments.count, let boolArg = arguments[index] as? String else {
       if required {
         throw FilterError.invalidInputType
       } else {
@@ -122,18 +122,13 @@ struct StringFilters {
       }
     }
 
-    let boolArg = (arguments[index] as? String ?? "").lowercased()
-    switch boolArg {
+    switch boolArg.lowercased() {
     case "false", "no", "0":
       return false
     case "true", "yes", "1":
       return true
     default:
-      if required {
         throw FilterError.invalidInputType
-      } else {
-        return nil
-      }
     }
   }
 
