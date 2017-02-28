@@ -1,13 +1,13 @@
 namespace :spm do
   desc 'Build using SPM'
   task :build do |task|
-  	print_info 'Compile using SPM'
-    xcrun("swift build", task)
+    Utils.print_info 'Compile using SPM'
+    Utils.run("swift build", task, xcrun: true)
   end
 
   desc 'Run SPM Unit Tests'
   task :test => :build do |task|
-  	print_info 'Run the unit tests using SPM'
-    xcrun("swift test", task)
+    Utils.print_info 'Run the unit tests using SPM'
+    Utils.run("swift test", task, xcrun: true)
   end
 end

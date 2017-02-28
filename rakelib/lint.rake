@@ -1,11 +1,11 @@
 namespace :lint do
   desc 'Install swiftlint'
   task :install do |task|
-    if !system('which xcpretty > /dev/null')
+    if !system('which swiftlint > /dev/null')
       url = 'https://github.com/realm/SwiftLint/releases/download/0.16.1/SwiftLint.pkg'
       tmppath = '/tmp/SwiftLint.pkg'
 
-      plain([
+      Utils.run([
         "curl -Lo #{tmppath} #{url}",
         "sudo installer -pkg #{tmppath} -target /"
       ], task)
@@ -14,13 +14,13 @@ namespace :lint do
   
   desc 'Lint the code'
   task :code => :install do |task|
-    print_info 'Linting the code'
-    plain(%Q(swiftlint lint --no-cache --strict --path Sources), task)
+    Utils.print_info 'Linting the code'
+    Utils.run(%Q(swiftlint lint --no-cache --strict --path Sources), task)
   end
   
   desc 'Lint the tests'
   task :tests => :install do |task|
-    print_info 'Linting the unit test code'
-    plain(%Q(swiftlint lint --no-cache --strict --path "Tests/#{POD_NAME}Tests"), task)
+    Utils.print_info 'Linting the unit test code'
+    Utils.run(%Q(swiftlint lint --no-cache --strict --path "Tests/#{POD_NAME}Tests"), task)
   end
 end
