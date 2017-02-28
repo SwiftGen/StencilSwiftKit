@@ -2,11 +2,10 @@
 def xcpretty(cmd, task, subtask = '')
   name = (task.name + (subtask.empty? ? '' : "_#{subtask}")).gsub(/[:-]/, "_")
   command = [*cmd].join(' && ')
-  xcpretty = `which xcpretty`
 
   if ENV['CI']
     sh "set -o pipefail && (#{command}) | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\" | xcpretty --color --report junit --output \"#{ENV['CIRCLE_TEST_REPORTS']}/xcode/#{name}.xml\""
-  elsif xcpretty && $?.success?
+  elsif system('which xcpretty > /dev/null')
     sh "set -o pipefail && (#{command}) | xcpretty -c"
   else
     sh command

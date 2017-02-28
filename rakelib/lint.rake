@@ -1,9 +1,7 @@
 namespace :lint do
   desc 'Install swiftlint'
   task :install do |task|
-    swiftlint = `which swiftlint`
-    
-    if !(swiftlint && $?.success?)
+    if !system('which xcpretty > /dev/null')
       url = 'https://github.com/realm/SwiftLint/releases/download/0.16.1/SwiftLint.pkg'
       tmppath = '/tmp/SwiftLint.pkg'
 
