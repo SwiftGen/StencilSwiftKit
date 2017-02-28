@@ -21,6 +21,6 @@ namespace :lint do
   desc 'Lint the tests'
   task :tests => :install do |task|
     Utils.print_info 'Linting the unit test code'
-    Utils.run(%Q(swiftlint lint --no-cache --strict --path "Tests/#{POD_NAME}Tests"), task)
+    Utils.run(%Q(swiftlint lint --no-cache --strict --path "#{TEST_PATH}"), task)
   end
 end
