@@ -12,15 +12,25 @@ namespace :lint do
     end
   end
   
-  desc 'Lint the code'
-  task :code => :install do |task|
-    Utils.print_info 'Linting the code'
-    Utils.run(%Q(swiftlint lint --no-cache --strict --path Sources), task)
+  if File.directory?('Sources')
+    desc 'Lint the code'
+    task :code => :install do |task|
+      Utils.print_info 'Linting the code'
+      Utils.run(%Q(swiftlint lint --no-cache --strict --path Sources), task)
+    end
   end
   
   desc 'Lint the tests'
   task :tests => :install do |task|
     Utils.print_info 'Linting the unit test code'
-    Utils.run(%Q(swiftlint lint --no-cache --strict --path "#{TEST_PATH}"), task)
+    Utils.run(%Q(swiftlint lint --no-cache --strict --path "Tests/#{WORKSPACE}Tests"), task)
+  end
+  
+  if File.directory?('Tests/Expected')
+    desc 'Lint the output'
+    task :output => :install do |task|
+      Utils.print_info 'Linting the template output code'
+      Utils.run(%Q(swiftlint lint --no-cache --strict --path Tests/Expected), task)
+    end
   end
 end
