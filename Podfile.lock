@@ -2,7 +2,7 @@ PODS:
   - PathKit (0.8.0)
   - Stencil (0.8.0):
     - PathKit (~> 0.8.0)
-  - StencilSwiftKit (1.0.0):
+  - StencilSwiftKit (1.0.1):
     - Stencil (~> 0.8.0)
 
 DEPENDENCIES:
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   PathKit: dcab05d701474011aae0e40cf892298a831f63d6
   Stencil: 6669684db0262e6eb316ce233e7e02d6df0a6cd9
-  StencilSwiftKit: 96ca5b9f572bf13380cc2803a8f3bc32e3c13ef9
+  StencilSwiftKit: fc4a0e446f0f45264d4029b9ca3b4798a6a35ebd
 
 PODFILE CHECKSUM: 81c0228e2e71a9683d0eed53bd9f6bd1165815b7
 
