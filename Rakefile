@@ -3,7 +3,7 @@
 ## [ Constants ] ##############################################################
 
 WORKSPACE = 'StencilSwiftKit'
-TARGET_NAME = 'Tests'
+SCHEME_NAME = 'Tests'
 CONFIGURATION = 'Debug'
 POD_NAME = 'StencilSwiftKit'
 
