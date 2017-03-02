@@ -133,12 +133,12 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
-  func testCamelToSnakeCase_WithNoArgsDefaultsToTrue() {
-    let result = try! StringFilters.camelToSnakeCase("StringWithWords", arguments: []) as? String
+  func testCamelToSnakeCase_WithNoArgsDefaultsToTrue() throws {
+    let result = try StringFilters.camelToSnakeCase("StringWithWords", arguments: []) as? String
     XCTAssertEqual(result, "string_with_words")
   }
-  
-  func testCamelToSnakeCase_WithTrue() {
+
+  func testCamelToSnakeCase_WithTrue() throws {
     let expectations = [
         "string": "string",
         "String": "string",
@@ -166,12 +166,12 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let trueArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["true"]) as? String
+      let trueArgResult = try StringFilters.camelToSnakeCase(input, arguments: ["true"]) as? String
       XCTAssertEqual(trueArgResult, expected)
     }
   }
 
-  func testCamelToSnakeCase_WithFalse() {
+  func testCamelToSnakeCase_WithFalse() throws {
     let expectations = [
             "string": "string",
             "String": "String",
@@ -199,7 +199,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let falseArgResult = try! StringFilters.camelToSnakeCase(input, arguments: ["false"]) as? String
+      let falseArgResult = try StringFilters.camelToSnakeCase(input, arguments: ["false"]) as? String
       XCTAssertEqual(falseArgResult, expected)
     }
   }
