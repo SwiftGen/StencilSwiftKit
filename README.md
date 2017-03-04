@@ -24,17 +24,17 @@
 
 ## Filters
 
-_TODO: [Write more extension Documentation](https://github.com/SwiftGen/StencilSwiftKit/issues/4)_
-
-* `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference)
 * `join`: Deprecated. Will be removed now that the same filter exists in Stencil proper.
-* `lowerFirstWord`
-* `snakeToCamelCase` / `snakeToCamelCaseNoPrefix`
-* `titlecase`
-* `hexToInt`
-* `int255toFloat`
-* `percent`
-* `escapeReservedKeywords`: Escape keywods reserved in the Swift language, by wrapping them inside backticks so that the can be used as regular escape keywords in Swift code.
+* [String filters](Documentation/filters-strings.md):
+  * `escapeReservedKeywords`: Escape keywods reserved in the Swift language, by wrapping them inside backticks so that the can be used as regular escape keywords in Swift code.
+  * `lowerFirstWord`
+  * `snakeToCamelCase` / `snakeToCamelCaseNoPrefix`
+  * `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference)
+  * `titlecase`
+* Number filters:
+  * `hexToInt`
+  * `int255toFloat`
+  * `percent`
 
 ## StencilSwiftTemplate
 
