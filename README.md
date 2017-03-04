@@ -17,10 +17,10 @@
 * [Set](Documentation/tag-set.md)
   * `{% set <Name> %}…{% endset %}`
   * Renders the nodes inside this block immediately, and stores the result in the `<Name`>  variable of the current context.
-* `MapNode`
+* [Map](Documentation/tag-map.md)
   * `{% map <Variable> into <Name> using <ItemName> %}…{% endmap %}`
   * Apply a `map` operator to an array, and store the result into a new array variable `<Name>` in the current context.
-  * Inside the map loop, a `maploop` special variable is available (akin to the `forloop` variable in `for` nodes). It exposes `maploop.count`, `maploop.first`, `maploop.last` and `maploop.item`.
+  * Inside the map loop, a `maploop` special variable is available (akin to the `forloop` variable in `for` nodes). It exposes `maploop.counter`, `maploop.first`, `maploop.last` and `maploop.item`.
 
 ## Filters
 
