@@ -22,6 +22,18 @@ _None_
 
 _None_
 
+## 1.0.1
+
+### Internal Changes
+
+* Switch from Travis CI to Circle CI, clean up the Rakefile in the process.  
+  [David Jennes](https://github.com/djbe)
+  [#20](https://github.com/SwiftGen/SwiftGenKit/issues/20)
+  [#25](https://github.com/SwiftGen/SwiftGenKit/issues/25)
+* Fixed SPM dependency in `Package.swift`.  
+  [Krzysztof Zabłocki](https://github.com/krzysztofzablocki)
+  [#26](https://github.com/SwiftGen/StencilSwiftKit/pull/26/files)
+
 ## 1.0.0
 
 ### Bug Fixes
