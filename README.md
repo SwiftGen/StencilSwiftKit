@@ -31,9 +31,9 @@
   * `snakeToCamelCase` / `snakeToCamelCaseNoPrefix`
   * `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference)
   * `titlecase`
-* Number filters:
-  * `hexToInt`
+* [Number filters](Documentation/filters-numbers.md):
   * `int255toFloat`
+  * `hexToInt`
   * `percent`
 
 ## StencilSwiftTemplate
