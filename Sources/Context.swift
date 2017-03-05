@@ -24,9 +24,19 @@ public enum StencilContext {
                             environment: [String: String] = ProcessInfo().environment) throws -> [String: Any] {
     var context = context
 
-    context[StencilContext.environment] = environment
-    context[StencilContext.parameters] = try Parameters.parse(items: parameters)
+    context[self.environment] = merge(context[self.environment], with: environment)
+    context[self.parameters] = merge(context[self.parameters], with: try Parameters.parse(items: parameters))
 
     return context
+  }
+
+  private static func merge(_ lhs: Any?, with rhs: [String: Any]) -> [String: Any] {
+    var result = lhs as? [String: Any] ?? [:]
+
+    for (key, value) in rhs {
+      result[key] = value
+    }
+
+    return result
   }
 }
