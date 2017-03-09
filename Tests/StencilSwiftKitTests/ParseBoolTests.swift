@@ -45,7 +45,7 @@ class ParseBoolTests: XCTestCase {
   }
 
   func testParseBool_WithRequiredInt() throws {
-    XCTAssertThrows(try StringFilters.parseBool(from: [1], index: 0, required: true))
+    XCTAssertThrowsError(try StringFilters.parseBool(from: [1], index: 0, required: true))
   }
 
   func testParseBool_WithOptionalDouble() throws {
@@ -54,15 +54,15 @@ class ParseBoolTests: XCTestCase {
   }
 
   func testParseBool_WithRequiredDouble() throws {
-    XCTAssertThrows(try StringFilters.parseBool(from: [1.0], index: 0, required: true))
+    XCTAssertThrowsError(try StringFilters.parseBool(from: [1.0], index: 0, required: true))
   }
 
   func testParseBool_WithEmptyString() throws {
-    XCTAssertThrows(try StringFilters.parseBool(from: [""], index: 0, required: false))
+    XCTAssertThrowsError(try StringFilters.parseBool(from: [""], index: 0, required: false))
   }
 
   func testParseBool_WithEmptyStringAndRequiredArg() throws {
-    XCTAssertThrows(try StringFilters.parseBool(from: [""], index: 0, required: true))
+    XCTAssertThrowsError(try StringFilters.parseBool(from: [""], index: 0, required: true))
   }
 
   func testParseBool_WithEmptyArray() throws {
@@ -71,6 +71,6 @@ class ParseBoolTests: XCTestCase {
   }
 
   func testParseBool_WithEmptyArrayAndRequiredArg() throws {
-    XCTAssertThrows(try StringFilters.parseBool(from: [], index: 0, required: true))
+    XCTAssertThrowsError(try StringFilters.parseBool(from: [], index: 0, required: true))
   }
 }
