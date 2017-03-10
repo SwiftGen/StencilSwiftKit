@@ -3,8 +3,7 @@ machine:
     version: 8.2
 
 dependencies:
-  pre:
-    - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
+  post:
     - rake lint:install
     - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
 
