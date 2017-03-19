@@ -9,16 +9,20 @@ import StencilSwiftKit
 
 class JSExtensionTests: XCTestCase {
 
-  func template(_ templateString: String, _ configuringExtension: (JSExtension) -> Void) -> StencilSwiftTemplate {
+  func template(_ templateString: String,
+                _ configuringExtension: (JSExtension) throws -> Void) rethrows -> StencilSwiftTemplate {
     let ext = JSExtension()
-    configuringExtension(ext)
+    try configuringExtension(ext)
     let env = stencilSwiftEnvironment(extensions: [ext])
     return StencilSwiftTemplate(templateString: templateString, environment: env)
   }
   func render(_ templateString: String,
               context: [String: Any] = [:],
-              configuringExtension: (JSExtension) -> Void) -> String {
-    let template = self.template(templateString, configuringExtension)
+              configuringExtension: (JSExtension) throws -> Void) -> String {
+    guard let template = try? self.template(templateString, configuringExtension) else {
+      XCTFail("Unable to create template")
+      return ""
+    }
     guard let result = try? template.render(context) else {
       XCTFail("Unable to render template")
       return ""
@@ -53,8 +57,18 @@ class JSExtensionTests: XCTestCase {
   func testJSTag() {
     let template = "{% greet name|capitalize %}Hello, {{ name }}{% endgreet %}"
     let result = self.render(template, context: ["name": "world"]) { ext in
-      let path = Bundle(for: JSExtensionTests.self).path(forResource: "greet-tag", ofType: "js")!
-      try? ext.registerTag("greet", script: String(contentsOfFile: path, encoding: .utf8))
+      let script = "function greet(parser, token) { " +
+      "var bits = token.components(); if (bits.length != 2) { throw \"'greet' tag takes one argument\" }; " +
+      "this.variable = bits[1].split(\"|\")[0]; " +
+      "this.nodes = parser.parseUntil([\"endgreet\"], function(e) { throw e }); " +
+      "if (parser.nextToken() === null) { throw \"'endgreet' not found\" }; " +
+      "this.resolvable = parser.compileFilter(bits[1], function(e) { throw e }); " +
+      "this.render = function(context) { " +
+      "var resolvable = this.resolvable; var nodes = this.nodes; " +
+      "var dict = {}; dict[this.variable] = resolvable.resolve(context, function(e) { throw e }); " +
+      "return context.push(dict, function() { return renderNodes(nodes, context, function(e) { throw e }); })" +
+      "}}"
+      ext.registerTag("greet", script: script)
     }
     XCTDiffStrings(result, "Hello, World")
   }
