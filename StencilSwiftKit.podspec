@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "StencilSwiftKit"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "Stencil additions dedicated for Swift code generation"
 
   s.description  = <<-DESC
@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
 
   s.source_files = "Sources/**/*.swift"
 
-  s.dependency 'Stencil', '~> 0.7.0'
+  s.dependency 'Stencil', '~> 0.8.0'
   s.framework  = "Foundation"
 end

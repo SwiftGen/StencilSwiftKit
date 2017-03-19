@@ -2,9 +2,43 @@
 
 ---
 
-## Master (to be 5.0.0)
+## Master
 
 ### Bug Fixes
+
+_None_
+
+### Breaking Changes
+
+_None_
+
+### New Features
+
+_None_
+
+### Internal Changes
+
+* Further refactor the Rakefile into rakelibs, and add a Gemfile for gem dependencies.  
+  [David Jennes](https://github.com/djbe)
+  [#28](https://github.com/SwiftGen/SwiftGenKit/issues/28)
+
+## 1.0.1
+
+### Internal Changes
+
+* Switch from Travis CI to Circle CI, clean up the Rakefile in the process.  
+  [David Jennes](https://github.com/djbe)
+  [#20](https://github.com/SwiftGen/SwiftGenKit/issues/20)
+  [#25](https://github.com/SwiftGen/SwiftGenKit/issues/25)
+* Fixed SPM dependency in `Package.swift`.  
+  [Krzysztof Zabłocki](https://github.com/krzysztofzablocki)
+  [#26](https://github.com/SwiftGen/StencilSwiftKit/pull/26/files)
+
+## 1.0.0
+
+### Bug Fixes
+
+_None_
 
 ### New Features
 
@@ -16,6 +50,16 @@
   to do the equivalent of the `result = someArray.map { item in … }` Swift code.  
   [David Jennes](https://github.com/djbe)
   [#11](https://github.com/SwiftGen/StencilSwiftKit/pull/11)
+* Add a "parameters parser" able to transform parameters passed as a set of strings
+  (`a=1 b.x=2 b.y=3 c=4 c=5`) — typically provided as the command line arguments of a CLI
+   — into a Dictionary suitable for Stencil contexts.  
+  [David Jennes](https://github.com/djbe)
+  [#8](https://github.com/SwiftGen/StencilSwiftKit/pull/8)
+* Add a `StencilContext.enrich` function to enrich Stencil contexts with `param` and `env` dictionaries.  
+  The `param` dictionary typically contains parameters parsed via the parameters parser above.  
+  The `env` dictionary contains all the environment variables. You can thus access them in
+  your templates using `env.USER`, `env.LANG`, `env.PRODUCT_MODULE_NAME`, etc.  
+  [#19](https://github.com/SwiftGen/StencilSwiftKit/pull/19)
 
 ### Internal Changes
 
@@ -28,14 +72,7 @@
 * Refactor stencil node tests to not use templates and output files.  
   [David Jennes](https://github.com/djbe)
   [#17](https://github.com/SwiftGen/StencilSwiftKit/issues/17)
-* Add a "parameters parser" able to transform parameters passed as a set of strings (`a=1 b.x=2 b.y=3 c=4 c=5`) — typically provided as the command line arguments of a CLI — into a Dictionary suitable for Stencil contexts.  
-  [David Jennes](https://github.com/djbe)
-  [#8](https://github.com/SwiftGen/StencilSwiftKit/pull/8)
 
-## Before 5.0.0
+## Pre-1.0.0
 
-This first version of `StencilSwiftKit` is numbered `5.0.0` because it's the result of splitting the parts of `SwiftGen` into separate frameworks during its `5.0.0` release. This way, all parts of SwiftGen will start up with matching versions.
-
-`StencilSwiftKit` is the framework used by SwiftGen to extend the Stencil template engine with nodes and filters specialized in generating Swift code. It is used at least by both `SwiftGen` and `Sourcery`, as both tools use Stencil templates to generate Swift code.
-
-_For the list of older `CHANGELOG` history, see SwiftGen's own `CHANGELOG` for changes listed before `5.0.0` and before SwiftGen was split in separate frameworks._
+_See SwitftGen's own CHANGELOG pre SwiftGen 4.2 version, before the refactoring that led us to split the code in frameworks_
