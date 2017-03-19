@@ -8,14 +8,14 @@ import Stencil
 import JavaScriptCore
 
 public class JSExtension: Extension {
-    
+
     public let jsContext: JSContext
-    
+
     public init(jsContext: JSContext = JSContext()) {
         jsContext.registerStencilTypes()
         self.jsContext = jsContext
     }
-    
+
     /// Registers JavaScript function as a filter. Function should have the same name as `name` parameter,
     /// should accept two parameters for value and filter parameters (can be empty)
     /// and can return any object. 
@@ -40,7 +40,7 @@ public class JSExtension: Extension {
             return result?.toObject()
         })
     }
-    
+
     /// Registers JavaScript function as a simple tag. Function should have the same name as `name` parameter,
     /// should accept singe parameters for context and should return a string.
     ///
@@ -63,7 +63,7 @@ public class JSExtension: Extension {
             return result?.toString() ?? ""
         }
     }
-    
+
     /// Registers JavaScript function as a tag. Function should have the same name as `name` parameter,
     /// should be constructed with two parameters for parser and token and should define function `render`
     /// to render its content that should accept single parameter for context and should return string.
@@ -87,25 +87,27 @@ public class JSExtension: Extension {
         self.registerTag(name, parser: { [unowned self] parser, token in
             try inJSContext(self.jsContext) { self.jsContext.evaluateScript(code) }
             let prototype = try inJSContext(self.jsContext) { self.jsContext.objectForKeyedSubscript(name) }
-            let node = try inJSContext(self.jsContext) { prototype?.construct(withArguments: [JSTokenParser(parser), JSToken(token)]) }
+            let node = try inJSContext(self.jsContext) {
+                prototype?.construct(withArguments: [JSTokenParser(parser), JSToken(token)])
+            }
             return JSNode(node, context: self.jsContext)
         })
     }
-    
+
 }
 
 extension JSContext {
-    
+
     func registerStencilTypes() {
         let newVariable: @convention(block) (String) -> JSResolvable = JSResolvable.init
         setObject(unsafeBitCast(newVariable, to: AnyObject.self), forKeyedSubscript: "Variable" as NSString)
-        
+
         let newVariableNode: @convention(block) (JSValue) -> (JSVariableNode?) = JSVariableNode.init
         setObject(unsafeBitCast(newVariableNode, to: AnyObject.self), forKeyedSubscript: "VariableNode" as NSString)
-        
+
         setObject(unsafeBitCast(renderNodes, to: AnyObject.self), forKeyedSubscript: "renderNodes" as NSString)
     }
-    
+
 }
 
 /// Runs passed block and returns its result or throws error if it causes JavaScript exception in passed context.
@@ -165,15 +167,15 @@ class JSTokenParser: NSObject, JSExportableTokenParser {
     func parse() -> [JSNode] {
         return bridgingError { try parser.parse().map(JSNode.init) } ?? []
     }
-    
+
     func parseUntil(_ tags: [String]?) -> [JSNode] {
         return bridgingError { try parser.parse(tags.map(until)).map(JSNode.init) } ?? []
     }
-    
+
     func nextToken() -> JSToken? {
         return parser.nextToken().map(JSToken.init)
     }
-    
+
     func compileFilter(_ token: String) -> JSResolvable? {
         return bridgingError { try JSResolvable(parser.compileFilter(token)) }
     }
@@ -191,15 +193,15 @@ class JSToken: NSObject, JSExportableToken {
     init(_ token: Token) {
         self.token = token
     }
-    
+
     func components() -> [String] {
         return token.components()
     }
-    
+
     var contents: String {
         return token.contents
     }
-    
+
 }
 
 @objc protocol JSExportableContext: JSExport {
@@ -215,17 +217,17 @@ class JSStencilContext: NSObject, JSExportableContext {
     init(_ context: Context) {
         self.context = context
     }
-    
+
     override func value(forKey key: String) -> Any? {
         return context[key]
     }
-    
+
     override func setValue(_ value: Any?, forKey key: String) {
         context[key] = value
     }
 
     func push(_ closure: JSValue) -> Any {
-        return context.push() { () -> Any in
+        return context.push { () -> Any in
             return closure.call(withArguments: [])
         }
     }
@@ -235,7 +237,7 @@ class JSStencilContext: NSObject, JSExportableContext {
             return closure.call(withArguments: [])
         }
     }
-    
+
 }
 
 @objc protocol JSExportableResolvable: JSExport {
@@ -264,16 +266,17 @@ class JSResolvable: NSObject, JSExportableResolvable {
 }
 
 /// JS wrapper for VariableNode
-class JSVariableNode : NSObject, JSExportableNode, NodeType {
+class JSVariableNode: NSObject, JSExportableNode, NodeType {
     let node: VariableNode
-    
+
     init?(_ variable: JSValue) {
         if variable.isString {
             node = VariableNode(variable: variable.toString())
         } else if variable.isObject, let resolvable = variable.toObject() as? JSResolvable {
             self.node = VariableNode(variable: resolvable.resolvable)
         } else {
-            JSContext.current().evaluateScript("throw TypeError('VariableNode constructor expects string or Variable parameter')")
+            let exception = "throw TypeError('VariableNode constructor expects string or Variable parameter')"
+            JSContext.current().evaluateScript(exception)
             return nil
         }
     }
@@ -285,7 +288,7 @@ class JSVariableNode : NSObject, JSExportableNode, NodeType {
     func render(_ context: Context) throws -> String {
         return try node.render(context)
     }
-    
+
 }
 
 /// JS wrapper for NodeType that represents node object written in JS.
@@ -295,26 +298,28 @@ class JSNode: NSObject, NodeType, JSExportableNode {
     let value: JSValue?
     let node: NodeType?
     let context: JSContext?
-    
+
     init(_ value: JSValue?, context: JSContext) {
         self.value = value
         self.node = nil
         self.context = context
     }
-    
+
     init(_ node: NodeType) {
         self.node = node
         self.value = nil
         self.context = nil
     }
-    
+
     func render(_ context: JSStencilContext) -> String? {
         return bridgingError { try render(context.context) }
     }
 
     func render(_ context: Context) throws -> String {
-        if let value = value, let jsContext = self.context  {
-            let result = try inJSContext(jsContext) { value.invokeMethod("render", withArguments: [JSStencilContext(context)]) }
+        if let value = value, let jsContext = self.context {
+            let result = try inJSContext(jsContext) {
+                value.invokeMethod("render", withArguments: [JSStencilContext(context)])
+            }
             return result?.toString() ?? ""
         } else if let node = node {
             return try node.render(context)
