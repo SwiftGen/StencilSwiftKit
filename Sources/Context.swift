@@ -9,8 +9,8 @@
 import Foundation
 
 public enum StencilContext {
-  public static let environment = "env"
-  public static let parameters = "param"
+  public static let environmentKey = "env"
+  public static let parametersKey = "param"
 
   /**
    Enriches a stencil context with parsed parameters and environment variables
@@ -24,8 +24,8 @@ public enum StencilContext {
                             environment: [String: String] = ProcessInfo().environment) throws -> [String: Any] {
     var context = context
 
-    context[self.environment] = merge(context[self.environment], with: environment)
-    context[self.parameters] = merge(context[self.parameters], with: try Parameters.parse(items: parameters))
+    context[environmentKey] = merge(context[environmentKey], with: environment)
+    context[parametersKey] = merge(context[parametersKey], with: try Parameters.parse(items: parameters))
 
     return context
   }
