@@ -25,9 +25,9 @@ public extension Extension {
   }
 }
 
-public func stencilSwiftEnvironment() -> Environment {
+public func stencilSwiftEnvironment(extensions: [Extension] = []) -> Environment {
   let ext = Extension()
   ext.registerStencilSwiftExtensions()
 
-  return Environment(extensions: [ext], templateClass: StencilSwiftTemplate.self)
+  return Environment(extensions: extensions + [ext], templateClass: StencilSwiftTemplate.self)
 }
