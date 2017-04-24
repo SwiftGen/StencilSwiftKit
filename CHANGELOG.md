@@ -23,6 +23,7 @@ _None_
 * Further refactor the Rakefile into rakelibs, and add a Gemfile for gem dependencies.  
   [David Jennes](https://github.com/djbe)
   [#28](https://github.com/SwiftGen/SwiftGenKit/issues/28)
+  [#31](https://github.com/SwiftGen/SwiftGenKit/issues/31)
 
 ## 1.0.1
 
