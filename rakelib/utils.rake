@@ -68,6 +68,7 @@ class Utils
 
   # select the xcode version we want/support
   def self.version_select
+    Rake.sh 'mdimport /Applications/Xcode*'
     xcodes = `mdfind "kMDItemCFBundleIdentifier = 'com.apple.dt.Xcode' && kMDItemVersion = '8.*'"`.chomp.split("\n")
     if xcodes.empty?
       raise "\n[!!!] You need to have Xcode 8.x to compile SwiftGen.\n\n"
