@@ -24,7 +24,7 @@ _None_
   [David Jennes](https://github.com/djbe)
   [#28](https://github.com/SwiftGen/SwiftGenKit/issues/28)
   [#31](https://github.com/SwiftGen/SwiftGenKit/issues/31)
-* Update Stecil to 0.9.0 and update project to Xcode 8.3.
+* Update Stencil to 0.9.0 and update project to Xcode 8.3.  
   [Diogo Tridapalli](https://github.com.diogot)
   [#32](https://github.com/SwiftGen/StencilSwiftKit/pull/32)
 
