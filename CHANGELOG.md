@@ -2,17 +2,13 @@
 
 ---
 
-## Master
+## 1.0.2
 
 ### Bug Fixes
 
 * The context enrich function won't overwrite existing values in the `env` and `param` variables.  
   [David Jennes](https://github.com/djbe)
   [#29](https://github.com/SwiftGen/SwiftGenKit/issues/29)
-
-### Breaking Changes
-
-_None_
 
 ### New Features
 
