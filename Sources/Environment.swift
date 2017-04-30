@@ -19,9 +19,9 @@ public extension Extension {
     registerFilter("snakeToCamelCaseNoPrefix", filter: Filters.Strings.snakeToCamelCaseNoPrefix)
     registerFilter("camelToSnakeCase", filter: Filters.Strings.camelToSnakeCase)
     registerFilter("titlecase", filter: Filters.Strings.titlecase)
-    registerFilter("hexToInt", filter: NumFilters.hexToInt)
-    registerFilter("int255toFloat", filter: NumFilters.int255toFloat)
-    registerFilter("percent", filter: NumFilters.percent)
+    registerFilter("hexToInt", filter: Filters.Numbers.hexToInt)
+    registerFilter("int255toFloat", filter: Filters.Numbers.int255toFloat)
+    registerFilter("percent", filter: Filters.Numbers.percent)
     registerFilter("escapeReservedKeywords", filter: Filters.Strings.escapeReservedKeywords)
   }
 }
