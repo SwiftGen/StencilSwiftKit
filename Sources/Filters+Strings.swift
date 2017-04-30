@@ -94,10 +94,12 @@ extension Filters {
 
     /// Converts camelCase to snake_case. Takes an optional Bool argument for making the string lower case,
     /// which defaults to true
-    /// - parameter value: the value to be processed
-    /// - parameter arguments: the arguments to the function, expecting zero or one argument
-    /// - returns: the snake case string
-    /// - throws: FilterError.invalidInputType if the value parameter isn't a string
+    ///
+    /// - Parameters:
+    ///   - value: the value to be processed
+    ///   - arguments: the arguments to the function; expecting zero or one boolean argument
+    /// - Returns: the snake case string
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func camelToSnakeCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
       let toLower = try Filters.parseBool(from: arguments, index: 0, required: false) ?? true
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
@@ -116,15 +118,12 @@ extension Filters {
 
     // MARK: - Private methods
 
-    /**
-     This returns the string with its first parameter uppercased.
-     - note: This is quite similar to `capitalise` except that this filter doesn't lowercase
-     the rest of the string but keep it untouched.
-
-     - parameter string: The string to titleCase
-
-     - returns: The string with its first character uppercased, and the rest of the string unchanged.
-     */
+    /// This returns the string with its first parameter uppercased.
+    /// - note: This is quite similar to `capitalise` except that this filter doesn't
+    ///          lowercase the rest of the string but keep it untouched.
+    ///
+    /// - Parameter string: The string to titleCase
+    /// - Returns: The string with its first character uppercased, and the rest of the string unchanged.
     private static func titlecase(_ string: String) -> String {
       guard let first = string.unicodeScalars.first else { return string }
       return String(first).uppercased() + String(string.unicodeScalars.dropFirst())
@@ -136,12 +135,10 @@ extension Filters {
       return lowercaseCharRegex.firstMatch(in: string, options: .reportCompletion, range: fullRange) != nil
     }
 
-    /**
-     This returns the snake cased variant of the string.
-     - parameter string: The string to snake_case
-
-     - returns: The string snake cased from either snake_cased or camelCased string.
-     */
+    /// This returns the snake cased variant of the string.
+    ///
+    /// - Parameter string: The string to snake_case
+    /// - Returns: The string snake cased from either snake_cased or camelCased string.
     private static func snakecase(_ string: String) throws -> String {
       let longUpper = try NSRegularExpression(pattern: "([A-Z\\d]+)([A-Z][a-z])", options: .dotMatchesLineSeparators)
       let camelCased = try NSRegularExpression(pattern: "([a-z\\d])([A-Z])", options: .dotMatchesLineSeparators)
