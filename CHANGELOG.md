@@ -27,6 +27,9 @@ _None_
 * Update Stencil to 0.9.0 and update project to Xcode 8.3.  
   [Diogo Tridapalli](https://github.com.diogot)
   [#32](https://github.com/SwiftGen/StencilSwiftKit/pull/32)
+* Added documentation for tags and filters.  
+  [David Jennes](https://github.com/djbe)
+  [#12](https://github.com/SwiftGen/StencilSwiftKit/pull/12)
 
 ## 1.0.1
 
