@@ -9,13 +9,13 @@ This tag _calls_ a macro previously defined using the [macro tag](tag-macro.md).
 | Tag Name  | `call`                                                          |
 | End Tag   | N/A                                                             |
 | Rendering | Immediately; output is the rendering of the called macro block  |
-| Example   | `{% call myBlock "Dave" %}`                                     |
-
 
 | Parameter  | Description                                               | 
 |------------|-----------------------------------------------------------|
 | Block Name | The name of the block you want to invoke.                 |
 | ...        | A variable list of arguments, must match block definition |
+
+_Example:_ `{% call myBlock "Dave" %}`
 
 ## When to use it
 

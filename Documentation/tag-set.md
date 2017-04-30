@@ -9,12 +9,12 @@ This tag stores a value into a variable for later use.
 | Tag Name  | `set`                            |
 | End Tag   | `endset`                         |
 | Rendering | Immediately; no output           |
-| Example   | {% set myVar %}hello{% endset %} |
-
 
 | Parameter | Description                                 | 
 |-----------|---------------------------------------------|
 | Name      | The name of the variable you want to store. |
+
+_Example:_ `{% set myVar %}hello{% endset %}`
 
 ## When to use it
 

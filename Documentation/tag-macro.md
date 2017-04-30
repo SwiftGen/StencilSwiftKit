@@ -11,13 +11,14 @@ This can be thought like defining a function or macro.
 | Tag Name  | `macro`                                                         |
 | End Tag   | `endmacro`                                                      |
 | Rendering | None; content is stored unrendered in variable with block name  |
-| Example   | `{% macro myBlock name %}Hello {{name}}{% endmacro %}`          |
-
 
 | Parameter  | Description                               | 
 |------------|-------------------------------------------|
 | Block Name | The name of the block you want to define. |
 | ...        | A variable list of parameters (optional). |
+
+_Example:_ `{% macro myBlock name %}Hello {{name}}!{% endmacro %}`
+
 
 ## When to use it
 

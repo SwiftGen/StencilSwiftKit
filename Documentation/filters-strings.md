@@ -2,9 +2,9 @@
 
 This is a list of filters that are added by StencilSwiftKit on top of the filters already provided by Stencil (which you can [find here](http://stencil.fuller.li/en/latest/builtins.html#built-in-filters)).
 
-## Filter: "escapeReservedKeywords"
+## Filter: `escapeReservedKeywords`
 
-Checks if the given string matches a reserved Swift keyword. If it does, wrap the string in escape characters.
+Checks if the given string matches a reserved Swift keyword. If it does, wrap the string in escape characters (backticks).
 
 | Input | Output                          |
 |-------|---------------------------------|
@@ -12,19 +12,19 @@ Checks if the given string matches a reserved Swift keyword. If it does, wrap th
 | self  | \`self\`                        |
 | Any   | \`Any\`                         |
 
-## Filter: "lowerFirstWord"
+## Filter: `lowerFirstWord`
 
 Transforms an arbitrary string so that only the first "word" is lowercased.
 
 - If the string starts with only one uppercase character, lowercase that first character.
-- If the string starts with multiple uppercase character, lowercase those first characters up to the one before the last uppercase one, but only if the last one is followed by a lowercase character.
+- If the string starts with multiple uppercase character, lowercase those first characters up to the one before the last uppercase one, but only if the last one is followed by a lowercase character. This allows to support strings beginnng with an acronym, like `URL`.
 
 | Input        | Output                   |
 |--------------|--------------------------|
 | PeoplePicker | peoplePicker             |
 | URLChooser   | urlChooser               |
 
-## Filter: "snakeToCamelCase"
+## Filter: `snakeToCamelCase`
 
 Transforms a string in "snake_case" format into one in "camelCase" format, following the steps below:
 
@@ -50,7 +50,7 @@ This filter accepts a parameter (boolean, default `false`) that controls the pre
 | SNAKE_CASE   | SnakeCase                |
 | __snake_case | SnakeCase                |
 
-## Filter: "swiftIdentifier"
+## Filter: `swiftIdentifier`
 
 Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:
 
@@ -67,9 +67,11 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 | 42hello  | _42hello                     |
 | some$URL | Some_URL                     |
 
-## Filter: "titlecase"
+## Filter: `titlecase`
 
-Simply uppercases the first characters. Different from the `capitalized` filter, which upercases the first characters and lowercases the remaining characters.
+Simply uppercases the first character, leaving the other characters untouched.
+
+Note that even if very similar, this filter differs from the `capitalized` filter, which uppercases the first character but also lowercases the remaining characters.
 
 | Input         | Output                  |
 |---------------|-------------------------|

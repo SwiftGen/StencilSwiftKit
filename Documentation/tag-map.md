@@ -9,14 +9,14 @@ This tag iterates over an array, transforming each element, and storing the resu
 | Tag Name  | `map`                                                           |
 | End Tag   | `endmap`                                                        |
 | Rendering | Immediately; no output                                          |
-| Example   | `{% map myArray into myNewArray using myItem %}...{% endmap %}` |
-
 
 | Parameter   | Description                                                        |
 |-------------|--------------------------------------------------------------------|
 | Array Name  | The name of the array you want to transform.                       |
 | Result Name | The name of the variable you want to store into.                   |
 | Item Name   | Optional; name of the variable for accessing the iteration's value |
+
+_Example:_ `{% map myArray into myNewArray using myItem %}...{% endmap %}`
 
 ## When to use it
 
