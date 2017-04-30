@@ -6,20 +6,22 @@
 
 import Foundation
 
-public enum ParametersError: Error {
-  case invalidSyntax(value: Any)
-  case invalidKey(key: String, value: Any)
-  case invalidStructure(key: String, oldValue: Any, newValue: Any)
-}
+// For retro-compatibility. Remove in next major.
+public typealias ParametersError = Parameters.Error
 
 /// Namespace to handle extra context parameters passed as a list of `foo=bar` strings.
 /// Typically used when parsing command-line arguments one by one
 /// (like `foo=bar pt.x=1 pt.y=2 values=1 values=2 values=3 flag`)
 /// to turn them into a dictionary structure
 public enum Parameters {
+  public enum Error: Swift.Error {
+    case invalidSyntax(value: Any)
+    case invalidKey(key: String, value: Any)
+    case invalidStructure(key: String, oldValue: Any, newValue: Any)
+  }
+
   typealias Parameter = (key: String, value: Any)
   public typealias StringDict = [String: Any]
-
 
   /// Transforms a list of strings representing structred-key/value pairs, like
   /// `["pt.x=1", "pt.y=2", "values=1", "values=2", "values=3" "flag"]`
@@ -39,7 +41,7 @@ public enum Parameters {
       } else if let part = parts.first, parts.count == 1 && validate(key: part) {
         return (key: part, value: true)
       } else {
-        throw ParametersError.invalidSyntax(value: item)
+        throw Error.invalidSyntax(value: item)
       }
     }
 
@@ -48,6 +50,7 @@ public enum Parameters {
     }
   }
 
+  // MARK: - Private methods
 
   /// Parse a single `key=value` (or `key`) string and inserts it into
   /// an existing StringDict dictionary being built.
@@ -63,7 +66,7 @@ public enum Parameters {
     var result = result
 
     // validate key
-    guard validate(key: key) else { throw ParametersError.invalidKey(key: parameter.key, value: parameter.value) }
+    guard validate(key: key) else { throw Error.invalidKey(key: parameter.key, value: parameter.value) }
 
     // no sub keys, may need to convert to array if repeat key if possible
     if parts.count == 1 {
@@ -72,13 +75,13 @@ public enum Parameters {
       } else if let current = result[key] as? String {
         result[key] = [current, parameter.value]
       } else if let current = result[key] {
-        throw ParametersError.invalidStructure(key: key, oldValue: current, newValue: parameter.value)
+        throw Error.invalidStructure(key: key, oldValue: current, newValue: parameter.value)
       } else {
         result[key] = parameter.value
       }
     } else if parts.count > 1 {
       guard result[key] is StringDict || result[key] == nil else {
-        throw ParametersError.invalidStructure(key: key, oldValue: result[key] ?? "", newValue: parameter.value)
+        throw Error.invalidStructure(key: key, oldValue: result[key] ?? "", newValue: parameter.value)
       }
 
       // recurse into sub keys

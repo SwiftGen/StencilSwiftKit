@@ -59,7 +59,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = ["foo:1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidSyntax = $0 else {
+        guard case Parameters.Error.invalidSyntax = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -70,7 +70,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = ["foo!1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidSyntax = $0 else {
+        guard case Parameters.Error.invalidSyntax = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -81,7 +81,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = [""]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidSyntax = $0 else {
+        guard case Parameters.Error.invalidSyntax = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -94,7 +94,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = ["foo:bar=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidKey = $0 else {
+        guard case Parameters.Error.invalidKey = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -105,7 +105,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = [".=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidKey = $0 else {
+        guard case Parameters.Error.invalidKey = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -116,7 +116,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = ["foo.=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidKey = $0 else {
+        guard case Parameters.Error.invalidKey = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -129,7 +129,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = ["foo=1", "foo.bar=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidStructure = $0 else {
+        guard case Parameters.Error.invalidStructure = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -140,7 +140,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = ["foo.bar=1", "foo=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidStructure = $0 else {
+        guard case Parameters.Error.invalidStructure = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
@@ -151,7 +151,7 @@ class ParametersTests: XCTestCase {
     do {
       let items = ["foo=1", "foo=2", "foo.bar=1"]
       XCTAssertThrowsError(try Parameters.parse(items: items)) {
-        guard case ParametersError.invalidStructure = $0 else {
+        guard case Parameters.Error.invalidStructure = $0 else {
           XCTFail("Unexpected error occured while parsing: \($0)")
           return
         }
