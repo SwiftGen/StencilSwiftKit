@@ -35,8 +35,12 @@ _None_
 
 ### Deprecations
 
-* The `ParametersError` enum has been replaced by the `Paramters.Error` nested type.
-  `ParametersError` still works (but is now `typealias`) but will be removed in the
+* The `ParametersError` enum has been replaced by the `Parameters.Error` nested type.
+  `ParametersError` still works (it is now `typealias`) but will be removed in the
+  next major release.  
+  [Olivier Halligon](https://github.com/AliGator)
+* The `FilterError` enum has been replaced by the `Filters.Error` nested type.
+  `FilterError` still works (it is now `typealias`) but will be removed in the
   next major release.  
   [Olivier Halligon](https://github.com/AliGator)
 

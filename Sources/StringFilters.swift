@@ -26,7 +26,7 @@ struct StringFilters {
                                              "right", "set", "Type", "unowned", "weak", "willSet"]
 
   static func stringToSwiftIdentifier(value: Any?) throws -> Any? {
-    guard let value = value as? String else { throw FilterError.invalidInputType }
+    guard let value = value as? String else { throw Filters.Error.invalidInputType }
     return swiftIdentifier(from: value, replaceWithUnderscores: true)
   }
 
@@ -37,7 +37,7 @@ struct StringFilters {
    * e.g. "PeoplePicker" gives "peoplePicker" but "URLChooser" gives "urlChooser"
    */
   static func lowerFirstWord(_ value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw FilterError.invalidInputType }
+    guard let string = value as? String else { throw Filters.Error.invalidInputType }
     let cs = CharacterSet.uppercaseLetters
     let scalars = string.unicodeScalars
     let start = scalars.startIndex
@@ -55,12 +55,12 @@ struct StringFilters {
   }
 
   static func titlecase(_ value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw FilterError.invalidInputType }
+    guard let string = value as? String else { throw Filters.Error.invalidInputType }
     return titlecase(string)
   }
 
   static func snakeToCamelCase(_ value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw FilterError.invalidInputType }
+    guard let string = value as? String else { throw Filters.Error.invalidInputType }
     guard let noPrefix = try snakeToCamelCaseNoPrefix(value) else {
       return nil
     }
@@ -74,7 +74,7 @@ struct StringFilters {
   }
 
   static func snakeToCamelCaseNoPrefix(_ value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw FilterError.invalidInputType }
+    guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
     if try containsAnyLowercasedChar(string) {
       let comps = string.components(separatedBy: "_")
@@ -93,7 +93,7 @@ struct StringFilters {
   /// - throws: FilterError.invalidInputType if the value parameter isn't a string
   static func camelToSnakeCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
     let toLower = try Filters.parseBool(from: arguments, index: 0, required: false) ?? true
-    guard let string = value as? String else { throw FilterError.invalidInputType }
+    guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
     let snakeCase = try snakecase(string)
     if toLower {
@@ -159,7 +159,7 @@ extension StringFilters {
   }
 
   static func escapeReservedKeywords(value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw FilterError.invalidInputType }
+    guard let string = value as? String else { throw Filters.Error.invalidInputType }
     return escapeReservedKeywords(in: string)
   }
 }
