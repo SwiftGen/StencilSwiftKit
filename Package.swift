@@ -6,6 +6,6 @@ let package = Package(
         Target(name: "StencilSwiftKit", dependencies: [])
     ],
     dependencies: [
-        .Package(url: "https://github.com/kylef/Stencil.git", majorVersion: 0, minor: 8),
+        .Package(url: "https://github.com/kylef/Stencil.git", majorVersion: 0, minor: 9),
     ]
 )

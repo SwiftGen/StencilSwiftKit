@@ -5,6 +5,7 @@
 ## Build generated
 build/
 DerivedData/
+Fixtures/stub-env/**/*.swiftmodule
 
 ## Various settings
 *.pbxuser
@@ -49,8 +50,7 @@ Packages/
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
+Carthage/Checkouts
 Carthage/Build
 
 # fastlane
@@ -64,3 +64,11 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
+
+# Other stuff
+.apitoken
+.DS_Store
+.idea/
+bin/
+Frameworks/
+Rome/

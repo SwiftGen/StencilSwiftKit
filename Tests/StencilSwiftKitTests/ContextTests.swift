@@ -18,13 +18,13 @@ class ContextTests: XCTestCase {
                                            environment: ["PATH": "foo:bar:baz"])
     XCTAssertEqual(result.count, 2, "2 items have been added")
 
-    guard let env = result[StencilContext.environment] as? [String: Any] else {
+    guard let env = result[StencilContext.environmentKey] as? [String: Any] else {
       XCTFail("`env` should be a dictionary")
       return
     }
     XCTAssertEqual(env["PATH"] as? String, "foo:bar:baz")
 
-    guard let params = result[StencilContext.parameters] as? [String: Any] else {
+    guard let params = result[StencilContext.parametersKey] as? [String: Any] else {
       XCTFail("`param` should be a dictionary")
       return
     }
@@ -41,13 +41,13 @@ class ContextTests: XCTestCase {
     XCTAssertEqual(result["foo"] as? String, "bar")
     XCTAssertEqual(result["hello"] as? Bool, true)
 
-    guard let env = result[StencilContext.environment] as? [String: Any] else {
+    guard let env = result[StencilContext.environmentKey] as? [String: Any] else {
       XCTFail("`env` should be a dictionary")
       return
     }
     XCTAssertEqual(env["PATH"] as? String, "foo:bar:baz")
 
-    guard let params = result[StencilContext.parameters] as? [String: Any] else {
+    guard let params = result[StencilContext.parametersKey] as? [String: Any] else {
       XCTFail("`param` should be a dictionary")
       return
     }
@@ -62,13 +62,13 @@ class ContextTests: XCTestCase {
                                            environment: ["PATH": "foo:bar:baz"])
     XCTAssertEqual(result.count, 2, "2 items have been added")
 
-    guard let env = result[StencilContext.environment] as? [String: Any] else {
+    guard let env = result[StencilContext.environmentKey] as? [String: Any] else {
       XCTFail("`env` should be a dictionary")
       return
     }
     XCTAssertEqual(env["PATH"] as? String, "foo:bar:baz")
 
-    guard let params = result[StencilContext.parameters] as? [String: Any] else {
+    guard let params = result[StencilContext.parametersKey] as? [String: Any] else {
       XCTFail("`param` should be a dictionary")
       return
     }

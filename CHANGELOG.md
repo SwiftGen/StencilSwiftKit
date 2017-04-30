@@ -6,7 +6,9 @@
 
 ### Bug Fixes
 
-_None_
+* The context enrich function won't overwrite existing values in the `env` and `param` variables.  
+  [David Jennes](https://github.com/djbe)
+  [#29](https://github.com/SwiftGen/SwiftGenKit/issues/29)
 
 ### Breaking Changes
 
@@ -20,7 +22,16 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Further refactor the Rakefile into rakelibs, and add a Gemfile for gem dependencies.  
+  [David Jennes](https://github.com/djbe)
+  [#28](https://github.com/SwiftGen/SwiftGenKit/issues/28)
+  [#31](https://github.com/SwiftGen/SwiftGenKit/issues/31)
+* Update Stencil to 0.9.0 and update project to Xcode 8.3.  
+  [Diogo Tridapalli](https://github.com.diogot)
+  [#32](https://github.com/SwiftGen/StencilSwiftKit/pull/32)
+* Added documentation for tags and filters.  
+  [David Jennes](https://github.com/djbe)
+  [#12](https://github.com/SwiftGen/StencilSwiftKit/pull/12)
 
 ## 1.0.1
 
