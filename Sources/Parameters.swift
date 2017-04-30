@@ -12,10 +12,25 @@ public enum ParametersError: Error {
   case invalidStructure(key: String, oldValue: Any, newValue: Any)
 }
 
+/// Namespace to handle extra context parameters passed as a list of `foo=bar` strings.
+/// Typically used when parsing command-line arguments one by one
+/// (like `foo=bar pt.x=1 pt.y=2 values=1 values=2 values=3 flag`)
+/// to turn them into a dictionary structure
 public enum Parameters {
   typealias Parameter = (key: String, value: Any)
   public typealias StringDict = [String: Any]
 
+
+  /// Transforms a list of strings representing structred-key/value pairs, like
+  /// `["pt.x=1", "pt.y=2", "values=1", "values=2", "values=3" "flag"]`
+  /// into a structured dictionary.
+  ///
+  /// - Parameter items: The list of `k=v`-style Strings, each string
+  ///                    representing either a `key=value` pair or a
+  ///                    single `flag` key with no `=` (which will then
+  ///                    be interpreted as a `true` value)
+  /// - Returns: A structured dictionary matching the list of keys
+  /// - Throws: `Parameters.Error`
   public static func parse(items: [String]) throws -> StringDict {
     let parameters: [Parameter] = try items.map { item in
       let parts = item.components(separatedBy: "=")
@@ -33,6 +48,15 @@ public enum Parameters {
     }
   }
 
+
+  /// Parse a single `key=value` (or `key`) string and inserts it into
+  /// an existing StringDict dictionary being built.
+  ///
+  /// - Parameters:
+  ///   - parameter: The parameter/string (key/Value pair) to parse
+  ///   - result: The dictionary currently being built and to which to add the value
+  /// - Returns: The new content of the dictionary being built after nserting the new parsed value
+  /// - Throws: `Parameters.Error`
   private static func parse(parameter: Parameter, result: StringDict) throws -> StringDict {
     let parts = parameter.key.components(separatedBy: ".")
     let key = parts.first ?? ""
