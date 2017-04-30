@@ -7,7 +7,7 @@
 import Foundation
 import Stencil
 
-struct NumFilters {
+enum NumFilters {
   static func hexToInt(_ value: Any?) throws -> Any? {
     guard let value = value as? String else { throw Filters.Error.invalidInputType }
     return Int(value, radix:  16)

@@ -7,7 +7,7 @@
 import Foundation
 import Stencil
 
-struct StringFilters {
+enum StringFilters {
   fileprivate static let reservedKeywords = ["associatedtype", "class", "deinit", "enum", "extension",
                                              "fileprivate", "func", "import", "init", "inout", "internal",
                                              "let", "open", "operator", "private", "protocol", "public",

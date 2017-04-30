@@ -44,7 +44,7 @@ enum Filters {
   }
 }
 
-struct ArrayFilters {
+enum ArrayFilters {
   static func join(_ value: Any?) throws -> Any? {
     guard let array = value as? [Any] else { throw Filters.Error.invalidInputType }
     let strings = array.flatMap { $0 as? String }
