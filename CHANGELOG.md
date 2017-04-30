@@ -16,7 +16,9 @@ _None_
 
 ### New Features
 
-_None_
+* Added camelToSnakeCase filter.  
+  [Gyuri Grell](https://github.com/ggrell)
+  [#24](https://github.com/SwiftGen/StencilSwiftKit/pull/24)
 
 ### Internal Changes
 
