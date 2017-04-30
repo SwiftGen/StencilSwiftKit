@@ -8,7 +8,7 @@ import Foundation
 import Stencil
 
 // For retro-compatibility. Remove in next major.
-@available(*, deprecated: 1.0.2, renamed: "Filters.Strings", message: "Use the Filters.Strings nested type instead")
+@available(*, deprecated, renamed: "Filters.Strings", message: "Use the Filters.Strings nested type instead")
 typealias StringFilters = Filters.Strings
 
 extension Filters {

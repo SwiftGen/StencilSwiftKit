@@ -8,7 +8,7 @@ import Foundation
 import Stencil
 
 // For retro-compatibility. Remove in next major.
-@available(*, deprecated: 1.0.2, renamed: "Filters.Numbers", message: "Use the Filters.Numbers nested type instead")
+@available(*, deprecated, renamed: "Filters.Numbers", message: "Use the Filters.Numbers nested type instead")
 typealias NumFilters = Filters.Numbers
 
 extension Filters {

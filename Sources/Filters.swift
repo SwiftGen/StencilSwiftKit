@@ -8,7 +8,7 @@ import Foundation
 import Stencil
 
 // For retro-compatibility. Remove in next major.
-@available(*, deprecated: 1.0.2, renamed: "Filters.Error", message: "Use the Filters.Error nested type instead")
+@available(*, deprecated, renamed: "Filters.Error", message: "Use the Filters.Error nested type instead")
 typealias FilterError = Filters.Error
 
 enum Filters {
@@ -45,7 +45,7 @@ enum Filters {
 }
 
 // For retro-compatibility. Remove in next major.
-@available(*, deprecated: 1.0.2, message: "Use the official `join` filter which is now part of Stencil itself")
+@available(*, deprecated, message: "Use the official `join` filter which is now part of Stencil itself")
 enum ArrayFilters {
   static func join(_ value: Any?) throws -> Any? {
     guard let array = value as? [Any] else { throw Filters.Error.invalidInputType }
