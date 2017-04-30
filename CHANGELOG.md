@@ -13,6 +13,9 @@ _None_
 * The `ParametersError` enum has been replaced by the `Parameters.Error` nested type.  
   [Olivier Halligon](https://github.com/AliGator)
   [#?](https://github.com/SwiftGen/SwiftGenKit/pulls/#)
+* The `FilterError` enum has been replaced by the `Filters.Error` nested type.  
+  [Olivier Halligon](https://github.com/AliGator)
+  [#?](https://github.com/SwiftGen/SwiftGenKit/pulls/#)
 
 ### New Features
 
