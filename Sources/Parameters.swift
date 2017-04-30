@@ -7,6 +7,7 @@
 import Foundation
 
 // For retro-compatibility. Remove in next major.
+@available(*, deprecated: 1.0.2, renamed: "Parameters.Error", message: "Use the Parameters.Error nested type instead")
 public typealias ParametersError = Parameters.Error
 
 /// Namespace to handle extra context parameters passed as a list of `foo=bar` strings.

@@ -33,6 +33,13 @@ _None_
   [David Jennes](https://github.com/djbe)
   [#12](https://github.com/SwiftGen/StencilSwiftKit/pull/12)
 
+### Deprecations
+
+* The `ParametersError` enum has been replaced by the `Paramters.Error` nested type.
+  `ParametersError` still works (but is now `typealias`) but will be removed in the
+  next major release.  
+  [Olivier Halligon](https://github.com/AliGator)
+
 ## 1.0.1
 
 ### Internal Changes
