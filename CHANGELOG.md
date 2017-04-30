@@ -10,7 +10,9 @@ _None_
 
 ### Breaking Changes
 
-_None_
+* The `ParametersError` enum has been replaced by the `Parameters.Error` nested type.  
+  [Olivier Halligon](https://github.com/AliGator)
+  [#?](https://github.com/SwiftGen/SwiftGenKit/pulls/#)
 
 ### New Features
 
