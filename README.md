@@ -16,7 +16,7 @@
   * Calls a previously defined macro, passing it some arguments
 * [Set](Documentation/tag-set.md)
   * `{% set <Name> %}…{% endset %}`
-  * Renders the nodes inside this block immediately, and stores the result in the `<Name`>  variable of the current context.
+  * Renders the nodes inside this block immediately, and stores the result in the `<Name>`  variable of the current context.
 * [Map](Documentation/tag-map.md)
   * `{% map <Variable> into <Name> using <ItemName> %}…{% endmap %}`
   * Apply a `map` operator to an array, and store the result into a new array variable `<Name>` in the current context.
@@ -29,6 +29,7 @@
   * `escapeReservedKeywords`: Escape keywods reserved in the Swift language, by wrapping them inside backticks so that the can be used as regular escape keywords in Swift code.
   * `lowerFirstWord`
   * `snakeToCamelCase` / `snakeToCamelCaseNoPrefix`
+  * `camelToSnakeCase`: Transforms text from camelCase to snake_case. By default it converts to lower case, unless a single optional argument is set to "false", "no" or "0".
   * `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference)
   * `titlecase`
 * [Number filters](Documentation/filters-numbers.md):

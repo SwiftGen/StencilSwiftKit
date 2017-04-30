@@ -50,6 +50,29 @@ This filter accepts a parameter (boolean, default `false`) that controls the pre
 | SNAKE_CASE   | SnakeCase                |
 | __snake_case | SnakeCase                |
 
+## Filter: `camelToSnakeCase`
+
+Transforms text from camelCase to snake_case.
+
+| Input                 | Output                |
+|-----------------------|-----------------------|
+| SomeCapString         | some_cap_string       |
+| string_with_words     | string_with_words     |
+| STRing_with_words     | st_ring_with_words    |
+| URLChooser            | url_chooser           |
+| PLEASE_STOP_SCREAMING | please_stop_screaming |
+
+By default it converts to lower case, unless a single optional argument is set to "false", "no" or "0":
+
+| Input                  | Output                   |
+|------------------------|--------------------------|
+| SomeCapString          | Some_Cap_String          |
+| someCapString          | some_Cap_String          |
+| String_With_WoRds      | String_With_Wo_Rds       |
+| string_wiTH_WOrds      | string_wi_TH_W_Ords      |
+| URLChooser             | URL_Chooser              |
+| PLEASE_STOP_SCREAMING! | PLEASE_STOP_SCREAMING!   |
+      
 ## Filter: `swiftIdentifier`
 
 Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:

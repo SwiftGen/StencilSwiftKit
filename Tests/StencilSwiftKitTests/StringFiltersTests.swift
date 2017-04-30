@@ -133,6 +133,77 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
+  func testCamelToSnakeCase_WithNoArgsDefaultsToTrue() throws {
+    let result = try StringFilters.camelToSnakeCase("StringWithWords", arguments: []) as? String
+    XCTAssertEqual(result, "string_with_words")
+  }
+
+  func testCamelToSnakeCase_WithTrue() throws {
+    let expectations = [
+      "string": "string",
+      "String": "string",
+      "strIng": "str_ing",
+      "strING": "str_ing",
+      "X": "x",
+      "x": "x",
+      "SomeCapString": "some_cap_string",
+      "someCapString": "some_cap_string",
+      "string_with_words": "string_with_words",
+      "String_with_words": "string_with_words",
+      "String_With_Words": "string_with_words",
+      "String_With_WoRds": "string_with_wo_rds",
+      "STRing_with_words": "st_ring_with_words",
+      "string_wiTH_WOrds": "string_wi_th_w_ords",
+      "": "",
+      "URLChooser": "url_chooser",
+      "UrlChooser": "url_chooser",
+      "a__b__c": "a__b__c",
+      "__y_z!": "__y_z!",
+      "PLEASESTOPSCREAMING": "pleasestopscreaming",
+      "PLEASESTOPSCREAMING!": "pleasestopscreaming!",
+      "PLEASE_STOP_SCREAMING": "please_stop_screaming",
+      "PLEASE_STOP_SCREAMING!": "please_stop_screaming!"
+    ]
+
+    for (input, expected) in expectations {
+      let trueArgResult = try StringFilters.camelToSnakeCase(input, arguments: ["true"]) as? String
+      XCTAssertEqual(trueArgResult, expected)
+    }
+  }
+
+  func testCamelToSnakeCase_WithFalse() throws {
+    let expectations = [
+      "string": "string",
+      "String": "String",
+      "strIng": "str_Ing",
+      "strING": "str_ING",
+      "X": "X",
+      "x": "x",
+      "SomeCapString": "Some_Cap_String",
+      "someCapString": "some_Cap_String",
+      "string_with_words": "string_with_words",
+      "String_with_words": "String_with_words",
+      "String_With_Words": "String_With_Words",
+      "String_With_WoRds": "String_With_Wo_Rds",
+      "STRing_with_words": "ST_Ring_with_words",
+      "string_wiTH_WOrds": "string_wi_TH_W_Ords",
+      "": "",
+      "URLChooser": "URL_Chooser",
+      "UrlChooser": "Url_Chooser",
+      "a__b__c": "a__b__c",
+      "__y_z!": "__y_z!",
+      "PLEASESTOPSCREAMING": "PLEASESTOPSCREAMING",
+      "PLEASESTOPSCREAMING!": "PLEASESTOPSCREAMING!",
+      "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
+      "PLEASE_STOP_SCREAMING!": "PLEASE_STOP_SCREAMING!"
+    ]
+
+    for (input, expected) in expectations {
+      let falseArgResult = try StringFilters.camelToSnakeCase(input, arguments: ["false"]) as? String
+      XCTAssertEqual(falseArgResult, expected)
+    }
+  }
+
   func testEscapeReservedKeywords() throws {
     let expectations = [
       "self": "`self`",

@@ -17,6 +17,7 @@ public extension Extension {
     registerFilter("lowerFirstWord", filter: StringFilters.lowerFirstWord)
     registerFilter("snakeToCamelCase", filter: StringFilters.snakeToCamelCase)
     registerFilter("snakeToCamelCaseNoPrefix", filter: StringFilters.snakeToCamelCaseNoPrefix)
+    registerFilter("camelToSnakeCase", filter: StringFilters.camelToSnakeCase)
     registerFilter("titlecase", filter: StringFilters.titlecase)
     registerFilter("hexToInt", filter: NumFilters.hexToInt)
     registerFilter("int255toFloat", filter: NumFilters.int255toFloat)
