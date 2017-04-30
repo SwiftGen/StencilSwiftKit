@@ -35,7 +35,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try StringFilters.lowerFirstWord(input) as? String
+      let result = try Filters.Strings.lowerFirstWord(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
@@ -66,7 +66,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try StringFilters.titlecase(input) as? String
+      let result = try Filters.Strings.titlecase(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
@@ -97,7 +97,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try StringFilters.snakeToCamelCase(input) as? String
+      let result = try Filters.Strings.snakeToCamelCase(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
@@ -128,13 +128,13 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try StringFilters.snakeToCamelCaseNoPrefix(input) as? String
+      let result = try Filters.Strings.snakeToCamelCaseNoPrefix(input) as? String
       XCTAssertEqual(result, expected)
     }
   }
 
   func testCamelToSnakeCase_WithNoArgsDefaultsToTrue() throws {
-    let result = try StringFilters.camelToSnakeCase("StringWithWords", arguments: []) as? String
+    let result = try Filters.Strings.camelToSnakeCase("StringWithWords", arguments: []) as? String
     XCTAssertEqual(result, "string_with_words")
   }
 
@@ -166,7 +166,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let trueArgResult = try StringFilters.camelToSnakeCase(input, arguments: ["true"]) as? String
+      let trueArgResult = try Filters.Strings.camelToSnakeCase(input, arguments: ["true"]) as? String
       XCTAssertEqual(trueArgResult, expected)
     }
   }
@@ -199,7 +199,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let falseArgResult = try StringFilters.camelToSnakeCase(input, arguments: ["false"]) as? String
+      let falseArgResult = try Filters.Strings.camelToSnakeCase(input, arguments: ["false"]) as? String
       XCTAssertEqual(falseArgResult, expected)
     }
   }
@@ -216,7 +216,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try StringFilters.escapeReservedKeywords(value: input) as? String
+      let result = try Filters.Strings.escapeReservedKeywords(value: input) as? String
       XCTAssertEqual(result, expected)
     }
   }
