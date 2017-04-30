@@ -16,7 +16,7 @@
   * Calls a previously defined macro, passing it some arguments
 * [Set](Documentation/tag-set.md)
   * `{% set <Name> %}…{% endset %}`
-  * Renders the nodes inside this block immediately, and stores the result in the `<Name`>  variable of the current context.
+  * Renders the nodes inside this block immediately, and stores the result in the `<Name>`  variable of the current context.
 * [Map](Documentation/tag-map.md)
   * `{% map <Variable> into <Name> using <ItemName> %}…{% endmap %}`
   * Apply a `map` operator to an array, and store the result into a new array variable `<Name>` in the current context.
