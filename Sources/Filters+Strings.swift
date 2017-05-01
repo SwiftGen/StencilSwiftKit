@@ -120,7 +120,7 @@ extension Filters {
 
     /// This returns the string with its first parameter uppercased.
     /// - note: This is quite similar to `capitalise` except that this filter doesn't
-    ///          lowercase the rest of the string but keep it untouched.
+    ///          lowercase the rest of the string but keeps it untouched.
     ///
     /// - Parameter string: The string to titleCase
     /// - Returns: The string with its first character uppercased, and the rest of the string unchanged.

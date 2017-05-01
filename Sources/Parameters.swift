@@ -24,8 +24,8 @@ public enum Parameters {
   typealias Parameter = (key: String, value: Any)
   public typealias StringDict = [String: Any]
 
-  /// Transforms a list of strings representing structred-key/value pairs, like
-  /// `["pt.x=1", "pt.y=2", "values=1", "values=2", "values=3" "flag"]`
+  /// Transforms a list of strings representing structured-key/value pairs, like
+  /// `["pt.x=1", "pt.y=2", "values=1", "values=2", "values=3", "flag"]`
   /// into a structured dictionary.
   ///
   /// - Parameter items: The list of `k=v`-style Strings, each string
@@ -57,9 +57,9 @@ public enum Parameters {
   /// an existing StringDict dictionary being built.
   ///
   /// - Parameters:
-  ///   - parameter: The parameter/string (key/Value pair) to parse
+  ///   - parameter: The parameter/string (key/value pair) to parse
   ///   - result: The dictionary currently being built and to which to add the value
-  /// - Returns: The new content of the dictionary being built after nserting the new parsed value
+  /// - Returns: The new content of the dictionary being built after inserting the new parsed value
   /// - Throws: `Parameters.Error`
   private static func parse(parameter: Parameter, result: StringDict) throws -> StringDict {
     let parts = parameter.key.components(separatedBy: ".")
