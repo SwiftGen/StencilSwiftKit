@@ -12,13 +12,14 @@ public enum StencilContext {
   public static let environmentKey = "env"
   public static let parametersKey = "param"
 
-  /**
-   Enriches a stencil context with parsed parameters and environment variables
-   
-   - Parameter context: The stencil context
-   - Parameter parameters: List of strings, will be parsed using the `Parameters.parse(items:)` method
-   - Parameter environment: Environment variables, defaults to `ProcessInfo().environment`
-   */
+  /// Enriches a stencil context with parsed parameters and environment variables
+  ///
+  /// - Parameters:
+  ///   - context: The stencil context
+  ///   - parameters: List of strings, will be parsed using the `Parameters.parse(items:)` method
+  ///   - environment: Environment variables, defaults to `ProcessInfo().environment`
+  /// - Returns: The new Stencil context enriched with the parameters and env variables
+  /// - Throws: `Parameters.Error`
   public static func enrich(context: [String: Any],
                             parameters: [String],
                             environment: [String: String] = ProcessInfo().environment) throws -> [String: Any] {

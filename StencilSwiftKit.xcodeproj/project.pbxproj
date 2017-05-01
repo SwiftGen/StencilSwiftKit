@@ -140,17 +140,17 @@
 		DD5F34291E21A3A200AEB5DA /* StencilSwiftKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */,
 				DD5F342A1E21A3A200AEB5DA /* CallNodeTests.swift */,
-				DDFD1F681E5358C70023AE2B /* ContextTests.swift */,
 				DDE1E2F51E3E33E30043367C /* MacroNodeTests.swift */,
+				DDFD1F681E5358C70023AE2B /* ContextTests.swift */,
 				DD4393FE1E2D3EEB0047A332 /* MapNodeTests.swift */,
 				DDE1E2F81E3FABE70043367C /* ParametersTests.swift */,
 				DD5F342B1E21A3A200AEB5DA /* SetNodeTests.swift */,
 				DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */,
 				DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */,
-				DD5F341A1E21993A00AEB5DA /* TestsHelper.swift */,
-				DD5F341C1E2199ED00AEB5DA /* Resources */,
 				B5A3FFC01B2145C4BFD8316A /* ParseBoolTests.swift */,
+				DD5F341C1E2199ED00AEB5DA /* Resources */,
 			);
 			path = StencilSwiftKitTests;
 			sourceTree = "<group>";
