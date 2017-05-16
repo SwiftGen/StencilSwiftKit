@@ -41,15 +41,3 @@ enum Filters {
     }
   }
 }
-
-// For retro-compatibility. Remove in next major.
-@available(*, deprecated, message: "Use the official `join` filter which is now part of Stencil itself")
-enum ArrayFilters {
-  static func join(_ value: Any?) throws -> Any? {
-    guard let array = value as? [Any] else { throw Filters.Error.invalidInputType }
-    let strings = array.flatMap { $0 as? String }
-    guard array.count == strings.count else { throw Filters.Error.invalidInputType }
-
-    return strings.joined(separator: ", ")
-  }
-}

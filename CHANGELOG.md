@@ -12,10 +12,13 @@ _None_
 
 * The `ParametersError` enum has been replaced by the `Parameters.Error` nested type.  
   [Olivier Halligon](https://github.com/AliGator)
-  [#?](https://github.com/SwiftGen/SwiftGenKit/pulls/#)
+  [#37](https://github.com/SwiftGen/SwiftGenKit/pulls/37)
 * The `FilterError` enum has been replaced by the `Filters.Error` nested type.  
   [Olivier Halligon](https://github.com/AliGator)
-  [#?](https://github.com/SwiftGen/SwiftGenKit/pulls/#)
+  [#37](https://github.com/SwiftGen/SwiftGenKit/pulls/37)
+* Removed the `join` filter, as it's now integrated in `Stencil` proper.  
+  [David Jennes](https://github.com/djbe)
+  [#10](https://github.com/SwiftGen/StencilSwiftKit/pull/10)
 
 ### New Features
 

@@ -24,7 +24,6 @@
 
 ## Filters
 
-* `join`: Deprecated. Will be removed now that the same filter exists in Stencil proper.
 * [String filters](Documentation/filters-strings.md):
   * `escapeReservedKeywords`: Escape keywods reserved in the Swift language, by wrapping them inside backticks so that the can be used as regular escape keywords in Swift code.
   * `lowerFirstWord`
