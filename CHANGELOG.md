@@ -16,6 +16,9 @@ _None_
 * The `FilterError` enum has been replaced by the `Filters.Error` nested type.  
   [Olivier Halligon](https://github.com/AliGator)
   [#37](https://github.com/SwiftGen/SwiftGenKit/pulls/37)
+* The filters in `StringFilters` and `NumFilters` are now located under `Filters.Strings` and `Filters.Numbers`.  
+  [Olivier Halligon](https://github.com/AliGator)
+  [#40](https://github.com/SwiftGen/SwiftGenKit/pulls/40)
 * Removed the `join` filter, as it's now integrated in `Stencil` proper.  
   [David Jennes](https://github.com/djbe)
   [#10](https://github.com/SwiftGen/StencilSwiftKit/pull/10)
