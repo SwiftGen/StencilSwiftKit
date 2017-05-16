@@ -7,10 +7,6 @@
 import Foundation
 import Stencil
 
-// For retro-compatibility. Remove in next major.
-@available(*, deprecated, renamed: "Filters.Error", message: "Use the Filters.Error nested type instead")
-typealias FilterError = Filters.Error
-
 enum Filters {
   enum Error: Swift.Error {
     case invalidInputType
