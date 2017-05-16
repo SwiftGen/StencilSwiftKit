@@ -7,10 +7,6 @@
 import Foundation
 import Stencil
 
-// For retro-compatibility. Remove in next major.
-@available(*, deprecated, renamed: "Filters.Strings", message: "Use the Filters.Strings nested type instead")
-typealias StringFilters = Filters.Strings
-
 extension Filters {
   enum Strings {
     fileprivate static let reservedKeywords = [
