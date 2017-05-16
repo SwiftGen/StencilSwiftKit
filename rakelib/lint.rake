@@ -6,7 +6,7 @@ namespace :lint do
   task :install do |task|
     next if system('which swiftlint > /dev/null')
 
-    url = 'https://github.com/realm/SwiftLint/releases/download/0.16.1/SwiftLint.pkg'
+    url = 'https://github.com/realm/SwiftLint/releases/download/0.18.1/SwiftLint.pkg'
     tmppath = '/tmp/SwiftLint.pkg'
 
     Utils.run([
