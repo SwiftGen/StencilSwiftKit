@@ -71,7 +71,12 @@ class StringFiltersTests: XCTestCase {
     }
   }
 
-  func testSnakeToCamelCase() throws {
+  func testSnakeToCamelCase_WithNoArgsDefaultsToFalse() throws {
+    let result = try Filters.Strings.snakeToCamelCase("__y_z!", arguments: []) as? String
+    XCTAssertEqual(result, "__YZ!")
+  }
+
+  func testSnakeToCamelCase_WithFalse() throws {
     let expectations = [
       "string": "String",
       "String": "String",
@@ -97,12 +102,12 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try Filters.Strings.snakeToCamelCase(input) as? String
+      let result = try Filters.Strings.snakeToCamelCase(input, arguments: ["false"]) as? String
       XCTAssertEqual(result, expected)
     }
   }
 
-  func testSnakeToCamelCaseNoPrefix() throws {
+  func testSnakeToCamelCase_WithTrue() throws {
     let expectations = [
       "string": "String",
       "String": "String",
@@ -128,7 +133,7 @@ class StringFiltersTests: XCTestCase {
     ]
 
     for (input, expected) in expectations {
-      let result = try Filters.Strings.snakeToCamelCaseNoPrefix(input) as? String
+      let result = try Filters.Strings.snakeToCamelCase(input, arguments: ["true"]) as? String
       XCTAssertEqual(result, expected)
     }
   }

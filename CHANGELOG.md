@@ -22,6 +22,9 @@ _None_
 * Removed the `join` filter, as it's now integrated in `Stencil` proper.  
   [David Jennes](https://github.com/djbe)
   [#10](https://github.com/SwiftGen/StencilSwiftKit/pull/10)
+* Refactored the `snakeToCamelCase` filter to now accept an (optional) boolean parameter to control the `noPrefix` behaviour.  
+  [David Jennes](https://github.com/djbe)
+  [#41](https://github.com/SwiftGen/StencilSwiftKit/pull/41)
 
 ### New Features
 

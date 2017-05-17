@@ -15,7 +15,6 @@ public extension Extension {
     registerFilter("swiftIdentifier", filter: Filters.Strings.stringToSwiftIdentifier)
     registerFilter("lowerFirstWord", filter: Filters.Strings.lowerFirstWord)
     registerFilter("snakeToCamelCase", filter: Filters.Strings.snakeToCamelCase)
-    registerFilter("snakeToCamelCaseNoPrefix", filter: Filters.Strings.snakeToCamelCaseNoPrefix)
     registerFilter("camelToSnakeCase", filter: Filters.Strings.camelToSnakeCase)
     registerFilter("titlecase", filter: Filters.Strings.titlecase)
     registerFilter("hexToInt", filter: Filters.Numbers.hexToInt)
