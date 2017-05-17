@@ -63,7 +63,7 @@ extension Filters {
     }
 
     /// Converts snake_case to camelCase. Takes an optional Bool argument for removing any resulting
-    /// prefix '_' characters, which defaults to false
+    /// leading '_' characters, which defaults to false
     ///
     /// - Parameters:
     ///   - value: the value to be processed
@@ -71,7 +71,7 @@ extension Filters {
     /// - Returns: the camel case string
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func snakeToCamelCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
-      let stripPrefix = try Filters.parseBool(from: arguments, index: 0, required: false) ?? false
+      let stripLeading = try Filters.parseBool(from: arguments, index: 0, required: false) ?? false
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
       let unprefixed: String
@@ -85,7 +85,7 @@ extension Filters {
 
       // only if passed true, strip the prefix underscores
       var prefixUnderscores = ""
-      if !stripPrefix {
+      if !stripLeading {
         for scalar in string.unicodeScalars {
           guard scalar == "_" else { break }
           prefixUnderscores += "_"
