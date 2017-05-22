@@ -11,7 +11,7 @@ with:
 with:  
 ```{{ myValue|snakeToCamelCase:true }}```
 
-### For developers:
+### For developers using StencilSwiftKit as a dependency:
 
 We've removed the following deprecated `typealias`es:
 
