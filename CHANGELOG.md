@@ -4,6 +4,9 @@
 
 ## Master
 
+Due to the removal of legacy code, there are a few breaking changes in this new version that affect both template writers as well as developers. We've provided a migration guide to help you through these changes, which you can find here:
+[Migration Guide for 2.0](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/MigrationGuide.md#stencilswiftkit-20-swiftgen-50)
+
 ### Bug Fixes
 
 * Fix `snakeToCamelCase` parameters information in README.  
