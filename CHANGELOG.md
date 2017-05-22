@@ -9,7 +9,9 @@ Due to the removal of legacy code, there are a few breaking changes in this new 
 
 ### Bug Fixes
 
-_None_
+* Fix `snakeToCamelCase` parameters information in README.  
+  [Liquidsoul](https://github.com/Liquidsoul)
+  [#45](https://github.com/SwiftGen/StencilSwiftKit/pulls/45)
 
 ### Breaking Changes
 
