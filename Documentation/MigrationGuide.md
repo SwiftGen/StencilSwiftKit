@@ -19,3 +19,7 @@ We've removed the following deprecated `typealias`es:
 * `ParametersError`: use `Parameters.Error` instead.
 * `NumFilters`: use `Filters.Numbers` instead.
 * `StringFilters`: use `Filters.Strings` instead.
+
+The following functions have been renamed:
+
+* `stringToSwiftIdentifier` renamed to `swiftIdentifier`.
