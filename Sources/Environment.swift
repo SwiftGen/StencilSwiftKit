@@ -12,7 +12,7 @@ public extension Extension {
     registerTag("macro", parser: MacroNode.parse)
     registerTag("call", parser: CallNode.parse)
     registerTag("map", parser: MapNode.parse)
-    registerFilter("swiftIdentifier", filter: Filters.Strings.stringToSwiftIdentifier)
+    registerFilter("swiftIdentifier", filter: Filters.Strings.swiftIdentifier)
     registerFilter("lowerFirstWord", filter: Filters.Strings.lowerFirstWord)
     registerFilter("snakeToCamelCase", filter: Filters.Strings.snakeToCamelCase)
     registerFilter("camelToSnakeCase", filter: Filters.Strings.camelToSnakeCase)
