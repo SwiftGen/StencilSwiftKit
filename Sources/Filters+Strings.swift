@@ -119,15 +119,15 @@ extension Filters {
       return escapeReservedKeywords(in: string)
     }
 
-	static func removeNewlines(_ value: Any?, arguments: [Any?]) throws -> Any? {
-		let removeSpaces = try Filters.parseBool(from: arguments, index: 0, required: false) ?? true
-		guard let string = value as? String else { throw Filters.Error.invalidInputType }
+    static func removeNewlines(_ value: Any?, arguments: [Any?]) throws -> Any? {
+      let removeSpaces = try Filters.parseBool(from: arguments, index: 0, required: false) ?? true
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
-		let set: CharacterSet = removeSpaces ? .whitespacesAndNewlines : .newlines
-		let result = string.components(separatedBy: set).joined()
+      let set: CharacterSet = removeSpaces ? .whitespacesAndNewlines : .newlines
+      let result = string.components(separatedBy: set).joined()
 
-		return result
-	}
+      return result
+    }
 
     // MARK: - Private methods
 
