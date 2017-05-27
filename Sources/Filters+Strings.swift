@@ -28,9 +28,9 @@ extension Filters {
       "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
-    static func stringToSwiftIdentifier(value: Any?) throws -> Any? {
+    static func swiftIdentifier(_ value: Any?) throws -> Any? {
       guard let value = value as? String else { throw Filters.Error.invalidInputType }
-      return swiftIdentifier(from: value, replaceWithUnderscores: true)
+      return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)
     }
 
     /* - If the string starts with only one uppercase letter, lowercase that first letter

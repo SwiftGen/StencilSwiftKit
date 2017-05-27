@@ -30,6 +30,9 @@ Due to the removal of legacy code, there are a few breaking changes in this new 
 * Refactored the `snakeToCamelCase` filter to now accept an (optional) boolean parameter to control the `noPrefix` behaviour.  
   [David Jennes](https://github.com/djbe)
   [#41](https://github.com/SwiftGen/StencilSwiftKit/pull/41)
+* Rename the `stringToSwiftIdentifier` function to `swiftIdentifier` to better match the other method names.  
+  [David Jennes](https://github.com/djbe)
+  [#46](https://github.com/SwiftGen/StencilSwiftKit/pull/46)
 
 ### New Features
 
