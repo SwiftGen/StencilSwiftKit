@@ -2,15 +2,38 @@
 
 This is a list of filters that are added by StencilSwiftKit on top of the filters already provided by Stencil (which you can [find here](http://stencil.fuller.li/en/latest/builtins.html#built-in-filters)).
 
+## Filter: `camelToSnakeCase`
+
+Transforms text from camelCase to snake_case.
+
+| Input                   | Output                  |
+|-------------------------|-------------------------|
+| `SomeCapString`         | `some_cap_string`       |
+| `string_with_words`     | `string_with_words`     |
+| `STRing_with_words`     | `st_ring_with_words`    |
+| `URLChooser`            | `url_chooser`           |
+| `PLEASE_STOP_SCREAMING` | `please_stop_screaming` |
+
+By default it converts to lower case, unless a single optional argument is set to "false", "no" or "0":
+
+| Input                    | Output                   |
+|--------------------------|--------------------------|
+| `SomeCapString`          | `Some_Cap_String`        |
+| `someCapString`          | `some_Cap_String`        |
+| `String_With_WoRds`      | `String_With_Wo_Rds`     |
+| `string_wiTH_WOrds`      | `string_wi_TH_W_Ords`    |
+| `URLChooser`             | `URL_Chooser`            |
+| `PLEASE_STOP_SCREAMING!` | `PLEASE_STOP_SCREAMING!` |
+
 ## Filter: `escapeReservedKeywords`
 
 Checks if the given string matches a reserved Swift keyword. If it does, wrap the string in escape characters (backticks).
 
-| Input | Output                          |
-|-------|---------------------------------|
-| hello | hello                           |
-| self  | \`self\`                        |
-| Any   | \`Any\`                         |
+| Input   | Output       |
+|---------|--------------|
+| `hello` | `hello`      |
+| `self`  | `` `self` `` |
+| `Any`   | `` `Any` ``  |
 
 ## Filter: `lowerFirstWord`
 
@@ -19,10 +42,30 @@ Transforms an arbitrary string so that only the first "word" is lowercased.
 - If the string starts with only one uppercase character, lowercase that first character.
 - If the string starts with multiple uppercase character, lowercase those first characters up to the one before the last uppercase one, but only if the last one is followed by a lowercase character. This allows to support strings beginnng with an acronym, like `URL`.
 
-| Input        | Output                   |
-|--------------|--------------------------|
-| PeoplePicker | peoplePicker             |
-| URLChooser   | urlChooser               |
+| Input          | Output                   |
+|----------------|--------------------------|
+| `PeoplePicker` | `peoplePicker`           |
+| `URLChooser`   | `urlChooser`             |
+
+## Filter: `removeNewlines`
+
+Removes all newlines and whitespace characters from the string.
+
+| Input                 | Output                |
+|-----------------------|-----------------------|
+| `  \ntest`            | `test`                |
+| `test \n\t `          | `test`                |
+| `test\n  test`        | `testtest`            |
+| `\r\ntest\n  test\n`  | `testtest`            |
+
+By default it removes whitespace characters, unless a single optional argument is set to "false", "no" or "0":
+
+| Input                 | Output                |
+|-----------------------|-----------------------|
+| `  \ntest`            | `  test`              |
+| `test \n\t `          | `test \t `            |
+| `test\n  test`        | `test  test`          |
+| `\r\ntest\n  test\n`  | `test  test`          |
 
 ## Filter: `snakeToCamelCase`
 
@@ -34,44 +77,21 @@ Transforms a string in "snake_case" format into one in "camelCase" format, follo
 
 If the whole starting "snake_case" string only contained uppercase characters, then each component will be capitalized: uppercase the first character and lowercase the other characters.
 
-| Input        | Output                   |
-|--------------|--------------------------|
-| snake_case   | SnakeCase                |
-| snAke_case   | SnAkeCase                |
-| SNAKE_CASE   | SnakeCase                |
-| __snake_case | __SnakeCase              |
+| Input          | Output        |
+|----------------|---------------|
+| `snake_case`   | `SnakeCase`   |
+| `snAke_case`   | `SnAkeCase`   |
+| `SNAKE_CASE`   | `SnakeCase`   |
+| `__snake_case` | `__SnakeCase` |
 
 This filter accepts a parameter (boolean, default `false`) that controls the prefixing behaviour. If set to `true`, it will trim empty components from the beginning of the string
 
-| Input        | Output                   |
-|--------------|--------------------------|
-| snake_case   | SnakeCase                |
-| snAke_case   | SnAkeCase                |
-| SNAKE_CASE   | SnakeCase                |
-| __snake_case | SnakeCase                |
-
-## Filter: `camelToSnakeCase`
-
-Transforms text from camelCase to snake_case.
-
-| Input                 | Output                |
-|-----------------------|-----------------------|
-| SomeCapString         | some_cap_string       |
-| string_with_words     | string_with_words     |
-| STRing_with_words     | st_ring_with_words    |
-| URLChooser            | url_chooser           |
-| PLEASE_STOP_SCREAMING | please_stop_screaming |
-
-By default it converts to lower case, unless a single optional argument is set to "false", "no" or "0":
-
-| Input                  | Output                   |
-|------------------------|--------------------------|
-| SomeCapString          | Some_Cap_String          |
-| someCapString          | some_Cap_String          |
-| String_With_WoRds      | String_With_Wo_Rds       |
-| string_wiTH_WOrds      | string_wi_TH_W_Ords      |
-| URLChooser             | URL_Chooser              |
-| PLEASE_STOP_SCREAMING! | PLEASE_STOP_SCREAMING!   |
+| Input          | Output      |
+|----------------|-------------|
+| `snake_case`   | `SnakeCase` |
+| `snAke_case`   | `SnAkeCase` |
+| `SNAKE_CASE`   | `SnakeCase` |
+| `__snake_case` | `SnakeCase` |
       
 ## Filter: `swiftIdentifier`
 
@@ -84,11 +104,11 @@ Transforms an arbitrary string into a valid Swift identifier (using only valid c
 The list of allowed characters can be found here:
 https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html
 
-| Input    | Output                       |
-|----------|------------------------------|
-| hello    | Hello                        |
-| 42hello  | _42hello                     |
-| some$URL | Some_URL                     |
+| Input      | Output     |
+|------------|------------|
+| `hello`    | `Hello`    |
+| `42hello`  | `_42hello` |
+| `some$URL` | `Some_URL` |
 
 ## Filter: `titlecase`
 
@@ -96,7 +116,7 @@ Simply uppercases the first character, leaving the other characters untouched.
 
 Note that even if very similar, this filter differs from the `capitalized` filter, which uppercases the first character but also lowercases the remaining characters.
 
-| Input         | Output                  |
-|---------------|-------------------------|
-| hello         | Hello                   |
-| peopleChooser | PeopleChooser           |
+| Input           | Output          |
+|-----------------|-----------------|
+| `hello`         | `Hello`         |
+| `peopleChooser` | `PeopleChooser` |
