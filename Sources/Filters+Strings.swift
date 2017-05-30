@@ -120,13 +120,23 @@ extension Filters {
     }
 
     static func removeNewlines(_ value: Any?, arguments: [Any?]) throws -> Any? {
-      let removeSpaces = try Filters.parseBool(from: arguments, index: 0, required: false) ?? true
+      let mode = arguments.first as? String ?? "all"
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
-      let set: CharacterSet = removeSpaces ? .whitespacesAndNewlines : .newlines
-      let result = string.components(separatedBy: set).joined()
-
-      return result
+      switch mode {
+      case "all":
+        return string
+          .components(separatedBy: .whitespacesAndNewlines)
+          .joined()
+      case "leading":
+        return string
+          .components(separatedBy: .newlines)
+          .map { String($0.unicodeScalars.drop(while: { CharacterSet.whitespaces.contains($0) })) }
+          .joined()
+          .trimmingCharacters(in: .whitespaces)
+      default:
+        throw Filters.Error.invalidOption(option: mode)
+      }
     }
 
     // MARK: - Private methods

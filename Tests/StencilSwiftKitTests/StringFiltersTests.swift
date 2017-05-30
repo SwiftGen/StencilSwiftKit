@@ -133,37 +133,52 @@ extension StringFiltersTests {
 }
 
 extension StringFiltersTests {
-  func testRemoveNewlines_WithNoArgsDefaultsToTrue() throws {
+  func testRemoveNewlines_WithNoArgsDefaultsToAll() throws {
     let result = try Filters.Strings.removeNewlines("test\n \ntest ", arguments: []) as? String
     XCTAssertEqual(result, "testtest")
   }
 
-  func testRemoveNewlines_WithTrue() throws {
+  func testRemoveNewlines_WithWrongArgWillThrow() throws {
+    do {
+      _ = try Filters.Strings.removeNewlines("", arguments: ["wrong"])
+      XCTFail("Code did succeed while it was expected to fail for wrong option")
+    } catch Filters.Error.invalidOption {
+      // That's the expected exception we want to happen
+    } catch let error {
+      XCTFail("Unexpected error occured: \(error)")
+    }
+  }
+
+  func testRemoveNewlines_WithAll() throws {
     let expectations = [
-      "test": "test",
-      "  \n test": "test",
-      "test  \n ": "test",
-      "test\n \ntest": "testtest",
-      "\n test\n \ntest \n ": "testtest"
+      "test1": "test1",
+      "  \n test2": "test2",
+      "test3  \n ": "test3",
+      "test4, \ntest, \ntest": "test4,test,test",
+      "\n test5\n \ntest test \n ": "test5testtest",
+      "test6\ntest": "test6test",
+      "test7 test": "test7test"
     ]
 
     for (input, expected) in expectations {
-      let result = try Filters.Strings.removeNewlines(input, arguments: ["true"]) as? String
+      let result = try Filters.Strings.removeNewlines(input, arguments: ["all"]) as? String
       XCTAssertEqual(result, expected)
     }
   }
 
-  func testRemoveNewlines_WithFalse() throws {
+  func testRemoveNewlines_WithLeading() throws {
     let expectations = [
-      "test": "test",
-      "  \n test": "   test",
-      "test  \n ": "test   ",
-      "test\n \ntest": "test test",
-      "\n test\n \ntest \n ": " test test  "
+      "test1": "test1",
+      "  \n test2": "test2",
+      "test3  \n ": "test3",
+      "test4, \ntest, \ntest": "test4, test, test",
+      "\n test5\n \ntest test \n ": "test5test test",
+      "test6\ntest": "test6test",
+      "test7 test": "test7 test"
     ]
 
     for (input, expected) in expectations {
-      let result = try Filters.Strings.removeNewlines(input, arguments: ["false"]) as? String
+      let result = try Filters.Strings.removeNewlines(input, arguments: ["leading"]) as? String
       XCTAssertEqual(result, expected)
     }
   }

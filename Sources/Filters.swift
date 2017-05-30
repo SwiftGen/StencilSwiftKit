@@ -10,6 +10,7 @@ import Stencil
 enum Filters {
   enum Error: Swift.Error {
     case invalidInputType
+    case invalidOption(option: String)
   }
 
   /// Parses filter arguments for a boolean value, where true can by any one of: "true", "yes", "1", and
