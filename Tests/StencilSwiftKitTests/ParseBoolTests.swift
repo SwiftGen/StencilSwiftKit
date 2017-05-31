@@ -9,34 +9,16 @@ import XCTest
 
 class ParseBoolTests: XCTestCase {
 
-  func testParseBool_WithTrueString() throws {
-    let value = try Filters.parseBool(from: ["true"])
-    XCTAssertTrue(value!)
+  func testParseBool_TrueWithString() throws {
+    XCTAssertTrue(try Filters.parseBool(from: ["true"])!)
+    XCTAssertTrue(try Filters.parseBool(from: ["yes"])!)
+    XCTAssertTrue(try Filters.parseBool(from: ["1"])!)
   }
 
-  func testParseBool_WithFalseString() throws {
-    let value = try Filters.parseBool(from: ["false"])
-    XCTAssertFalse(value!)
-  }
-
-  func testParseBool_WithYesString() throws {
-    let value = try Filters.parseBool(from: ["yes"])
-    XCTAssertTrue(value!)
-  }
-
-  func testParseBool_WithNoString() throws {
-    let value = try Filters.parseBool(from: ["no"])
-    XCTAssertFalse(value!)
-  }
-
-  func testParseBool_WithOneString() throws {
-    let value = try Filters.parseBool(from: ["1"])
-    XCTAssertTrue(value!)
-  }
-
-  func testParseBool_WithZeroString() throws {
-    let value = try Filters.parseBool(from: ["0"])
-    XCTAssertFalse(value!)
+  func testParseBool_FalseWithString() throws {
+    XCTAssertFalse(try Filters.parseBool(from: ["false"])!)
+    XCTAssertFalse(try Filters.parseBool(from: ["no"])!)
+    XCTAssertFalse(try Filters.parseBool(from: ["0"])!)
   }
 
   func testParseBool_WithOptionalInt() throws {
@@ -72,5 +54,10 @@ class ParseBoolTests: XCTestCase {
 
   func testParseBool_WithEmptyArrayAndRequiredArg() throws {
     XCTAssertThrowsError(try Filters.parseBool(from: [], required: true))
+  }
+
+  func testParseBool_WithNonZeroIndex() throws {
+    XCTAssertTrue(try Filters.parseBool(from: ["test", "true"], at: 1)!)
+    XCTAssertFalse(try Filters.parseBool(from: ["test", "false"], at: 1)!)
   }
 }

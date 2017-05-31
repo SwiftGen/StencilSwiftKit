@@ -7,6 +7,10 @@
 import Foundation
 import Stencil
 
+enum RemoveNewlinesModes: String {
+  case all, leading
+}
+
 extension Filters {
   enum Strings {
     fileprivate static let reservedKeywords = [
@@ -119,27 +123,39 @@ extension Filters {
       return escapeReservedKeywords(in: string)
     }
 
+    /// Removes newlines and other whitespace from a string. Takes an optional Mode argument:
+    ///   - all (default): remove all newlines and whitespaces
+    ///   - leading: remove newlines and only leading whitespaces
+    ///
+    /// - Parameters:
+    ///   - value: the value to be processed
+    ///   - arguments: the arguments to the function; expecting zero or one mode argument
+    /// - Returns: the trimmed string
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func removeNewlines(_ value: Any?, arguments: [Any?]) throws -> Any? {
-      let mode = arguments.first as? String ?? "all"
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      let mode = try Filters.parseEnum(from: arguments, default: RemoveNewlinesModes.all)
 
       switch mode {
-      case "all":
+      case .all:
         return string
           .components(separatedBy: .whitespacesAndNewlines)
           .joined()
-      case "leading":
+      case .leading:
         return string
           .components(separatedBy: .newlines)
-          .map { String($0.unicodeScalars.drop(while: { CharacterSet.whitespaces.contains($0) })) }
+          .map(removeLeadingWhitespaces(from:))
           .joined()
           .trimmingCharacters(in: .whitespaces)
-      default:
-        throw Filters.Error.invalidOption(option: mode)
       }
     }
 
     // MARK: - Private methods
+
+    private static func removeLeadingWhitespaces(from string: String) -> String {
+      let chars = string.unicodeScalars.drop { CharacterSet.whitespaces.contains($0) }
+      return String(chars)
+    }
 
     /// This returns the string with its first parameter uppercased.
     /// - note: This is quite similar to `capitalise` except that this filter doesn't

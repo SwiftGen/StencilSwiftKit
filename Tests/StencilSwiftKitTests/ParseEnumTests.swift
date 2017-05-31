@@ -34,6 +34,11 @@ class ParseEnumTests: XCTestCase {
     XCTAssertEqual(value, Test.baz)
   }
 
+  func testParseEnum_WithNonZeroIndex() throws {
+    let value = try Filters.parseEnum(from: [42, "bar"], at: 1, default: Test.baz)
+    XCTAssertEqual(value, Test.bar)
+  }
+
   func testParseEnum_WithUnknownArgument() throws {
     XCTAssertThrowsError(try Filters.parseEnum(from: ["test"], default: Test.baz))
     XCTAssertThrowsError(try Filters.parseEnum(from: [42], default: Test.baz))
