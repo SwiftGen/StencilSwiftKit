@@ -71,7 +71,7 @@ extension Filters {
     /// - Returns: the camel case string
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func snakeToCamelCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
-      let stripLeading = try Filters.parseBool(from: arguments, index: 0, required: false) ?? false
+      let stripLeading = try Filters.parseBool(from: arguments, required: false) ?? false
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
       let unprefixed: String
@@ -104,7 +104,7 @@ extension Filters {
     /// - Returns: the snake case string
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func camelToSnakeCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
-      let toLower = try Filters.parseBool(from: arguments, index: 0, required: false) ?? true
+      let toLower = try Filters.parseBool(from: arguments, required: false) ?? true
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
       let snakeCase = try snakecase(string)
