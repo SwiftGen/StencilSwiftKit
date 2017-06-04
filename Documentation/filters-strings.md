@@ -49,23 +49,27 @@ Transforms an arbitrary string so that only the first "word" is lowercased.
 
 ## Filter: `removeNewlines`
 
-Removes all newlines and whitespace characters from the string.
+This filter has a couple of modes that you can specifiy using an optional argument (defaults to "all"):
 
-| Input                 | Output                |
-|-----------------------|-----------------------|
-| `  \ntest`            | `test`                |
-| `test \n\t `          | `test`                |
-| `test\n  test`        | `testtest`            |
-| `\r\ntest\n  test\n`  | `testtest`            |
+**all**: Removes all newlines and whitespace characters from the string.
 
-By default it removes whitespace characters, unless a single optional argument is set to "false", "no" or "0":
+| Input                  | Output                |
+|------------------------|-----------------------|
+| `  \ntest`             | `test`                |
+| `test \n\t `           | `test`                |
+| `test\n  test`         | `testtest`            |
+| `test, \ntest, \ntest` | `test,test,test`      |
+| ` test test `          | `testtest`            |
 
-| Input                 | Output                |
-|-----------------------|-----------------------|
-| `  \ntest`            | `  test`              |
-| `test \n\t `          | `test \t `            |
-| `test\n  test`        | `test  test`          |
-| `\r\ntest\n  test\n`  | `test  test`          |
+**leading**: Removes leading whitespace characters from each line, and all newlines. Also trims the end result.
+
+| Input                  | Output                |
+|------------------------|-----------------------|
+| `  \ntest`             | `test`                |
+| `test \n\t `           | `test`                |
+| `test\n  test`         | `testtest`            |
+| `test, \ntest, \ntest` | `test, test, test`    |
+| ` test test `          | `test test`           |
 
 ## Filter: `snakeToCamelCase`
 
