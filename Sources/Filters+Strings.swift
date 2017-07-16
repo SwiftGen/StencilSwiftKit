@@ -176,10 +176,16 @@ extension Filters {
       return string.contains(substring)
     }
     
-    /// Checks if the given string contains given sunstring
+    /// Checks if the given string has given prefix
     /// - Returns: the result whether true or not
     static func hasPrefix(_ string: String, prefix: String) -> Bool {
       return string.hasPrefix(prefix)
+    }
+    
+    /// Checks if the given string has given suffix
+    /// - Returns: the result whether true or not
+    static func hasSuffix(_ string: String, suffix: String) -> Bool {
+      return string.hasSuffix(suffix)
     }
 
     // MARK: - Private methods

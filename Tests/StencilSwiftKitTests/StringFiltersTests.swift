@@ -435,3 +435,49 @@ extension StringFiltersTests {
     }
   }
 }
+
+extension StringFiltersTests {
+  func testHasSuffix_WithTrueResult() throws {
+    let expectations = [
+      "string": "g",
+      "String": "ring",
+      "strIng": "trIng",
+      "strING": "strING",
+      "X": "X",
+      "x": "x",
+      "SomeCapString": "CapString",
+      "string with words": "with words",
+      "String with words": " words",
+      "string wiTH WOrds": "",
+      "A__B__C": "_C",
+      "__y_z!": "z!"
+    ]
+    
+    for (input, suffix) in expectations {
+      let result = Filters.Strings.hasSuffix(input, suffix: suffix)
+      XCTAssertTrue(result)
+    }
+  }
+  
+  func testHasSuffix_WithFalseResult() throws {
+    let expectations = [
+      "string": "gni",
+      "String": "Ing",
+      "strIng": "ing",
+      "strING": "nG",
+      "X": "x",
+      "x": "X",
+      "string with words": "with  words",
+      "String with words": " Words",
+      "String With Words": "th_Words",
+      "": "aa",
+      "A__B__C": "C__B",
+      "__y_z!": "z?"
+    ]
+    
+    for (input, suffix) in expectations {
+      let result = Filters.Strings.hasSuffix(input, suffix: suffix)
+      XCTAssertFalse(result)
+    }
+  }
+}
