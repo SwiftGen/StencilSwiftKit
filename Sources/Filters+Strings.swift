@@ -32,6 +32,13 @@ extension Filters {
       "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
+    static func replace(source: Any?, substring: Any?, replacement: Any?) throws -> Any? {
+      guard let source = source as? String, let substring = substring as? String, let replacement = replacement as? String else {
+        throw Filters.Error.invalidInputType
+      }
+      return source.replacingOccurrences(of: substring, with: replacement)
+    }
+    
     static func swiftIdentifier(_ value: Any?) throws -> Any? {
       guard let value = value as? String else { throw Filters.Error.invalidInputType }
       return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)

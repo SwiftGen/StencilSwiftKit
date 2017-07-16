@@ -481,3 +481,19 @@ extension StringFiltersTests {
     }
   }
 }
+
+extension StringFiltersTests {
+  func testReplace() throws {
+    let expectations = [
+      ("string", "ing", "oke", "stroke"),
+      ("string", "folks", "mates", "string"),
+      ("hi mates!", "hi", "Yo", "Yo mates!"),
+      ("string with spaces", " ", "_", "string_with_spaces"),
+    ]
+    
+    for (input, substring, replacement, expected) in expectations {
+      let result = try Filters.Strings.replace(source: input, substring: substring, replacement: replacement) as? String
+      XCTAssertEqual(result, expected)
+    }
+  }
+}
