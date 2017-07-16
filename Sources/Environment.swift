@@ -20,6 +20,12 @@ public extension Extension {
     registerFilter("snakeToCamelCase", filter: Filters.Strings.snakeToCamelCase)
     registerFilter("swiftIdentifier", filter: Filters.Strings.swiftIdentifier)
     registerFilter("titlecase", filter: Filters.Strings.titlecase)
+    registerFilter("upperFirstLetter", filter: Filters.Strings.upperFirstLetter)
+    registerFilter("lowerFirstLetter", filter: Filters.Strings.lowerFirstLetter)
+    registerBoolFilterWithArguments("contains", filter: Filters.Strings.contains)
+    registerBoolFilterWithArguments("hasPrefix", filter: Filters.Strings.hasPrefix)
+    registerBoolFilterWithArguments("hasSuffix", filter: Filters.Strings.hasSuffix)
+    registerFilterWithTwoArguments("replace", filter: Filters.Strings.replace)
 
     registerFilter("hexToInt", filter: Filters.Numbers.hexToInt)
     registerFilter("int255toFloat", filter: Filters.Numbers.int255toFloat)
@@ -32,4 +38,123 @@ public func stencilSwiftEnvironment() -> Environment {
   ext.registerStencilSwiftExtensions()
 
   return Environment(extensions: [ext], templateClass: StencilSwiftTemplate.self)
+}
+
+extension Stencil.Extension {
+  func registerFilterWithTwoArguments<T, A, B>(_ name: String, filter: @escaping (T, A, B) throws -> Any?) {
+    registerFilter(name) { (any, args) throws -> Any? in
+      guard let type = any as? T else { return any }
+      guard args.count == 2, let argA = args[0] as? A, let argB = args[1] as? B else {
+        throw TemplateSyntaxError("'\(name)' filter takes two arguments: \(A.self) and \(B.self)")
+      }
+      return try filter(type, argA, argB)
+    }
+  }
+  
+  func registerFilterWithArguments<A>(_ name: String, filter: @escaping (Any?, A) throws -> Any?) {
+    registerFilter(name) { (any, args) throws -> Any? in
+      guard args.count == 1, let arg = args.first as? A else {
+        throw TemplateSyntaxError("'\(name)' filter takes a single \(A.self) argument")
+      }
+      return try filter(any, arg)
+    }
+  }
+  
+  func registerBoolFilterWithArguments<U, A>(_ name: String, filter: @escaping (U, A) -> Bool) {
+    registerFilterWithArguments(name, filter: Filter.make(filter))
+    registerFilterWithArguments("!\(name)", filter: Filter.make({ !filter($0, $1) }))
+  }
+}
+
+private struct Filter<T> {
+  static func make(_ filter: @escaping (T) -> Bool) -> (Any?) throws -> Any? {
+    return { (any) throws -> Any? in
+      switch any {
+      case let type as T:
+        return filter(type)
+        
+      case let array as NSArray:
+        return array.flatMap { $0 as? T }.filter(filter)
+        
+      default:
+        return any
+      }
+    }
+  }
+  
+  static func make<U>(_ filter: @escaping (T) -> U?) -> (Any?) throws -> Any? {
+    return { (any) throws -> Any? in
+      switch any {
+      case let type as T:
+        return filter(type)
+        
+      case let array as NSArray:
+        return array.flatMap { $0 as? T }.flatMap(filter)
+        
+      default:
+        return any
+      }
+    }
+  }
+  
+  static func make<A>(_ filter: @escaping (T, A) -> Bool) -> (Any?, A) throws -> Any? {
+    return { (any, arg) throws -> Any? in
+      switch any {
+      case let type as T:
+        return filter(type, arg)
+        
+      case let array as NSArray:
+        return array.flatMap { $0 as? T }.filter({ filter($0, arg) })
+        
+      default:
+        return any
+      }
+    }
+  }
+}
+
+private struct FilterOr<T, Y> {
+  static func make(_ filter: @escaping (T) -> Bool, other: @escaping (Y) -> Bool) -> (Any?) throws -> Any? {
+    return { (any) throws -> Any? in
+      switch any {
+      case let type as T:
+        return filter(type)
+        
+      case let type as Y:
+        return other(type)
+        
+      case let array as NSArray:
+        if array.firstObject is T {
+          return array.flatMap { $0 as? T }.filter(filter)
+        } else {
+          return array.flatMap { $0 as? Y }.filter(other)
+        }
+        
+      default:
+        return any
+      }
+    }
+  }
+  
+  static func make<A>(_ filter: @escaping (T, A) -> Bool, other: @escaping (Y, A) -> Bool) -> (Any?, A) throws -> Any? {
+    return { (any, arg) throws -> Any? in
+      switch any {
+      case let type as T:
+        return filter(type, arg)
+        
+      case let type as Y:
+        return other(type, arg)
+        
+      case let array as NSArray:
+        if array.firstObject is T {
+          return array.flatMap { $0 as? T }.filter({ filter($0, arg) })
+        } else {
+          return array.flatMap { $0 as? Y }.filter({ other($0, arg) })
+        }
+        
+      default:
+        return any
+      }
+    }
+  }
 }
