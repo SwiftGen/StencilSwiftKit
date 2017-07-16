@@ -49,16 +49,6 @@ extension Filters {
       return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)
     }
 
-    /* Uppers the first letter of the string
-     * e.g. "people picker" gives "People picker", "sports Stats" gives "Sports Stats"
-     */
-    static func upperFirstLetter(_ value: Any?) throws -> Any? {
-      guard let string = value as? String else { throw Filters.Error.invalidInputType }
-      let first = String(string.characters.prefix(1)).capitalized
-      let other = String(string.characters.dropFirst(1))
-      return first + other
-    }
-
     /* Lowers the first letter of the string
      * e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
      */

@@ -96,7 +96,7 @@ This filter accepts a parameter (boolean, default `false`) that controls the pre
 | `snAke_case`   | `SnAkeCase` |
 | `SNAKE_CASE`   | `SnakeCase` |
 | `__snake_case` | `SnakeCase` |
-      
+
 ## Filter: `swiftIdentifier`
 
 Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:

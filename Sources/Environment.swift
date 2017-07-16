@@ -20,7 +20,6 @@ public extension Extension {
     registerFilter("snakeToCamelCase", filter: Filters.Strings.snakeToCamelCase)
     registerFilter("swiftIdentifier", filter: Filters.Strings.swiftIdentifier)
     registerFilter("titlecase", filter: Filters.Strings.titlecase)
-    registerFilter("upperFirstLetter", filter: Filters.Strings.upperFirstLetter)
     registerFilter("lowerFirstLetter", filter: Filters.Strings.lowerFirstLetter)
     registerBoolFilterWithArguments("contains", filter: Filters.Strings.contains)
     registerBoolFilterWithArguments("hasPrefix", filter: Filters.Strings.hasPrefix)
