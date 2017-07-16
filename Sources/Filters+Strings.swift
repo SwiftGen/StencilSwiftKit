@@ -175,6 +175,12 @@ extension Filters {
     static func contains(_ string: String, substring: String) -> Bool {
       return string.contains(substring)
     }
+    
+    /// Checks if the given string contains given sunstring
+    /// - Returns: the result whether true or not
+    static func hasPrefix(_ string: String, prefix: String) -> Bool {
+      return string.hasPrefix(prefix)
+    }
 
     // MARK: - Private methods
 

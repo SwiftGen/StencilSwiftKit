@@ -392,3 +392,46 @@ extension StringFiltersTests {
     }
   }
 }
+
+extension StringFiltersTests {
+  func testHasPrefix_WithTrueResult() throws {
+    let expectations = [
+      "string": "s",
+      "String": "Str",
+      "strIng": "strIng",
+      "strING": "strI",
+      "x": "x",
+      "X": "X",
+      "SomeCapString": "Some",
+      "someCapString": "someCap",
+      "string with words": "string",
+      "String with words": "String with",
+      "A__B__C": "A",
+      "__y_z!": "__",
+      "AnotherString": ""
+    ]
+    
+    for (input, prefix) in expectations {
+      let result = Filters.Strings.hasPrefix(input, prefix: prefix)
+      XCTAssertTrue(result)
+    }
+  }
+  
+  func testHasPrefix_WithFalseResult() throws {
+    let expectations = [
+      "string": "tring",
+      "String": "str",
+      "strING": "striNG",
+      "X": "x",
+      "string with words": "words with words",
+      "": "y",
+      "A__B__C": "a__B__C",
+      "__y_z!": "!"
+      ]
+    
+    for (input, prefix) in expectations {
+      let result = Filters.Strings.hasPrefix(input, prefix: prefix)
+      XCTAssertFalse(result)
+    }
+  }
+}
