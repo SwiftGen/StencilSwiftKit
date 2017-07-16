@@ -169,6 +169,12 @@ extension Filters {
           .trimmingCharacters(in: .whitespaces)
       }
     }
+    
+    /// Checks if the given string contains given sunstring
+    /// - Returns: the result whether true or not
+    static func contains(_ string: String, substring: String) -> Bool {
+      return string.contains(substring)
+    }
 
     // MARK: - Private methods
 

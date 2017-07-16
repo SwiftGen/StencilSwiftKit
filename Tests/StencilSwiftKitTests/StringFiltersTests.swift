@@ -349,3 +349,46 @@ extension StringFiltersTests {
     }
   }
 }
+
+extension StringFiltersTests {
+  func testContains_WithTrueResult() throws {
+    let expectations = [
+      "string": "s",
+      "String": "ing",
+      "strIng": "strIng",
+      "strING": "rING",
+      "x": "x",
+      "X": "X",
+      "SomeCapString": "Some",
+      "someCapString": "apSt",
+      "string with words": "with",
+      "String with words": "th words",
+      "A__B__C": "_",
+      "__y_z!": "!"
+    ]
+    
+    for (input, substring) in expectations {
+      let result = Filters.Strings.contains(input, substring: substring)
+      XCTAssertTrue(result)
+    }
+  }
+  
+  func testContains_WithFalseResult() throws {
+    let expectations = [
+      "string": "a",
+      "String": "blabla",
+      "strIng": "foo",
+      "strING": "ing",
+      "X": "x",
+      "string with words": "string with sentences",
+      "": "y",
+      "A__B__C": "a__B__C",
+      "__y_z!": "___",
+    ]
+    
+    for (input, substring) in expectations {
+      let result = Filters.Strings.contains(input, substring: substring)
+      XCTAssertFalse(result)
+    }
+  }
+}
