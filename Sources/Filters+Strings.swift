@@ -46,6 +46,16 @@ extension Filters {
       let other = String(string.characters.dropFirst(1))
       return first + other
     }
+    
+    /* Lower the first letter of the string
+     * e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
+     */
+    static func lowerFirstLetter(_ value: Any?) throws -> Any? {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      let first = String(string.characters.prefix(1)).lowercased()
+      let other = String(string.characters.dropFirst(1))
+      return first + other
+    }
 
     /* - If the string starts with only one uppercase letter, lowercase that first letter
      * - If the string starts with multiple uppercase letters, lowercase those first letters

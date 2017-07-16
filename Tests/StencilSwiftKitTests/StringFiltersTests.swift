@@ -317,3 +317,35 @@ extension StringFiltersTests {
     }
   }
 }
+
+extension StringFiltersTests {
+  func testLowerFirstLetter() throws {
+    let expectations = [
+      "string": "string",
+      "String": "string",
+      "strIng": "strIng",
+      "strING": "strING",
+      "X": "x",
+      "x": "x",
+      "SomeCapString": "someCapString",
+      "someCapString": "someCapString",
+      "string with words": "string with words",
+      "String with words": "string with words",
+      "String With Words": "string With Words",
+      "STRing with words": "sTRing with words",
+      "string wiTH WOrds": "string wiTH WOrds",
+      "": "",
+      "A__B__C": "a__B__C",
+      "__y_z!": "__y_z!",
+      "PLEASESTOPSCREAMING": "pLEASESTOPSCREAMING",
+      "PLEASESTOPSCREAMING!": "pLEASESTOPSCREAMING!",
+      "PLEASE_STOP_SCREAMING": "pLEASE_STOP_SCREAMING",
+      "PLEASE STOP SCREAMING!": "pLEASE STOP SCREAMING!"
+    ]
+    
+    for (input, expected) in expectations {
+      let result = try Filters.Strings.lowerFirstLetter(input) as? String
+      XCTAssertEqual(result, expected)
+    }
+  }
+}
