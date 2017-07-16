@@ -12,7 +12,7 @@ final class StringFiltersTests: XCTestCase {
     let result = try Filters.Strings.camelToSnakeCase("StringWithWords", arguments: []) as? String
     XCTAssertEqual(result, "string_with_words")
   }
-  
+
   func testCamelToSnakeCase_WithTrue() throws {
     let expectations = [
       "string": "string",
@@ -310,7 +310,7 @@ extension StringFiltersTests {
       "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
       "PLEASE STOP SCREAMING!": "PLEASE STOP SCREAMING!"
     ]
-    
+
     for (input, expected) in expectations {
       let result = try Filters.Strings.upperFirstLetter(input) as? String
       XCTAssertEqual(result, expected)
@@ -342,7 +342,7 @@ extension StringFiltersTests {
       "PLEASE_STOP_SCREAMING": "pLEASE_STOP_SCREAMING",
       "PLEASE STOP SCREAMING!": "pLEASE STOP SCREAMING!"
     ]
-    
+
     for (input, expected) in expectations {
       let result = try Filters.Strings.lowerFirstLetter(input) as? String
       XCTAssertEqual(result, expected)
@@ -366,13 +366,13 @@ extension StringFiltersTests {
       "A__B__C": "_",
       "__y_z!": "!"
     ]
-    
+
     for (input, substring) in expectations {
       let result = Filters.Strings.contains(input, substring: substring)
       XCTAssertTrue(result)
     }
   }
-  
+
   func testContains_WithFalseResult() throws {
     let expectations = [
       "string": "a",
@@ -383,9 +383,9 @@ extension StringFiltersTests {
       "string with words": "string with sentences",
       "": "y",
       "A__B__C": "a__B__C",
-      "__y_z!": "___",
+      "__y_z!": "___"
     ]
-    
+
     for (input, substring) in expectations {
       let result = Filters.Strings.contains(input, substring: substring)
       XCTAssertFalse(result)
@@ -410,13 +410,13 @@ extension StringFiltersTests {
       "__y_z!": "__",
       "AnotherString": ""
     ]
-    
+
     for (input, prefix) in expectations {
       let result = Filters.Strings.hasPrefix(input, prefix: prefix)
       XCTAssertTrue(result)
     }
   }
-  
+
   func testHasPrefix_WithFalseResult() throws {
     let expectations = [
       "string": "tring",
@@ -428,7 +428,7 @@ extension StringFiltersTests {
       "A__B__C": "a__B__C",
       "__y_z!": "!"
       ]
-    
+
     for (input, prefix) in expectations {
       let result = Filters.Strings.hasPrefix(input, prefix: prefix)
       XCTAssertFalse(result)
@@ -452,13 +452,13 @@ extension StringFiltersTests {
       "A__B__C": "_C",
       "__y_z!": "z!"
     ]
-    
+
     for (input, suffix) in expectations {
       let result = Filters.Strings.hasSuffix(input, suffix: suffix)
       XCTAssertTrue(result)
     }
   }
-  
+
   func testHasSuffix_WithFalseResult() throws {
     let expectations = [
       "string": "gni",
@@ -474,7 +474,7 @@ extension StringFiltersTests {
       "A__B__C": "C__B",
       "__y_z!": "z?"
     ]
-    
+
     for (input, suffix) in expectations {
       let result = Filters.Strings.hasSuffix(input, suffix: suffix)
       XCTAssertFalse(result)
@@ -488,9 +488,9 @@ extension StringFiltersTests {
       ("string", "ing", "oke", "stroke"),
       ("string", "folks", "mates", "string"),
       ("hi mates!", "hi", "Yo", "Yo mates!"),
-      ("string with spaces", " ", "_", "string_with_spaces"),
+      ("string with spaces", " ", "_", "string_with_spaces")
     ]
-    
+
     for (input, substring, replacement, expected) in expectations {
       let result = try Filters.Strings.replace(source: input, substring: substring, replacement: replacement) as? String
       XCTAssertEqual(result, expected)

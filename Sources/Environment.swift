@@ -50,7 +50,7 @@ extension Stencil.Extension {
       return try filter(type, argA, argB)
     }
   }
-  
+
   func registerFilterWithArguments<A>(_ name: String, filter: @escaping (Any?, A) throws -> Any?) {
     registerFilter(name) { (any, args) throws -> Any? in
       guard args.count == 1, let arg = args.first as? A else {
@@ -59,7 +59,7 @@ extension Stencil.Extension {
       return try filter(any, arg)
     }
   }
-  
+
   func registerBoolFilterWithArguments<U, A>(_ name: String, filter: @escaping (U, A) -> Bool) {
     registerFilterWithArguments(name, filter: Filter.make(filter))
     registerFilterWithArguments("!\(name)", filter: Filter.make({ !filter($0, $1) }))
@@ -72,40 +72,40 @@ private struct Filter<T> {
       switch any {
       case let type as T:
         return filter(type)
-        
+
       case let array as NSArray:
         return array.flatMap { $0 as? T }.filter(filter)
-        
+
       default:
         return any
       }
     }
   }
-  
+
   static func make<U>(_ filter: @escaping (T) -> U?) -> (Any?) throws -> Any? {
     return { (any) throws -> Any? in
       switch any {
       case let type as T:
         return filter(type)
-        
+
       case let array as NSArray:
         return array.flatMap { $0 as? T }.flatMap(filter)
-        
+
       default:
         return any
       }
     }
   }
-  
+
   static func make<A>(_ filter: @escaping (T, A) -> Bool) -> (Any?, A) throws -> Any? {
     return { (any, arg) throws -> Any? in
       switch any {
       case let type as T:
         return filter(type, arg)
-        
+
       case let array as NSArray:
         return array.flatMap { $0 as? T }.filter({ filter($0, arg) })
-        
+
       default:
         return any
       }
@@ -119,39 +119,39 @@ private struct FilterOr<T, Y> {
       switch any {
       case let type as T:
         return filter(type)
-        
+
       case let type as Y:
         return other(type)
-        
+
       case let array as NSArray:
         if array.firstObject is T {
           return array.flatMap { $0 as? T }.filter(filter)
         } else {
           return array.flatMap { $0 as? Y }.filter(other)
         }
-        
+
       default:
         return any
       }
     }
   }
-  
+
   static func make<A>(_ filter: @escaping (T, A) -> Bool, other: @escaping (Y, A) -> Bool) -> (Any?, A) throws -> Any? {
     return { (any, arg) throws -> Any? in
       switch any {
       case let type as T:
         return filter(type, arg)
-        
+
       case let type as Y:
         return other(type, arg)
-        
+
       case let array as NSArray:
         if array.firstObject is T {
           return array.flatMap { $0 as? T }.filter({ filter($0, arg) })
         } else {
           return array.flatMap { $0 as? Y }.filter({ other($0, arg) })
         }
-        
+
       default:
         return any
       }

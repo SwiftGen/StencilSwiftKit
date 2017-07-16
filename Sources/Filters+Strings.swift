@@ -32,19 +32,24 @@ extension Filters {
       "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
+    /* Replaces in the given string the given substring with the replacement
+     * e.g. "people picker", replacing "picker" with "life" gives "people life"
+     */
     static func replace(source: Any?, substring: Any?, replacement: Any?) throws -> Any? {
-      guard let source = source as? String, let substring = substring as? String, let replacement = replacement as? String else {
+      guard let source = source as? String,
+            let substring = substring as? String,
+            let replacement = replacement as? String else {
         throw Filters.Error.invalidInputType
       }
       return source.replacingOccurrences(of: substring, with: replacement)
     }
-    
+
     static func swiftIdentifier(_ value: Any?) throws -> Any? {
       guard let value = value as? String else { throw Filters.Error.invalidInputType }
       return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)
     }
-    
-    /* Upper the first letter of the string
+
+    /* Uppers the first letter of the string
      * e.g. "people picker" gives "People picker", "sports Stats" gives "Sports Stats"
      */
     static func upperFirstLetter(_ value: Any?) throws -> Any? {
@@ -53,8 +58,8 @@ extension Filters {
       let other = String(string.characters.dropFirst(1))
       return first + other
     }
-    
-    /* Lower the first letter of the string
+
+    /* Lowers the first letter of the string
      * e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
      */
     static func lowerFirstLetter(_ value: Any?) throws -> Any? {
@@ -176,19 +181,19 @@ extension Filters {
           .trimmingCharacters(in: .whitespaces)
       }
     }
-    
+
     /// Checks if the given string contains given sunstring
     /// - Returns: the result whether true or not
     static func contains(_ string: String, substring: String) -> Bool {
       return string.contains(substring)
     }
-    
+
     /// Checks if the given string has given prefix
     /// - Returns: the result whether true or not
     static func hasPrefix(_ string: String, prefix: String) -> Bool {
       return string.hasPrefix(prefix)
     }
-    
+
     /// Checks if the given string has given suffix
     /// - Returns: the result whether true or not
     static func hasSuffix(_ string: String, suffix: String) -> Bool {
