@@ -124,3 +124,50 @@ Note that even if very similar, this filter differs from the `capitalized` filte
 |-----------------|-----------------|
 | `hello`         | `Hello`         |
 | `peopleChooser` | `PeopleChooser` |
+
+## Filter: `lowerFirstLetter`
+
+Simply lowercases the first character, leaving the other characters untouched.
+
+| Input           | Output          |
+|-----------------|-----------------|
+| `Hello`         | `hello`         |
+| `PeopleChooser` | `peopleChooser` |
+| `Hi There!`     | `hi There!`     |
+
+## Filter: `contains`
+
+Checks if the string contains given substring - the same as `String.contains` in Swift works.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `el`      | true            |
+| `Hi mates!` `yo`  | false           |
+
+## Filter: `hasPrefix`
+
+Checks if the string has the given prefix - the same as `String.hasPrefix` in Swift works.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `Hi`      | false           |
+| `Hi mates!` `H`   | true            |
+
+## Filter: `hasSuffix`
+
+Checks if the string has the given suffix - the same as `String.hasSuffix` in Swift works.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `llo`     | true            |
+| `Hi mates!` `?`   | false           |
+
+## Filter: `replace`
+
+Replaces the given substring with the given replacement in the source string.
+The same as `Swift.replace` works.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `l` `k`   | `Hekko`         |
+| `Europe` `e` `a`  | `Europa`        |
