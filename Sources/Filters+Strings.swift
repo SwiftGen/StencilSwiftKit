@@ -36,6 +36,16 @@ extension Filters {
       guard let value = value as? String else { throw Filters.Error.invalidInputType }
       return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)
     }
+    
+    /* Upper the first letter of the string
+     * e.g. "people picker" gives "People picker", "sports Stats" gives "Sports Stats"
+     */
+    static func upperFirstLetter(_ value: Any?) throws -> Any? {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      let first = String(string.characters.prefix(1)).capitalized
+      let other = String(string.characters.dropFirst(1))
+      return first + other
+    }
 
     /* - If the string starts with only one uppercase letter, lowercase that first letter
      * - If the string starts with multiple uppercase letters, lowercase those first letters

@@ -257,7 +257,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! $CI ]]; then\n    rake lint:code\n    rake lint:tests\nfi";
+			shellScript = "";
 		};
 		DE127EA8748200EF28090721 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
