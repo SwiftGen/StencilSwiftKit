@@ -40,6 +40,9 @@ public func stencilSwiftEnvironment() -> Environment {
 }
 
 extension Stencil.Extension {
+  // The following swiftlint annotation needs to be deleted once a swiftlint version including this PR
+  // https://github.com/realm/SwiftLint/pull/1725 is released.
+  // swiftlint:disable:next large_tuple
   func registerFilterWithTwoArguments<T, A, B>(_ name: String, filter: @escaping (T, A, B) throws -> Any?) {
     registerFilter(name) { (any, args) throws -> Any? in
       guard let type = any as? T else { return any }
