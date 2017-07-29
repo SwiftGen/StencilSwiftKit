@@ -137,7 +137,7 @@ Simply lowercases the first character, leaving the other characters untouched.
 
 ## Filter: `contains`
 
-Checks if the string contains given substring - the same as `String.contains` in Swift works.
+Checks if the string contains given substring - works the same as Swift's `String.contains`.
 
 | Input             | Output          |
 |-------------------|-----------------|
@@ -146,7 +146,7 @@ Checks if the string contains given substring - the same as `String.contains` in
 
 ## Filter: `hasPrefix`
 
-Checks if the string has the given prefix - the same as `String.hasPrefix` in Swift works.
+Checks if the string has the given prefix - works the same as Swift's `String.hasPrefix`.
 
 | Input             | Output          |
 |-------------------|-----------------|
@@ -155,7 +155,7 @@ Checks if the string has the given prefix - the same as `String.hasPrefix` in Sw
 
 ## Filter: `hasSuffix`
 
-Checks if the string has the given suffix - the same as `String.hasSuffix` in Swift works.
+Checks if the string has the given suffix - works the same as Swift's `String.hasSuffix`.
 
 | Input             | Output          |
 |-------------------|-----------------|
@@ -165,9 +165,10 @@ Checks if the string has the given suffix - the same as `String.hasSuffix` in Sw
 ## Filter: `replace`
 
 Replaces the given substring with the given replacement in the source string.
-The same as `Swift.replace` works.
+Works the same as Swift's `String.replacingOccurrences`.
 
 | Input             | Output          |
 |-------------------|-----------------|
 | `Hello` `l` `k`   | `Hekko`         |
 | `Europe` `e` `a`  | `Europa`        |
+
