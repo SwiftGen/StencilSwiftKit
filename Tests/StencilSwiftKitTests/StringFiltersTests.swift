@@ -287,38 +287,6 @@ extension StringFiltersTests {
 }
 
 extension StringFiltersTests {
-  func testUpperFirstLetter() throws {
-    let expectations = [
-      "string": "String",
-      "String": "String",
-      "strIng": "StrIng",
-      "strING": "StrING",
-      "X": "X",
-      "x": "X",
-      "SomeCapString": "SomeCapString",
-      "someCapString": "SomeCapString",
-      "string with words": "String with words",
-      "String with words": "String with words",
-      "String With Words": "String With Words",
-      "STRing with words": "STRing with words",
-      "string wiTH WOrds": "String wiTH WOrds",
-      "": "",
-      "a__b__c": "A__b__c",
-      "__y_z!": "__y_z!",
-      "PLEASESTOPSCREAMING": "PLEASESTOPSCREAMING",
-      "PLEASESTOPSCREAMING!": "PLEASESTOPSCREAMING!",
-      "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
-      "PLEASE STOP SCREAMING!": "PLEASE STOP SCREAMING!"
-    ]
-
-    for (input, expected) in expectations {
-      let result = try Filters.Strings.upperFirstLetter(input) as? String
-      XCTAssertEqual(result, expected)
-    }
-  }
-}
-
-extension StringFiltersTests {
   func testLowerFirstLetter() throws {
     let expectations = [
       "string": "string",
