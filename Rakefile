@@ -36,6 +36,9 @@ namespace :release do
     changelog_master = system(%q{grep -qi '^## Master' CHANGELOG.md})
     results << Utils.table_result(!changelog_master, "CHANGELOG, No master", 'Please remove entry for master in CHANGELOG')
 
+    tag_set = !(`git ls-remote --tags . refs/tags/#{podspec_version}`.empty?)
+    results << Utils.table_result(tag_set, "Tag pushed", 'Please create a tag and push it')
+
     exit 1 unless results.all?
 
     print "Release version #{podspec_version} [Y/n]? "
