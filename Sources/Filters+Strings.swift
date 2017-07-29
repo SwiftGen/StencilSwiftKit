@@ -172,7 +172,7 @@ extension Filters {
       }
     }
 
-    /// Checks if the given string contains given sunstring
+    /// Checks if the given string contains given substring
     /// - Returns: the result whether true or not
     static func contains(_ string: String, substring: String) -> Bool {
       return string.contains(substring)
