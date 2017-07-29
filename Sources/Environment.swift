@@ -72,7 +72,7 @@ private struct Filter<T> {
       case let type as T:
         return filter(type)
 
-      case let array as Array<Any>:
+      case let array as [Any]:
         return array.flatMap { $0 as? T }.filter(filter)
 
       default:
@@ -87,7 +87,7 @@ private struct Filter<T> {
       case let type as T:
         return filter(type)
 
-      case let array as Array<Any>:
+      case let array as [Any]:
         return array.flatMap { $0 as? T }.flatMap(filter)
 
       default:
@@ -102,7 +102,7 @@ private struct Filter<T> {
       case let type as T:
         return filter(type, arg)
 
-      case let array as Array<Any>:
+      case let array as [Any]:
         return array.flatMap { $0 as? T }.filter({ filter($0, arg) })
 
       default:
@@ -122,7 +122,7 @@ private struct FilterOr<T, Y> {
       case let type as Y:
         return other(type)
 
-      case let array as Array<Any>:
+      case let array as [Any]:
         if array.first is T {
           return array.flatMap { $0 as? T }.filter(filter)
         } else {
@@ -144,7 +144,7 @@ private struct FilterOr<T, Y> {
       case let type as Y:
         return other(type, arg)
 
-      case let array as Array<Any>:
+      case let array as [Any]:
         if array.first is T {
           return array.flatMap { $0 as? T }.filter({ filter($0, arg) })
         } else {
