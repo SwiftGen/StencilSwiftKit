@@ -36,10 +36,9 @@ Due to the removal of legacy code, there are a few breaking changes in this new 
 
 ### New Features
 
-* Added the `contains`, `replace`, `hasPrefix`, `hasSuffix`, `lowerFirstLetter` filters for strings
+* Added the `contains`, `replace`, `hasPrefix`, `hasSuffix`, `lowerFirstLetter` filters for strings.  
   [Antondomashnev](https://github.com/antondomashnev)
   [#54](https://github.com/SwiftGen/StencilSwiftKit/pull/54)
-
 * Added the `removeNewlines` filter to remove newlines (and spaces) from a string.  
   [David Jennes](https://github.com/djbe)
   [#47](https://github.com/SwiftGen/StencilSwiftKit/pull/47)
