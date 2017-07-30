@@ -88,8 +88,21 @@ extension Filters {
       let transformed = String(scalars[start..<idx]).lowercased() + String(scalars[idx..<scalars.endIndex])
       return transformed
     }
-
+    
+    /// Deprecated in favor of `upperFirstLetter`
     static func titlecase(_ value: Any?) throws -> Any? {
+        return try upperFirstLetter(value)
+    }
+    
+    /// Lowers the first letter of the string
+    /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
+    /// 
+    /// - Parameters:
+    ///   - value: the value to uppercase first letter of
+    ///   - arguments: the arguments to the function; expecting zero
+    /// - Returns: the string with first letter being uppercased
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
+    static func upperFirstLetter(_ value: Any?) throws -> Any? {
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
       return titlecase(string)
     }

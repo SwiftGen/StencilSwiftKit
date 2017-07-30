@@ -256,7 +256,7 @@ extension StringFiltersTests {
 }
 
 extension StringFiltersTests {
-  func testTitlecase() throws {
+  func testUpperFirstLetter() throws {
     let expectations = [
       "string": "String",
       "String": "String",
@@ -280,9 +280,9 @@ extension StringFiltersTests {
       "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
       "PLEASE_STOP_SCREAMING!": "PLEASE_STOP_SCREAMING!"
     ]
-
+    
     for (input, expected) in expectations {
-      let result = try Filters.Strings.titlecase(input) as? String
+      let result = try Filters.Strings.upperFirstLetter(input) as? String
       XCTAssertEqual(result, expected)
     }
   }

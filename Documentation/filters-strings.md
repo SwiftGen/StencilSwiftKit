@@ -114,7 +114,7 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 | `42hello`  | `_42hello` |
 | `some$URL` | `Some_URL` |
 
-## Filter: `titlecase`
+## Filter: `upperFirstLetter`
 
 Simply uppercases the first character, leaving the other characters untouched.
 
@@ -171,4 +171,3 @@ Works the same as Swift's `String.replacingOccurrences`.
 |-------------------|-----------------|
 | `Hello` `l` `k`   | `Hekko`         |
 | `Europe` `e` `a`  | `Europa`        |
-
