@@ -32,13 +32,19 @@ extension Filters {
       "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
-    /* Replaces in the given string the given substring with the replacement
-     * e.g. "people picker", replacing "picker" with "life" gives "people life"
-     */
-    static func replace(source: Any?, substring: Any?, replacement: Any?) throws -> Any? {
-      guard let source = source as? String,
-            let substring = substring as? String,
-            let replacement = replacement as? String else {
+    /// Replaces in the given string the given substring with the replacement
+    /// "people picker", replacing "picker" with "life" gives "people life"
+    ///
+    /// - Parameters:
+    ///   - value: the value to be processed
+    ///   - arguments: the arguments to the function; expecting two arguments: substring, replacement
+    /// - Returns: the results string
+    /// - Throws: FilterError.invalidInputType if the value parameter or argunemts aren't string
+    static func replace(_ value: Any?, arguments: [Any?]) throws -> Any? {
+      guard let source = value as? String,
+            arguments.count == 2,
+            let substring = arguments[0] as? String,
+            let replacement = arguments[1] as? String else {
         throw Filters.Error.invalidInputType
       }
       return source.replacingOccurrences(of: substring, with: replacement)
@@ -180,21 +186,37 @@ extension Filters {
     /// - Returns: the result whether true or not
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or 
     ///           if number of arguments is not one or if the given argument isn't a string
-    static func contains(_ value: Any?, arguments: [Any?]) throws -> Bool? {
+    static func contains(_ value: Any?, arguments: [Any?]) throws -> Bool {
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
       guard let substring = arguments.first as? String else { throw Filters.Error.invalidInputType }
       return string.contains(substring)
     }
 
     /// Checks if the given string has given prefix
+    ///
+    /// - Parameters:
+    ///   - value: the string value to check if it has prefix
+    ///   - arguments: the arguments to the function; expecting one string argument - prefix
     /// - Returns: the result whether true or not
-    static func hasPrefix(_ string: String, prefix: String) -> Bool {
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or
+    ///           if number of arguments is not one or if the given argument isn't a string
+    static func hasPrefix(_ value: Any?, arguments: [Any?]) throws -> Bool {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      guard let prefix = arguments.first as? String else { throw Filters.Error.invalidInputType }
       return string.hasPrefix(prefix)
     }
 
     /// Checks if the given string has given suffix
+    ///
+    /// - Parameters:
+    ///   - value: the string value to check if it has prefix
+    ///   - arguments: the arguments to the function; expecting one string argument - suffix
     /// - Returns: the result whether true or not
-    static func hasSuffix(_ string: String, suffix: String) -> Bool {
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or
+    ///           if number of arguments is not one or if the given argument isn't a string
+    static func hasSuffix(_ value: Any?, arguments: [Any?]) throws -> Bool {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      guard let suffix = arguments.first as? String else { throw Filters.Error.invalidInputType }
       return string.hasSuffix(suffix)
     }
 

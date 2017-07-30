@@ -339,7 +339,7 @@ extension StringFiltersTests {
 
     for (input, substring) in expectations {
       let result = try Filters.Strings.contains(input, arguments: [substring])
-      XCTAssertTrue(result!)
+      XCTAssertTrue(result)
     }
   }
 
@@ -358,7 +358,7 @@ extension StringFiltersTests {
 
     for (input, substring) in expectations {
       let result = try Filters.Strings.contains(input, arguments: [substring])
-      XCTAssertFalse(result!)
+      XCTAssertFalse(result)
     }
   }
 }
@@ -382,7 +382,7 @@ extension StringFiltersTests {
     ]
 
     for (input, prefix) in expectations {
-      let result = Filters.Strings.hasPrefix(input, prefix: prefix)
+      let result = try Filters.Strings.hasPrefix(input, arguments: [prefix])
       XCTAssertTrue(result)
     }
   }
@@ -400,7 +400,7 @@ extension StringFiltersTests {
       ]
 
     for (input, prefix) in expectations {
-      let result = Filters.Strings.hasPrefix(input, prefix: prefix)
+      let result = try Filters.Strings.hasPrefix(input, arguments: [prefix])
       XCTAssertFalse(result)
     }
   }
@@ -424,7 +424,7 @@ extension StringFiltersTests {
     ]
 
     for (input, suffix) in expectations {
-      let result = Filters.Strings.hasSuffix(input, suffix: suffix)
+      let result = try Filters.Strings.hasSuffix(input, arguments: [suffix])
       XCTAssertTrue(result)
     }
   }
@@ -446,7 +446,7 @@ extension StringFiltersTests {
     ]
 
     for (input, suffix) in expectations {
-      let result = Filters.Strings.hasSuffix(input, suffix: suffix)
+      let result = try Filters.Strings.hasSuffix(input, arguments: [suffix])
       XCTAssertFalse(result)
     }
   }
@@ -462,7 +462,7 @@ extension StringFiltersTests {
     ]
 
     for (input, substring, replacement, expected) in expectations {
-      let result = try Filters.Strings.replace(source: input, substring: substring, replacement: replacement) as? String
+      let result = try Filters.Strings.replace(input, arguments: [substring, replacement]) as? String
       XCTAssertEqual(result, expected)
     }
   }
