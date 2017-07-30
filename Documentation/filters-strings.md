@@ -114,6 +114,10 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 | `42hello`  | `_42hello` |
 | `some$URL` | `Some_URL` |
 
+## Filter: `titlecase`
+
+Deprecated in favor of `upperFirstLetter`.
+
 ## Filter: `upperFirstLetter`
 
 Simply uppercases the first character, leaving the other characters untouched.
