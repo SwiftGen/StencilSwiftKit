@@ -173,8 +173,16 @@ extension Filters {
     }
 
     /// Checks if the given string contains given substring
+    ///
+    /// - Parameters:
+    ///   - value: the string value to check if it contains substring
+    ///   - arguments: the arguments to the function; expecting one string argument - substring
     /// - Returns: the result whether true or not
-    static func contains(_ string: String, substring: String) -> Bool {
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or 
+    ///           if number of arguments is not one or if the given argument isn't a string
+    static func contains(_ value: Any?, arguments: [Any?]) throws -> Bool? {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      guard let substring = arguments.first as? String else { throw Filters.Error.invalidInputType }
       return string.contains(substring)
     }
 

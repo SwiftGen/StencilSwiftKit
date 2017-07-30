@@ -21,7 +21,8 @@ public extension Extension {
     registerFilter("swiftIdentifier", filter: Filters.Strings.swiftIdentifier)
     registerFilter("titlecase", filter: Filters.Strings.titlecase)
     registerFilter("lowerFirstLetter", filter: Filters.Strings.lowerFirstLetter)
-    registerBoolFilterWithArguments("contains", filter: Filters.Strings.contains)
+    registerFilter("contains", filter: Filters.Strings.contains)
+    
     registerBoolFilterWithArguments("hasPrefix", filter: Filters.Strings.hasPrefix)
     registerBoolFilterWithArguments("hasSuffix", filter: Filters.Strings.hasSuffix)
     registerFilterWithTwoArguments("replace", filter: Filters.Strings.replace)
@@ -69,36 +70,6 @@ extension Stencil.Extension {
 }
 
 private struct Filter<T> {
-  static func make(_ filter: @escaping (T) -> Bool) -> (Any?) throws -> Any? {
-    return { (any) throws -> Any? in
-      switch any {
-      case let type as T:
-        return filter(type)
-
-      case let array as [Any]:
-        return array.flatMap { $0 as? T }.filter(filter)
-
-      default:
-        return any
-      }
-    }
-  }
-
-  static func make<U>(_ filter: @escaping (T) -> U?) -> (Any?) throws -> Any? {
-    return { (any) throws -> Any? in
-      switch any {
-      case let type as T:
-        return filter(type)
-
-      case let array as [Any]:
-        return array.flatMap { $0 as? T }.flatMap(filter)
-
-      default:
-        return any
-      }
-    }
-  }
-
   static func make<A>(_ filter: @escaping (T, A) -> Bool) -> (Any?, A) throws -> Any? {
     return { (any, arg) throws -> Any? in
       switch any {

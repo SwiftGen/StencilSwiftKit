@@ -338,8 +338,8 @@ extension StringFiltersTests {
     ]
 
     for (input, substring) in expectations {
-      let result = Filters.Strings.contains(input, substring: substring)
-      XCTAssertTrue(result)
+      let result = try Filters.Strings.contains(input, arguments: [substring])
+      XCTAssertTrue(result!)
     }
   }
 
@@ -357,8 +357,8 @@ extension StringFiltersTests {
     ]
 
     for (input, substring) in expectations {
-      let result = Filters.Strings.contains(input, substring: substring)
-      XCTAssertFalse(result)
+      let result = try Filters.Strings.contains(input, arguments: [substring])
+      XCTAssertFalse(result!)
     }
   }
 }
