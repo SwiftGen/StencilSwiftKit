@@ -89,11 +89,6 @@ extension Filters {
       return transformed
     }
     
-    /// Deprecated in favor of `upperFirstLetter`
-    static func titlecase(_ value: Any?) throws -> Any? {
-        return try upperFirstLetter(value)
-    }
-    
     /// Lowers the first letter of the string
     /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
     /// 
