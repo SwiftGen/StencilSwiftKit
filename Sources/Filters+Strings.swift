@@ -88,7 +88,7 @@ extension Filters {
       let transformed = String(scalars[start..<idx]).lowercased() + String(scalars[idx..<scalars.endIndex])
       return transformed
     }
-    
+
     /// Lowers the first letter of the string
     /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
     /// 

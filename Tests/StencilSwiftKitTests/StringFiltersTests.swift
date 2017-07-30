@@ -280,7 +280,7 @@ extension StringFiltersTests {
       "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
       "PLEASE_STOP_SCREAMING!": "PLEASE_STOP_SCREAMING!"
     ]
-    
+
     for (input, expected) in expectations {
       let result = try Filters.Strings.upperFirstLetter(input) as? String
       XCTAssertEqual(result, expected)
