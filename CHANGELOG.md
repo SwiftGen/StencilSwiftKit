@@ -11,35 +11,35 @@ Due to the removal of legacy code, there are a few breaking changes in this new 
 
 * Fix `snakeToCamelCase` parameters information in README.  
   [Liquidsoul](https://github.com/Liquidsoul)
-  [#45](https://github.com/SwiftGen/StencilSwiftKit/pulls/45)
+  [#45](https://github.com/SwiftGen/StencilSwiftKit/issues/45)
 
 ### Breaking Changes
 
 * The `ParametersError` enum has been replaced by the `Parameters.Error` nested type.  
   [Olivier Halligon](https://github.com/AliGator)
-  [#37](https://github.com/SwiftGen/SwiftGenKit/pulls/37)
+  [#37](https://github.com/SwiftGen/StencilSwiftKit/issues/37)
 * The `FilterError` enum has been replaced by the `Filters.Error` nested type.  
   [Olivier Halligon](https://github.com/AliGator)
-  [#37](https://github.com/SwiftGen/SwiftGenKit/pulls/37)
+  [#37](https://github.com/SwiftGen/StencilSwiftKit/issues/37)
 * The filters in `StringFilters` and `NumFilters` are now located under `Filters.Strings` and `Filters.Numbers`.  
   [Olivier Halligon](https://github.com/AliGator)
-  [#40](https://github.com/SwiftGen/SwiftGenKit/pulls/40)
+  [#40](https://github.com/SwiftGen/StencilSwiftKit/issues/40)
 * Removed the `join` filter, as it's now integrated in `Stencil` proper.  
   [David Jennes](https://github.com/djbe)
-  [#10](https://github.com/SwiftGen/StencilSwiftKit/pull/10)
+  [#10](https://github.com/SwiftGen/StencilSwiftKit/issues/10)
 * Refactored the `snakeToCamelCase` filter to now accept an (optional) boolean parameter to control the `noPrefix` behaviour.  
   [David Jennes](https://github.com/djbe)
-  [#41](https://github.com/SwiftGen/StencilSwiftKit/pull/41)
+  [#41](https://github.com/SwiftGen/StencilSwiftKit/issues/41)
 * Rename the `stringToSwiftIdentifier` function to `swiftIdentifier` to better match the other method names.  
   [David Jennes](https://github.com/djbe)
-  [#46](https://github.com/SwiftGen/StencilSwiftKit/pull/46)
+  [#46](https://github.com/SwiftGen/StencilSwiftKit/issues/46)
 
 ### New Features
 
 * Added the `removeNewlines` filter to remove newlines (and spaces) from a string.  
   [David Jennes](https://github.com/djbe)
-  [#47](https://github.com/SwiftGen/StencilSwiftKit/pull/47)
-  [#48](https://github.com/SwiftGen/StencilSwiftKit/pull/48)
+  [#47](https://github.com/SwiftGen/StencilSwiftKit/issues/47)
+  [#48](https://github.com/SwiftGen/StencilSwiftKit/issues/48)
 
 ### Internal Changes
 
