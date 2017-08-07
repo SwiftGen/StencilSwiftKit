@@ -51,7 +51,7 @@ _None_
 
 * The context enrich function won't overwrite existing values in the `env` and `param` variables.  
   [David Jennes](https://github.com/djbe)
-  [#29](https://github.com/SwiftGen/SwiftGenKit/issues/29)
+  [#29](https://github.com/SwiftGen/StencilSwiftKit/issues/29)
 
 ### New Features
 
@@ -63,8 +63,8 @@ _None_
 
 * Further refactor the Rakefile into rakelibs, and add a Gemfile for gem dependencies.  
   [David Jennes](https://github.com/djbe)
-  [#28](https://github.com/SwiftGen/SwiftGenKit/issues/28)
-  [#31](https://github.com/SwiftGen/SwiftGenKit/issues/31)
+  [#28](https://github.com/SwiftGen/StencilSwiftKit/issues/28)
+  [#31](https://github.com/SwiftGen/StencilSwiftKit/issues/31)
 * Update Stencil to 0.9.0 and update project to Xcode 8.3.  
   [Diogo Tridapalli](https://github.com.diogot)
   [#32](https://github.com/SwiftGen/StencilSwiftKit/pull/32)
@@ -89,8 +89,8 @@ _None_
 
 * Switch from Travis CI to Circle CI, clean up the Rakefile in the process.  
   [David Jennes](https://github.com/djbe)
-  [#20](https://github.com/SwiftGen/SwiftGenKit/issues/20)
-  [#25](https://github.com/SwiftGen/SwiftGenKit/issues/25)
+  [#20](https://github.com/SwiftGen/StencilSwiftKit/issues/20)
+  [#25](https://github.com/SwiftGen/StencilSwiftKit/issues/25)
 * Fixed SPM dependency in `Package.swift`.  
   [Krzysztof Zabłocki](https://github.com/krzysztofzablocki)
   [#26](https://github.com/SwiftGen/StencilSwiftKit/pull/26/files)
