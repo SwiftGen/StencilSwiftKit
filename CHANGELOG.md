@@ -2,6 +2,12 @@
 
 ---
 
+## 2.0.1
+
+* Fix compilation on Linux.  
+  [JP Simard](https://github.com/jpsim)
+  [#56](https://github.com/SwiftGen/StencilSwiftKit/pull/56)
+
 ## 2.0.0
 
 Due to the removal of legacy code, there are a few breaking changes in this new version that affect both template writers as well as developers. We've provided a migration guide to help you through these changes, which you can find here:
