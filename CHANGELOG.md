@@ -2,6 +2,24 @@
 
 ---
 
+## Master
+
+### Bug Fixes
+
+_None_
+
+### Breaking Changes
+
+_None_
+
+### New Features
+
+_None_
+
+### Internal Changes
+
+_None_
+
 ## 2.0.1
 
 * Fix compilation on Linux.  
