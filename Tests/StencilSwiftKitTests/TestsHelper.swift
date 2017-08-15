@@ -9,7 +9,7 @@ import XCTest
 import PathKit
 
 private let colorCode: (String) -> String =
-  ProcessInfo().environment["XcodeColors"] == "YES" ? { "\u{001b}[\($0);" } : { _ in "" }
+  ProcessInfo.processInfo.environment["XcodeColors"] == "YES" ? { "\u{001b}[\($0);" } : { _ in "" }
 private let (msgColor, reset) = (colorCode("fg250,0,0"), colorCode(""))
 private let okCode = (num: colorCode("fg127,127,127"),
                       code: colorCode(""))
