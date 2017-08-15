@@ -96,7 +96,7 @@ This filter accepts a parameter (boolean, default `false`) that controls the pre
 | `snAke_case`   | `SnAkeCase` |
 | `SNAKE_CASE`   | `SnakeCase` |
 | `__snake_case` | `SnakeCase` |
-      
+
 ## Filter: `swiftIdentifier`
 
 Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:
@@ -116,6 +116,10 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 
 ## Filter: `titlecase`
 
+Deprecated in favor of `upperFirstLetter`.
+
+## Filter: `upperFirstLetter`
+
 Simply uppercases the first character, leaving the other characters untouched.
 
 Note that even if very similar, this filter differs from the `capitalized` filter, which uppercases the first character but also lowercases the remaining characters.
@@ -124,3 +128,50 @@ Note that even if very similar, this filter differs from the `capitalized` filte
 |-----------------|-----------------|
 | `hello`         | `Hello`         |
 | `peopleChooser` | `PeopleChooser` |
+
+## Filter: `lowerFirstLetter`
+
+Simply lowercases the first character, leaving the other characters untouched.
+
+| Input           | Output          |
+|-----------------|-----------------|
+| `Hello`         | `hello`         |
+| `PeopleChooser` | `peopleChooser` |
+| `Hi There!`     | `hi There!`     |
+
+## Filter: `contains`
+
+Checks if the string contains given substring - works the same as Swift's `String.contains`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `el`      | true            |
+| `Hi mates!` `yo`  | false           |
+
+## Filter: `hasPrefix`
+
+Checks if the string has the given prefix - works the same as Swift's `String.hasPrefix`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `Hi`      | false           |
+| `Hi mates!` `H`   | true            |
+
+## Filter: `hasSuffix`
+
+Checks if the string has the given suffix - works the same as Swift's `String.hasSuffix`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `llo`     | true            |
+| `Hi mates!` `?`   | false           |
+
+## Filter: `replace`
+
+Replaces the given substring with the given replacement in the source string.
+Works the same as Swift's `String.replacingOccurrences`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `l` `k`   | `Hekko`         |
+| `Europe` `e` `a`  | `Europa`        |

@@ -32,17 +32,43 @@ extension Filters {
       "right", "set", "Type", "unowned", "weak", "willSet"
     ]
 
+    /// Replaces in the given string the given substring with the replacement
+    /// "people picker", replacing "picker" with "life" gives "people life"
+    ///
+    /// - Parameters:
+    ///   - value: the value to be processed
+    ///   - arguments: the arguments to the function; expecting two arguments: substring, replacement
+    /// - Returns: the results string
+    /// - Throws: FilterError.invalidInputType if the value parameter or argunemts aren't string
+    static func replace(_ value: Any?, arguments: [Any?]) throws -> Any? {
+      guard let source = value as? String,
+            arguments.count == 2,
+            let substring = arguments[0] as? String,
+            let replacement = arguments[1] as? String else {
+        throw Filters.Error.invalidInputType
+      }
+      return source.replacingOccurrences(of: substring, with: replacement)
+    }
+
     static func swiftIdentifier(_ value: Any?) throws -> Any? {
       guard let value = value as? String else { throw Filters.Error.invalidInputType }
       return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)
     }
 
-    /* - If the string starts with only one uppercase letter, lowercase that first letter
-     * - If the string starts with multiple uppercase letters, lowercase those first letters
-     *   up to the one before the last uppercase one, but only if the last one is followed by
-     *   a lowercase character.
-     * e.g. "PeoplePicker" gives "peoplePicker" but "URLChooser" gives "urlChooser"
-     */
+    /// Lowers the first letter of the string
+    /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
+    static func lowerFirstLetter(_ value: Any?) throws -> Any? {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      let first = String(string.characters.prefix(1)).lowercased()
+      let other = String(string.characters.dropFirst(1))
+      return first + other
+    }
+
+    /// If the string starts with only one uppercase letter, lowercase that first letter
+    /// If the string starts with multiple uppercase letters, lowercase those first letters
+    /// up to the one before the last uppercase one, but only if the last one is followed by
+    /// a lowercase character.
+    /// e.g. "PeoplePicker" gives "peoplePicker" but "URLChooser" gives "urlChooser"
     static func lowerFirstWord(_ value: Any?) throws -> Any? {
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
       let cs = CharacterSet.uppercaseLetters
@@ -61,7 +87,15 @@ extension Filters {
       return transformed
     }
 
-    static func titlecase(_ value: Any?) throws -> Any? {
+    /// Lowers the first letter of the string
+    /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
+    /// 
+    /// - Parameters:
+    ///   - value: the value to uppercase first letter of
+    ///   - arguments: the arguments to the function; expecting zero
+    /// - Returns: the string with first letter being uppercased
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
+    static func upperFirstLetter(_ value: Any?) throws -> Any? {
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
       return titlecase(string)
     }
@@ -148,6 +182,48 @@ extension Filters {
           .joined()
           .trimmingCharacters(in: .whitespaces)
       }
+    }
+
+    /// Checks if the given string contains given substring
+    ///
+    /// - Parameters:
+    ///   - value: the string value to check if it contains substring
+    ///   - arguments: the arguments to the function; expecting one string argument - substring
+    /// - Returns: the result whether true or not
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or 
+    ///           if number of arguments is not one or if the given argument isn't a string
+    static func contains(_ value: Any?, arguments: [Any?]) throws -> Bool {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      guard let substring = arguments.first as? String else { throw Filters.Error.invalidInputType }
+      return string.contains(substring)
+    }
+
+    /// Checks if the given string has given prefix
+    ///
+    /// - Parameters:
+    ///   - value: the string value to check if it has prefix
+    ///   - arguments: the arguments to the function; expecting one string argument - prefix
+    /// - Returns: the result whether true or not
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or
+    ///           if number of arguments is not one or if the given argument isn't a string
+    static func hasPrefix(_ value: Any?, arguments: [Any?]) throws -> Bool {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      guard let prefix = arguments.first as? String else { throw Filters.Error.invalidInputType }
+      return string.hasPrefix(prefix)
+    }
+
+    /// Checks if the given string has given suffix
+    ///
+    /// - Parameters:
+    ///   - value: the string value to check if it has prefix
+    ///   - arguments: the arguments to the function; expecting one string argument - suffix
+    /// - Returns: the result whether true or not
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or
+    ///           if number of arguments is not one or if the given argument isn't a string
+    static func hasSuffix(_ value: Any?, arguments: [Any?]) throws -> Bool {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      guard let suffix = arguments.first as? String else { throw Filters.Error.invalidInputType }
+      return string.hasSuffix(suffix)
     }
 
     // MARK: - Private methods

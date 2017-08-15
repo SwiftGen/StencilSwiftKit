@@ -4,6 +4,8 @@
 // MIT Licence
 //
 
+// swiftlint:disable file_length
+
 import XCTest
 @testable import StencilSwiftKit
 
@@ -254,7 +256,7 @@ extension StringFiltersTests {
 }
 
 extension StringFiltersTests {
-  func testTitlecase() throws {
+  func testUpperFirstLetter() throws {
     let expectations = [
       "string": "String",
       "String": "String",
@@ -280,7 +282,187 @@ extension StringFiltersTests {
     ]
 
     for (input, expected) in expectations {
-      let result = try Filters.Strings.titlecase(input) as? String
+      let result = try Filters.Strings.upperFirstLetter(input) as? String
+      XCTAssertEqual(result, expected)
+    }
+  }
+}
+
+extension StringFiltersTests {
+  func testLowerFirstLetter() throws {
+    let expectations = [
+      "string": "string",
+      "String": "string",
+      "strIng": "strIng",
+      "strING": "strING",
+      "X": "x",
+      "x": "x",
+      "SomeCapString": "someCapString",
+      "someCapString": "someCapString",
+      "string with words": "string with words",
+      "String with words": "string with words",
+      "String With Words": "string With Words",
+      "STRing with words": "sTRing with words",
+      "string wiTH WOrds": "string wiTH WOrds",
+      "": "",
+      "A__B__C": "a__B__C",
+      "__y_z!": "__y_z!",
+      "PLEASESTOPSCREAMING": "pLEASESTOPSCREAMING",
+      "PLEASESTOPSCREAMING!": "pLEASESTOPSCREAMING!",
+      "PLEASE_STOP_SCREAMING": "pLEASE_STOP_SCREAMING",
+      "PLEASE STOP SCREAMING!": "pLEASE STOP SCREAMING!"
+    ]
+
+    for (input, expected) in expectations {
+      let result = try Filters.Strings.lowerFirstLetter(input) as? String
+      XCTAssertEqual(result, expected)
+    }
+  }
+}
+
+extension StringFiltersTests {
+  func testContains_WithTrueResult() throws {
+    let expectations = [
+      "string": "s",
+      "String": "ing",
+      "strIng": "strIng",
+      "strING": "rING",
+      "x": "x",
+      "X": "X",
+      "SomeCapString": "Some",
+      "someCapString": "apSt",
+      "string with words": "with",
+      "String with words": "th words",
+      "A__B__C": "_",
+      "__y_z!": "!"
+    ]
+
+    for (input, substring) in expectations {
+      let result = try Filters.Strings.contains(input, arguments: [substring])
+      XCTAssertTrue(result)
+    }
+  }
+
+  func testContains_WithFalseResult() throws {
+    let expectations = [
+      "string": "a",
+      "String": "blabla",
+      "strIng": "foo",
+      "strING": "ing",
+      "X": "x",
+      "string with words": "string with sentences",
+      "": "y",
+      "A__B__C": "a__B__C",
+      "__y_z!": "___"
+    ]
+
+    for (input, substring) in expectations {
+      let result = try Filters.Strings.contains(input, arguments: [substring])
+      XCTAssertFalse(result)
+    }
+  }
+}
+
+extension StringFiltersTests {
+  func testHasPrefix_WithTrueResult() throws {
+    let expectations = [
+      "string": "s",
+      "String": "Str",
+      "strIng": "strIng",
+      "strING": "strI",
+      "x": "x",
+      "X": "X",
+      "SomeCapString": "Some",
+      "someCapString": "someCap",
+      "string with words": "string",
+      "String with words": "String with",
+      "A__B__C": "A",
+      "__y_z!": "__",
+      "AnotherString": ""
+    ]
+
+    for (input, prefix) in expectations {
+      let result = try Filters.Strings.hasPrefix(input, arguments: [prefix])
+      XCTAssertTrue(result)
+    }
+  }
+
+  func testHasPrefix_WithFalseResult() throws {
+    let expectations = [
+      "string": "tring",
+      "String": "str",
+      "strING": "striNG",
+      "X": "x",
+      "string with words": "words with words",
+      "": "y",
+      "A__B__C": "a__B__C",
+      "__y_z!": "!"
+      ]
+
+    for (input, prefix) in expectations {
+      let result = try Filters.Strings.hasPrefix(input, arguments: [prefix])
+      XCTAssertFalse(result)
+    }
+  }
+}
+
+extension StringFiltersTests {
+  func testHasSuffix_WithTrueResult() throws {
+    let expectations = [
+      "string": "g",
+      "String": "ring",
+      "strIng": "trIng",
+      "strING": "strING",
+      "X": "X",
+      "x": "x",
+      "SomeCapString": "CapString",
+      "string with words": "with words",
+      "String with words": " words",
+      "string wiTH WOrds": "",
+      "A__B__C": "_C",
+      "__y_z!": "z!"
+    ]
+
+    for (input, suffix) in expectations {
+      let result = try Filters.Strings.hasSuffix(input, arguments: [suffix])
+      XCTAssertTrue(result)
+    }
+  }
+
+  func testHasSuffix_WithFalseResult() throws {
+    let expectations = [
+      "string": "gni",
+      "String": "Ing",
+      "strIng": "ing",
+      "strING": "nG",
+      "X": "x",
+      "x": "X",
+      "string with words": "with  words",
+      "String with words": " Words",
+      "String With Words": "th_Words",
+      "": "aa",
+      "A__B__C": "C__B",
+      "__y_z!": "z?"
+    ]
+
+    for (input, suffix) in expectations {
+      let result = try Filters.Strings.hasSuffix(input, arguments: [suffix])
+      XCTAssertFalse(result)
+    }
+  }
+}
+
+extension StringFiltersTests {
+  func testReplace() throws {
+    let expectations = [
+      ("string", "ing", "oke", "stroke"),
+      ("string", "folks", "mates", "string"),
+      ("hi mates!", "hi", "Yo", "Yo mates!"),
+      ("string with spaces", " ", "_", "string_with_spaces")
+    ]
+
+    for (input, substring, replacement, expected) in expectations {
+      let result = try Filters.Strings.replace(input, arguments: [substring, replacement]) as? String
       XCTAssertEqual(result, expected)
     }
   }
