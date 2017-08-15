@@ -55,9 +55,8 @@ extension Filters {
       return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)
     }
 
-    /* Lowers the first letter of the string
-     * e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
-     */
+    /// Lowers the first letter of the string
+    /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
     static func lowerFirstLetter(_ value: Any?) throws -> Any? {
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
       let first = String(string.characters.prefix(1)).lowercased()
@@ -65,12 +64,11 @@ extension Filters {
       return first + other
     }
 
-    /* - If the string starts with only one uppercase letter, lowercase that first letter
-     * - If the string starts with multiple uppercase letters, lowercase those first letters
-     *   up to the one before the last uppercase one, but only if the last one is followed by
-     *   a lowercase character.
-     * e.g. "PeoplePicker" gives "peoplePicker" but "URLChooser" gives "urlChooser"
-     */
+    /// If the string starts with only one uppercase letter, lowercase that first letter
+    /// If the string starts with multiple uppercase letters, lowercase those first letters
+    /// up to the one before the last uppercase one, but only if the last one is followed by
+    /// a lowercase character.
+    /// e.g. "PeoplePicker" gives "peoplePicker" but "URLChooser" gives "urlChooser"
     static func lowerFirstWord(_ value: Any?) throws -> Any? {
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
       let cs = CharacterSet.uppercaseLetters
