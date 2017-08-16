@@ -467,3 +467,18 @@ extension StringFiltersTests {
     }
   }
 }
+
+extension StringFiltersTests {
+  func testBasename() throws {
+    let expectations = [
+      "test.jpg": "test.jpg",
+      "some/folder/test.jpg": "test.jpg",
+      "weird.name.here": "weird.name.here"
+    ]
+
+    for (input, expected) in expectations {
+      let result = try Filters.Strings.basename(input) as? String
+      XCTAssertEqual(result, expected)
+    }
+  }
+}
