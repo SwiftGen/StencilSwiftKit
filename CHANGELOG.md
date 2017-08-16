@@ -14,7 +14,9 @@ _None_
 
 ### New Features
 
-_None_
+* Added a `basename` string filter for getting a filename out of a path.  
+  [David Jennes](https://github.com/djbe) 
+  [#60](https://github.com/SwiftGen/StencilSwiftKit/pull/60)
 
 ### Internal Changes
 
