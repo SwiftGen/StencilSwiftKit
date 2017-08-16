@@ -18,7 +18,9 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Ensure `swiftlint` is run using `bundler`.  
+  [David Jennes](https://github.com/djbe) 
+  [#59](https://github.com/SwiftGen/StencilSwiftKit/pull/59)
 
 ## 2.0.1
 
