@@ -226,6 +226,16 @@ extension Filters {
       return string.hasSuffix(suffix)
     }
 
+    /// Converts a file path to just the filename, stripping any path components before it.
+    ///
+    /// - Parameter value: the value to be processed
+    /// - Returns: the basename of the path
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
+    static func basename(_ value: Any?) throws -> Any? {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      return (string as NSString).lastPathComponent
+    }
+
     // MARK: - Private methods
 
     private static func removeLeadingWhitespaces(from string: String) -> String {
