@@ -471,13 +471,33 @@ extension StringFiltersTests {
 extension StringFiltersTests {
   func testBasename() throws {
     let expectations = [
-      "test.jpg": "test.jpg",
-      "some/folder/test.jpg": "test.jpg",
-      "weird.name.here": "weird.name.here"
+      "/tmp/scratch.tiff": "scratch.tiff",
+      "/tmp/scratch": "scratch",
+      "/tmp/": "tmp",
+      "scratch///": "scratch",
+      "/": "/"
     ]
 
     for (input, expected) in expectations {
       let result = try Filters.Strings.basename(input) as? String
+      XCTAssertEqual(result, expected)
+    }
+  }
+}
+
+extension StringFiltersTests {
+  func testDirname() throws {
+    let expectations = [
+      "/tmp/scratch.tiff": "/tmp",
+      "/tmp/lock/": "/tmp",
+      "/tmp/": "/",
+      "/tmp": "/",
+      "/": "/",
+      "scratch.tiff": ""
+    ]
+
+    for (input, expected) in expectations {
+      let result = try Filters.Strings.dirname(input) as? String
       XCTAssertEqual(result, expected)
     }
   }

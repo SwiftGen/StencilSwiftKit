@@ -28,6 +28,7 @@
   * `basename`: Get the filename from a path.
   * `camelToSnakeCase`: Transforms text from camelCase to snake_case. By default it converts to lower case, unless a single optional argument is set to "false", "no" or "0".
   * `contains`: Check if a string contains a specific substring.
+  * `dirname`: Get the path to the parent folder from a path.
   * `escapeReservedKeywords`: Escape keywords reserved in the Swift language, by wrapping them inside backticks so that the can be used as regular escape keywords in Swift code.
   * `hasPrefix` / `hasSuffix`: Check if a string starts/ends with a specific substring.
   * `lowerFirstLetter`: Lowercases only the first letter of a string.

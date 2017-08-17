@@ -44,6 +44,16 @@ Checks if the string contains given substring - works the same as Swift's `Strin
 | `Hello` `el`      | true            |
 | `Hi mates!` `yo`  | false           |
 
+## Filter: `dirname`
+
+Remove the last component of a path, essentially returning the path without the filename (and extension).
+
+| Input                  | Output        |
+|------------------------|---------------|
+| `test.jpg`             | ``            |
+| `some/folder/test.jpg` | `some/folder` |
+| `file.txt.png`         | ``            |
+
 ## Filter: `escapeReservedKeywords`
 
 Checks if the given string matches a reserved Swift keyword. If it does, wrap the string in escape characters (backticks).

@@ -236,6 +236,16 @@ extension Filters {
       return (string as NSString).lastPathComponent
     }
 
+    /// Converts a file path to just the path without the filename.
+    ///
+    /// - Parameter value: the value to be processed
+    /// - Returns: the dirname of the path
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
+    static func dirname(_ value: Any?) throws -> Any? {
+      guard let string = value as? String else { throw Filters.Error.invalidInputType }
+      return (string as NSString).deletingLastPathComponent
+    }
+
     // MARK: - Private methods
 
     private static func removeLeadingWhitespaces(from string: String) -> String {

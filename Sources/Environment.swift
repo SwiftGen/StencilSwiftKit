@@ -16,6 +16,7 @@ public extension Extension {
     registerFilter("basename", filter: Filters.Strings.basename)
     registerFilter("camelToSnakeCase", filter: Filters.Strings.camelToSnakeCase)
     registerFilter("contains", filter: Filters.Strings.contains)
+    registerFilter("dirname", filter: Filters.Strings.dirname)
     registerFilter("escapeReservedKeywords", filter: Filters.Strings.escapeReservedKeywords)
     registerFilter("hasPrefix", filter: Filters.Strings.hasPrefix)
     registerFilter("hasSuffix", filter: Filters.Strings.hasSuffix)

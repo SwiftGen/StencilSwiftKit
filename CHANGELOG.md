@@ -14,7 +14,7 @@ _None_
 
 ### New Features
 
-* Added a `basename` string filter for getting a filename out of a path.  
+* Added the `basename` and `dirname` string filters for getting a filename, or parent folder (respectively), out of a path.  
   [David Jennes](https://github.com/djbe) 
   [#60](https://github.com/SwiftGen/StencilSwiftKit/pull/60)
 
