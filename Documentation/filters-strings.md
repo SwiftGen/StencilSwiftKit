@@ -2,6 +2,16 @@
 
 This is a list of filters that are added by StencilSwiftKit on top of the filters already provided by Stencil (which you can [find here](http://stencil.fuller.li/en/latest/builtins.html#built-in-filters)).
 
+## Filter: `basename`
+
+Get the last component of a path, essentially the filename (and extension).
+
+| Input                  | Output         |
+|------------------------|----------------|
+| `test.jpg`             | `test.jpg`     |
+| `some/folder/test.jpg` | `test.jpg`     |
+| `file.txt.png`         | `file.txt.png` |
+
 ## Filter: `camelToSnakeCase`
 
 Transforms text from camelCase to snake_case.
@@ -25,6 +35,25 @@ By default it converts to lower case, unless a single optional argument is set t
 | `URLChooser`             | `URL_Chooser`            |
 | `PLEASE_STOP_SCREAMING!` | `PLEASE_STOP_SCREAMING!` |
 
+## Filter: `contains`
+
+Checks if the string contains given substring - works the same as Swift's `String.contains`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `el`      | true            |
+| `Hi mates!` `yo`  | false           |
+
+## Filter: `dirname`
+
+Remove the last component of a path, essentially returning the path without the filename (and extension).
+
+| Input                  | Output        |
+|------------------------|---------------|
+| `test.jpg`             | ``            |
+| `some/folder/test.jpg` | `some/folder` |
+| `file.txt.png`         | ``            |
+
 ## Filter: `escapeReservedKeywords`
 
 Checks if the given string matches a reserved Swift keyword. If it does, wrap the string in escape characters (backticks).
@@ -34,6 +63,34 @@ Checks if the given string matches a reserved Swift keyword. If it does, wrap th
 | `hello` | `hello`      |
 | `self`  | `` `self` `` |
 | `Any`   | `` `Any` ``  |
+
+## Filter: `hasPrefix`
+
+Checks if the string has the given prefix - works the same as Swift's `String.hasPrefix`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `Hi`      | false           |
+| `Hi mates!` `H`   | true            |
+
+## Filter: `hasSuffix`
+
+Checks if the string has the given suffix - works the same as Swift's `String.hasSuffix`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `llo`     | true            |
+| `Hi mates!` `?`   | false           |
+
+## Filter: `lowerFirstLetter`
+
+Simply lowercases the first character, leaving the other characters untouched.
+
+| Input           | Output          |
+|-----------------|-----------------|
+| `Hello`         | `hello`         |
+| `PeopleChooser` | `peopleChooser` |
+| `Hi There!`     | `hi There!`     |
 
 ## Filter: `lowerFirstWord`
 
@@ -70,6 +127,16 @@ This filter has a couple of modes that you can specifiy using an optional argume
 | `test\n  test`         | `testtest`            |
 | `test, \ntest, \ntest` | `test, test, test`    |
 | ` test test `          | `test test`           |
+
+## Filter: `replace`
+
+Replaces the given substring with the given replacement in the source string.
+Works the same as Swift's `String.replacingOccurrences`.
+
+| Input             | Output          |
+|-------------------|-----------------|
+| `Hello` `l` `k`   | `Hekko`         |
+| `Europe` `e` `a`  | `Europa`        |
 
 ## Filter: `snakeToCamelCase`
 
@@ -128,50 +195,3 @@ Note that even if very similar, this filter differs from the `capitalized` filte
 |-----------------|-----------------|
 | `hello`         | `Hello`         |
 | `peopleChooser` | `PeopleChooser` |
-
-## Filter: `lowerFirstLetter`
-
-Simply lowercases the first character, leaving the other characters untouched.
-
-| Input           | Output          |
-|-----------------|-----------------|
-| `Hello`         | `hello`         |
-| `PeopleChooser` | `peopleChooser` |
-| `Hi There!`     | `hi There!`     |
-
-## Filter: `contains`
-
-Checks if the string contains given substring - works the same as Swift's `String.contains`.
-
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `el`      | true            |
-| `Hi mates!` `yo`  | false           |
-
-## Filter: `hasPrefix`
-
-Checks if the string has the given prefix - works the same as Swift's `String.hasPrefix`.
-
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `Hi`      | false           |
-| `Hi mates!` `H`   | true            |
-
-## Filter: `hasSuffix`
-
-Checks if the string has the given suffix - works the same as Swift's `String.hasSuffix`.
-
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `llo`     | true            |
-| `Hi mates!` `?`   | false           |
-
-## Filter: `replace`
-
-Replaces the given substring with the given replacement in the source string.
-Works the same as Swift's `String.replacingOccurrences`.
-
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `l` `k`   | `Hekko`         |
-| `Europe` `e` `a`  | `Europa`        |
