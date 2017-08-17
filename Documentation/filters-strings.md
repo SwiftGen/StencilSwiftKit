@@ -166,7 +166,9 @@ This filter accepts a parameter (boolean, default `false`) that controls the pre
 
 ## Filter: `swiftIdentifier`
 
-Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:
+This filter has a couple of modes that you can specifiy using an optional argument (defaults to "normal"):
+
+**normal**: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:
 
 - Uppercase the first character.
 - Prefix with an underscore if the first character is a number.
@@ -175,11 +177,23 @@ Transforms an arbitrary string into a valid Swift identifier (using only valid c
 The list of allowed characters can be found here:
 https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html
 
-| Input      | Output     |
-|------------|------------|
-| `hello`    | `Hello`    |
-| `42hello`  | `_42hello` |
-| `some$URL` | `Some_URL` |
+| Input                  | Output                  |
+|------------------------|-------------------------|
+| `hello`                | `Hello`                 |
+| `42hello`              | `_42hello`              |
+| `some$URL`             | `Some_URL`              |
+| `25 Ultra Light`       | `_25_Ultra_Light`       |
+| `26_extra_ultra_light` | `_26_extra_ultra_light` |
+
+**pretty**: Same as normal, but it will first replace whitespaces by underscores and apply the `snakeToCamelCase` filter.
+
+| Input                  | Output               |
+|------------------------|----------------------|
+| `hello`                | `Hello`              |
+| `42hello`              | `_42hello`           |
+| `some$URL`             | `Some_URL`           |
+| `25 Ultra Light`       | `_25UltraLight`      |
+| `26_extra_ultra_light` | `_26ExtraUltraLight` |
 
 ## Filter: `titlecase`
 

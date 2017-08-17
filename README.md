@@ -36,7 +36,7 @@
   * `removeNewlines`: Removes newlines and other whitespace characters, depending on the mode ("all" or "leading").
   * `replace`: Replaces instances of a substring with a new string.
   * `snakeToCamelCase`: Transforms text from snake_case to camelCase. By default it keeps leading underscores, unless a single optional argument is set to "true", "yes" or "1".
-  * `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference)
+  * `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). In "pretty" mode, it will also first apply the snakeToCamelCase filter.
   * `upperFirstLetter`: Uppercases only the first character
 * [Number filters](Documentation/filters-numbers.md):
   * `int255toFloat`
