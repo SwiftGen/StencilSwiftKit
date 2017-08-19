@@ -73,9 +73,9 @@ extension Filters {
       case .normal:
         return StencilSwiftKit.swiftIdentifier(from: string, replaceWithUnderscores: true)
       case .pretty:
-        string = string.replacingOccurrences(of: " ", with: "_")
+        string = StencilSwiftKit.swiftIdentifier(from: string, replaceWithUnderscores: true)
         string = try snakeToCamelCase(string, stripLeading: true)
-        return StencilSwiftKit.swiftIdentifier(from: string, replaceWithUnderscores: true)
+        return StencilSwiftKit.prefixWithUnderscoreIfNeeded(string: string)
       }
     }
 

@@ -70,6 +70,12 @@ extension SwiftIdentifierTests {
       "42hello": "_42hello",
       "some$URL": "Some_URL",
       "with space": "With_Space",
+      "apples.count": "Apples_Count",
+      ".SFNSDisplay": "_SFNSDisplay",
+      "Show-NavCtrl": "Show_NavCtrl",
+      "HEADER_TITLE": "HEADER_TITLE",
+      "multiLine\nKey": "MultiLine_Key",
+      "foo_bar.baz.qux-yay": "Foo_bar_Baz_Qux_Yay",
       "25 Ultra Light": "_25_Ultra_Light",
       "26_extra_ultra_light": "_26_extra_ultra_light",
       "12 @ 34 % 56 + 78 Hello world": "_12___34___56___78_Hello_World"
@@ -85,11 +91,17 @@ extension SwiftIdentifierTests {
     let expectations = [
       "hello": "Hello",
       "42hello": "_42hello",
-      "some$URL": "Some_URL",
+      "some$URL": "SomeURL",
       "with space": "WithSpace",
+      "apples.count": "ApplesCount",
+      ".SFNSDisplay": "SFNSDisplay",
+      "Show-NavCtrl": "ShowNavCtrl",
+      "HEADER_TITLE": "HeaderTitle",
+      "multiLine\nKey": "MultiLineKey",
+      "foo_bar.baz.qux-yay": "FooBarBazQuxYay",
       "25 Ultra Light": "_25UltraLight",
       "26_extra_ultra_light": "_26ExtraUltraLight",
-      "12 @ 34 % 56 + 78 Hello world": "_12_34_56_78HelloWorld"
+      "12 @ 34 % 56 + 78 Hello world": "_12345678HelloWorld"
     ]
 
     for (input, expected) in expectations {

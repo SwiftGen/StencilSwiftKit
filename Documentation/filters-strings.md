@@ -184,16 +184,21 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 | `some$URL`             | `Some_URL`              |
 | `25 Ultra Light`       | `_25_Ultra_Light`       |
 | `26_extra_ultra_light` | `_26_extra_ultra_light` |
+| `apples.count`         | `Apples_Count`          |
+| `foo_bar.baz.qux-yay`  | `Foo_bar_Baz_Qux_Yay`   |
 
-**pretty**: Same as normal, but it will first replace whitespaces by underscores and apply the `snakeToCamelCase` filter.
+**pretty**: Same as normal, but afterwards it will apply the `snakeToCamelCase` filter, and other manipulations, for a prettier (but still valid) identifier.
 
 | Input                  | Output               |
 |------------------------|----------------------|
 | `hello`                | `Hello`              |
 | `42hello`              | `_42hello`           |
-| `some$URL`             | `Some_URL`           |
+| `some$URL`             | `SomeURL`            |
 | `25 Ultra Light`       | `_25UltraLight`      |
 | `26_extra_ultra_light` | `_26ExtraUltraLight` |
+| `apples.count`         | `ApplesCount`        |
+| `foo_bar.baz.qux-yay`  | `FooBarBazQuxYay`    |
+
 
 ## Filter: `titlecase`
 
