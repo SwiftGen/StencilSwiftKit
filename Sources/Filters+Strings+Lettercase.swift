@@ -1,9 +1,7 @@
 //
-//  Filters+Strings+Lettercase.swift
-//  Pods
-//
-//  Created by Anton Domashnev on 20.08.17.
-//
+// StencilSwiftKit
+// Copyright (c) 2017 SwiftGen
+// MIT Licence
 //
 
 import Foundation
@@ -107,14 +105,15 @@ extension Filters.Strings {
 
         // only if passed true, strip the prefix underscores
         var prefixUnderscores = ""
-        if !stripLeading {
-            for scalar in string.unicodeScalars {
-                guard scalar == "_" else { break }
-                prefixUnderscores += "_"
-            }
+        var result: String { return prefixUnderscores + unprefixed }
+        if stripLeading {
+            return result
         }
-
-        return prefixUnderscores + unprefixed
+        for scalar in string.unicodeScalars {
+            guard scalar == "_" else { break }
+            prefixUnderscores += "_"
+        }
+        return result
     }
 
     // MARK: - Private

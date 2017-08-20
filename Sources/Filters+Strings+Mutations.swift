@@ -1,9 +1,7 @@
 //
-//  Filters+Strings+Mutations.swift
-//  Pods
-//
-//  Created by Anton Domashnev on 20.08.17.
-//
+// StencilSwiftKit
+// Copyright (c) 2017 SwiftGen
+// MIT Licence
 //
 
 import Foundation
@@ -132,14 +130,12 @@ extension Filters.Strings {
         }
     }
 
-    // MARK: - Private methods
+    // MARK: - Private
 
     private static func removeLeadingWhitespaces(from string: String) -> String {
         let chars = string.unicodeScalars.drop { CharacterSet.whitespaces.contains($0) }
         return String(chars)
     }
-
-    // MARK: - Private
 
     /// Checks if the string is one of the reserved keywords and if so, escapes it using backticks
     ///
