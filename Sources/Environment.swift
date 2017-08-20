@@ -12,15 +12,15 @@ public extension Extension {
     registerStringsFilters()
     registerNumbersFilters()
   }
-    
+
   // MARK: - Private
-  
+
   private func registerNumbersFilters() {
     registerFilter("hexToInt", filter: Filters.Numbers.hexToInt)
     registerFilter("int255toFloat", filter: Filters.Numbers.int255toFloat)
     registerFilter("percent", filter: Filters.Numbers.percent)
   }
-  
+
   private func registerStringsFilters() {
     registerFilter("basename", filter: Filters.Strings.basename)
     registerFilter("camelToSnakeCase", filter: Filters.Strings.camelToSnakeCase)
@@ -38,7 +38,7 @@ public extension Extension {
     registerFilter("titlecase", filter: Filters.Strings.upperFirstLetter)
     registerFilter("upperFirstLetter", filter: Filters.Strings.upperFirstLetter)
   }
-  
+
   private func registerTags() {
     registerTag("set", parser: SetNode.parse)
     registerTag("macro", parser: MacroNode.parse)

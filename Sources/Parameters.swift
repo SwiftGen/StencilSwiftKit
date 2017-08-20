@@ -104,7 +104,7 @@ public enum Parameters {
     result.insert(".")
     return result.inverted
   }()
-  
+
   private static func createParameter(from string: String) throws -> Parameter {
     let parts = string.components(separatedBy: "=")
     if parts.count >= 2 {
