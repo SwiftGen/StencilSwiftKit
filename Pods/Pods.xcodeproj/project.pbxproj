@@ -31,6 +31,7 @@
 		637082FCBAF4D5BA395484A67D546E17 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E92B989035E25169DF9300616F23AAB /* Environment.swift */; };
 		6D1EF02C1F49E85D00EA91EF /* Filters+Strings+Mutations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1EF02B1F49E85D00EA91EF /* Filters+Strings+Mutations.swift */; };
 		6D1EF0301F49EC7C00EA91EF /* Filters+Strings+Lettercase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1EF02F1F49EC7C00EA91EF /* Filters+Strings+Lettercase.swift */; };
+		6D1EF0341F4A25CA00EA91EF /* Filters+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1EF0331F4A25CA00EA91EF /* Filters+Strings.swift */; };
 		722E658DD92366A84D5A67AF0DB0E9C9 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8923816ECEE63BE56AD67F2A147EF787 /* Context.swift */; };
 		759D827E105015554B9EEB00299E122C /* MapNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFD4D19D5AAB65F338845041B6F767D2 /* MapNode.swift */; };
 		77D8C016692C6E24EBEDF607455B0B0E /* PathKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0436538F42B0A2EC1C972F8EE47937E0 /* PathKit.framework */; };
@@ -142,6 +143,7 @@
 		69F59D1438D9D791C86016D62F2078B9 /* Template.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Template.swift; path = Sources/Template.swift; sourceTree = "<group>"; };
 		6D1EF02B1F49E85D00EA91EF /* Filters+Strings+Mutations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Filters+Strings+Mutations.swift"; path = "Sources/Filters+Strings+Mutations.swift"; sourceTree = "<group>"; };
 		6D1EF02F1F49EC7C00EA91EF /* Filters+Strings+Lettercase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Filters+Strings+Lettercase.swift"; path = "Sources/Filters+Strings+Lettercase.swift"; sourceTree = "<group>"; };
+		6D1EF0331F4A25CA00EA91EF /* Filters+Strings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Filters+Strings.swift"; path = "Sources/Filters+Strings.swift"; sourceTree = "<group>"; };
 		6E3DE9DADD254D64C598089530A5932B /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		749318FE61E9EC318ED19250766267E2 /* Stencil-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Stencil-prefix.pch"; sourceTree = "<group>"; };
 		7DB310C86ADAE310E9DF111FDD487FAF /* StencilSwiftKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StencilSwiftKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -390,6 +392,7 @@
 				6D1EF02F1F49EC7C00EA91EF /* Filters+Strings+Lettercase.swift */,
 				6D1EF02B1F49E85D00EA91EF /* Filters+Strings+Mutations.swift */,
 				47DB41142F62E8B5174F3DF281DCD5E3 /* Filters+Strings+Boolean.swift */,
+				6D1EF0331F4A25CA00EA91EF /* Filters+Strings.swift */,
 				DFD4D19D5AAB65F338845041B6F767D2 /* MapNode.swift */,
 				F95B3E1482647F7822F3C47A7AE76BD9 /* Parameters.swift */,
 				5DA2EACBDBA3A368338F5A0A5C89D62D /* SetNode.swift */,
@@ -595,16 +598,17 @@
 				7DEDE215489DFFE058F997C06CD9111D /* Context.swift in Sources */,
 				637082FCBAF4D5BA395484A67D546E17 /* Environment.swift in Sources */,
 				C95B8343B8C61222772740E5865B7005 /* Filters+Numbers.swift in Sources */,
+				6D1EF0341F4A25CA00EA91EF /* Filters+Strings.swift in Sources */,
+				6D1EF02C1F49E85D00EA91EF /* Filters+Strings+Mutations.swift in Sources */,
 				261ED3A17531A5012E5E2EA78BC189C3 /* Filters+Strings+Boolean.swift in Sources */,
-				8BC329E46538413C89622D36F9599D40 /* Filters.swift in Sources */,
 				6D1EF0301F49EC7C00EA91EF /* Filters+Strings+Lettercase.swift in Sources */,
+				8BC329E46538413C89622D36F9599D40 /* Filters.swift in Sources */,
 				759D827E105015554B9EEB00299E122C /* MapNode.swift in Sources */,
 				33D90C9CAF6D9EEC537D8AF319C624C6 /* Parameters.swift in Sources */,
 				C372EA8DC7AE1A9B3DB7EB2278C29338 /* SetNode.swift in Sources */,
 				85B93ADD2E39D138FCFFBB16141221D7 /* StencilSwiftKit-dummy.m in Sources */,
 				E50716969C524070F2EA8DF037ED4CC2 /* StencilSwiftTemplate.swift in Sources */,
 				4D564D819736B2A614641ABC770C82C1 /* SwiftIdentifier.swift in Sources */,
-				6D1EF02C1F49E85D00EA91EF /* Filters+Strings+Mutations.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
