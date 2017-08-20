@@ -54,39 +54,41 @@ private func identifierCharacterSets(exceptions: String) -> (head: NSMutableChar
   return (head, tail)
 }
 
-func swiftIdentifier(from string: String,
-                     forbiddenChars exceptions: String = "",
-                     replaceWithUnderscores underscores: Bool = false) -> String {
+enum SwiftIdentifier {
+  static func identifier(from string: String,
+                         forbiddenChars exceptions: String = "",
+                         replaceWithUnderscores underscores: Bool = false) -> String {
 
-  let (_, tail) = identifierCharacterSets(exceptions: exceptions)
+    let (_, tail) = identifierCharacterSets(exceptions: exceptions)
 
-  let parts = string.components(separatedBy: tail.inverted)
-  let replacement = underscores ? "_" : ""
-  let mappedParts = parts.map({ (string: String) -> String in
-    // Can't use capitalizedString here because it will lowercase all letters after the first
-    // e.g. "SomeNiceIdentifier".capitalizedString will because "Someniceidentifier" which is not what we want
-    let ns = NSString(string: string)
-    if ns.length > 0 {
-      let firstLetter = ns.substring(to: 1)
-      let rest = ns.substring(from: 1)
-      return firstLetter.uppercased() + rest
-    } else {
-      return ""
-    }
-  })
+    let parts = string.components(separatedBy: tail.inverted)
+    let replacement = underscores ? "_" : ""
+    let mappedParts = parts.map({ (string: String) -> String in
+      // Can't use capitalizedString here because it will lowercase all letters after the first
+      // e.g. "SomeNiceIdentifier".capitalizedString will because "Someniceidentifier" which is not what we want
+      let ns = NSString(string: string)
+      if ns.length > 0 {
+        let firstLetter = ns.substring(to: 1)
+        let rest = ns.substring(from: 1)
+        return firstLetter.uppercased() + rest
+      } else {
+        return ""
+      }
+    })
 
-  let result = mappedParts.joined(separator: replacement)
-  return prefixWithUnderscoreIfNeeded(string: result, forbiddenChars: exceptions)
-}
+    let result = mappedParts.joined(separator: replacement)
+    return prefixWithUnderscoreIfNeeded(string: result, forbiddenChars: exceptions)
+  }
 
-func prefixWithUnderscoreIfNeeded(string: String,
-                                  forbiddenChars exceptions: String = "") -> String {
+  static func prefixWithUnderscoreIfNeeded(string: String,
+                                           forbiddenChars exceptions: String = "") -> String {
 
-  let (head, tail) = identifierCharacterSets(exceptions: exceptions)
+    let (head, tail) = identifierCharacterSets(exceptions: exceptions)
 
-  let chars = string.unicodeScalars
-  let firstChar = chars[chars.startIndex]
-  let prefix = !head.longCharacterIsMember(firstChar.value) && tail.longCharacterIsMember(firstChar.value) ? "_" : ""
+    let chars = string.unicodeScalars
+    let firstChar = chars[chars.startIndex]
+    let prefix = !head.longCharacterIsMember(firstChar.value) && tail.longCharacterIsMember(firstChar.value) ? "_" : ""
 
-  return prefix + string
+    return prefix + string
+  }
 }

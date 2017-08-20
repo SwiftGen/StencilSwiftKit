@@ -71,11 +71,11 @@ extension Filters {
 
       switch mode {
       case .normal:
-        return StencilSwiftKit.swiftIdentifier(from: string, replaceWithUnderscores: true)
+        return SwiftIdentifier.identifier(from: string, replaceWithUnderscores: true)
       case .pretty:
-        string = StencilSwiftKit.swiftIdentifier(from: string, replaceWithUnderscores: true)
+        string = SwiftIdentifier.identifier(from: string, replaceWithUnderscores: true)
         string = try snakeToCamelCase(string, stripLeading: true)
-        return StencilSwiftKit.prefixWithUnderscoreIfNeeded(string: string)
+        return SwiftIdentifier.prefixWithUnderscoreIfNeeded(string: string)
       }
     }
 

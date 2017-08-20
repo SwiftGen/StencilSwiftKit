@@ -9,40 +9,42 @@ import XCTest
 
 class SwiftIdentifierTests: XCTestCase {
   func testBasicString() {
-    XCTAssertEqual(swiftIdentifier(from: "Hello"), "Hello")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "Hello"), "Hello")
   }
 
   func testBasicStringWithForbiddenChars() {
-    XCTAssertEqual(swiftIdentifier(from: "Hello", forbiddenChars: "l"), "HeO")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "Hello", forbiddenChars: "l"), "HeO")
   }
 
   func testBasicStringWithForbiddenCharsAndUnderscores() {
-    XCTAssertEqual(swiftIdentifier(from: "Hello", forbiddenChars: "l", replaceWithUnderscores: true), "He__O")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "Hello",
+                                              forbiddenChars: "l",
+                                              replaceWithUnderscores: true), "He__O")
   }
 
   func testSpecialChars() {
-    XCTAssertEqual(swiftIdentifier(from: "This-is-42$hello@world"), "ThisIs42HelloWorld")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "This-is-42$hello@world"), "ThisIs42HelloWorld")
   }
 
   func testKeepUppercaseAcronyms() {
-    XCTAssertEqual(swiftIdentifier(from: "some$URLDecoder"), "SomeURLDecoder")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "some$URLDecoder"), "SomeURLDecoder")
   }
 
   func testEmojis() {
-    XCTAssertEqual(swiftIdentifier(from: "some😎🎉emoji"), "Some😎🎉emoji")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "some😎🎉emoji"), "Some😎🎉emoji")
   }
 
   func testEmojis2() {
-    XCTAssertEqual(swiftIdentifier(from: "😎🎉"), "😎🎉")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "😎🎉"), "😎🎉")
   }
 
   func testNumbersFirst() {
-    XCTAssertEqual(swiftIdentifier(from: "42hello"), "_42hello")
+    XCTAssertEqual(SwiftIdentifier.identifier(from: "42hello"), "_42hello")
   }
 
   func testForbiddenChars() {
     XCTAssertEqual(
-      swiftIdentifier(from: "hello$world^this*contains%a=lot@of<forbidden>chars!does#it/still:work.anyway?"),
+      SwiftIdentifier.identifier(from: "hello$world^this*contains%a=lot@of<forbidden>chars!does#it/still:work.anyway?"),
       "HelloWorldThisContainsALotOfForbiddenCharsDoesItStillWorkAnyway")
   }
 }
