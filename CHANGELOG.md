@@ -17,6 +17,9 @@ _None_
 * Added the `basename` and `dirname` string filters for getting a filename, or parent folder (respectively), out of a path.  
   [David Jennes](https://github.com/djbe) 
   [#60](https://github.com/SwiftGen/StencilSwiftKit/pull/60)
+* Modify the `swiftIdentifier` string filter to accept an optional "pretty" mode, to first apply the `snakeToCamelCase` filter before converting to an identifier.  
+  [David Jennes](https://github.com/djbe) 
+  [#61](https://github.com/SwiftGen/StencilSwiftKit/pull/61)
 
 ### Internal Changes
 

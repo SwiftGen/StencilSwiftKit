@@ -11,6 +11,10 @@ enum RemoveNewlinesModes: String {
   case all, leading
 }
 
+enum SwiftIdentifierModes: String {
+  case normal, pretty
+}
+
 extension Filters {
   enum Strings {
     fileprivate static let reservedKeywords = [
@@ -50,9 +54,29 @@ extension Filters {
       return source.replacingOccurrences(of: substring, with: replacement)
     }
 
-    static func swiftIdentifier(_ value: Any?) throws -> Any? {
-      guard let value = value as? String else { throw Filters.Error.invalidInputType }
-      return StencilSwiftKit.swiftIdentifier(from: value, replaceWithUnderscores: true)
+    /// Converts an arbitrary string to a valid swift identifier. Takes an optional Mode argument:
+    ///   - normal (default): uppercase the first character, prefix with an underscore if starting
+    ///     with a number, replace invalid characters by underscores
+    ///   - leading: same as the above, but apply the snaceToCamelCase filter first for a nicer
+    ///     identifier
+    ///
+    /// - Parameters:
+    ///   - value: the value to be processed
+    ///   - arguments: the arguments to the function; expecting zero or one mode argument
+    /// - Returns: the identifier string
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
+    static func swiftIdentifier(_ value: Any?, arguments: [Any?]) throws -> Any? {
+      guard var string = value as? String else { throw Filters.Error.invalidInputType }
+      let mode = try Filters.parseEnum(from: arguments, default: SwiftIdentifierModes.normal)
+
+      switch mode {
+      case .normal:
+        return SwiftIdentifier.identifier(from: string, replaceWithUnderscores: true)
+      case .pretty:
+        string = SwiftIdentifier.identifier(from: string, replaceWithUnderscores: true)
+        string = try snakeToCamelCase(string, stripLeading: true)
+        return SwiftIdentifier.prefixWithUnderscoreIfNeeded(string: string)
+      }
     }
 
     /// Lowers the first letter of the string
@@ -112,25 +136,7 @@ extension Filters {
       let stripLeading = try Filters.parseBool(from: arguments, required: false) ?? false
       guard let string = value as? String else { throw Filters.Error.invalidInputType }
 
-      let unprefixed: String
-      if try containsAnyLowercasedChar(string) {
-        let comps = string.components(separatedBy: "_")
-        unprefixed = comps.map { titlecase($0) }.joined(separator: "")
-      } else {
-        let comps = try snakecase(string).components(separatedBy: "_")
-        unprefixed = comps.map { $0.capitalized }.joined(separator: "")
-      }
-
-      // only if passed true, strip the prefix underscores
-      var prefixUnderscores = ""
-      if !stripLeading {
-        for scalar in string.unicodeScalars {
-          guard scalar == "_" else { break }
-          prefixUnderscores += "_"
-        }
-      }
-
-      return prefixUnderscores + unprefixed
+      return try snakeToCamelCase(string, stripLeading: stripLeading)
     }
 
     /// Converts camelCase to snake_case. Takes an optional Bool argument for making the string lower case,
@@ -251,6 +257,34 @@ extension Filters {
     private static func removeLeadingWhitespaces(from string: String) -> String {
       let chars = string.unicodeScalars.drop { CharacterSet.whitespaces.contains($0) }
       return String(chars)
+    }
+
+    /// Converts snake_case to camelCase, stripping prefix underscores if needed
+    ///
+    /// - Parameters:
+    ///   - string: the value to be processed
+    ///   - stripLeading: if false, will preserve leading underscores
+    /// - Returns: the camel case string
+    static func snakeToCamelCase(_ string: String, stripLeading: Bool) throws -> String {
+      let unprefixed: String
+      if try containsAnyLowercasedChar(string) {
+        let comps = string.components(separatedBy: "_")
+        unprefixed = comps.map { titlecase($0) }.joined(separator: "")
+      } else {
+        let comps = try snakecase(string).components(separatedBy: "_")
+        unprefixed = comps.map { $0.capitalized }.joined(separator: "")
+      }
+
+      // only if passed true, strip the prefix underscores
+      var prefixUnderscores = ""
+      if !stripLeading {
+        for scalar in string.unicodeScalars {
+          guard scalar == "_" else { break }
+          prefixUnderscores += "_"
+        }
+      }
+
+      return prefixUnderscores + unprefixed
     }
 
     /// This returns the string with its first parameter uppercased.
