@@ -2,15 +2,7 @@
 
 ---
 
-## Master
-
-### Bug Fixes
-
-_None_
-
-### Breaking Changes
-
-_None_
+## 2.1.0
 
 ### New Features
 
@@ -75,10 +67,6 @@ Due to the removal of legacy code, there are a few breaking changes in this new 
   [#47](https://github.com/SwiftGen/StencilSwiftKit/issues/47)
   [#48](https://github.com/SwiftGen/StencilSwiftKit/issues/48)
 
-### Internal Changes
-
-_None_
-
 ## 1.0.2
 
 ### Bug Fixes
@@ -130,10 +118,6 @@ _None_
   [#26](https://github.com/SwiftGen/StencilSwiftKit/pull/26/files)
 
 ## 1.0.0
-
-### Bug Fixes
-
-_None_
 
 ### New Features
 
