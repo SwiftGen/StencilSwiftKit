@@ -40,8 +40,8 @@ extension Filters.Strings {
         return transformed
     }
 
-    /// Lowers the first letter of the string
-    /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
+    /// Uppers the first letter of the string
+    /// e.g. "people picker" gives "People picker", "sports Stats" gives "Sports Stats"
     ///
     /// - Parameters:
     ///   - value: the value to uppercase first letter of
@@ -50,7 +50,7 @@ extension Filters.Strings {
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func upperFirstLetter(_ value: Any?) throws -> Any? {
         guard let string = value as? String else { throw Filters.Error.invalidInputType }
-        return titlecase(string)
+        return upperFirstLetter(string)
     }
 
     /// Converts snake_case to camelCase. Takes an optional Bool argument for removing any resulting
@@ -97,7 +97,7 @@ extension Filters.Strings {
         let unprefixed: String
         if try containsAnyLowercasedChar(string) {
             let comps = string.components(separatedBy: "_")
-            unprefixed = comps.map { titlecase($0) }.joined(separator: "")
+            unprefixed = comps.map { upperFirstLetter($0) }.joined(separator: "")
         } else {
             let comps = try snakecase(string).components(separatedBy: "_")
             unprefixed = comps.map { $0.capitalized }.joined(separator: "")
@@ -124,15 +124,17 @@ extension Filters.Strings {
         return lowercaseCharRegex.firstMatch(in: string, options: .reportCompletion, range: fullRange) != nil
     }
 
-    /// This returns the string with its first parameter uppercased.
-    /// - note: This is quite similar to `capitalise` except that this filter doesn't
-    ///          lowercase the rest of the string but keeps it untouched.
+    /// Uppers the first letter of the string
+    /// e.g. "people picker" gives "People picker", "sports Stats" gives "Sports Stats"
     ///
-    /// - Parameter string: The string to titleCase
-    /// - Returns: The string with its first character uppercased, and the rest of the string unchanged.
-    private static func titlecase(_ string: String) -> String {
-        guard let first = string.unicodeScalars.first else { return string }
-        return String(first).uppercased() + String(string.unicodeScalars.dropFirst())
+    /// - Parameters:
+    ///   - value: the value to uppercase first letter of
+    ///   - arguments: the arguments to the function; expecting zero
+    /// - Returns: the string with first letter being uppercased
+    /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
+    private static func upperFirstLetter(_ value: String) -> String {
+        guard let first = value.unicodeScalars.first else { return value }
+        return String(first).uppercased() + String(value.unicodeScalars.dropFirst())
     }
 
     /// This returns the snake cased variant of the string.
