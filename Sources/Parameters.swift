@@ -31,17 +31,7 @@ public enum Parameters {
   /// - Returns: A structured dictionary matching the list of keys
   /// - Throws: `Parameters.Error`
   public static func parse(items: [String]) throws -> StringDict {
-    let parameters: [Parameter] = try items.map { item in
-      let parts = item.components(separatedBy: "=")
-      if parts.count >= 2 {
-        return (key: parts[0], value: parts.dropFirst().joined(separator: "="))
-      } else if let part = parts.first, parts.count == 1 && validate(key: part) {
-        return (key: part, value: true)
-      } else {
-        throw Error.invalidSyntax(value: item)
-      }
-    }
-
+    let parameters: [Parameter] = try items.map(createParameter)
     return try parameters.reduce(StringDict()) {
       try parse(parameter: $1, result: $0)
     }
@@ -103,7 +93,6 @@ public enum Parameters {
     return result
   }
 
-
   // a valid key is not empty and only alphanumerical or dot
   private static func validate(key: String) -> Bool {
     return !key.isEmpty &&
@@ -115,4 +104,15 @@ public enum Parameters {
     result.insert(".")
     return result.inverted
   }()
+  
+  private static func createParameter(from string: String) throws -> Parameter {
+    let parts = string.components(separatedBy: "=")
+    if parts.count >= 2 {
+      return (key: parts[0], value: parts.dropFirst().joined(separator: "="))
+    } else if let part = parts.first, parts.count == 1 && validate(key: part) {
+      return (key: part, value: true)
+    } else {
+      throw Error.invalidSyntax(value: string)
+    }
+  }
 }
