@@ -16,7 +16,22 @@
     "git": "https://github.com/SwiftGen/StencilSwiftKit.git",
     "tag": "2.1.0"
   },
-  "source_files": "Sources/**/*.swift",
+  "source_files": [
+    "Sources/CallMacroNodes.swift",
+    "Sources/Environment.swift",
+    "Sources/Context.swift",
+    "Sources/Filters.swift",
+    "Sources/Filters+Numbers.swift",
+    "Sources/Filters+Strings.swift",
+    "Sources/Filters+Strings+Boolean.swift",
+    "Sources/Filters+Strings+Lettercase.swift",
+    "Sources/Filters+Strings+Mutations.swift",
+    "Sources/MapNode.swift",
+    "Sources/Parameters.swift",
+    "Sources/SetNode.swift",
+    "Sources/StencilSwiftTemplate.swift",
+    "Sources/SwoftIdentifier.swift"
+  ],
   "dependencies": {
     "Stencil": [
       "~> 0.9.0"
