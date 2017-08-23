@@ -18,23 +18,25 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Refactoring of `Filters+Strings`.  
+  [Antondomashnev](https://github.com/antondomashnev)
+  [#59](https://github.com/SwiftGen/StencilSwiftKit/pull/63)
 
 ## 2.1.0
 
 ### New Features
 
 * Added the `basename` and `dirname` string filters for getting a filename, or parent folder (respectively), out of a path.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#60](https://github.com/SwiftGen/StencilSwiftKit/pull/60)
 * Modify the `swiftIdentifier` string filter to accept an optional "pretty" mode, to also apply the `snakeToCamelCase` filter and other manipulations if needed for a "prettier" but still valid identifier.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#61](https://github.com/SwiftGen/StencilSwiftKit/pull/61)
 
 ### Internal Changes
 
 * Ensure `swiftlint` is run using `bundler`.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#59](https://github.com/SwiftGen/StencilSwiftKit/pull/59)
 
 ## 2.0.1
