@@ -12,7 +12,7 @@ MIN_XCODE_VERSION = 8.3.freeze
 
 namespace :release do
   desc 'Create a new release on CocoaPods'
-  task new: [:check_versions, 'xcode:test', :cocoapods]
+  task :new => [:check_versions, 'xcode:test', :cocoapods]
 
   desc 'Check if all versions from the podspecs and CHANGELOG match'
   task :check_versions do
@@ -20,7 +20,11 @@ namespace :release do
 
     # Check if bundler is installed first, as we'll need it for the cocoapods task (and we prefer to fail early)
     `which bundler`
-    results << Utils.table_result($CHILD_STATUS.success?, 'Bundler installed', 'Please install bundler using `gem install bundler` and run `bundle install` first.')
+    results << Utils.table_result(
+      $CHILD_STATUS.success?,
+      'Bundler installed',
+      'Please install bundler using `gem install bundler` and run `bundle install` first.'
+    )
 
     # Extract version from podspec
     podspec_version = Utils.podspec_version(POD_NAME)
@@ -28,17 +32,33 @@ namespace :release do
 
     # Check if version in Podfile.lock matches
     podfile_lock_version = Utils.podfile_lock_version(POD_NAME)
-    results << Utils.table_result(podfile_lock_version == podspec_version, 'Podfile.lock', 'Please run pod install')
+    results << Utils.table_result(
+      podfile_lock_version == podspec_version,
+      'Podfile.lock',
+      'Please run pod install'
+    )
 
     # Check if entry present in CHANGELOG
     changelog_entry = system(%(grep -q '^## #{Regexp.quote(podspec_version)}$' CHANGELOG.md))
-    results << Utils.table_result(changelog_entry, 'CHANGELOG, Entry added', "Please add an entry for #{podspec_version} in CHANGELOG.md")
+    results << Utils.table_result(
+      changelog_entry,
+      'CHANGELOG, Entry added',
+      "Please add an entry for #{podspec_version} in CHANGELOG.md"
+    )
 
     changelog_master = system("grep -qi '^## Master' CHANGELOG.md")
-    results << Utils.table_result(!changelog_master, 'CHANGELOG, No master', 'Please remove entry for master in CHANGELOG')
+    results << Utils.table_result(
+      !changelog_master,
+      'CHANGELOG, No master',
+      'Please remove entry for master in CHANGELOG'
+    )
 
     tag_set = !`git ls-remote --tags . refs/tags/#{podspec_version}`.empty?
-    results << Utils.table_result(tag_set, 'Tag pushed', 'Please create a tag and push it')
+    results << Utils.table_result(
+      tag_set,
+      'Tag pushed',
+      'Please create a tag and push it'
+    )
 
     exit 1 unless results.all?
 
@@ -53,4 +73,4 @@ namespace :release do
   end
 end
 
-task default: 'xcode:test'
+task :default => 'xcode:test'
