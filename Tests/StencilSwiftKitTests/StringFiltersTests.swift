@@ -10,11 +10,15 @@ import XCTest
 @testable import StencilSwiftKit
 
 final class StringFiltersTests: XCTestCase {
-  struct Input: CustomStringConvertible, Hashable {
+  struct Input: LosslessStringConvertible, Hashable {
     let stringRepresentation: String
 
     init(string: String) {
       self.stringRepresentation = string
+    }
+
+    init?(_ description: String) {
+      self.stringRepresentation = description
     }
 
     var description: String {

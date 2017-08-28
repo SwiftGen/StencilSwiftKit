@@ -36,7 +36,7 @@ extension Filters.Strings {
     ]
 
     static func escapeReservedKeywords(value: Any?) throws -> Any? {
-        guard let string = value as? String else { throw Filters.Error.invalidInputType }
+        let string = try Filters.parseString(from: value)
         return escapeReservedKeywords(in: string)
     }
 
@@ -49,12 +49,9 @@ extension Filters.Strings {
     /// - Returns: the results string
     /// - Throws: FilterError.invalidInputType if the value parameter or argunemts aren't string
     static func replace(_ value: Any?, arguments: [Any?]) throws -> Any? {
-        guard let source = value as? String,
-            arguments.count == 2,
-            let substring = arguments[0] as? String,
-            let replacement = arguments[1] as? String else {
-                throw Filters.Error.invalidInputType
-        }
+        let source = try Filters.parseString(from: value)
+        let substring = try Filters.parseStringArgument(from: arguments, at: 0)
+        let replacement = try Filters.parseStringArgument(from: arguments, at: 1)
         return source.replacingOccurrences(of: substring, with: replacement)
     }
 
@@ -70,7 +67,7 @@ extension Filters.Strings {
     /// - Returns: the identifier string
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func swiftIdentifier(_ value: Any?, arguments: [Any?]) throws -> Any? {
-        guard var string = value as? String else { throw Filters.Error.invalidInputType }
+        var string = try Filters.parseString(from: value)
         let mode = try Filters.parseEnum(from: arguments, default: SwiftIdentifierModes.normal)
 
         switch mode {
@@ -89,7 +86,7 @@ extension Filters.Strings {
     /// - Returns: the basename of the path
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func basename(_ value: Any?) throws -> Any? {
-        guard let string = value as? String else { throw Filters.Error.invalidInputType }
+        let string = try Filters.parseString(from: value)
         return (string as NSString).lastPathComponent
     }
 
@@ -99,7 +96,7 @@ extension Filters.Strings {
     /// - Returns: the dirname of the path
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func dirname(_ value: Any?) throws -> Any? {
-        guard let string = value as? String else { throw Filters.Error.invalidInputType }
+        let string = try Filters.parseString(from: value)
         return (string as NSString).deletingLastPathComponent
     }
 
@@ -113,7 +110,7 @@ extension Filters.Strings {
     /// - Returns: the trimmed string
     /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
     static func removeNewlines(_ value: Any?, arguments: [Any?]) throws -> Any? {
-        guard let string = value as? String else { throw Filters.Error.invalidInputType }
+        let string = try Filters.parseString(from: value)
         let mode = try Filters.parseEnum(from: arguments, default: RemoveNewlinesModes.all)
 
         switch mode {
