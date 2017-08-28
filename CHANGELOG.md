@@ -14,7 +14,9 @@ _None_
 
 ### New Features
 
-_None_
+* Accept `LosslessStringConvertible` input for strings filters.  
+  [Antondomashnev](https://github.com/antondomashnev)
+  [#59](https://github.com/SwiftGen/StencilSwiftKit/pull/63)
 
 ### Internal Changes
 
