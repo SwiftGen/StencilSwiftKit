@@ -14,7 +14,7 @@ class ParseStringTests: XCTestCase {
     var description: String {
       return TestLosslessConvertible.stringRepresentation
     }
-    
+
     init() {}
     init?(_ description: String) {}
   }
@@ -74,7 +74,8 @@ class ParseStringTests: XCTestCase {
   }
 
   func testParseStringArgument_WithNonZeroIndex() throws {
-    let value = try Filters.parseStringArgument(from: [TestNotConvertible(), TestLosslessConvertible(), TestConvertible()], at: 1)
+    let arguments = [TestNotConvertible(), TestLosslessConvertible(), TestConvertible()]
+    let value = try Filters.parseStringArgument(from: arguments, at: 1)
     XCTAssertEqual(value, TestLosslessConvertible.stringRepresentation)
   }
 }

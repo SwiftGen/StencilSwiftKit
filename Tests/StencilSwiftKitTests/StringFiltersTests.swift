@@ -29,7 +29,7 @@ final class StringFiltersTests: XCTestCase {
       return stringRepresentation.hashValue
     }
 
-    public static func ==(lhs: Input, rhs: Input) -> Bool {
+    public static func == (lhs: Input, rhs: Input) -> Bool {
       return lhs.stringRepresentation == rhs.stringRepresentation
     }
   }

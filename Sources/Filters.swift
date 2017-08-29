@@ -25,7 +25,7 @@ enum Filters {
     }
     return String(describing: stringArg)
   }
-  
+
   /// Parses filter arguments for a string value, where accepted objects must conform to 
   /// `CustomStringConvertible`
   ///
