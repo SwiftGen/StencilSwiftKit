@@ -16,13 +16,13 @@ _None_
 
 * Accept `LosslessStringConvertible` input for strings filters.  
   [Antondomashnev](https://github.com/antondomashnev)
-  [#59](https://github.com/SwiftGen/StencilSwiftKit/pull/63)
+  [#65](https://github.com/SwiftGen/StencilSwiftKit/pull/65)
 
 ### Internal Changes
 
 * Refactoring of `Filters+Strings`.  
   [Antondomashnev](https://github.com/antondomashnev)
-  [#59](https://github.com/SwiftGen/StencilSwiftKit/pull/63)
+  [#63](https://github.com/SwiftGen/StencilSwiftKit/pull/63)
 
 ## 2.1.0
 
