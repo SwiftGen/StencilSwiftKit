@@ -74,7 +74,7 @@ class ParseStringTests: XCTestCase {
   }
 
   func testParseStringArgument_WithNonZeroIndex() throws {
-    let arguments = [TestNotConvertible(), TestLosslessConvertible(), TestConvertible()]
+    let arguments = [TestNotConvertible(), TestLosslessConvertible(), TestConvertible()] as [Any]
     let value = try Filters.parseStringArgument(from: arguments, at: 1)
     XCTAssertEqual(value, TestLosslessConvertible.stringRepresentation)
   }
