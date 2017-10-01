@@ -11,7 +11,7 @@ extension Filters.Strings {
   /// Lowers the first letter of the string
   /// e.g. "People picker" gives "people picker", "Sports Stats" gives "sports Stats"
   static func lowerFirstLetter(_ value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw Filters.Error.invalidInputType }
+    let string = try Filters.parseString(from: value)
     let first = String(string.characters.prefix(1)).lowercased()
     let other = String(string.characters.dropFirst(1))
     return first + other
@@ -23,7 +23,7 @@ extension Filters.Strings {
   /// a lowercase character.
   /// e.g. "PeoplePicker" gives "peoplePicker" but "URLChooser" gives "urlChooser"
   static func lowerFirstWord(_ value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw Filters.Error.invalidInputType }
+    let string = try Filters.parseString(from: value)
     let cs = CharacterSet.uppercaseLetters
     let scalars = string.unicodeScalars
     let start = scalars.startIndex
@@ -49,7 +49,7 @@ extension Filters.Strings {
   /// - Returns: the string with first letter being uppercased
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func upperFirstLetter(_ value: Any?) throws -> Any? {
-    guard let string = value as? String else { throw Filters.Error.invalidInputType }
+    let string = try Filters.parseString(from: value)
     return upperFirstLetter(string)
   }
 
@@ -63,7 +63,7 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func snakeToCamelCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
     let stripLeading = try Filters.parseBool(from: arguments, required: false) ?? false
-    guard let string = value as? String else { throw Filters.Error.invalidInputType }
+    let string = try Filters.parseString(from: value)
 
     return try snakeToCamelCase(string, stripLeading: stripLeading)
   }
@@ -78,8 +78,7 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func camelToSnakeCase(_ value: Any?, arguments: [Any?]) throws -> Any? {
     let toLower = try Filters.parseBool(from: arguments, required: false) ?? true
-    guard let string = value as? String else { throw Filters.Error.invalidInputType }
-
+    let string = try Filters.parseString(from: value)
     let snakeCase = try snakecase(string)
     if toLower {
         return snakeCase.lowercased()

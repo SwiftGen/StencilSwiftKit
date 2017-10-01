@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6D84EE651F520EB8009373F8 /* ParseStringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D84EE641F520EB8009373F8 /* ParseStringTests.swift */; };
 		82EF0CC0752D216C67279A16 /* Pods_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */; };
 		B5A3F2ED5DA57C06EF62BB82 /* ParseBoolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5A3FFC01B2145C4BFD8316A /* ParseBoolTests.swift */; };
 		DD0B6D5F1EDF7C2100C8862C /* ParseEnumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD0B6D5E1EDF7C2100C8862C /* ParseEnumTests.swift */; };
@@ -58,6 +59,7 @@
 		09A87B501BCCA2C600D9B9F5 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		47888DD528DEC4C84FD8F15B /* Pods-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B3D39DBCD15D8F6BB891D92 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Tests/Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		6D84EE641F520EB8009373F8 /* ParseStringTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseStringTests.swift; sourceTree = "<group>"; };
 		8BF798509C76E5A9ACE03491 /* Pods_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B5A3FFC01B2145C4BFD8316A /* ParseBoolTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseBoolTests.swift; sourceTree = "<group>"; };
 		DD0B6D5E1EDF7C2100C8862C /* ParseEnumTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseEnumTests.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				DD5F342C1E21A3A200AEB5DA /* StringFiltersTests.swift */,
 				DD5F342D1E21A3A200AEB5DA /* SwiftIdentifierTests.swift */,
 				B5A3FFC01B2145C4BFD8316A /* ParseBoolTests.swift */,
+				6D84EE641F520EB8009373F8 /* ParseStringTests.swift */,
 				DD0B6D5E1EDF7C2100C8862C /* ParseEnumTests.swift */,
 				DD5F341C1E2199ED00AEB5DA /* Resources */,
 			);
@@ -308,6 +311,7 @@
 			files = (
 				DD5F342F1E21A3A200AEB5DA /* SetNodeTests.swift in Sources */,
 				DD5F34311E21A3A200AEB5DA /* SwiftIdentifierTests.swift in Sources */,
+				6D84EE651F520EB8009373F8 /* ParseStringTests.swift in Sources */,
 				DD0B6D5F1EDF7C2100C8862C /* ParseEnumTests.swift in Sources */,
 				DDE1E2F61E3E33E30043367C /* MacroNodeTests.swift in Sources */,
 				DD4393FF1E2D3EEB0047A332 /* MapNodeTests.swift in Sources */,

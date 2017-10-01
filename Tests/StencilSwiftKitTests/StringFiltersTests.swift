@@ -10,36 +10,60 @@ import XCTest
 @testable import StencilSwiftKit
 
 final class StringFiltersTests: XCTestCase {
+  struct Input: LosslessStringConvertible, Hashable {
+    let stringRepresentation: String
+
+    init(string: String) {
+      self.stringRepresentation = string
+    }
+
+    init?(_ description: String) {
+      self.stringRepresentation = description
+    }
+
+    var description: String {
+      return stringRepresentation
+    }
+
+    var hashValue: Int {
+      return stringRepresentation.hashValue
+    }
+
+    public static func == (lhs: Input, rhs: Input) -> Bool {
+      return lhs.stringRepresentation == rhs.stringRepresentation
+    }
+  }
+
   func testCamelToSnakeCase_WithNoArgsDefaultsToTrue() throws {
-    let result = try Filters.Strings.camelToSnakeCase("StringWithWords", arguments: []) as? String
+    let result = try Filters.Strings.camelToSnakeCase(Input(string: "StringWithWords"), arguments: []) as? String
     XCTAssertEqual(result, "string_with_words")
   }
 
   func testCamelToSnakeCase_WithTrue() throws {
-    let expectations = [
-      "string": "string",
-      "String": "string",
-      "strIng": "str_ing",
-      "strING": "str_ing",
-      "X": "x",
-      "x": "x",
-      "SomeCapString": "some_cap_string",
-      "someCapString": "some_cap_string",
-      "string_with_words": "string_with_words",
-      "String_with_words": "string_with_words",
-      "String_With_Words": "string_with_words",
-      "String_With_WoRds": "string_with_wo_rds",
-      "STRing_with_words": "st_ring_with_words",
-      "string_wiTH_WOrds": "string_wi_th_w_ords",
-      "": "",
-      "URLChooser": "url_chooser",
-      "UrlChooser": "url_chooser",
-      "a__b__c": "a__b__c",
-      "__y_z!": "__y_z!",
-      "PLEASESTOPSCREAMING": "pleasestopscreaming",
-      "PLEASESTOPSCREAMING!": "pleasestopscreaming!",
-      "PLEASE_STOP_SCREAMING": "please_stop_screaming",
-      "PLEASE_STOP_SCREAMING!": "please_stop_screaming!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "string",
+      Input(string: "String"): "string",
+      Input(string: "strIng"): "str_ing",
+      Input(string: "strING"): "str_ing",
+      Input(string: "X"): "x",
+      Input(string: "x"): "x",
+      Input(string: "SomeCapString"): "some_cap_string",
+      Input(string: "someCapString"): "some_cap_string",
+      Input(string: "string_with_words"): "string_with_words",
+      Input(string: "String_with_words"): "string_with_words",
+      Input(string: "String_With_Words"): "string_with_words",
+      Input(string: "String_With_WoRds"): "string_with_wo_rds",
+      Input(string: "STRing_with_words"): "st_ring_with_words",
+      Input(string: "string_wiTH_WOrds"): "string_wi_th_w_ords",
+      Input(string: ""): "",
+      Input(string: "URLChooser"): "url_chooser",
+      Input(string: "UrlChooser"): "url_chooser",
+      Input(string: "a__b__c"): "a__b__c",
+      Input(string: "__y_z!"): "__y_z!",
+      Input(string: "PLEASESTOPSCREAMING"): "pleasestopscreaming",
+      Input(string: "PLEASESTOPSCREAMING!"): "pleasestopscreaming!",
+      Input(string: "PLEASE_STOP_SCREAMING"): "please_stop_screaming",
+      Input(string: "PLEASE_STOP_SCREAMING!"): "please_stop_screaming!"
     ]
 
     for (input, expected) in expectations {
@@ -49,30 +73,30 @@ final class StringFiltersTests: XCTestCase {
   }
 
   func testCamelToSnakeCase_WithFalse() throws {
-    let expectations = [
-      "string": "string",
-      "String": "String",
-      "strIng": "str_Ing",
-      "strING": "str_ING",
-      "X": "X",
-      "x": "x",
-      "SomeCapString": "Some_Cap_String",
-      "someCapString": "some_Cap_String",
-      "string_with_words": "string_with_words",
-      "String_with_words": "String_with_words",
-      "String_With_Words": "String_With_Words",
-      "String_With_WoRds": "String_With_Wo_Rds",
-      "STRing_with_words": "ST_Ring_with_words",
-      "string_wiTH_WOrds": "string_wi_TH_W_Ords",
-      "": "",
-      "URLChooser": "URL_Chooser",
-      "UrlChooser": "Url_Chooser",
-      "a__b__c": "a__b__c",
-      "__y_z!": "__y_z!",
-      "PLEASESTOPSCREAMING": "PLEASESTOPSCREAMING",
-      "PLEASESTOPSCREAMING!": "PLEASESTOPSCREAMING!",
-      "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
-      "PLEASE_STOP_SCREAMING!": "PLEASE_STOP_SCREAMING!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "string",
+      Input(string: "String"): "String",
+      Input(string: "strIng"): "str_Ing",
+      Input(string: "strING"): "str_ING",
+      Input(string: "X"): "X",
+      Input(string: "x"): "x",
+      Input(string: "SomeCapString"): "Some_Cap_String",
+      Input(string: "someCapString"): "some_Cap_String",
+      Input(string: "string_with_words"): "string_with_words",
+      Input(string: "String_with_words"): "String_with_words",
+      Input(string: "String_With_Words"): "String_With_Words",
+      Input(string: "String_With_WoRds"): "String_With_Wo_Rds",
+      Input(string: "STRing_with_words"): "ST_Ring_with_words",
+      Input(string: "string_wiTH_WOrds"): "string_wi_TH_W_Ords",
+      Input(string: ""): "",
+      Input(string: "URLChooser"): "URL_Chooser",
+      Input(string: "UrlChooser"): "Url_Chooser",
+      Input(string: "a__b__c"): "a__b__c",
+      Input(string: "__y_z!"): "__y_z!",
+      Input(string: "PLEASESTOPSCREAMING"): "PLEASESTOPSCREAMING",
+      Input(string: "PLEASESTOPSCREAMING!"): "PLEASESTOPSCREAMING!",
+      Input(string: "PLEASE_STOP_SCREAMING"): "PLEASE_STOP_SCREAMING",
+      Input(string: "PLEASE_STOP_SCREAMING!"): "PLEASE_STOP_SCREAMING!"
     ]
 
     for (input, expected) in expectations {
@@ -84,14 +108,14 @@ final class StringFiltersTests: XCTestCase {
 
 extension StringFiltersTests {
   func testEscapeReservedKeywords() throws {
-    let expectations = [
-      "self": "`self`",
-      "foo": "foo",
-      "Type": "`Type`",
-      "": "",
-      "x": "x",
-      "Bar": "Bar",
-      "#imageLiteral": "`#imageLiteral`"
+    let expectations: [Input: String] = [
+      Input(string: "self"): "`self`",
+      Input(string: "foo"): "foo",
+      Input(string: "Type"): "`Type`",
+      Input(string: ""): "",
+      Input(string: "x"): "x",
+      Input(string: "Bar"): "Bar",
+      Input(string: "#imageLiteral"): "`#imageLiteral`"
     ]
 
     for (input, expected) in expectations {
@@ -103,28 +127,28 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testLowerFirstWord() throws {
-    let expectations = [
-      "string": "string",
-      "String": "string",
-      "strIng": "strIng",
-      "strING": "strING",
-      "X": "x",
-      "x": "x",
-      "SomeCapString": "someCapString",
-      "someCapString": "someCapString",
-      "string_with_words": "string_with_words",
-      "String_with_words": "string_with_words",
-      "String_With_Words": "string_With_Words",
-      "STRing_with_words": "stRing_with_words",
-      "string_wiTH_WOrds": "string_wiTH_WOrds",
-      "": "",
-      "URLChooser": "urlChooser",
-      "a__b__c": "a__b__c",
-      "__y_z!": "__y_z!",
-      "PLEASESTOPSCREAMING": "pleasestopscreaming",
-      "PLEASESTOPSCREAMING!": "pleasestopscreaming!",
-      "PLEASE_STOP_SCREAMING": "please_STOP_SCREAMING",
-      "PLEASE_STOP_SCREAMING!": "please_STOP_SCREAMING!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "string",
+      Input(string: "String"): "string",
+      Input(string: "strIng"): "strIng",
+      Input(string: "strING"): "strING",
+      Input(string: "X"): "x",
+      Input(string: "x"): "x",
+      Input(string: "SomeCapString"): "someCapString",
+      Input(string: "someCapString"): "someCapString",
+      Input(string: "string_with_words"): "string_with_words",
+      Input(string: "String_with_words"): "string_with_words",
+      Input(string: "String_With_Words"): "string_With_Words",
+      Input(string: "STRing_with_words"): "stRing_with_words",
+      Input(string: "string_wiTH_WOrds"): "string_wiTH_WOrds",
+      Input(string: ""): "",
+      Input(string: "URLChooser"): "urlChooser",
+      Input(string: "a__b__c"): "a__b__c",
+      Input(string: "__y_z!"): "__y_z!",
+      Input(string: "PLEASESTOPSCREAMING"): "pleasestopscreaming",
+      Input(string: "PLEASESTOPSCREAMING!"): "pleasestopscreaming!",
+      Input(string: "PLEASE_STOP_SCREAMING"): "please_STOP_SCREAMING",
+      Input(string: "PLEASE_STOP_SCREAMING!"): "please_STOP_SCREAMING!"
     ]
 
     for (input, expected) in expectations {
@@ -136,13 +160,13 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testRemoveNewlines_WithNoArgsDefaultsToAll() throws {
-    let result = try Filters.Strings.removeNewlines("test\n \ntest ", arguments: []) as? String
+    let result = try Filters.Strings.removeNewlines(Input(string: "test\n \ntest "), arguments: []) as? String
     XCTAssertEqual(result, "testtest")
   }
 
   func testRemoveNewlines_WithWrongArgWillThrow() throws {
     do {
-      _ = try Filters.Strings.removeNewlines("", arguments: ["wrong"])
+      _ = try Filters.Strings.removeNewlines(Input(string: ""), arguments: ["wrong"])
       XCTFail("Code did succeed while it was expected to fail for wrong option")
     } catch Filters.Error.invalidOption {
       // That's the expected exception we want to happen
@@ -152,14 +176,14 @@ extension StringFiltersTests {
   }
 
   func testRemoveNewlines_WithAll() throws {
-    let expectations = [
-      "test1": "test1",
-      "  \n test2": "test2",
-      "test3  \n ": "test3",
-      "test4, \ntest, \ntest": "test4,test,test",
-      "\n test5\n \ntest test \n ": "test5testtest",
-      "test6\ntest": "test6test",
-      "test7 test": "test7test"
+    let expectations: [Input: String] = [
+      Input(string: "test1"): "test1",
+      Input(string: "  \n test2"): "test2",
+      Input(string: "test3  \n "): "test3",
+      Input(string: "test4, \ntest, \ntest"): "test4,test,test",
+      Input(string: "\n test5\n \ntest test \n "): "test5testtest",
+      Input(string: "test6\ntest"): "test6test",
+      Input(string: "test7 test"): "test7test"
     ]
 
     for (input, expected) in expectations {
@@ -169,14 +193,14 @@ extension StringFiltersTests {
   }
 
   func testRemoveNewlines_WithLeading() throws {
-    let expectations = [
-      "test1": "test1",
-      "  \n test2": "test2",
-      "test3  \n ": "test3",
-      "test4, \ntest, \ntest": "test4, test, test",
-      "\n test5\n \ntest test \n ": "test5test test",
-      "test6\ntest": "test6test",
-      "test7 test": "test7 test"
+    let expectations: [Input: String] = [
+      Input(string: "test1"): "test1",
+      Input(string: "  \n test2"): "test2",
+      Input(string: "test3  \n "): "test3",
+      Input(string: "test4, \ntest, \ntest"): "test4, test, test",
+      Input(string: "\n test5\n \ntest test \n "): "test5test test",
+      Input(string: "test6\ntest"): "test6test",
+      Input(string: "test7 test"): "test7 test"
     ]
 
     for (input, expected) in expectations {
@@ -188,33 +212,33 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testSnakeToCamelCase_WithNoArgsDefaultsToFalse() throws {
-    let result = try Filters.Strings.snakeToCamelCase("__y_z!", arguments: []) as? String
+    let result = try Filters.Strings.snakeToCamelCase(Input(string: "__y_z!"), arguments: []) as? String
     XCTAssertEqual(result, "__YZ!")
   }
 
   func testSnakeToCamelCase_WithFalse() throws {
-    let expectations = [
-      "string": "String",
-      "String": "String",
-      "strIng": "StrIng",
-      "strING": "StrING",
-      "X": "X",
-      "x": "X",
-      "SomeCapString": "SomeCapString",
-      "someCapString": "SomeCapString",
-      "string_with_words": "StringWithWords",
-      "String_with_words": "StringWithWords",
-      "String_With_Words": "StringWithWords",
-      "STRing_with_words": "STRingWithWords",
-      "string_wiTH_WOrds": "StringWiTHWOrds",
-      "": "",
-      "URLChooser": "URLChooser",
-      "a__b__c": "ABC",
-      "__y_z!": "__YZ!",
-      "PLEASESTOPSCREAMING": "Pleasestopscreaming",
-      "PLEASESTOPSCREAMING!": "Pleasestopscreaming!",
-      "PLEASE_STOP_SCREAMING": "PleaseStopScreaming",
-      "PLEASE_STOP_SCREAMING!": "PleaseStopScreaming!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "String",
+      Input(string: "String"): "String",
+      Input(string: "strIng"): "StrIng",
+      Input(string: "strING"): "StrING",
+      Input(string: "X"): "X",
+      Input(string: "x"): "X",
+      Input(string: "SomeCapString"): "SomeCapString",
+      Input(string: "someCapString"): "SomeCapString",
+      Input(string: "string_with_words"): "StringWithWords",
+      Input(string: "String_with_words"): "StringWithWords",
+      Input(string: "String_With_Words"): "StringWithWords",
+      Input(string: "STRing_with_words"): "STRingWithWords",
+      Input(string: "string_wiTH_WOrds"): "StringWiTHWOrds",
+      Input(string: ""): "",
+      Input(string: "URLChooser"): "URLChooser",
+      Input(string: "a__b__c"): "ABC",
+      Input(string: "__y_z!"): "__YZ!",
+      Input(string: "PLEASESTOPSCREAMING"): "Pleasestopscreaming",
+      Input(string: "PLEASESTOPSCREAMING!"): "Pleasestopscreaming!",
+      Input(string: "PLEASE_STOP_SCREAMING"): "PleaseStopScreaming",
+      Input(string: "PLEASE_STOP_SCREAMING!"): "PleaseStopScreaming!"
     ]
 
     for (input, expected) in expectations {
@@ -224,28 +248,28 @@ extension StringFiltersTests {
   }
 
   func testSnakeToCamelCase_WithTrue() throws {
-    let expectations = [
-      "string": "String",
-      "String": "String",
-      "strIng": "StrIng",
-      "strING": "StrING",
-      "X": "X",
-      "x": "X",
-      "SomeCapString": "SomeCapString",
-      "someCapString": "SomeCapString",
-      "string_with_words": "StringWithWords",
-      "String_with_words": "StringWithWords",
-      "String_With_Words": "StringWithWords",
-      "STRing_with_words": "STRingWithWords",
-      "string_wiTH_WOrds": "StringWiTHWOrds",
-      "": "",
-      "URLChooser": "URLChooser",
-      "a__b__c": "ABC",
-      "__y_z!": "YZ!",
-      "PLEASESTOPSCREAMING": "Pleasestopscreaming",
-      "PLEASESTOPSCREAMING!": "Pleasestopscreaming!",
-      "PLEASE_STOP_SCREAMING": "PleaseStopScreaming",
-      "PLEASE_STOP_SCREAMING!": "PleaseStopScreaming!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "String",
+      Input(string: "String"): "String",
+      Input(string: "strIng"): "StrIng",
+      Input(string: "strING"): "StrING",
+      Input(string: "X"): "X",
+      Input(string: "x"): "X",
+      Input(string: "SomeCapString"): "SomeCapString",
+      Input(string: "someCapString"): "SomeCapString",
+      Input(string: "string_with_words"): "StringWithWords",
+      Input(string: "String_with_words"): "StringWithWords",
+      Input(string: "String_With_Words"): "StringWithWords",
+      Input(string: "STRing_with_words"): "STRingWithWords",
+      Input(string: "string_wiTH_WOrds"): "StringWiTHWOrds",
+      Input(string: ""): "",
+      Input(string: "URLChooser"): "URLChooser",
+      Input(string: "a__b__c"): "ABC",
+      Input(string: "__y_z!"): "YZ!",
+      Input(string: "PLEASESTOPSCREAMING"): "Pleasestopscreaming",
+      Input(string: "PLEASESTOPSCREAMING!"): "Pleasestopscreaming!",
+      Input(string: "PLEASE_STOP_SCREAMING"): "PleaseStopScreaming",
+      Input(string: "PLEASE_STOP_SCREAMING!"): "PleaseStopScreaming!"
     ]
 
     for (input, expected) in expectations {
@@ -257,28 +281,28 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testUpperFirstLetter() throws {
-    let expectations = [
-      "string": "String",
-      "String": "String",
-      "strIng": "StrIng",
-      "strING": "StrING",
-      "X": "X",
-      "x": "X",
-      "SomeCapString": "SomeCapString",
-      "someCapString": "SomeCapString",
-      "string_with_words": "String_with_words",
-      "String_with_words": "String_with_words",
-      "String_With_Words": "String_With_Words",
-      "STRing_with_words": "STRing_with_words",
-      "string_wiTH_WOrds": "String_wiTH_WOrds",
-      "": "",
-      "URLChooser": "URLChooser",
-      "a__b__c": "A__b__c",
-      "__y_z!": "__y_z!",
-      "PLEASESTOPSCREAMING": "PLEASESTOPSCREAMING",
-      "PLEASESTOPSCREAMING!": "PLEASESTOPSCREAMING!",
-      "PLEASE_STOP_SCREAMING": "PLEASE_STOP_SCREAMING",
-      "PLEASE_STOP_SCREAMING!": "PLEASE_STOP_SCREAMING!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "String",
+      Input(string: "String"): "String",
+      Input(string: "strIng"): "StrIng",
+      Input(string: "strING"): "StrING",
+      Input(string: "X"): "X",
+      Input(string: "x"): "X",
+      Input(string: "SomeCapString"): "SomeCapString",
+      Input(string: "someCapString"): "SomeCapString",
+      Input(string: "string_with_words"): "String_with_words",
+      Input(string: "String_with_words"): "String_with_words",
+      Input(string: "String_With_Words"): "String_With_Words",
+      Input(string: "STRing_with_words"): "STRing_with_words",
+      Input(string: "string_wiTH_WOrds"): "String_wiTH_WOrds",
+      Input(string: ""): "",
+      Input(string: "URLChooser"): "URLChooser",
+      Input(string: "a__b__c"): "A__b__c",
+      Input(string: "__y_z!"): "__y_z!",
+      Input(string: "PLEASESTOPSCREAMING"): "PLEASESTOPSCREAMING",
+      Input(string: "PLEASESTOPSCREAMING!"): "PLEASESTOPSCREAMING!",
+      Input(string: "PLEASE_STOP_SCREAMING"): "PLEASE_STOP_SCREAMING",
+      Input(string: "PLEASE_STOP_SCREAMING!"): "PLEASE_STOP_SCREAMING!"
     ]
 
     for (input, expected) in expectations {
@@ -290,27 +314,27 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testLowerFirstLetter() throws {
-    let expectations = [
-      "string": "string",
-      "String": "string",
-      "strIng": "strIng",
-      "strING": "strING",
-      "X": "x",
-      "x": "x",
-      "SomeCapString": "someCapString",
-      "someCapString": "someCapString",
-      "string with words": "string with words",
-      "String with words": "string with words",
-      "String With Words": "string With Words",
-      "STRing with words": "sTRing with words",
-      "string wiTH WOrds": "string wiTH WOrds",
-      "": "",
-      "A__B__C": "a__B__C",
-      "__y_z!": "__y_z!",
-      "PLEASESTOPSCREAMING": "pLEASESTOPSCREAMING",
-      "PLEASESTOPSCREAMING!": "pLEASESTOPSCREAMING!",
-      "PLEASE_STOP_SCREAMING": "pLEASE_STOP_SCREAMING",
-      "PLEASE STOP SCREAMING!": "pLEASE STOP SCREAMING!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "string",
+      Input(string: "String"): "string",
+      Input(string: "strIng"): "strIng",
+      Input(string: "strING"): "strING",
+      Input(string: "X"): "x",
+      Input(string: "x"): "x",
+      Input(string: "SomeCapString"): "someCapString",
+      Input(string: "someCapString"): "someCapString",
+      Input(string: "string with words"): "string with words",
+      Input(string: "String with words"): "string with words",
+      Input(string: "String With Words"): "string With Words",
+      Input(string: "STRing with words"): "sTRing with words",
+      Input(string: "string wiTH WOrds"): "string wiTH WOrds",
+      Input(string: ""): "",
+      Input(string: "A__B__C"): "a__B__C",
+      Input(string: "__y_z!"): "__y_z!",
+      Input(string: "PLEASESTOPSCREAMING"): "pLEASESTOPSCREAMING",
+      Input(string: "PLEASESTOPSCREAMING!"): "pLEASESTOPSCREAMING!",
+      Input(string: "PLEASE_STOP_SCREAMING"): "pLEASE_STOP_SCREAMING",
+      Input(string: "PLEASE STOP SCREAMING!"): "pLEASE STOP SCREAMING!"
     ]
 
     for (input, expected) in expectations {
@@ -322,19 +346,19 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testContains_WithTrueResult() throws {
-    let expectations = [
-      "string": "s",
-      "String": "ing",
-      "strIng": "strIng",
-      "strING": "rING",
-      "x": "x",
-      "X": "X",
-      "SomeCapString": "Some",
-      "someCapString": "apSt",
-      "string with words": "with",
-      "String with words": "th words",
-      "A__B__C": "_",
-      "__y_z!": "!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "s",
+      Input(string: "String"): "ing",
+      Input(string: "strIng"): "strIng",
+      Input(string: "strING"): "rING",
+      Input(string: "x"): "x",
+      Input(string: "X"): "X",
+      Input(string: "SomeCapString"): "Some",
+      Input(string: "someCapString"): "apSt",
+      Input(string: "string with words"): "with",
+      Input(string: "String with words"): "th words",
+      Input(string: "A__B__C"): "_",
+      Input(string: "__y_z!"): "!"
     ]
 
     for (input, substring) in expectations {
@@ -344,16 +368,16 @@ extension StringFiltersTests {
   }
 
   func testContains_WithFalseResult() throws {
-    let expectations = [
-      "string": "a",
-      "String": "blabla",
-      "strIng": "foo",
-      "strING": "ing",
-      "X": "x",
-      "string with words": "string with sentences",
-      "": "y",
-      "A__B__C": "a__B__C",
-      "__y_z!": "___"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "a",
+      Input(string: "String"): "blabla",
+      Input(string: "strIng"): "foo",
+      Input(string: "strING"): "ing",
+      Input(string: "X"): "x",
+      Input(string: "string with words"): "string with sentences",
+      Input(string: ""): "y",
+      Input(string: "A__B__C"): "a__B__C",
+      Input(string: "__y_z!"): "___"
     ]
 
     for (input, substring) in expectations {
@@ -365,20 +389,20 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testHasPrefix_WithTrueResult() throws {
-    let expectations = [
-      "string": "s",
-      "String": "Str",
-      "strIng": "strIng",
-      "strING": "strI",
-      "x": "x",
-      "X": "X",
-      "SomeCapString": "Some",
-      "someCapString": "someCap",
-      "string with words": "string",
-      "String with words": "String with",
-      "A__B__C": "A",
-      "__y_z!": "__",
-      "AnotherString": ""
+    let expectations: [Input: String] = [
+      Input(string: "string"): "s",
+      Input(string: "String"): "Str",
+      Input(string: "strIng"): "strIng",
+      Input(string: "strING"): "strI",
+      Input(string: "x"): "x",
+      Input(string: "X"): "X",
+      Input(string: "SomeCapString"): "Some",
+      Input(string: "someCapString"): "someCap",
+      Input(string: "string with words"): "string",
+      Input(string: "String with words"): "String with",
+      Input(string: "A__B__C"): "A",
+      Input(string: "__y_z!"): "__",
+      Input(string: "AnotherString"): ""
     ]
 
     for (input, prefix) in expectations {
@@ -388,15 +412,15 @@ extension StringFiltersTests {
   }
 
   func testHasPrefix_WithFalseResult() throws {
-    let expectations = [
-      "string": "tring",
-      "String": "str",
-      "strING": "striNG",
-      "X": "x",
-      "string with words": "words with words",
-      "": "y",
-      "A__B__C": "a__B__C",
-      "__y_z!": "!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "tring",
+      Input(string: "String"): "str",
+      Input(string: "strING"): "striNG",
+      Input(string: "X"): "x",
+      Input(string: "string with words"): "words with words",
+      Input(string: ""): "y",
+      Input(string: "A__B__C"): "a__B__C",
+      Input(string: "__y_z!"): "!"
       ]
 
     for (input, prefix) in expectations {
@@ -408,19 +432,19 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testHasSuffix_WithTrueResult() throws {
-    let expectations = [
-      "string": "g",
-      "String": "ring",
-      "strIng": "trIng",
-      "strING": "strING",
-      "X": "X",
-      "x": "x",
-      "SomeCapString": "CapString",
-      "string with words": "with words",
-      "String with words": " words",
-      "string wiTH WOrds": "",
-      "A__B__C": "_C",
-      "__y_z!": "z!"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "g",
+      Input(string: "String"): "ring",
+      Input(string: "strIng"): "trIng",
+      Input(string: "strING"): "strING",
+      Input(string: "X"): "X",
+      Input(string: "x"): "x",
+      Input(string: "SomeCapString"): "CapString",
+      Input(string: "string with words"): "with words",
+      Input(string: "String with words"): " words",
+      Input(string: "string wiTH WOrds"): "",
+      Input(string: "A__B__C"): "_C",
+      Input(string: "__y_z!"): "z!"
     ]
 
     for (input, suffix) in expectations {
@@ -430,19 +454,19 @@ extension StringFiltersTests {
   }
 
   func testHasSuffix_WithFalseResult() throws {
-    let expectations = [
-      "string": "gni",
-      "String": "Ing",
-      "strIng": "ing",
-      "strING": "nG",
-      "X": "x",
-      "x": "X",
-      "string with words": "with  words",
-      "String with words": " Words",
-      "String With Words": "th_Words",
-      "": "aa",
-      "A__B__C": "C__B",
-      "__y_z!": "z?"
+    let expectations: [Input: String] = [
+      Input(string: "string"): "gni",
+      Input(string: "String"): "Ing",
+      Input(string: "strIng"): "ing",
+      Input(string: "strING"): "nG",
+      Input(string: "X"): "x",
+      Input(string: "x"): "X",
+      Input(string: "string with words"): "with  words",
+      Input(string: "String with words"): " Words",
+      Input(string: "String With Words"): "th_Words",
+      Input(string: ""): "aa",
+      Input(string: "A__B__C"): "C__B",
+      Input(string: "__y_z!"): "z?"
     ]
 
     for (input, suffix) in expectations {
@@ -455,10 +479,10 @@ extension StringFiltersTests {
 extension StringFiltersTests {
   func testReplace() throws {
     let expectations = [
-      ("string", "ing", "oke", "stroke"),
-      ("string", "folks", "mates", "string"),
-      ("hi mates!", "hi", "Yo", "Yo mates!"),
-      ("string with spaces", " ", "_", "string_with_spaces")
+      (Input(string: "string"), "ing", "oke", "stroke"),
+      (Input(string: "string"), "folks", "mates", "string"),
+      (Input(string: "hi mates!"), "hi", "Yo", "Yo mates!"),
+      (Input(string: "string with spaces"), " ", "_", "string_with_spaces")
     ]
 
     for (input, substring, replacement, expected) in expectations {
@@ -470,12 +494,12 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testBasename() throws {
-    let expectations = [
-      "/tmp/scratch.tiff": "scratch.tiff",
-      "/tmp/scratch": "scratch",
-      "/tmp/": "tmp",
-      "scratch///": "scratch",
-      "/": "/"
+    let expectations: [Input: String] = [
+      Input(string: "/tmp/scratch.tiff"): "scratch.tiff",
+      Input(string: "/tmp/scratch"): "scratch",
+      Input(string: "/tmp/"): "tmp",
+      Input(string: "scratch///"): "scratch",
+      Input(string: "/"): "/"
     ]
 
     for (input, expected) in expectations {
@@ -487,13 +511,13 @@ extension StringFiltersTests {
 
 extension StringFiltersTests {
   func testDirname() throws {
-    let expectations = [
-      "/tmp/scratch.tiff": "/tmp",
-      "/tmp/lock/": "/tmp",
-      "/tmp/": "/",
-      "/tmp": "/",
-      "/": "/",
-      "scratch.tiff": ""
+    let expectations: [Input: String] = [
+      Input(string: "/tmp/scratch.tiff"): "/tmp",
+      Input(string: "/tmp/lock/"): "/tmp",
+      Input(string: "/tmp/"): "/",
+      Input(string: "/tmp"): "/",
+      Input(string: "/"): "/",
+      Input(string: "scratch.tiff"): ""
     ]
 
     for (input, expected) in expectations {

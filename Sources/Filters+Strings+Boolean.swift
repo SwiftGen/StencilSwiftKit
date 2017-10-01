@@ -17,8 +17,8 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or
   ///           if number of arguments is not one or if the given argument isn't a string
   static func contains(_ value: Any?, arguments: [Any?]) throws -> Bool {
-      guard let string = value as? String else { throw Filters.Error.invalidInputType }
-      guard let substring = arguments.first as? String else { throw Filters.Error.invalidInputType }
+      let string = try Filters.parseString(from: value)
+      let substring = try Filters.parseStringArgument(from: arguments)
       return string.contains(substring)
   }
 
@@ -31,8 +31,8 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or
   ///           if number of arguments is not one or if the given argument isn't a string
   static func hasPrefix(_ value: Any?, arguments: [Any?]) throws -> Bool {
-      guard let string = value as? String else { throw Filters.Error.invalidInputType }
-      guard let prefix = arguments.first as? String else { throw Filters.Error.invalidInputType }
+      let string = try Filters.parseString(from: value)
+      let prefix = try Filters.parseStringArgument(from: arguments)
       return string.hasPrefix(prefix)
   }
 
@@ -45,8 +45,8 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string or
   ///           if number of arguments is not one or if the given argument isn't a string
   static func hasSuffix(_ value: Any?, arguments: [Any?]) throws -> Bool {
-      guard let string = value as? String else { throw Filters.Error.invalidInputType }
-      guard let suffix = arguments.first as? String else { throw Filters.Error.invalidInputType }
+      let string = try Filters.parseString(from: value)
+      let suffix = try Filters.parseStringArgument(from: arguments)
       return string.hasSuffix(suffix)
   }
 }
