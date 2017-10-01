@@ -17,6 +17,10 @@ _None_
 * Accept `LosslessStringConvertible` input for strings filters.  
   [Antondomashnev](https://github.com/antondomashnev)
   [#65](https://github.com/SwiftGen/StencilSwiftKit/pull/65)
+* `StencilContext.enrich` now also accept a Dictionary for specifying parameters
+  (in preparation for supporting Config files in SwiftGen).  
+  [Olivier Halligon](https://github.com/AliSoftware)
+  [#66](https://github.com/SwiftGen/StencilSwiftKit/pull/66)
 
 ### Internal Changes
 
