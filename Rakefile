@@ -1,11 +1,13 @@
 #!/usr/bin/rake
+require 'English'
 
 ## [ Constants ] ##############################################################
 
-WORKSPACE = 'StencilSwiftKit'
-SCHEME_NAME = 'Tests'
-CONFIGURATION = 'Debug'
-POD_NAME = 'StencilSwiftKit'
+WORKSPACE = 'StencilSwiftKit'.freeze
+SCHEME_NAME = 'Tests'.freeze
+CONFIGURATION = 'Debug'.freeze
+POD_NAME = 'StencilSwiftKit'.freeze
+MIN_XCODE_VERSION = 8.3
 
 ## [ Release a new version ] ##################################################
 
@@ -19,7 +21,11 @@ namespace :release do
 
     # Check if bundler is installed first, as we'll need it for the cocoapods task (and we prefer to fail early)
     `which bundler`
-    results << Utils.table_result($?.success?, 'Bundler installed', 'Please install bundler using `gem install bundler` and run `bundle install` first.')
+    results << Utils.table_result(
+      $CHILD_STATUS.success?,
+      'Bundler installed',
+      'Please install bundler using `gem install bundler` and run `bundle install` first.'
+    )
 
     # Extract version from podspec
     podspec_version = Utils.podspec_version(POD_NAME)
@@ -27,27 +33,43 @@ namespace :release do
 
     # Check if version in Podfile.lock matches
     podfile_lock_version = Utils.podfile_lock_version(POD_NAME)
-    results << Utils.table_result(podfile_lock_version == podspec_version, "Podfile.lock", "Please run pod install")
+    results << Utils.table_result(
+      podfile_lock_version == podspec_version,
+      'Podfile.lock',
+      'Please run pod install'
+    )
 
     # Check if entry present in CHANGELOG
-    changelog_entry = system(%Q{grep -q '^## #{Regexp.quote(podspec_version)}$' CHANGELOG.md})
-    results << Utils.table_result(changelog_entry, "CHANGELOG, Entry added", "Please add an entry for #{podspec_version} in CHANGELOG.md")
+    changelog_entry = system(%(grep -q '^## #{Regexp.quote(podspec_version)}$' CHANGELOG.md))
+    results << Utils.table_result(
+      changelog_entry,
+      'CHANGELOG, Entry added',
+      "Please add an entry for #{podspec_version} in CHANGELOG.md"
+    )
 
-    changelog_master = system(%q{grep -qi '^## Master' CHANGELOG.md})
-    results << Utils.table_result(!changelog_master, "CHANGELOG, No master", 'Please remove entry for master in CHANGELOG')
+    changelog_master = system("grep -qi '^## Master' CHANGELOG.md")
+    results << Utils.table_result(
+      !changelog_master,
+      'CHANGELOG, No master',
+      'Please remove entry for master in CHANGELOG'
+    )
 
-    tag_set = !(`git ls-remote --tags . refs/tags/#{podspec_version}`.empty?)
-    results << Utils.table_result(tag_set, "Tag pushed", 'Please create a tag and push it')
+    tag_set = !`git ls-remote --tags . refs/tags/#{podspec_version}`.empty?
+    results << Utils.table_result(
+      tag_set,
+      'Tag pushed',
+      'Please create a tag and push it'
+    )
 
     exit 1 unless results.all?
 
     print "Release version #{podspec_version} [Y/n]? "
-    exit 2 unless (STDIN.gets.chomp == 'Y')
+    exit 2 unless STDIN.gets.chomp == 'Y'
   end
 
   desc "pod trunk push #{POD_NAME} to CocoaPods"
   task :cocoapods do
-    Utils.print_header "Pushing pod to CocoaPods Trunk"
+    Utils.print_header 'Pushing pod to CocoaPods Trunk'
     sh "bundle exec pod trunk push #{POD_NAME}.podspec"
   end
 end
