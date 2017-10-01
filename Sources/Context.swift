@@ -23,7 +23,7 @@ public enum StencilContext {
   public static func enrich(context: [String: Any],
                             parameters: [String],
                             environment: [String: String] =
-    ProcessInfo.processInfo.environment) throws -> [String: Any] {
+                            ProcessInfo.processInfo.environment) throws -> [String: Any] {
     let params = try Parameters.parse(items: parameters)
     return try enrich(context: context, parameters: params, environment: environment)
   }
