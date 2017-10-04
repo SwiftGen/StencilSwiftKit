@@ -29,6 +29,11 @@ class ParseStringTests: XCTestCase {
 
   struct TestNotConvertible {}
 
+  func testParseString_FromValue_WithNSStringValue() throws {
+    let value = try Filters.parseString(from: NSString(string: "foo"))
+    XCTAssertEqual(value, "foo")
+  }
+
   func testParseString_FromValue_WithStringValue() throws {
     let value = try Filters.parseString(from: "foo")
     XCTAssertEqual(value, "foo")

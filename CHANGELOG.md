@@ -2,6 +2,27 @@
 
 ---
 
+## Master
+
+### Bug Fixes
+
+* Workaround for `parseString` to support `NSString`.
+  [Antondomashnev](https://github.com/antondomashnev)
+  [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
+
+### Breaking Changes
+
+_None_
+
+### New Features
+
+_None_
+
+### Internal Changes
+
+_None_
+
+
 ## 2.2.0
 
 ### New Features
