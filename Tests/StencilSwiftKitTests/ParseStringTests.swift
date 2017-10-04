@@ -33,7 +33,7 @@ class ParseStringTests: XCTestCase {
     let value = try Filters.parseString(from: NSString(string: "foo"))
     XCTAssertEqual(value, "foo")
   }
-  
+
   func testParseString_FromValue_WithStringValue() throws {
     let value = try Filters.parseString(from: "foo")
     XCTAssertEqual(value, "foo")
