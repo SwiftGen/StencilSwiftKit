@@ -14,7 +14,9 @@ _None_
 
 ### New Features
 
-_None_
+* Add `!` counterpart for strings boolean filters.  
+  [Antondomashnev](https://github.com/antondomashnev)
+  [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
 
 ### Internal Changes
 
