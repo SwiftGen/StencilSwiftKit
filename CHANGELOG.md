@@ -16,7 +16,10 @@ _None_
 
 ### New Features
 
-_None_
+* Added `Parameters.flatten(dictionary:)` method to do the opposite of
+  `Parameters.parse(items:)` and turn a dictionary into the list of parameters to pass from the command line.  
+  [Olivier Halligon](https://github.com/AliSoftware)
+  [#70](https://github.com/SwiftGen/StencilSwiftKit/pull/70)
 
 ### Internal Changes
 
