@@ -17,6 +17,13 @@ class ParametersTests: XCTestCase {
     XCTAssertEqual(result["b"] as? String, "hello")
     XCTAssertEqual(result["c"] as? String, "x=y")
     XCTAssertEqual(result["d"] as? Bool, true)
+
+    // Test the opposite operation (flatten) as well
+    let reverse = Parameters.flatten(dictionary: result)
+    XCTAssertEqual(reverse.count, items.count,
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(Set(reverse), Set(items),
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
   }
 
   func testStructured() throws {
@@ -28,6 +35,13 @@ class ParametersTests: XCTestCase {
     XCTAssertEqual(sub["baz"] as? String, "1")
     XCTAssertEqual(sub["bar"] as? String, "2")
     XCTAssertEqual(sub["test"] as? Bool, true)
+
+    // Test the opposite operation (flatten) as well
+    let reverse = Parameters.flatten(dictionary: result)
+    XCTAssertEqual(reverse.count, items.count,
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(Set(reverse), Set(items),
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
   }
 
   func testDeepStructured() throws {
@@ -40,6 +54,13 @@ class ParametersTests: XCTestCase {
     guard let baz = bar["baz"] as? [String: Any] else { XCTFail("Parsed parameter should be a dictionary"); return }
     guard let qux = baz["qux"] as? String else { XCTFail("Parsed parameter should be a string"); return }
     XCTAssertEqual(qux, "1")
+
+    // Test the opposite operation (flatten) as well
+    let reverse = Parameters.flatten(dictionary: result)
+    XCTAssertEqual(reverse.count, items.count,
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(Set(reverse), Set(items),
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
   }
 
   func testRepeated() throws {
@@ -52,9 +73,18 @@ class ParametersTests: XCTestCase {
     XCTAssertEqual(sub[0], "1")
     XCTAssertEqual(sub[1], "2")
     XCTAssertEqual(sub[2], "hello")
+
+    // Test the opposite operation (flatten) as well
+    let reverse = Parameters.flatten(dictionary: result)
+    XCTAssertEqual(reverse.count, items.count,
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(Set(reverse), Set(items),
+                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(reverse, items,
+                   "The order of arrays are properly preserved when flattened")
   }
 
-  func testInvalidSyntax() {
+  func testParseInvalidSyntax() {
     // invalid character
     do {
       let items = ["foo:1"]
@@ -89,7 +119,7 @@ class ParametersTests: XCTestCase {
     }
   }
 
-  func testInvalidKey() {
+  func testParseInvalidKey() {
     // key may only be alphanumeric or '.'
     do {
       let items = ["foo:bar=1"]
@@ -124,7 +154,7 @@ class ParametersTests: XCTestCase {
     }
   }
 
-  func testInvalidStructure() {
+  func testParseInvalidStructure() {
     // can't switch from string to dictionary
     do {
       let items = ["foo=1", "foo.bar=1"]

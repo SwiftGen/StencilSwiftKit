@@ -32,7 +32,7 @@ class ContextTests: XCTestCase {
   }
 
   func testWithContext() throws {
-    let context: [String : Any] = ["foo": "bar", "hello": true]
+    let context: [String: Any] = ["foo": "bar", "hello": true]
 
     let result = try StencilContext.enrich(context: context,
                                            parameters: [],
