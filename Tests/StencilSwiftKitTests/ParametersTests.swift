@@ -80,6 +80,8 @@ class ParametersTests: XCTestCase {
                    "Flattening the resulting dictionary back did not result in the equivalent of the original list")
     XCTAssertEqual(Set(reverse), Set(items),
                    "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(reverse, items,
+                   "The order of arrays are properly preserved when flattened")
   }
 
   func testParseInvalidSyntax() {
