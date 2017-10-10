@@ -2,17 +2,13 @@
 
 ---
 
-## Master
+## 2.3.0
 
 ### Bug Fixes
 
-* Workaround for `parseString` to support `NSString`.
+* Workaround for `parseString` to support `NSString`.  
   [Antondomashnev](https://github.com/antondomashnev)
   [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
-
-### Breaking Changes
-
-_None_
 
 ### New Features
 
@@ -20,11 +16,6 @@ _None_
   `Parameters.parse(items:)` and turn a dictionary into the list of parameters to pass from the command line.  
   [Olivier Halligon](https://github.com/AliSoftware)
   [#70](https://github.com/SwiftGen/StencilSwiftKit/pull/70)
-
-### Internal Changes
-
-_None_
-
 
 ## 2.2.0
 
