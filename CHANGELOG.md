@@ -17,6 +17,7 @@ _None_
 * Add `!` counterpart for strings boolean filters.  
   [Antondomashnev](https://github.com/antondomashnev)
   [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
+* Updated Stencil to the latest version (0.10.1)
 
 ### Internal Changes
 
