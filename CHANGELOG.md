@@ -2,26 +2,16 @@
 
 ---
 
-## Master
-
-### Bug Fixes
-
-_None_
-
-### Breaking Changes
-
-_None_
+## 2.4.0
 
 ### New Features
 
 * Add `!` counterpart for strings boolean filters.  
   [Antondomashnev](https://github.com/antondomashnev)
   [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
-* Updated Stencil to the latest version (0.10.1)
-
-### Internal Changes
-
-_None_
+* Updated Stencil to the latest version (0.10.1).  
+  [Ilya Puchka](https://github.com/ilyapuchka)
+  [#73](https://github.com/SwiftGen/StencilSwiftKit/pull/73)
 
 ## 2.3.0
 
