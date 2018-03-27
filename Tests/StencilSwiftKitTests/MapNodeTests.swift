@@ -4,9 +4,9 @@
 // MIT Licence
 //
 
-import XCTest
 @testable import Stencil
 @testable import StencilSwiftKit
+import XCTest
 
 class MapNodeTests: XCTestCase {
   static let context = [

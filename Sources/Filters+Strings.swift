@@ -159,10 +159,10 @@ extension Filters.Strings {
     let unprefixed: String
     if try containsAnyLowercasedChar(string) {
       let comps = string.components(separatedBy: "_")
-      unprefixed = comps.map { upperFirstLetter($0) }.joined(separator: "")
+      unprefixed = comps.map { upperFirstLetter($0) }.joined()
     } else {
       let comps = try snakecase(string).components(separatedBy: "_")
-      unprefixed = comps.map { $0.capitalized }.joined(separator: "")
+      unprefixed = comps.map { $0.capitalized }.joined()
     }
 
     // only if passed true, strip the prefix underscores

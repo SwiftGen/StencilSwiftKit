@@ -53,8 +53,8 @@ class MapNode: NodeType {
   func render(_ context: Context) throws -> String {
     let values = try variable.resolve(context)
 
-    if let values = values as? [Any], values.count > 0 {
-      let mappedValues: [String] = try values.enumerated().map { (index, item) in
+    if let values = values as? [Any], !values.isEmpty {
+      let mappedValues: [String] = try values.enumerated().map { index, item in
         let mapContext = self.context(values: values, index: index, item: item)
 
         return try context.push(dictionary: mapContext) {

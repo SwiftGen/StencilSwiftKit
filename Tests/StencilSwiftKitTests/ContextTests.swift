@@ -6,8 +6,8 @@
 //  Copyright © 2017 AliSoftware. All rights reserved.
 //
 
-import XCTest
 import StencilSwiftKit
+import XCTest
 
 class ContextTests: XCTestCase {
   func testEmpty() throws {

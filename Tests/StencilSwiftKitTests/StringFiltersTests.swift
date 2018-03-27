@@ -6,8 +6,8 @@
 
 // swiftlint:disable file_length
 
-import XCTest
 @testable import StencilSwiftKit
+import XCTest
 
 final class StringFiltersTests: XCTestCase {
   struct Input: LosslessStringConvertible, Hashable {
@@ -421,7 +421,7 @@ extension StringFiltersTests {
       Input(string: ""): "y",
       Input(string: "A__B__C"): "a__B__C",
       Input(string: "__y_z!"): "!"
-      ]
+    ]
 
     for (input, prefix) in expectations {
       let result = try Filters.Strings.hasPrefix(input, arguments: [prefix])
