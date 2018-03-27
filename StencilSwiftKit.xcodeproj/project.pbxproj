@@ -263,7 +263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! $CI ]]; then\n  [[ -r ~/.profile ]] && source ~/.profile\n  if [[ `which bundler` ]]; then\n    bundle exec rake lint:code\n    bundle exec rake lint:tests\n  else\n    echo \"warning: bundler not found, can't lint code. Please install bundler then run bundle install.\"\n  fi\nfi";
+			shellScript = "if [[ ! $CI ]]; then\n  \"$PODS_ROOT/SwiftLint/swiftlint\" lint --strict --config \"${SRCROOT}/.swiftlint.yml\" --path \"${SRCROOT}/Sources\"\n  \"$PODS_ROOT/SwiftLint/swiftlint\" lint --strict --config \"${SRCROOT}/.swiftlint.yml\" --path \"${SRCROOT}/Tests\"\nfi";
 		};
 		DE127EA8748200EF28090721 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
