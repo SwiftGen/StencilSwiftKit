@@ -8,17 +8,20 @@ import XCTest
 @testable import StencilSwiftKit
 
 class ParseBoolTests: XCTestCase {
-
   func testParseBool_TrueWithString() throws {
+    // swiftlint:disable force_unwrapping
     XCTAssertTrue(try Filters.parseBool(from: ["true"])!)
     XCTAssertTrue(try Filters.parseBool(from: ["yes"])!)
     XCTAssertTrue(try Filters.parseBool(from: ["1"])!)
+    // swiftlint:enable force_unwrapping
   }
 
   func testParseBool_FalseWithString() throws {
+    // swiftlint:disable force_unwrapping
     XCTAssertFalse(try Filters.parseBool(from: ["false"])!)
     XCTAssertFalse(try Filters.parseBool(from: ["no"])!)
     XCTAssertFalse(try Filters.parseBool(from: ["0"])!)
+    // swiftlint:enable force_unwrapping
   }
 
   func testParseBool_WithOptionalInt() throws {
@@ -57,7 +60,9 @@ class ParseBoolTests: XCTestCase {
   }
 
   func testParseBool_WithNonZeroIndex() throws {
+    // swiftlint:disable force_unwrapping
     XCTAssertTrue(try Filters.parseBool(from: ["test", "true"], at: 1)!)
     XCTAssertFalse(try Filters.parseBool(from: ["test", "false"], at: 1)!)
+    // swiftlint:enable force_unwrapping
   }
 }
