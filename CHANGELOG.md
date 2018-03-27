@@ -21,6 +21,9 @@ _None_
 * Switched to using SwiftLint via CocoaPods instead of our own install scripts.  
   [David Jennes](https://github.com/djbe) 
   [#78](https://github.com/SwiftGen/StencilSwiftKit/pull/78)
+* Enabled some extra SwiftLint rules for better code consistency.  
+  [David Jennes](https://github.com/djbe) 
+  [#79](https://github.com/SwiftGen/StencilSwiftKit/pull/79)
 
 ## 2.4.0
 
