@@ -7,7 +7,7 @@ WORKSPACE = 'StencilSwiftKit'.freeze
 SCHEME_NAME = 'Tests'.freeze
 CONFIGURATION = 'Debug'.freeze
 POD_NAME = 'StencilSwiftKit'.freeze
-MIN_XCODE_VERSION = 8.3
+MIN_XCODE_VERSION = 9.2
 
 ## [ Release a new version ] ##################################################
 
