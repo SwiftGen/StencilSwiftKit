@@ -27,6 +27,9 @@ _None_
 * Migrated to CircleCI 2.0.  
   [David Jennes](https://github.com/djbe) 
   [#81](https://github.com/SwiftGen/StencilSwiftKit/pull/81)
+* Migrated to swift 4.  
+  [David Jennes](https://github.com/djbe) 
+  [#80](https://github.com/SwiftGen/StencilSwiftKit/pull/80)
 
 ## 2.4.0
 
