@@ -263,7 +263,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [[ ! $CI ]]; then\n  \"$PODS_ROOT/SwiftLint/swiftlint\" lint --strict --config \"${SRCROOT}/.swiftlint.yml\" --path \"${SRCROOT}/Sources\"\n  \"$PODS_ROOT/SwiftLint/swiftlint\" lint --strict --config \"${SRCROOT}/.swiftlint.yml\" --path \"${SRCROOT}/Tests\"\nfi";
+			shellScript = "if [[ ! $CI ]]; then\n  \"$SRCROOT/Scripts/SwiftLint.sh\" \"sources\"\n  \"$SRCROOT/Scripts/SwiftLint.sh\" \"tests\"\nfi";
 		};
 		DE127EA8748200EF28090721 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
