@@ -24,6 +24,9 @@ _None_
 * Enabled some extra SwiftLint rules for better code consistency.  
   [David Jennes](https://github.com/djbe) 
   [#79](https://github.com/SwiftGen/StencilSwiftKit/pull/79)
+* Migrated to CircleCI 2.0.  
+  [David Jennes](https://github.com/djbe) 
+  [#81](https://github.com/SwiftGen/StencilSwiftKit/pull/81)
 
 ## 2.4.0
 
