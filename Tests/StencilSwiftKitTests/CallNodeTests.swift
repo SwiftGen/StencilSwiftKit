@@ -4,9 +4,9 @@
 // MIT Licence
 //
 
-import XCTest
 @testable import Stencil
 @testable import StencilSwiftKit
+import XCTest
 
 class CallNodeTests: XCTestCase {
   func testParser() {

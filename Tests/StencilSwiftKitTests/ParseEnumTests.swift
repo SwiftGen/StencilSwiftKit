@@ -4,8 +4,8 @@
 // MIT Licence
 //
 
-import XCTest
 @testable import StencilSwiftKit
+import XCTest
 
 class ParseEnumTests: XCTestCase {
   enum Test: String {
