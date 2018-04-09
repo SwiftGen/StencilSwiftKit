@@ -18,9 +18,10 @@ class MapNode: NodeType {
 
     guard components.count == 4 && components[2] == "into" ||
       components.count == 6 && components[2] == "into" && components[4] == "using" else {
-        let error = "'map' statements should use the following " +
-        "'map {array} into {varname} [using {element}]' `\(token.contents)`."
-        throw TemplateSyntaxError(error)
+        throw TemplateSyntaxError("""
+          'map' statements should use the following 'map {array} into \
+          {varname} [using {element}]' `\(token.contents)`.
+          """)
     }
 
     let variable = components[1]
