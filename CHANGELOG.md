@@ -14,7 +14,9 @@ _None_
 
 ### New Features
 
-_None_
+* Updated Stencil to the latest version (0.11.0).  
+  [David Jennes](https://github.com/djbe) 
+  [#83](https://github.com/SwiftGen/StencilSwiftKit/pull/83)
 
 ### Internal Changes
 
