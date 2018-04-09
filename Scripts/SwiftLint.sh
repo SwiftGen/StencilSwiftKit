@@ -1,7 +1,8 @@
 #!/bin/bash
 
-SWIFTLINT="$(PWD)/Pods/SwiftLint/swiftlint"
-CONFIG="$(PWD)/.swiftlint.yml"
+PROJECT_DIR="${PROJECT_DIR:-`cd "$(dirname $0)/..";pwd`}"
+SWIFTLINT="${PROJECT_DIR}/Pods/SwiftLint/swiftlint"
+CONFIG="${PROJECT_DIR}/.swiftlint.yml"
 
 # possible paths
 paths_sources="Sources"
@@ -21,4 +22,4 @@ if [ -z "$selected_path" ]; then
 	exit 1
 fi
 
-"$SWIFTLINT" lint --strict --config "$CONFIG" --path "${PWD}/${selected_path}"
+"$SWIFTLINT" lint --strict --config "$CONFIG" --path "${PROJECT_DIR}/${selected_path}"
