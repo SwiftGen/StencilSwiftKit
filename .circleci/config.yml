@@ -15,8 +15,8 @@ defaults:
   - &restore-gems
     restore_cache:
       keys:
-        - v1-gems-{{ checksum "Gemfile.lock" }}
-        - v1-gems-
+        - gems-{{ checksum "Gemfile.lock" }}
+        - gems-
   - &install-gems
     run:
       name: Bundle install
@@ -69,6 +69,7 @@ jobs:
           command: bundle exec rake xcode:test
       - store_test_results:
           path: /tmp/circleci-test-results
+      - *fetch-xcode-logs
       - *store-artifacts
 
   spm-build-and-test:
