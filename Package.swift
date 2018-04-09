@@ -1,11 +1,30 @@
+// swift-tools-version:4.0
 import PackageDescription
 
 let package = Package(
     name: "StencilSwiftKit",
-    targets: [
-        Target(name: "StencilSwiftKit", dependencies: [])
+    products: [
+        .library(name: "StencilSwiftKit", targets: ["StencilSwiftKit"])
     ],
     dependencies: [
-        .Package(url: "https://github.com/kylef/Stencil.git", majorVersion: 0, minor: 10),
-    ]
+        .package(url: "https://github.com/kylef/Stencil.git", .upToNextMinor(from: "0.10.0"))
+    ],
+    targets: [
+      .target(
+        name: "StencilSwiftKit",
+        dependencies: [
+          "Stencil"
+        ],
+        path: "",
+        sources: ["Sources"]
+      ),
+      .testTarget(
+        name: "StencilSwiftKitTests",
+        dependencies: [
+          "StencilSwiftKit"
+        ],
+        path: "Tests"
+      )
+    ],
+    swiftLanguageVersions: [4]
 )
