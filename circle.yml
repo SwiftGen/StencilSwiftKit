@@ -4,7 +4,6 @@ machine:
 
 dependencies:
   post:
-    - bundle exec rake lint:install
     - curl -sS https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash
 
 test:

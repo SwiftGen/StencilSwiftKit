@@ -8,17 +8,16 @@ import XCTest
 @testable import StencilSwiftKit
 
 class ParseBoolTests: XCTestCase {
-
   func testParseBool_TrueWithString() throws {
-    XCTAssertTrue(try Filters.parseBool(from: ["true"])!)
-    XCTAssertTrue(try Filters.parseBool(from: ["yes"])!)
-    XCTAssertTrue(try Filters.parseBool(from: ["1"])!)
+    XCTAssertEqual(try Filters.parseBool(from: ["true"]), true)
+    XCTAssertEqual(try Filters.parseBool(from: ["yes"]), true)
+    XCTAssertEqual(try Filters.parseBool(from: ["1"]), true)
   }
 
   func testParseBool_FalseWithString() throws {
-    XCTAssertFalse(try Filters.parseBool(from: ["false"])!)
-    XCTAssertFalse(try Filters.parseBool(from: ["no"])!)
-    XCTAssertFalse(try Filters.parseBool(from: ["0"])!)
+    XCTAssertEqual(try Filters.parseBool(from: ["false"]), false)
+    XCTAssertEqual(try Filters.parseBool(from: ["no"]), false)
+    XCTAssertEqual(try Filters.parseBool(from: ["0"]), false)
   }
 
   func testParseBool_WithOptionalInt() throws {
@@ -57,7 +56,7 @@ class ParseBoolTests: XCTestCase {
   }
 
   func testParseBool_WithNonZeroIndex() throws {
-    XCTAssertTrue(try Filters.parseBool(from: ["test", "true"], at: 1)!)
-    XCTAssertFalse(try Filters.parseBool(from: ["test", "false"], at: 1)!)
+    XCTAssertEqual(try Filters.parseBool(from: ["test", "true"], at: 1), true)
+    XCTAssertEqual(try Filters.parseBool(from: ["test", "false"], at: 1), false)
   }
 }

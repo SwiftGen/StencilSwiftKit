@@ -18,7 +18,9 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Switched to using SwiftLint via CocoaPods instead of our own install scripts.  
+  [David Jennes](https://github.com/djbe) 
+  [#78](https://github.com/SwiftGen/StencilSwiftKit/pull/78)
 
 ## 2.4.0
 
