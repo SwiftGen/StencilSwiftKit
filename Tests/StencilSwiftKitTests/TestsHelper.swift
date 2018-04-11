@@ -88,8 +88,8 @@ class Fixtures {
     let subDir: String? = name.hasSuffix(".stencil") ? "fixtures" : "expected"
     do {
       return try path(for: name, subDirectory: subDir).read(encoding)
-    } catch let e {
-      fatalError("Unable to load fixture content: \(e)")
+    } catch let error {
+      fatalError("Unable to load fixture content: \(error)")
     }
   }
 }
