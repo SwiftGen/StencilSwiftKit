@@ -1,6 +1,11 @@
 #!/usr/bin/rake
 require 'English'
 
+unless defined?(Bundler)
+  puts 'Please use bundle exec to run the rake command' 
+  exit 1
+end
+
 ## [ Constants ] ##############################################################
 
 WORKSPACE = 'StencilSwiftKit'.freeze
