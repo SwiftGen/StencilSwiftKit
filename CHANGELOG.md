@@ -2,6 +2,14 @@
 
 ---
 
+## Master
+
+### Bug fixes
+
+* Fixed using filter expression in call node.  
+  [Ilya Puchka](https://github.com/ilyapuchka) 
+  [#85](https://github.com/SwiftGen/StencilSwiftKit/pull/85)
+
 ## 2.5.0
 
 ### New Features
