@@ -2,7 +2,7 @@
 # none
 
 namespace :lint do
-  SWIFTLINT = 'Scripts/SwiftLint.sh'
+  SWIFTLINT = 'Scripts/SwiftLint.sh'.freeze
 
   desc 'Lint the code'
   task :code do |task|
