@@ -66,14 +66,7 @@ enum SwiftIdentifier {
     let mappedParts = parts.map { (string: String) -> String in
       // Can't use capitalizedString here because it will lowercase all letters after the first
       // e.g. "SomeNiceIdentifier".capitalizedString will because "Someniceidentifier" which is not what we want
-      let ns = NSString(string: string)
-      if ns.length > 0 {
-        let firstLetter = ns.substring(to: 1)
-        let rest = ns.substring(from: 1)
-        return firstLetter.uppercased() + rest
-      } else {
-        return ""
-      }
+      return Filters.Strings.upperFirstLetter(string)
     }
 
     let result = mappedParts.joined(separator: replacement)

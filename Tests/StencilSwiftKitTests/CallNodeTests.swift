@@ -38,7 +38,7 @@ class CallNodeTests: XCTestCase {
     }
 
     XCTAssertEqual(node.variableName, "myFunc")
-    let variables = node.arguments.flatMap { $0 as? FilterExpression }.flatMap { $0.variable }
+    let variables = node.arguments.compactMap { $0 as? FilterExpression }.compactMap { $0.variable }
     XCTAssertEqual(variables, [Variable("a"), Variable("b"), Variable("c")])
   }
 
