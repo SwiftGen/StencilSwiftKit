@@ -194,7 +194,7 @@ extension Filters.Strings {
   ///   - arguments: the arguments to the function; expecting zero
   /// - Returns: the string with first letter being uppercased
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
-  internal static func upperFirstLetter(_ value: String) -> String {
+  private static func upperFirstLetter(_ value: String) -> String {
     guard let first = value.unicodeScalars.first else { return value }
     return String(first).uppercased() + String(value.unicodeScalars.dropFirst())
   }
