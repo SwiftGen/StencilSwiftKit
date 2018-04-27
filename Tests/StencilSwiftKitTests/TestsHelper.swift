@@ -19,9 +19,9 @@ private let koCode = (num: colorCode("fg127,127,127") + colorCode("bg127,0,0"),
 func diff(_ result: String, _ expected: String) -> String? {
   guard result != expected else { return nil }
   var firstDiff: Int? = nil
-  let nl = CharacterSet.newlines
-  let lhsLines = result.components(separatedBy: nl)
-  let rhsLines = expected.components(separatedBy: nl)
+  let newlines = CharacterSet.newlines
+  let lhsLines = result.components(separatedBy: newlines)
+  let rhsLines = expected.components(separatedBy: newlines)
 
   for (idx, pair) in zip(lhsLines, rhsLines).enumerated() where pair.0 != pair.1 {
     firstDiff = idx

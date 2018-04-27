@@ -320,7 +320,10 @@
 				B499EA03E3E7FF8D31B3BE631B1240D0 /* Products */,
 				000722C3134BAC39CFC2600254B1E03E /* Targets Support Files */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
 		};
 		B0FD7795DD2B99BF08BF52E56B5DBF9F /* StencilSwiftKit */ = {
 			isa = PBXGroup;

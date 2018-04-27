@@ -10,6 +10,20 @@
   [Ilya Puchka](https://github.com/ilyapuchka) 
   [#85](https://github.com/SwiftGen/StencilSwiftKit/pull/85)
 
+### Breaking Changes
+
+_None_
+
+### New Features
+
+_None_
+
+### Internal Changes
+
+* Updated to latest Xcode (9.3.0).  
+  [David Jennes](https://github.com/djbe) 
+  [#86](https://github.com/SwiftGen/StencilSwiftKit/pull/86)
+
 ## 2.5.0
 
 ### New Features
