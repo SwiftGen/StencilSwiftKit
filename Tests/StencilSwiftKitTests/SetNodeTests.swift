@@ -247,4 +247,15 @@ class SetNodeTests: XCTestCase {
     _ = try node.render(context)
     XCTAssertEqual(context["b"] as? [Int], [1, 3, 7])
   }
+
+  func testSetWithFilterExpressionParameter() throws {
+    let context = Context(dictionary: ["greet": "hello"])
+
+    let parser = TokenParser(tokens: [], environment: stencilSwiftEnvironment())
+    let argument = try FilterExpression(token: "greet|uppercase", parser: parser)
+    let node = SetNode(variableName: "a", content: .reference(to: argument))
+
+    _ = try node.render(context)
+    XCTAssertEqual(context["a"] as? String, "HELLO")
+  }
 }
