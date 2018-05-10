@@ -7,7 +7,7 @@ This tag stores a value into a variable for later use.
 | Name      | Description                                                            |
 |-----------|------------------------------------------------------------------------|
 | Tag Name  | `set`                                                                  |
-| End Tag   | `endset`  or N/A (if you're creating an alias of an existing variable) |
+| End Tag   | `endset` or N/A (if you're creating an alias of an existing variable) |
 | Rendering | Immediately; no output                                                 |
 
 | Parameter  | Description                                 | 
@@ -18,7 +18,7 @@ This tag stores a value into a variable for later use.
 The parameters and tags of this node depend on which mode you want to use:
 
 - Use `{% set myVar %}...{% endset %}` to render and store everything between the start and end tag into the variable.
-- Use `{% set myVar someOtherVar.prop1.prop2 #}` to evaluate and store an expression's result into the variable.
+- Use `{% set myVar someOtherVar.prop1.prop2 %}` to evaluate and store an expression's result into the variable.
 
 _Example of render:_ `{% set myVar %}hello{% endset %}`
 
