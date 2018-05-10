@@ -16,7 +16,12 @@ _None_
 
 ### New Features
 
-_None_
+* The `set` tag can now directly accept an expression as value, see the
+  [documentation](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/tag-set.md)
+  for an explanation on how this differs with the normal `set`/`endset`
+  pair.  
+  [David Jennes](https://github.com/djbe)
+  [#247](https://github.com/AliSoftware/SwiftGen/pull/247)
 
 ### Internal Changes
 
