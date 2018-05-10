@@ -9,7 +9,7 @@
 import XCTest
 
 class SetNodeTests: XCTestCase {
-  func testParser() {
+  func testParserRenderMode() {
     let tokens: [Token] = [
       .block(value: "set value"),
       .text(value: "true"),
@@ -24,26 +24,71 @@ class SetNodeTests: XCTestCase {
     }
 
     XCTAssertEqual(node.variableName, "value")
-    XCTAssertEqual(node.nodes.count, 1)
-    XCTAssert(node.nodes.first is TextNode)
+    switch node.content {
+    case .nodes(let nodes):
+      XCTAssertEqual(nodes.count, 1)
+      XCTAssert(nodes.first is TextNode)
+    default:
+      XCTFail("Unexpected node content")
+    }
   }
 
-  func testParserFail() {
+  func testParserEvaluateMode() {
     let tokens: [Token] = [
-      .block(value: "set value"),
-      .text(value: "true")
+      .block(value: "set value some.variable.somewhere")
     ]
 
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
-    XCTAssertThrowsError(try parser.parse())
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? SetNode else {
+        XCTFail("Unable to parse tokens")
+        return
+    }
+
+    XCTAssertEqual(node.variableName, "value")
+    switch node.content {
+    case .value:
+      break
+    default:
+      XCTFail("Unexpected node content")
+    }
+  }
+
+  func testParserFail() {
+    do {
+      let tokens: [Token] = [
+        .block(value: "set value"),
+        .text(value: "true")
+      ]
+      let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+      XCTAssertThrowsError(try parser.parse())
+    }
+
+    do {
+      let tokens: [Token] = [
+        .block(value: "set value true"),
+        .text(value: "true"),
+        .block(value: "endset")
+      ]
+      let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+      XCTAssertThrowsError(try parser.parse())
+    }
   }
 
   func testRender() throws {
-    let node = SetNode(variableName: "value", nodes: [TextNode(text: "true")])
-    let context = Context(dictionary: [:])
-    let output = try node.render(context)
+    do {
+      let node = SetNode(variableName: "value", content: .nodes([TextNode(text: "true")]))
+      let context = Context(dictionary: [:])
+      let output = try node.render(context)
+      XCTAssertEqual(output, "")
+    }
 
-    XCTAssertEqual(output, "")
+    do {
+      let node = SetNode(variableName: "value", content: .value(Variable("test")))
+      let context = Context(dictionary: [:])
+      let output = try node.render(context)
+      XCTAssertEqual(output, "")
+    }
   }
 
   func testContextModification() throws {
@@ -51,43 +96,78 @@ class SetNodeTests: XCTestCase {
     let context = Context(dictionary: [:])
     XCTAssertNil(context["a"])
     XCTAssertNil(context["b"])
+    XCTAssertNil(context["c"])
 
     // set a
-    var node = SetNode(variableName: "a", nodes: [TextNode(text: "hello")])
+    var node = SetNode(variableName: "a", content: .nodes([TextNode(text: "hello")]))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertNil(context["b"])
+    XCTAssertNil(context["c"])
 
     // set b
-    node = SetNode(variableName: "b", nodes: [TextNode(text: "world")])
+    node = SetNode(variableName: "b", content: .nodes([TextNode(text: "world")]))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertEqual(context["b"] as? String, "world")
+    XCTAssertNil(context["c"])
 
     // modify a
-    node = SetNode(variableName: "a", nodes: [TextNode(text: "hi")])
+    node = SetNode(variableName: "a", content: .nodes([TextNode(text: "hi")]))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hi")
     XCTAssertEqual(context["b"] as? String, "world")
+    XCTAssertNil(context["c"])
+
+    // alias a into c
+    node = SetNode(variableName: "c", content: .value(Variable("a")))
+    _ = try node.render(context)
+    XCTAssertEqual(context["a"] as? String, "hi")
+    XCTAssertEqual(context["b"] as? String, "world")
+    XCTAssertEqual(context["c"] as? String, "hi")
+
+    // alias non-existing into c
+    node = SetNode(variableName: "c", content: .value(Variable("foo")))
+    _ = try node.render(context)
+    XCTAssertEqual(context["a"] as? String, "hi")
+    XCTAssertEqual(context["b"] as? String, "world")
+    XCTAssertNil(context["c"])
   }
 
   func testWithExistingContext() throws {
     // start with a=1, b=2
-    let context = Context(dictionary: ["a": 1, "b": 2])
+    let context = Context(dictionary: ["a": 1, "b": 2, "c": 3])
     XCTAssertEqual(context["a"] as? Int, 1)
     XCTAssertEqual(context["b"] as? Int, 2)
+    XCTAssertEqual(context["c"] as? Int, 3)
 
     // set a
-    var node = SetNode(variableName: "a", nodes: [TextNode(text: "hello")])
+    var node = SetNode(variableName: "a", content: .nodes([TextNode(text: "hello")]))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertEqual(context["b"] as? Int, 2)
+    XCTAssertEqual(context["c"] as? Int, 3)
 
     // set b
-    node = SetNode(variableName: "b", nodes: [TextNode(text: "world")])
+    node = SetNode(variableName: "b", content: .nodes([TextNode(text: "world")]))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertEqual(context["b"] as? String, "world")
+    XCTAssertEqual(context["c"] as? Int, 3)
+
+    // alias a into c
+    node = SetNode(variableName: "c", content: .value(Variable("a")))
+    _ = try node.render(context)
+    XCTAssertEqual(context["a"] as? String, "hello")
+    XCTAssertEqual(context["b"] as? String, "world")
+    XCTAssertEqual(context["c"] as? String, "hello")
+
+    // alias non-existing into c
+    node = SetNode(variableName: "c", content: .value(Variable("foo")))
+    _ = try node.render(context)
+    XCTAssertEqual(context["a"] as? String, "hello")
+    XCTAssertEqual(context["b"] as? String, "world")
+    XCTAssertNil(context["c"])
   }
 
   func testContextPush() throws {
@@ -98,7 +178,7 @@ class SetNodeTests: XCTestCase {
     XCTAssertNil(context["c"])
 
     // set a
-    var node = SetNode(variableName: "a", nodes: [TextNode(text: "hello")])
+    var node = SetNode(variableName: "a", content: .nodes([TextNode(text: "hello")]))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertEqual(context["b"] as? Int, 2)
@@ -111,14 +191,14 @@ class SetNodeTests: XCTestCase {
       XCTAssertNil(context["c"])
 
       // set b
-      node = SetNode(variableName: "b", nodes: [TextNode(text: "world")])
+      node = SetNode(variableName: "b", content: .nodes([TextNode(text: "world")]))
       _ = try node.render(context)
       XCTAssertEqual(context["a"] as? String, "hello")
       XCTAssertEqual(context["b"] as? String, "world")
       XCTAssertNil(context["c"])
 
       // set c
-      node = SetNode(variableName: "c", nodes: [TextNode(text: "foo")])
+      node = SetNode(variableName: "c", content: .nodes([TextNode(text: "foo")]))
       _ = try node.render(context)
       XCTAssertEqual(context["a"] as? String, "hello")
       XCTAssertEqual(context["b"] as? String, "world")
@@ -129,5 +209,42 @@ class SetNodeTests: XCTestCase {
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertEqual(context["b"] as? Int, 2)
     XCTAssertNil(context["c"])
+
+    // push context level
+    try context.push {
+      XCTAssertEqual(context["a"] as? String, "hello")
+      XCTAssertEqual(context["b"] as? Int, 2)
+      XCTAssertNil(context["c"])
+
+      // alias a into c
+      node = SetNode(variableName: "c", content: .value(Variable("a")))
+      _ = try node.render(context)
+      XCTAssertEqual(context["a"] as? String, "hello")
+      XCTAssertEqual(context["b"] as? Int, 2)
+      XCTAssertEqual(context["c"] as? String, "hello")
+    }
+
+    // after pop
+    XCTAssertEqual(context["a"] as? String, "hello")
+    XCTAssertEqual(context["b"] as? Int, 2)
+    XCTAssertNil(context["c"])
+  }
+
+  func testDifferenceRenderEvaluate() throws {
+    // start empty
+    let context = Context(dictionary: ["items": [1, 3, 7]])
+    XCTAssertNil(context["a"])
+    XCTAssertNil(context["b"])
+
+    // set a
+    var node = SetNode(variableName: "a", content: .nodes([VariableNode(variable: "items")]))
+    _ = try node.render(context)
+    XCTAssertEqual(context["a"] as? String, "[1, 3, 7]")
+    XCTAssertNil(context["b"])
+
+    // set b
+    node = SetNode(variableName: "b", content: .value(Variable("items")))
+    _ = try node.render(context)
+    XCTAssertEqual(context["b"] as? [Int], [1, 3, 7])
   }
 }
