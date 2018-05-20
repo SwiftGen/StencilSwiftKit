@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
 
   s.description  = <<-DESC
                    This pod contains some additional nodes and filters for
-                   [Stencil](https://github.com/stenciliproject/Stencil).
+                   [Stencil](https://github.com/stencilproject/Stencil).
                    These additional nodes & filters are mainly dedicated
                    for writing Stencil templates generating *Swift* code.
                    DESC
