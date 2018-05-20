@@ -5,7 +5,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/StencilSwiftKit.svg?style=flat)](http://cocoadocs.org/docsets/StencilSwiftKit)
 ![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)
 
-`StencilSwiftKit` is a framework bringing additional [Stencil](https://github.com/kylef/Stencil) nodes & filters dedicated to Swift code generation.
+`StencilSwiftKit` is a framework bringing additional [Stencil](https://github.com/stencilproject/Stencil) nodes & filters dedicated to Swift code generation.
 
 ## Tags
 
