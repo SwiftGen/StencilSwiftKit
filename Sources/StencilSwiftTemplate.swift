@@ -11,7 +11,7 @@ import Stencil
 typealias NSRegularExpression = RegularExpression
 #endif
 
-// Workaround until Stencil fixes https://github.com/kylef/Stencil/issues/22
+// Workaround until Stencil fixes https://github.com/stencilproject/Stencil/issues/22
 open class StencilSwiftTemplate: Template {
   public required init(templateString: String, environment: Environment? = nil, name: String? = nil) {
     let templateStringWithMarkedNewlines = templateString
@@ -25,7 +25,7 @@ open class StencilSwiftTemplate: Template {
     return try removeExtraLines(from: super.render(dictionary))
   }
 
-  // Workaround until Stencil fixes https://github.com/kylef/Stencil/issues/22
+  // Workaround until Stencil fixes https://github.com/stencilproject/Stencil/issues/22
   private func removeExtraLines(from str: String) -> String {
     let extraLinesRE: NSRegularExpression = {
       do {
