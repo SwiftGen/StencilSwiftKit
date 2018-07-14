@@ -16,7 +16,8 @@
 ### Breaking Changes
 
 * Migrated to PathKit for url filters. The dirname will return '.' for a filename without base directory.  
-  [Rahul Katariya](https://github.com/RahulKatariya) 
+  [Rahul Katariya](https://github.com/RahulKatariya)
+  [Philip Jander](https://github.com/janderit)
   [#94](https://github.com/SwiftGen/StencilSwiftKit/pull/94)
 
 ### New Features
@@ -39,6 +40,9 @@
 * Update to SwiftLint 0.27 and enable some extra SwiftLint rules.  
   [David Jennes](https://github.com/djbe) 
   [#96](https://github.com/SwiftGen/StencilSwiftKit/pull/96)
+* Test Linux SPM support in CI.  
+  [David Jennes](https://github.com/janderit)
+  [#90](https://github.com/SwiftGen/StencilSwiftKit/pull/90)
 
 ## 2.5.0
 
