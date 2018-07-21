@@ -9,6 +9,9 @@
 * Fixed using filter expression in call node.  
   [Ilya Puchka](https://github.com/ilyapuchka) 
   [#85](https://github.com/SwiftGen/StencilSwiftKit/pull/85)
+* Fixed compilation issue with Xcode 10 & Swift 4.2 by adding hints to help the compiler.  
+  [Olivier Halligon](https://github.com/AliSoftware) 
+  [#93](https://github.com/SwiftGen/StencilSwiftKit/pull/93)
 
 ### Breaking Changes
 
