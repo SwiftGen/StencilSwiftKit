@@ -294,7 +294,7 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func basename(_ value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
-    return (string as NSString).lastPathComponent
+    return NSString(string: string).lastPathComponent
   }
 
   /// Converts a file path to just the path without the filename.
@@ -304,7 +304,7 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func dirname(_ value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
-    return (string as NSString).deletingLastPathComponent
+    return NSString(string: string).deletingLastPathComponent
   }
 
   /// Removes newlines and other whitespace from a string. Takes an optional Mode argument:
