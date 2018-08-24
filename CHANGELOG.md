@@ -2,9 +2,35 @@
 
 ---
 
-## 2.5.1
+## Master
+
+### Bug fixes
+
+* Fixed using filter expression in call node.  
+  [Ilya Puchka](https://github.com/ilyapuchka) 
+  [#85](https://github.com/SwiftGen/StencilSwiftKit/pull/85)
+* Fixed compilation issue with Xcode 10 & Swift 4.2 by adding hints to help the compiler.  
+  [Olivier Halligon](https://github.com/AliSoftware) 
+  [#93](https://github.com/SwiftGen/StencilSwiftKit/pull/93)
+
+### Breaking Changes
+
+_None_
+
+### New Features
+
+* The `set` tag can now directly accept an expression as value, see the
+  [documentation](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/tag-set.md)
+  for an explanation on how this differs with the normal `set`/`endset`
+  pair.  
+  [David Jennes](https://github.com/djbe)
+  [#247](https://github.com/AliSoftware/SwiftGen/pull/247)
 
 ### Internal Changes
+
+* Updated to latest Xcode (9.3.0).  
+  [David Jennes](https://github.com/djbe) 
+  [#86](https://github.com/SwiftGen/StencilSwiftKit/pull/86)
 
 * Migrated to PathKit for url filters.  
   [Rahul Katariya](https://github.com/RahulKatariya) 

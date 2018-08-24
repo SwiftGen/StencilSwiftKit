@@ -6,7 +6,7 @@ defaults:
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
       BUNDLE_PATH: vendor/bundle
     macos:
-      xcode: "9.2.0"
+      xcode: "9.3.0"
     shell: /bin/bash --login -eo pipefail
   - &prepare-storage
     run:
@@ -26,7 +26,7 @@ defaults:
         BUNDLE_RETRY: 3
   - &store-gems
     save_cache:
-      key: v1-gems-{{ checksum "Gemfile.lock" }}
+      key: gems-{{ checksum "Gemfile.lock" }}
       paths:
         - vendor/bundle
   - &fetch-xcode-logs

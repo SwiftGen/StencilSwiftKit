@@ -133,4 +133,15 @@ class MacroNodeTests: XCTestCase {
     XCTAssertEqual(result["p2"] as? Int, 2)
     XCTAssertEqual(result["p3"] as? String, "hello")
   }
+
+  func testCallableBlockWithFilterExpressionParameter() throws {
+    let block = CallableBlock(parameters: ["greeting"], nodes: [])
+
+    let parser = TokenParser(tokens: [], environment: stencilSwiftEnvironment())
+    let arguments = try [FilterExpression(token: "greet|uppercase", parser: parser)]
+    let context = Context(dictionary: ["greet": "hello"])
+
+    let result = try block.context(context, arguments: arguments)
+    XCTAssertEqual(result["greeting"] as? String, "HELLO")
+  }
 }

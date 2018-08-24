@@ -10,7 +10,7 @@ struct CallableBlock: NodeType {
   let parameters: [String]
   let nodes: [NodeType]
 
-  func context(_ context: Context, arguments: [Variable]) throws -> [String: Any] {
+  func context(_ context: Context, arguments: [Resolvable]) throws -> [String: Any] {
     var result = [String: Any]()
 
     for (parameter, argument) in zip(parameters, arguments) {
@@ -61,7 +61,7 @@ class MacroNode: NodeType {
 
 class CallNode: NodeType {
   let variableName: String
-  let arguments: [Variable]
+  let arguments: [Resolvable]
 
   class func parse(_ parser: TokenParser, token: Token) throws -> NodeType {
     let components = token.components()
@@ -69,12 +69,12 @@ class CallNode: NodeType {
       throw TemplateSyntaxError("'call' tag takes at least one argument, the name of the block to call.")
     }
     let variable = components[1]
-    let arguments = Array(components.dropFirst(2)).map { Variable($0) }
+    let arguments = try Array(components.dropFirst(2)).map(parser.compileFilter)
 
     return CallNode(variableName: variable, arguments: arguments)
   }
 
-  init(variableName: String, arguments: [Variable]) {
+  init(variableName: String, arguments: [Resolvable]) {
     self.variableName = variableName
     self.arguments = arguments
   }

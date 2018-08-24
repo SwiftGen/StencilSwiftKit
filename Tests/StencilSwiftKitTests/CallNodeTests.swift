@@ -22,7 +22,7 @@ class CallNodeTests: XCTestCase {
     }
 
     XCTAssertEqual(node.variableName, "myFunc")
-    XCTAssertEqual(node.arguments, [])
+    XCTAssertEqual(node.arguments.count, 0)
   }
 
   func testParserWithArguments() {
@@ -38,7 +38,8 @@ class CallNodeTests: XCTestCase {
     }
 
     XCTAssertEqual(node.variableName, "myFunc")
-    XCTAssertEqual(node.arguments, [Variable("a"), Variable("b"), Variable("c")])
+    let variables = node.arguments.compactMap { $0 as? FilterExpression }.compactMap { $0.variable }
+    XCTAssertEqual(variables, [Variable("a"), Variable("b"), Variable("c")])
   }
 
   func testParserFail() {

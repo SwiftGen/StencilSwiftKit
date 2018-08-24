@@ -49,7 +49,7 @@ See the documentation for the [macro tag](tag-macro.md) for more information.
 {% endmacro %}
 
 {# calling test2 #}
-{% call test2 "hey" 123 "world" %}
+{% call test2 "hey" 123 "world"|capitalise %}
 ```
 
 Will output:
@@ -58,7 +58,7 @@ Will output:
   Received parameters in test2:
   - a = "hey"
   - b = "123"
-  - c = "world"
+  - c = "World"
 
   // calling test1
   Hello world! (inside test)
