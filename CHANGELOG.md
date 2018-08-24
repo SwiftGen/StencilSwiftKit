@@ -2,6 +2,14 @@
 
 ---
 
+## 2.5.1
+
+### Internal Changes
+
+* Migrated to PathKit for url filters.  
+  [Rahul Katariya](https://github.com/RahulKatariya) 
+  [#94](https://github.com/SwiftGen/StencilSwiftKit/pull/94)
+
 ## 2.5.0
 
 ### New Features
