@@ -517,7 +517,7 @@ extension StringFiltersTests {
       Input(string: "/tmp/"): "/",
       Input(string: "/tmp"): "/",
       Input(string: "/"): "/",
-      Input(string: "scratch.tiff"): ""
+      Input(string: "scratch.tiff"): "."
     ]
 
     for (input, expected) in expectations {

@@ -15,7 +15,9 @@
 
 ### Breaking Changes
 
-_None_
+* Migrated to PathKit for url filters. The dirname will return '.' for a filename without base directory.  
+  [Rahul Katariya](https://github.com/RahulKatariya) 
+  [#94](https://github.com/SwiftGen/StencilSwiftKit/pull/94)
 
 ### New Features
 
