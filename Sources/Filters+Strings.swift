@@ -5,8 +5,8 @@
 //
 
 import Foundation
-import Stencil
 import PathKit
+import Stencil
 
 // MARK: - Strings Filters
 
