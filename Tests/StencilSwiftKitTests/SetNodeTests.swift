@@ -11,9 +11,9 @@ import XCTest
 class SetNodeTests: XCTestCase {
   func testParserRenderMode() {
     let tokens: [Token] = [
-      .block(value: "set value"),
-      .text(value: "true"),
-      .block(value: "endset")
+      .block(value: "set value", at: .unknown),
+      .text(value: "true", at: .unknown),
+      .block(value: "endset", at: .unknown)
     ]
 
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -35,7 +35,7 @@ class SetNodeTests: XCTestCase {
 
   func testParserEvaluateMode() {
     let tokens: [Token] = [
-      .block(value: "set value some.variable.somewhere")
+      .block(value: "set value some.variable.somewhere", at: .unknown)
     ]
 
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -57,8 +57,8 @@ class SetNodeTests: XCTestCase {
   func testParserFail() {
     do {
       let tokens: [Token] = [
-        .block(value: "set value"),
-        .text(value: "true")
+        .block(value: "set value", at: .unknown),
+        .text(value: "true", at: .unknown)
       ]
       let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
       XCTAssertThrowsError(try parser.parse())
@@ -66,9 +66,9 @@ class SetNodeTests: XCTestCase {
 
     do {
       let tokens: [Token] = [
-        .block(value: "set value true"),
-        .text(value: "true"),
-        .block(value: "endset")
+        .block(value: "set value true", at: .unknown),
+        .text(value: "true", at: .unknown),
+        .block(value: "endset", at: .unknown)
       ]
       let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
       XCTAssertThrowsError(try parser.parse())
