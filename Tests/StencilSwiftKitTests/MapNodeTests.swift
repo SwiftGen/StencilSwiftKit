@@ -13,11 +13,11 @@ class MapNodeTests: XCTestCase {
     "items": ["one", "two", "three"]
   ]
 
-  func testParser() {
+  func testParserFilterExpression() {
     let tokens: [Token] = [
-      .block(value: "map items into result"),
-      .text(value: "hello"),
-      .block(value: "endmap")
+      .block(value: "map items into result", at: .unknown),
+      .text(value: "hello", at: .unknown),
+      .block(value: "endmap", at: .unknown)
     ]
 
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -27,8 +27,37 @@ class MapNodeTests: XCTestCase {
         return
     }
 
-    XCTAssertEqual(node.variable, Variable("items"))
-    XCTAssertEqual(node.resultName, "result")
+    switch node.resolvable {
+    case let reference as FilterExpression:
+      XCTAssertEqual(reference.variable.variable, "items")
+    default:
+      XCTFail("Unexpected resolvable type")
+    }
+    XCTAssertNil(node.mapVariable)
+    XCTAssertEqual(node.nodes.count, 1)
+    XCTAssert(node.nodes.first is TextNode)
+  }
+
+  func testParserRange() {
+    let tokens: [Token] = [
+      .block(value: "map 1...3 into result", at: .unknown),
+      .text(value: "hello", at: .unknown),
+      .block(value: "endmap", at: .unknown)
+    ]
+
+    let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? MapNode else {
+        XCTFail("Unable to parse tokens")
+        return
+    }
+
+    switch node.resolvable {
+    case is RangeVariable:
+      break
+    default:
+      XCTFail("Unexpected resolvable type")
+    }
     XCTAssertNil(node.mapVariable)
     XCTAssertEqual(node.nodes.count, 1)
     XCTAssert(node.nodes.first is TextNode)
@@ -36,9 +65,9 @@ class MapNodeTests: XCTestCase {
 
   func testParserWithMapVariable() {
     let tokens: [Token] = [
-      .block(value: "map items into result using item"),
-      .text(value: "hello"),
-      .block(value: "endmap")
+      .block(value: "map items into result using item", at: .unknown),
+      .text(value: "hello", at: .unknown),
+      .block(value: "endmap", at: .unknown)
     ]
 
     let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -48,7 +77,6 @@ class MapNodeTests: XCTestCase {
         return
     }
 
-    XCTAssertEqual(node.variable, Variable("items"))
     XCTAssertEqual(node.resultName, "result")
     XCTAssertEqual(node.mapVariable, "item")
     XCTAssertEqual(node.nodes.count, 1)
@@ -59,8 +87,8 @@ class MapNodeTests: XCTestCase {
     // no closing tag
     do {
       let tokens: [Token] = [
-        .block(value: "map items into result"),
-        .text(value: "hello")
+        .block(value: "map items into result", at: .unknown),
+        .text(value: "hello", at: .unknown)
       ]
 
       let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -70,9 +98,9 @@ class MapNodeTests: XCTestCase {
     // no parameters
     do {
       let tokens: [Token] = [
-        .block(value: "map"),
-        .text(value: "hello"),
-        .block(value: "endmap")
+        .block(value: "map", at: .unknown),
+        .text(value: "hello", at: .unknown),
+        .block(value: "endmap", at: .unknown)
       ]
 
       let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -82,9 +110,9 @@ class MapNodeTests: XCTestCase {
     // no result parameters
     do {
       let tokens: [Token] = [
-        .block(value: "map items"),
-        .text(value: "hello"),
-        .block(value: "endmap")
+        .block(value: "map items", at: .unknown),
+        .text(value: "hello", at: .unknown),
+        .block(value: "endmap", at: .unknown)
       ]
 
       let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -94,9 +122,9 @@ class MapNodeTests: XCTestCase {
     // no result variable name
     do {
       let tokens: [Token] = [
-        .block(value: "map items into"),
-        .text(value: "hello"),
-        .block(value: "endmap")
+        .block(value: "map items into", at: .unknown),
+        .text(value: "hello", at: .unknown),
+        .block(value: "endmap", at: .unknown)
       ]
 
       let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -106,9 +134,9 @@ class MapNodeTests: XCTestCase {
     // no map variable name
     do {
       let tokens: [Token] = [
-        .block(value: "map items into result using"),
-        .text(value: "hello"),
-        .block(value: "endmap")
+        .block(value: "map items into result using", at: .unknown),
+        .text(value: "hello", at: .unknown),
+        .block(value: "endmap", at: .unknown)
       ]
 
       let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
@@ -118,7 +146,12 @@ class MapNodeTests: XCTestCase {
 
   func testRender() throws {
     let context = Context(dictionary: MapNodeTests.context)
-    let node = MapNode(variable: "items", resultName: "result", mapVariable: nil, nodes: [TextNode(text: "hello")])
+    let node = MapNode(
+      resolvable: Variable("items"),
+      resultName: "result",
+      mapVariable: nil,
+      nodes: [TextNode(text: "hello")]
+    )
     let output = try node.render(context)
 
     XCTAssertEqual(output, "")
@@ -126,7 +159,12 @@ class MapNodeTests: XCTestCase {
 
   func testContext() throws {
     let context = Context(dictionary: MapNodeTests.context)
-    let node = MapNode(variable: "items", resultName: "result", mapVariable: "item", nodes: [TextNode(text: "hello")])
+    let node = MapNode(
+      resolvable: Variable("items"),
+      resultName: "result",
+      mapVariable: "item",
+      nodes: [TextNode(text: "hello")]
+    )
     _ = try node.render(context)
 
     guard let items = context["items"] as? [String], let result = context["result"] as? [String] else {
@@ -139,7 +177,7 @@ class MapNodeTests: XCTestCase {
 
   func testMapLoopContext() throws {
     let context = Context(dictionary: MapNodeTests.context)
-    let node = MapNode(variable: "items", resultName: "result", mapVariable: nil, nodes: [
+    let node = MapNode(resolvable: Variable("items"), resultName: "result", mapVariable: nil, nodes: [
       VariableNode(variable: "maploop.counter"),
       VariableNode(variable: "maploop.first"),
       VariableNode(variable: "maploop.last"),

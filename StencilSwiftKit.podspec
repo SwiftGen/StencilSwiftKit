@@ -22,6 +22,6 @@ Pod::Spec.new do |s|
   s.source       = { git: 'https://github.com/SwiftGen/StencilSwiftKit.git', tag: s.version.to_s }
   s.source_files = 'Sources/**/*.swift'
 
-  s.dependency 'Stencil', '~> 0.11'
+  s.dependency 'Stencil', '~> 0.12'
   s.framework = 'Foundation'
 end
