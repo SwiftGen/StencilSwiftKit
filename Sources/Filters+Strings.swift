@@ -92,7 +92,7 @@ extension Filters.Strings {
     let scalars = string.unicodeScalars
     let start = scalars.startIndex
     var idx = start
-    while let scalar = UnicodeScalar(scalars[idx].value), characterSet.contains(scalar) && idx <= scalars.endIndex {
+    while idx < scalars.endIndex, let scalar = UnicodeScalar(scalars[idx].value), characterSet.contains(scalar) {
       idx = scalars.index(after: idx)
     }
     if idx > scalars.index(after: start) && idx < scalars.endIndex,
