@@ -9,7 +9,7 @@ import Stencil
 class SetNode: NodeType {
   enum Content {
     case nodes([NodeType])
-    case reference(to: Resolvable)
+    case reference(resolvable: Resolvable)
   }
 
   let variableName: String
@@ -29,7 +29,7 @@ class SetNode: NodeType {
     if components.count == 3 {
       // we have a value expression, no nodes
       let resolvable = try parser.compileResolvable(components[2], containedIn: token)
-      return SetNode(variableName: variable, content: .reference(to: resolvable))
+      return SetNode(variableName: variable, content: .reference(resolvable: resolvable))
     } else {
       // no value expression, parse until an `endset` node
       let setNodes = try parser.parse(until(["endset"]))
