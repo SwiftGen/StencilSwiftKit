@@ -25,7 +25,7 @@ class CallNodeTests: XCTestCase {
     XCTAssertEqual(node.arguments.count, 0)
   }
 
-  func testParserWithArguments() {
+  func testParserWithArgumentsVariable() {
     let tokens: [Token] = [
       .block(value: "call myFunc a b c", at: .unknown)
     ]
@@ -40,6 +40,22 @@ class CallNodeTests: XCTestCase {
     XCTAssertEqual(node.variable.variable, "myFunc")
     let variables = node.arguments.compactMap { $0 as? FilterExpression }.compactMap { $0.variable }
     XCTAssertEqual(variables, [Variable("a"), Variable("b"), Variable("c")])
+  }
+
+  func testParserWithArgumentsRange() throws {
+    let token: Token = .block(value: "call myFunc 1...3 5...7 9...a", at: .unknown)
+    let tokens = [token]
+
+    let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? CallNode else {
+        XCTFail("Unable to parse tokens")
+        return
+    }
+
+    XCTAssertEqual(node.variable.variable, "myFunc")
+    let variables = node.arguments.compactMap { $0 as? RangeVariable }
+    XCTAssertEqual(variables.count, 3)  // RangeVariable isn't equatable
   }
 
   func testParserFail() {

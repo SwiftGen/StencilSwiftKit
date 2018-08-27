@@ -121,7 +121,7 @@ class MacroNodeTests: XCTestCase {
     let arguments = [Variable("a"), Variable("b"), Variable("\"hello\"")]
     let context = Context(dictionary: ["a": 1, "b": 2])
 
-    let result = try block.context(context, arguments: arguments)
+    let result = try block.context(context, arguments: arguments, variable: Variable("myFunc"))
     XCTAssertEqual(result["p1"] as? Int, 1)
     XCTAssertEqual(result["p2"] as? Int, 2)
     XCTAssertEqual(result["p3"] as? String, "hello")
@@ -134,7 +134,7 @@ class MacroNodeTests: XCTestCase {
     let arguments = try [FilterExpression(token: "greet|uppercase", parser: parser)]
     let context = Context(dictionary: ["greet": "hello"])
 
-    let result = try block.context(context, arguments: arguments)
+    let result = try block.context(context, arguments: arguments, variable: Variable("myFunc"))
     XCTAssertEqual(result["greeting"] as? String, "HELLO")
   }
 }

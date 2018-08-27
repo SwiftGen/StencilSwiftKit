@@ -15,9 +15,15 @@ struct CallableBlock {
     self.nodes = nodes
   }
 
-  func context(_ context: Context, arguments: [Resolvable]) throws -> [String: Any] {
-    var result = [String: Any]()
+  func context(_ context: Context, arguments: [Resolvable], variable: Variable) throws -> [String: Any] {
+    guard parameters.count == arguments.count else {
+      throw TemplateSyntaxError("""
+        Block '\(variable.variable)' accepts \(parameters.count) parameters, \
+        \(arguments.count) given.
+        """)
+    }
 
+    var result = [String: Any]()
     for (parameter, argument) in zip(parameters, arguments) {
       result[parameter] = try argument.resolve(context)
     }
@@ -91,13 +97,7 @@ class CallNode: NodeType {
     guard let block = try variable.resolve(context) as? CallableBlock else {
       throw TemplateSyntaxError("Call to undefined block '\(variable.variable)'.")
     }
-    guard block.parameters.count == arguments.count else {
-      throw TemplateSyntaxError("""
-        Block '\(variable.variable)' accepts \(block.parameters.count) parameters, \
-        \(arguments.count) given.
-        """)
-    }
-    let blockContext = try block.context(context, arguments: arguments)
+    let blockContext = try block.context(context, arguments: arguments, variable: variable)
 
     return try context.push(dictionary: blockContext) {
       try renderNodes(block.nodes, context)

@@ -28,7 +28,7 @@ class SetNode: NodeType {
     let variable = components[1]
     if components.count == 3 {
       // we have a value expression, no nodes
-      let resolvable = try parser.compileResolvable(components[1], containedIn: token)
+      let resolvable = try parser.compileResolvable(components[2], containedIn: token)
       return SetNode(variableName: variable, content: .reference(to: resolvable))
     } else {
       // no value expression, parse until an `endset` node

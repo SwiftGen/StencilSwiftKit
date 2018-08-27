@@ -13,7 +13,7 @@ class MapNodeTests: XCTestCase {
     "items": ["one", "two", "three"]
   ]
 
-  func testParser() {
+  func testParserFilterExpression() {
     let tokens: [Token] = [
       .block(value: "map items into result", at: .unknown),
       .text(value: "hello", at: .unknown),
@@ -27,6 +27,37 @@ class MapNodeTests: XCTestCase {
         return
     }
 
+    switch node.resolvable {
+    case let reference as FilterExpression:
+      XCTAssertEqual(reference.variable.variable, "items")
+    default:
+      XCTFail("Unexpected resolvable type")
+    }
+    XCTAssertNil(node.mapVariable)
+    XCTAssertEqual(node.nodes.count, 1)
+    XCTAssert(node.nodes.first is TextNode)
+  }
+
+  func testParserRange() {
+    let tokens: [Token] = [
+      .block(value: "map 1...3 into result", at: .unknown),
+      .text(value: "hello", at: .unknown),
+      .block(value: "endmap", at: .unknown)
+    ]
+
+    let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? MapNode else {
+        XCTFail("Unable to parse tokens")
+        return
+    }
+
+    switch node.resolvable {
+    case is RangeVariable:
+      break
+    default:
+      XCTFail("Unexpected resolvable type")
+    }
     XCTAssertNil(node.mapVariable)
     XCTAssertEqual(node.nodes.count, 1)
     XCTAssert(node.nodes.first is TextNode)

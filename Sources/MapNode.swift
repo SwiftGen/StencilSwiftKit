@@ -18,7 +18,7 @@ class MapNode: NodeType {
     let components = token.components()
 
     func hasToken(_ token: String, at index: Int) -> Bool {
-      return components.count > (index + 1) && components[index] == token
+      return components.indices ~= index + 1 && components[index] == token
     }
 
     func endsOrHasToken(_ token: String, at index: Int) -> Bool {

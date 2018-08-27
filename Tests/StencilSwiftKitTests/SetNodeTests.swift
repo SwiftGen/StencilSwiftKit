@@ -33,7 +33,7 @@ class SetNodeTests: XCTestCase {
     }
   }
 
-  func testParserEvaluateMode() {
+  func testParserEvaluateModeVariable() {
     let tokens: [Token] = [
       .block(value: "set value some.variable.somewhere", at: .unknown)
     ]
@@ -47,7 +47,28 @@ class SetNodeTests: XCTestCase {
 
     XCTAssertEqual(node.variableName, "value")
     switch node.content {
-    case .reference:
+    case .reference(let reference as FilterExpression):
+      XCTAssertEqual(reference.variable.variable, "some.variable.somewhere")
+    default:
+      XCTFail("Unexpected node content")
+    }
+  }
+
+  func testParserEvaluateModeRange() {
+    let tokens: [Token] = [
+      .block(value: "set value 1...3", at: .unknown)
+    ]
+
+    let parser = TokenParser(tokens: tokens, environment: stencilSwiftEnvironment())
+    guard let nodes = try? parser.parse(),
+      let node = nodes.first as? SetNode else {
+        XCTFail("Unable to parse tokens")
+        return
+    }
+
+    XCTAssertEqual(node.variableName, "value")
+    switch node.content {
+    case .reference(_ as RangeVariable):
       break
     default:
       XCTFail("Unexpected node content")
