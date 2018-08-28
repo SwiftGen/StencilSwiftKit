@@ -4,7 +4,7 @@ PODS:
     - PathKit (~> 0.8.0)
   - StencilSwiftKit (2.5.0):
     - Stencil (~> 0.12)
-  - SwiftLint (0.25.1)
+  - SwiftLint (0.27.0)
 
 DEPENDENCIES:
   - StencilSwiftKit (from `.`)
@@ -24,7 +24,7 @@ SPEC CHECKSUMS:
   PathKit: dcab05d701474011aae0e40cf892298a831f63d6
   Stencil: c324035607f483153c780fb42367d284cadd30a6
   StencilSwiftKit: 80a778f61bb742fd7714a5f9f3c2249d2eafa594
-  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+  SwiftLint: 3207c1faa2240bf8973b191820a116113cd11073
 
 PODFILE CHECKSUM: 0bd9ec310bace9d5b62e785ea1fb74547c15074d
 

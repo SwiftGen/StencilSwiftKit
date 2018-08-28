@@ -105,7 +105,7 @@ class SetNodeTests: XCTestCase {
     }
 
     do {
-      let node = SetNode(variableName: "value", content: .reference(to: Variable("test")))
+      let node = SetNode(variableName: "value", content: .reference(resolvable: Variable("test")))
       let context = Context(dictionary: [:])
       let output = try node.render(context)
       XCTAssertEqual(output, "")
@@ -141,14 +141,14 @@ class SetNodeTests: XCTestCase {
     XCTAssertNil(context["c"])
 
     // alias a into c
-    node = SetNode(variableName: "c", content: .reference(to: Variable("a")))
+    node = SetNode(variableName: "c", content: .reference(resolvable: Variable("a")))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hi")
     XCTAssertEqual(context["b"] as? String, "world")
     XCTAssertEqual(context["c"] as? String, "hi")
 
     // alias non-existing into c
-    node = SetNode(variableName: "c", content: .reference(to: Variable("foo")))
+    node = SetNode(variableName: "c", content: .reference(resolvable: Variable("foo")))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hi")
     XCTAssertEqual(context["b"] as? String, "world")
@@ -177,14 +177,14 @@ class SetNodeTests: XCTestCase {
     XCTAssertEqual(context["c"] as? Int, 3)
 
     // alias a into c
-    node = SetNode(variableName: "c", content: .reference(to: Variable("a")))
+    node = SetNode(variableName: "c", content: .reference(resolvable: Variable("a")))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertEqual(context["b"] as? String, "world")
     XCTAssertEqual(context["c"] as? String, "hello")
 
     // alias non-existing into c
-    node = SetNode(variableName: "c", content: .reference(to: Variable("foo")))
+    node = SetNode(variableName: "c", content: .reference(resolvable: Variable("foo")))
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "hello")
     XCTAssertEqual(context["b"] as? String, "world")
@@ -238,7 +238,7 @@ class SetNodeTests: XCTestCase {
       XCTAssertNil(context["c"])
 
       // alias a into c
-      node = SetNode(variableName: "c", content: .reference(to: Variable("a")))
+      node = SetNode(variableName: "c", content: .reference(resolvable: Variable("a")))
       _ = try node.render(context)
       XCTAssertEqual(context["a"] as? String, "hello")
       XCTAssertEqual(context["b"] as? Int, 2)
@@ -264,7 +264,7 @@ class SetNodeTests: XCTestCase {
     XCTAssertNil(context["b"])
 
     // set b
-    node = SetNode(variableName: "b", content: .reference(to: Variable("items")))
+    node = SetNode(variableName: "b", content: .reference(resolvable: Variable("items")))
     _ = try node.render(context)
     XCTAssertEqual(context["b"] as? [Int], [1, 3, 7])
   }
@@ -274,7 +274,7 @@ class SetNodeTests: XCTestCase {
 
     let parser = TokenParser(tokens: [], environment: stencilSwiftEnvironment())
     let argument = try FilterExpression(token: "greet|uppercase", parser: parser)
-    let node = SetNode(variableName: "a", content: .reference(to: argument))
+    let node = SetNode(variableName: "a", content: .reference(resolvable: argument))
 
     _ = try node.render(context)
     XCTAssertEqual(context["a"] as? String, "HELLO")

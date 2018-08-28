@@ -36,6 +36,9 @@
 * Updated to latest Xcode (9.3.0).  
   [David Jennes](https://github.com/djbe) 
   [#86](https://github.com/SwiftGen/StencilSwiftKit/pull/86)
+* Update to SwiftLint 0.27 and enable some extra SwiftLint rules.  
+  [David Jennes](https://github.com/djbe) 
+  [#96](https://github.com/SwiftGen/StencilSwiftKit/pull/96)
 
 ## 2.5.0
 
