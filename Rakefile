@@ -14,6 +14,16 @@ CONFIGURATION = 'Debug'.freeze
 POD_NAME = 'StencilSwiftKit'.freeze
 MIN_XCODE_VERSION = 9.2
 
+## [ Generate SPM files ] #####################################################
+
+namespace :spm do
+  desc 'Generate the tests manifest for SPM'
+  task :generate_test_manifests do |task|
+    File.delete("Tests/#{WORKSPACE}Tests/XCTestManifests.swift")
+    Utils.run('swift test --generate-linuxmain', task, xcrun: true)
+  end
+end
+
 ## [ Release a new version ] ##################################################
 
 namespace :release do
