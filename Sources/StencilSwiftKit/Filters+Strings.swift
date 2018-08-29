@@ -305,7 +305,15 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func dirname(_ value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
+    #if os(Linux)
+    var result = NSString(string: string).deletingLastPathComponent
+    if result.isEmpty {
+      result = "."
+    }
+    return result
+    #else
     return Path(string).parent().normalize().string
+    #endif
   }
 
   /// Removes newlines and other whitespace from a string. Takes an optional Mode argument:

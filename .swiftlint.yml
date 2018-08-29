@@ -48,3 +48,7 @@ line_length:
 nesting:
   type_level:
     warning: 2
+
+# Exclude generated files
+excluded:
+  - XCTestManifests.swift

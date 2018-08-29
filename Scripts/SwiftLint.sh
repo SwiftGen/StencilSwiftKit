@@ -5,8 +5,8 @@ SWIFTLINT="${PROJECT_DIR}/Pods/SwiftLint/swiftlint"
 CONFIG="${PROJECT_DIR}/.swiftlint.yml"
 
 # possible paths
-paths_sources="Sources"
-paths_tests="Tests"
+paths_sources="Sources/StencilSwiftKit"
+paths_tests="Tests/StencilSwiftKitTests"
 
 # load selected group
 if [ $# -gt 0 ]; then

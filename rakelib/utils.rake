@@ -19,7 +19,7 @@ class Utils
 
   # run a command using xcrun and xcpretty if applicable
   def self.run(command, task, subtask = '', xcrun: false, formatter: :raw)
-    commands = if xcrun
+    commands = if xcrun and OS.mac?
                  [*command].map { |cmd| "#{version_select} xcrun #{cmd}" }
                else
                  [*command]
@@ -104,7 +104,7 @@ class Utils
       Rake.sh "set -o pipefail && (#{command}) | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\" | " \
         "bundle exec xcpretty --color --report junit --output \"#{ENV['CIRCLE_TEST_REPORTS']}/xcode/#{name}.xml\""
     elsif system('which xcpretty > /dev/null')
-      Rake.sh "set -o pipefail && (#{command}) | bundle exec xcpretty -c"
+      Rake.sh %(set -o pipefail && (#{command}) | bundle exec xcpretty -c)
     else
       Rake.sh command
     end
@@ -117,7 +117,12 @@ class Utils
     command = [*cmd].join(' && ')
 
     if ENV['CI']
-      Rake.sh "set -o pipefail && (#{command}) | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\""
+      if OS.mac?
+        Rake.sh %(set -o pipefail && (#{command}) | tee "#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log")
+      else
+        # dash on linux doesn't support `set -o`
+        Rake.sh %(/bin/bash -eo pipefail -c "#{command} | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\"")
+      end
     else
       Rake.sh command
     end
@@ -169,6 +174,18 @@ class Utils
     end
   end
   private_class_method :all_xcode_versions
+end
+
+# OS detection
+#
+module OS
+  def OS.mac?
+   (/darwin/ =~ RUBY_PLATFORM) != nil
+  end
+
+  def OS.linux?
+    OS.unix? and not OS.mac?
+  end
 end
 
 # Colorization support for Strings
