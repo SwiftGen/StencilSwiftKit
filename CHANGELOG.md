@@ -28,9 +28,10 @@
   pair.  
   [David Jennes](https://github.com/djbe)
   [#247](https://github.com/AliSoftware/SwiftGen/pull/247)
-* Updated Stencil to the latest version (0.12.0).  
+* Updated Stencil to the latest version (0.12.1).  
   [David Jennes](https://github.com/djbe) 
   [#95](https://github.com/SwiftGen/StencilSwiftKit/pull/95)
+  [#99](https://github.com/SwiftGen/StencilSwiftKit/pull/99)
 
 ### Internal Changes
 
