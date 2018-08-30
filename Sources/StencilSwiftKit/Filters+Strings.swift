@@ -305,7 +305,10 @@ extension Filters.Strings {
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
   static func dirname(_ value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
+    
     #if os(Linux)
+    // `NSString.standardizingPath` crashes on Linux. Bug reference:
+    // https://github.com/apple/swift-corelibs-foundation/pull/1536
     var result = NSString(string: string).deletingLastPathComponent
     if result.isEmpty {
       result = "."
