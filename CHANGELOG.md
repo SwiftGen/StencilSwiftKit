@@ -2,7 +2,7 @@
 
 ---
 
-## Master
+## 2.6.0
 
 ### Bug fixes
 
@@ -12,9 +12,6 @@
 * Fixed compilation issue with Xcode 10 & Swift 4.2 by adding hints to help the compiler.  
   [Olivier Halligon](https://github.com/AliSoftware) 
   [#93](https://github.com/SwiftGen/StencilSwiftKit/pull/93)
-
-### Breaking Changes
-
 * Migrated to PathKit for url filters. The dirname will return '.' for a filename without base directory.  
   [Rahul Katariya](https://github.com/RahulKatariya)
   [Philip Jander](https://github.com/janderit)
