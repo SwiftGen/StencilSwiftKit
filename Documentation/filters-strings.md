@@ -14,35 +14,28 @@ Get the last component of a path, essentially the filename (and extension).
 
 ## Filter: `camelToSnakeCase`
 
-Transforms text from camelCase to snake_case.
+Transforms text from camelCase to snake_case. The filter accepts an optional boolean parameter:
 
-| Input                   | Output                  |
-|-------------------------|-------------------------|
-| `SomeCapString`         | `some_cap_string`       |
-| `string_with_words`     | `string_with_words`     |
-| `STRing_with_words`     | `st_ring_with_words`    |
-| `URLChooser`            | `url_chooser`           |
-| `PLEASE_STOP_SCREAMING` | `please_stop_screaming` |
+- **true** (default): Lowercase each component.
+- **false**: Keep the casing for each component.
 
-By default it converts to lower case, unless a single optional argument is set to "false", "no" or "0":
-
-| Input                    | Output                   |
-|--------------------------|--------------------------|
-| `SomeCapString`          | `Some_Cap_String`        |
-| `someCapString`          | `some_Cap_String`        |
-| `String_With_WoRds`      | `String_With_Wo_Rds`     |
-| `string_wiTH_WOrds`      | `string_wi_TH_W_Ords`    |
-| `URLChooser`             | `URL_Chooser`            |
-| `PLEASE_STOP_SCREAMING!` | `PLEASE_STOP_SCREAMING!` |
+| Input                   | Output (`true`)         | Output (`false`)        |
+|-------------------------|-------------------------|-------------------------|
+| `SomeCapString`         | `some_cap_string`       | `Some_Cap_String`       |
+| `someCapString`         | `some_cap_string`       | `some_Cap_String`       |
+| `String_With_WoRds`     | `string_with_words`     | `String_With_Wo_Rds`    |
+| `string_wiTH_WOrds`     | `st_ring_with_words`    | `string_wi_TH_W_Ords`   |
+| `URLChooser`            | `url_chooser`           | `URL_Chooser`           |
+| `PLEASE_STOP_SCREAMING` | `please_stop_screaming` | `PLEASE_STOP_SCREAMING` |
 
 ## Filter: `contains`
 
 Checks if the string contains given substring - works the same as Swift's `String.contains`.
 
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `el`      | true            |
-| `Hi mates!` `yo`  | false           |
+| Input             | Output  |
+|-------------------|---------|
+| `Hello` `el`      | `true`  |
+| `Hi mates!` `yo`  | `false` |
 
 ## Filter: `dirname`
 
@@ -68,19 +61,19 @@ Checks if the given string matches a reserved Swift keyword. If it does, wrap th
 
 Checks if the string has the given prefix - works the same as Swift's `String.hasPrefix`.
 
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `Hi`      | false           |
-| `Hi mates!` `H`   | true            |
+| Input             | Output  |
+|-------------------|---------|
+| `Hello` `Hi`      | `false` |
+| `Hi mates!` `H`   | `true`  |
 
 ## Filter: `hasSuffix`
 
 Checks if the string has the given suffix - works the same as Swift's `String.hasSuffix`.
 
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `llo`     | true            |
-| `Hi mates!` `?`   | false           |
+| Input             | Output  |
+|-------------------|---------|
+| `Hello` `llo`     | `true`  |
+| `Hi mates!` `?`   | `false` |
 
 ## Filter: `lowerFirstLetter`
 
@@ -99,44 +92,35 @@ Transforms an arbitrary string so that only the first "word" is lowercased.
 - If the string starts with only one uppercase character, lowercase that first character.
 - If the string starts with multiple uppercase character, lowercase those first characters up to the one before the last uppercase one, but only if the last one is followed by a lowercase character. This allows to support strings beginnng with an acronym, like `URL`.
 
-| Input          | Output                   |
-|----------------|--------------------------|
-| `PeoplePicker` | `peoplePicker`           |
-| `URLChooser`   | `urlChooser`             |
+| Input          | Output         |
+|----------------|----------------|
+| `PeoplePicker` | `peoplePicker` |
+| `URLChooser`   | `urlChooser`   |
 
 ## Filter: `removeNewlines`
 
-This filter has a couple of modes that you can specifiy using an optional argument (defaults to "all"):
+This filter has a couple of modes that you can specifiy using an optional mode argument:
 
-**all**: Removes all newlines and whitespace characters from the string.
+- **all** (default): Removes all newlines and whitespace characters from the string.
+- **leading**: Removes leading whitespace characters from each line, and all newlines. Also trims the end result.
 
-| Input                  | Output                |
-|------------------------|-----------------------|
-| `  \ntest`             | `test`                |
-| `test \n\t `           | `test`                |
-| `test\n  test`         | `testtest`            |
-| `test, \ntest, \ntest` | `test,test,test`      |
-| ` test test `          | `testtest`            |
-
-**leading**: Removes leading whitespace characters from each line, and all newlines. Also trims the end result.
-
-| Input                  | Output                |
-|------------------------|-----------------------|
-| `  \ntest`             | `test`                |
-| `test \n\t `           | `test`                |
-| `test\n  test`         | `testtest`            |
-| `test, \ntest, \ntest` | `test, test, test`    |
-| ` test test `          | `test test`           |
+| Input                  | Output (`all`)   | Output (leading)   |
+|------------------------|------------------|--------------------|
+| `  \ntest`             | `test`           | `test`             |
+| `test \n\t `           | `test`           | `test`             |
+| `test\n  test`         | `testtest`       | `testtest`         |
+| `test, \ntest, \ntest` | `test,test,test` | `test, test, test` |
+| ` test test `          | `testtest`       | `test test`        |
 
 ## Filter: `replace`
 
 Replaces the given substring with the given replacement in the source string.
 Works the same as Swift's `String.replacingOccurrences`.
 
-| Input             | Output          |
-|-------------------|-----------------|
-| `Hello` `l` `k`   | `Hekko`         |
-| `Europe` `e` `a`  | `Europa`        |
+| Input (search, replacement) | Output   |
+|-----------------------------|----------|
+| `Hello` (`l`, `k`)          | `Hekko`  |
+| `Europe` (`e`, `a`)         | `Europa` |
 
 ## Filter: `snakeToCamelCase`
 
@@ -148,27 +132,21 @@ Transforms a string in "snake_case" format into one in "camelCase" format, follo
 
 If the whole starting "snake_case" string only contained uppercase characters, then each component will be capitalized: uppercase the first character and lowercase the other characters.
 
-| Input          | Output        |
-|----------------|---------------|
-| `snake_case`   | `SnakeCase`   |
-| `snAke_case`   | `SnAkeCase`   |
-| `SNAKE_CASE`   | `SnakeCase`   |
-| `__snake_case` | `__SnakeCase` |
+This filter accepts an optional boolean parameter that controls the prefixing behaviour:
 
-This filter accepts a parameter (boolean, default `false`) that controls the prefixing behaviour. If set to `true`, it will trim empty components from the beginning of the string
+- **false** (default): don't remove any empty components.
+- **true**: trim empty components from the beginning of the string
 
-| Input          | Output      |
-|----------------|-------------|
-| `snake_case`   | `SnakeCase` |
-| `snAke_case`   | `SnAkeCase` |
-| `SNAKE_CASE`   | `SnakeCase` |
-| `__snake_case` | `SnakeCase` |
+| Input          | Output (false) | Output (true) |
+|----------------|----------------|---------------|
+| `snake_case`   | `SnakeCase`    | `SnakeCase`   |
+| `snAke_case`   | `SnAkeCase`    | `SnAkeCase`   |
+| `SNAKE_CASE`   | `SnakeCase`    | `SnakeCase`   |
+| `__snake_case` | `__SnakeCase`  | `SnakeCase`   |
 
 ## Filter: `swiftIdentifier`
 
-This filter has a couple of modes that you can specifiy using an optional argument (defaults to "normal"):
-
-**normal**: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:
+Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). It will apply the following rules:
 
 - Uppercase the first character.
 - Prefix with an underscore if the first character is a number.
@@ -177,27 +155,20 @@ This filter has a couple of modes that you can specifiy using an optional argume
 The list of allowed characters can be found here:
 https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html
 
-| Input                  | Output                  |
-|------------------------|-------------------------|
-| `hello`                | `Hello`                 |
-| `42hello`              | `_42hello`              |
-| `some$URL`             | `Some_URL`              |
-| `25 Ultra Light`       | `_25_Ultra_Light`       |
-| `26_extra_ultra_light` | `_26_extra_ultra_light` |
-| `apples.count`         | `Apples_Count`          |
-| `foo_bar.baz.qux-yay`  | `Foo_bar_Baz_Qux_Yay`   |
+This filter has a couple of modes that you can specifiy using an optional mode argument:
 
-**pretty**: Same as normal, but afterwards it will apply the `snakeToCamelCase` filter, and other manipulations, for a prettier (but still valid) identifier.
+- **normal** (default): apply the steps mentioned above (uppercase first, prefix if needed, replace invalid characters with `_`)
+- **pretty**: Same as normal, but afterwards it will apply the `snakeToCamelCase` filter, and other manipulations, for a prettier (but still valid) identifier.
 
-| Input                  | Output               |
-|------------------------|----------------------|
-| `hello`                | `Hello`              |
-| `42hello`              | `_42hello`           |
-| `some$URL`             | `SomeURL`            |
-| `25 Ultra Light`       | `_25UltraLight`      |
-| `26_extra_ultra_light` | `_26ExtraUltraLight` |
-| `apples.count`         | `ApplesCount`        |
-| `foo_bar.baz.qux-yay`  | `FooBarBazQuxYay`    |
+| Input                  | Output (normal)         | Output (pretty)      |
+|------------------------|-------------------------|----------------------|
+| `hello`                | `Hello`                 | `Hello`              |
+| `42hello`              | `_42hello`              | `_42hello`           |
+| `some$URL`             | `Some_URL`              | `SomeURL`            |
+| `25 Ultra Light`       | `_25_Ultra_Light`       | `_25UltraLight`      |
+| `26_extra_ultra_light` | `_26_extra_ultra_light` | `_26ExtraUltraLight` |
+| `apples.count`         | `Apples_Count`          | `ApplesCount`        |
+| `foo_bar.baz.qux-yay`  | `Foo_bar_Baz_Qux_Yay`   | `FooBarBazQuxYay`    |
 
 
 ## Filter: `titlecase`
