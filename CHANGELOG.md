@@ -18,7 +18,9 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Improved the documentation of string filters a bit for a better overview of the inputs & outputs.  
+  [David Jennes](https://github.com/djbe)
+  [#102](https://github.com/AliSoftware/SwiftGen/pull/102)
 
 ## 2.6.0
 
