@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'StencilSwiftKit'
-  s.version      = '2.6.0'
+  s.version      = '2.7.0'
   s.summary      = 'Stencil additions dedicated for Swift code generation'
 
   s.description  = <<-DESC
