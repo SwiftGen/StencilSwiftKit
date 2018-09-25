@@ -24,14 +24,6 @@ final class StringFiltersTests: XCTestCase {
     var description: String {
       return stringRepresentation
     }
-
-    var hashValue: Int {
-      return stringRepresentation.hashValue
-    }
-
-    static func == (lhs: Input, rhs: Input) -> Bool {
-      return lhs.stringRepresentation == rhs.stringRepresentation
-    }
   }
 
   func testCamelToSnakeCase_WithNoArgsDefaultsToTrue() throws {
