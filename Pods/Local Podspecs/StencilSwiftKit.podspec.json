@@ -12,7 +12,7 @@
   "platforms": {
     "osx": "10.9"
   },
-  "swift_version": "4.0",
+  "swift_version": "4.2",
   "cocoapods_version": ">= 1.4.0",
   "source": {
     "git": "https://github.com/SwiftGen/StencilSwiftKit.git",
@@ -21,7 +21,7 @@
   "source_files": "Sources/**/*.swift",
   "dependencies": {
     "Stencil": [
-      "~> 0.12.1"
+      "~> 0.13.0"
     ]
   },
   "frameworks": "Foundation"

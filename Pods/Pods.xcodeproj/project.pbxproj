@@ -742,7 +742,40 @@
 			};
 			name = Debug;
 		};
-		0687C04683C74577B8BFEBC9529E8C8E /* Release */ = {
+		112C75C3E965FEFAC7CDBC58E1B1A39E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 97032A4D25D296E9882698752EBF3D0B /* PathKit.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/PathKit/PathKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/PathKit/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/PathKit/PathKit.modulemap";
+				PRODUCT_MODULE_NAME = PathKit;
+				PRODUCT_NAME = PathKit;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		300CF79C4D2FA7E248CDCBE4E9E2F534 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 25D7CEBCA776864EAD15F55C95A07CF5 /* StencilSwiftKit.xcconfig */;
 			buildSettings = {
@@ -769,15 +802,15 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		3FD3892DC5B0915E845ECB1F06A2C19D /* Release */ = {
+		3FE275CB03AB3DFA1DD281C61EFA1E96 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB31CD7205910D0B0EC5BCAD82B29254 /* Stencil.xcconfig */;
+			baseConfigurationReference = 25D7CEBCA776864EAD15F55C95A07CF5 /* StencilSwiftKit.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -790,23 +823,23 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Stencil/Stencil-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Stencil/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/StencilSwiftKit/StencilSwiftKit-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/StencilSwiftKit/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "Target Support Files/Stencil/Stencil.modulemap";
-				PRODUCT_MODULE_NAME = Stencil;
-				PRODUCT_NAME = Stencil;
+				MODULEMAP_FILE = "Target Support Files/StencilSwiftKit/StencilSwiftKit.modulemap";
+				PRODUCT_MODULE_NAME = StencilSwiftKit;
+				PRODUCT_NAME = StencilSwiftKit;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 3.2;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		65F9F1FC29F7B97C409FC2BF9EABC901 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -843,73 +876,7 @@
 			};
 			name = Release;
 		};
-		725E2E6A446C81EE7E552F7158CA59DE /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 97032A4D25D296E9882698752EBF3D0B /* PathKit.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/PathKit/PathKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/PathKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "Target Support Files/PathKit/PathKit.modulemap";
-				PRODUCT_MODULE_NAME = PathKit;
-				PRODUCT_NAME = PathKit;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		959CCFE69645B175BB6D418053F0A601 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 25D7CEBCA776864EAD15F55C95A07CF5 /* StencilSwiftKit.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/StencilSwiftKit/StencilSwiftKit-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/StencilSwiftKit/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
-				MODULEMAP_FILE = "Target Support Files/StencilSwiftKit/StencilSwiftKit.modulemap";
-				PRODUCT_MODULE_NAME = StencilSwiftKit;
-				PRODUCT_NAME = StencilSwiftKit;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		9B655A2210B0C51B5EC57A8811A0626E /* Release */ = {
+		A164E2CCBC5E6DE56BE37E9224335950 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 97032A4D25D296E9882698752EBF3D0B /* PathKit.xcconfig */;
 			buildSettings = {
@@ -936,7 +903,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1065,7 +1032,7 @@
 			};
 			name = Debug;
 		};
-		EEA178100DDF1F4E92AFF22C4A947F55 /* Debug */ = {
+		E196D46B0D1C7F940E55CA0BE5D0D888 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DB31CD7205910D0B0EC5BCAD82B29254 /* Stencil.xcconfig */;
 			buildSettings = {
@@ -1092,11 +1059,44 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.2;
+				SWIFT_VERSION = 4.2;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		FE955BD8F480C923AD10E37939B4D128 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB31CD7205910D0B0EC5BCAD82B29254 /* Stencil.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Stencil/Stencil-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Stencil/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MODULEMAP_FILE = "Target Support Files/Stencil/Stencil.modulemap";
+				PRODUCT_MODULE_NAME = Stencil;
+				PRODUCT_NAME = Stencil;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.2;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1122,8 +1122,8 @@
 		37E55177A2FA28ED8A474D3D6C03B965 /* Build configuration list for PBXNativeTarget "Stencil" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				EEA178100DDF1F4E92AFF22C4A947F55 /* Debug */,
-				3FD3892DC5B0915E845ECB1F06A2C19D /* Release */,
+				E196D46B0D1C7F940E55CA0BE5D0D888 /* Debug */,
+				FE955BD8F480C923AD10E37939B4D128 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1131,8 +1131,8 @@
 		A909730DFB417A5749F3D0C05988225D /* Build configuration list for PBXNativeTarget "PathKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				725E2E6A446C81EE7E552F7158CA59DE /* Debug */,
-				9B655A2210B0C51B5EC57A8811A0626E /* Release */,
+				112C75C3E965FEFAC7CDBC58E1B1A39E /* Debug */,
+				A164E2CCBC5E6DE56BE37E9224335950 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1140,8 +1140,8 @@
 		ACE3A5C9887D8434C5910C9E123763C4 /* Build configuration list for PBXNativeTarget "StencilSwiftKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				959CCFE69645B175BB6D418053F0A601 /* Debug */,
-				0687C04683C74577B8BFEBC9529E8C8E /* Release */,
+				3FE275CB03AB3DFA1DD281C61EFA1E96 /* Debug */,
+				300CF79C4D2FA7E248CDCBE4E9E2F534 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
