@@ -14,23 +14,28 @@ _None_
 
 ### New Features
 
-_None_
+* Updated Stencil to the latest version (0.13).  
+  [David Jennes](https://github.com/djbe)
+  [#103](https://github.com/SwiftGen/StencilSwiftKit/pull/103)
 
 ### Internal Changes
 
 * Improved the documentation of string filters a bit for a better overview of the inputs & outputs.  
   [David Jennes](https://github.com/djbe)
   [#102](https://github.com/AliSoftware/SwiftGen/pull/102)
+* Updated to latest Xcode (10.0).  
+  [David Jennes](https://github.com/djbe)
+  [#103](https://github.com/SwiftGen/StencilSwiftKit/pull/103)
 
 ## 2.6.0
 
 ### Bug fixes
 
 * Fixed using filter expression in call node.  
-  [Ilya Puchka](https://github.com/ilyapuchka) 
+  [Ilya Puchka](https://github.com/ilyapuchka)
   [#85](https://github.com/SwiftGen/StencilSwiftKit/pull/85)
 * Fixed compilation issue with Xcode 10 & Swift 4.2 by adding hints to help the compiler.  
-  [Olivier Halligon](https://github.com/AliSoftware) 
+  [Olivier Halligon](https://github.com/AliSoftware)
   [#93](https://github.com/SwiftGen/StencilSwiftKit/pull/93)
 * Migrated to PathKit for url filters. The dirname will return '.' for a filename without base directory.  
   [Rahul Katariya](https://github.com/RahulKatariya)
@@ -46,17 +51,17 @@ _None_
   [David Jennes](https://github.com/djbe)
   [#247](https://github.com/AliSoftware/SwiftGen/pull/247)
 * Updated Stencil to the latest version (0.12.1).  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#95](https://github.com/SwiftGen/StencilSwiftKit/pull/95)
   [#99](https://github.com/SwiftGen/StencilSwiftKit/pull/99)
 
 ### Internal Changes
 
 * Updated to latest Xcode (9.3.0).  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#86](https://github.com/SwiftGen/StencilSwiftKit/pull/86)
 * Update to SwiftLint 0.27 and enable some extra SwiftLint rules.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#96](https://github.com/SwiftGen/StencilSwiftKit/pull/96)
 * Test Linux SPM support in CI.  
   [David Jennes](https://github.com/janderit)
@@ -67,22 +72,22 @@ _None_
 ### New Features
 
 * Updated Stencil to the latest version (0.11.0).  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#83](https://github.com/SwiftGen/StencilSwiftKit/pull/83)
 
 ### Internal Changes
 
 * Switched to using SwiftLint via CocoaPods instead of our own install scripts.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#78](https://github.com/SwiftGen/StencilSwiftKit/pull/78)
 * Enabled some extra SwiftLint rules for better code consistency.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#79](https://github.com/SwiftGen/StencilSwiftKit/pull/79)
 * Migrated to CircleCI 2.0.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#81](https://github.com/SwiftGen/StencilSwiftKit/pull/81)
 * Migrated to Swift 4, and dropped support for Swift 3.  
-  [David Jennes](https://github.com/djbe) 
+  [David Jennes](https://github.com/djbe)
   [#80](https://github.com/SwiftGen/StencilSwiftKit/pull/80)
 
 ## 2.4.0
