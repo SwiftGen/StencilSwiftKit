@@ -12,7 +12,7 @@ WORKSPACE = 'StencilSwiftKit'.freeze
 SCHEME_NAME = 'Tests'.freeze
 CONFIGURATION = 'Debug'.freeze
 POD_NAME = 'StencilSwiftKit'.freeze
-MIN_XCODE_VERSION = 9.2
+MIN_XCODE_VERSION = 10.0
 
 ## [ Generate SPM files ] #####################################################
 
