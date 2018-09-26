@@ -2,15 +2,7 @@
 
 ---
 
-## Master
-
-### Bug Fixes
-
-_None_
-
-### Breaking Changes
-
-_None_
+## 2.7.0
 
 ### New Features
 
