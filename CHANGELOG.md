@@ -32,7 +32,7 @@ _None_
 
 * Improved the documentation of string filters a bit for a better overview of the inputs & outputs.  
   [David Jennes](https://github.com/djbe)
-  [#102](https://github.com/AliSoftware/SwiftGen/pull/102)
+  [#102](https://github.com/SwiftGen/StencilSwiftKit/pull/102)
 * Updated to latest Xcode (10.0).  
   [David Jennes](https://github.com/djbe)
   [#103](https://github.com/SwiftGen/StencilSwiftKit/pull/103)
@@ -46,7 +46,7 @@ _None_
   for an explanation on how this differs with the normal `set`/`endset`
   pair.  
   [David Jennes](https://github.com/djbe)
-  [#247](https://github.com/AliSoftware/SwiftGen/pull/247)
+  [#87](https://github.com/SwiftGen/StencilSwiftKit/pull/87)
 * Updated Stencil to the latest version (0.12.1).  
   [David Jennes](https://github.com/djbe)
   [#95](https://github.com/SwiftGen/StencilSwiftKit/pull/95)
