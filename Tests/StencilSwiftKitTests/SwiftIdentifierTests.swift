@@ -47,6 +47,10 @@ class SwiftIdentifierTests: XCTestCase {
       SwiftIdentifier.identifier(from: "hello$world^this*contains%a=lot@of<forbidden>chars!does#it/still:work.anyway?"),
       "HelloWorldThisContainsALotOfForbiddenCharsDoesItStillWorkAnyway")
   }
+
+  func testEmptyString() {
+    XCTAssertEqual(SwiftIdentifier.identifier(from: ""), "")
+  }
 }
 
 extension SwiftIdentifierTests {
