@@ -4,15 +4,15 @@
 
 ## Master
 
-### Bug Fixes
-
-_None_
-
 ### Breaking Changes
 
 _None_
 
 ### New Features
+
+_None_
+
+### Bug Fixes
 
 _None_
 
@@ -32,12 +32,25 @@ _None_
 
 * Improved the documentation of string filters a bit for a better overview of the inputs & outputs.  
   [David Jennes](https://github.com/djbe)
-  [#102](https://github.com/AliSoftware/SwiftGen/pull/102)
+  [#102](https://github.com/SwiftGen/StencilSwiftKit/pull/102)
 * Updated to latest Xcode (10.0).  
   [David Jennes](https://github.com/djbe)
   [#103](https://github.com/SwiftGen/StencilSwiftKit/pull/103)
 
 ## 2.6.0
+
+### New Features
+
+* The `set` tag can now directly accept an expression as value, see the
+  [documentation](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/tag-set.md)
+  for an explanation on how this differs with the normal `set`/`endset`
+  pair.  
+  [David Jennes](https://github.com/djbe)
+  [#87](https://github.com/SwiftGen/StencilSwiftKit/pull/87)
+* Updated Stencil to the latest version (0.12.1).  
+  [David Jennes](https://github.com/djbe)
+  [#95](https://github.com/SwiftGen/StencilSwiftKit/pull/95)
+  [#99](https://github.com/SwiftGen/StencilSwiftKit/pull/99)
 
 ### Bug fixes
 
@@ -51,19 +64,6 @@ _None_
   [Rahul Katariya](https://github.com/RahulKatariya)
   [Philip Jander](https://github.com/janderit)
   [#94](https://github.com/SwiftGen/StencilSwiftKit/pull/94)
-
-### New Features
-
-* The `set` tag can now directly accept an expression as value, see the
-  [documentation](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/tag-set.md)
-  for an explanation on how this differs with the normal `set`/`endset`
-  pair.  
-  [David Jennes](https://github.com/djbe)
-  [#247](https://github.com/AliSoftware/SwiftGen/pull/247)
-* Updated Stencil to the latest version (0.12.1).  
-  [David Jennes](https://github.com/djbe)
-  [#95](https://github.com/SwiftGen/StencilSwiftKit/pull/95)
-  [#99](https://github.com/SwiftGen/StencilSwiftKit/pull/99)
 
 ### Internal Changes
 
@@ -113,18 +113,18 @@ _None_
 
 ## 2.3.0
 
-### Bug Fixes
-
-* Workaround for `parseString` to support `NSString`.  
-  [Antondomashnev](https://github.com/antondomashnev)
-  [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
-
 ### New Features
 
 * Added `Parameters.flatten(dictionary:)` method to do the opposite of
   `Parameters.parse(items:)` and turn a dictionary into the list of parameters to pass from the command line.  
   [Olivier Halligon](https://github.com/AliSoftware)
   [#70](https://github.com/SwiftGen/StencilSwiftKit/pull/70)
+
+### Bug Fixes
+
+* Workaround for `parseString` to support `NSString`.  
+  [Antondomashnev](https://github.com/antondomashnev)
+  [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
 
 ## 2.2.0
 
@@ -172,12 +172,6 @@ _None_
 Due to the removal of legacy code, there are a few breaking changes in this new version that affect both template writers as well as developers. We've provided a migration guide to help you through these changes, which you can find here:
 [Migration Guide for 2.0](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/MigrationGuide.md#stencilswiftkit-20-swiftgen-50)
 
-### Bug Fixes
-
-* Fix `snakeToCamelCase` parameters information in README.  
-  [Liquidsoul](https://github.com/Liquidsoul)
-  [#45](https://github.com/SwiftGen/StencilSwiftKit/issues/45)
-
 ### Breaking Changes
 
 * The `ParametersError` enum has been replaced by the `Parameters.Error` nested type.  
@@ -209,19 +203,25 @@ Due to the removal of legacy code, there are a few breaking changes in this new 
   [#47](https://github.com/SwiftGen/StencilSwiftKit/issues/47)
   [#48](https://github.com/SwiftGen/StencilSwiftKit/issues/48)
 
-## 1.0.2
-
 ### Bug Fixes
 
-* The context enrich function won't overwrite existing values in the `env` and `param` variables.  
-  [David Jennes](https://github.com/djbe)
-  [#29](https://github.com/SwiftGen/StencilSwiftKit/issues/29)
+* Fix `snakeToCamelCase` parameters information in README.  
+  [Liquidsoul](https://github.com/Liquidsoul)
+  [#45](https://github.com/SwiftGen/StencilSwiftKit/issues/45)
+
+## 1.0.2
 
 ### New Features
 
 * Added camelToSnakeCase filter.  
   [Gyuri Grell](https://github.com/ggrell)
   [#24](https://github.com/SwiftGen/StencilSwiftKit/pull/24)
+
+### Bug Fixes
+
+* The context enrich function won't overwrite existing values in the `env` and `param` variables.  
+  [David Jennes](https://github.com/djbe)
+  [#29](https://github.com/SwiftGen/StencilSwiftKit/issues/29)
 
 ### Internal Changes
 
