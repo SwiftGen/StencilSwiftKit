@@ -4,15 +4,15 @@
 
 ## Master
 
-### Bug Fixes
-
-_None_
-
 ### Breaking Changes
 
 _None_
 
 ### New Features
+
+_None_
+
+### Bug Fixes
 
 _None_
 
@@ -39,19 +39,6 @@ _None_
 
 ## 2.6.0
 
-### Bug fixes
-
-* Fixed using filter expression in call node.  
-  [Ilya Puchka](https://github.com/ilyapuchka)
-  [#85](https://github.com/SwiftGen/StencilSwiftKit/pull/85)
-* Fixed compilation issue with Xcode 10 & Swift 4.2 by adding hints to help the compiler.  
-  [Olivier Halligon](https://github.com/AliSoftware)
-  [#93](https://github.com/SwiftGen/StencilSwiftKit/pull/93)
-* Migrated to PathKit for url filters. The dirname will return '.' for a filename without base directory.  
-  [Rahul Katariya](https://github.com/RahulKatariya)
-  [Philip Jander](https://github.com/janderit)
-  [#94](https://github.com/SwiftGen/StencilSwiftKit/pull/94)
-
 ### New Features
 
 * The `set` tag can now directly accept an expression as value, see the
@@ -64,6 +51,19 @@ _None_
   [David Jennes](https://github.com/djbe)
   [#95](https://github.com/SwiftGen/StencilSwiftKit/pull/95)
   [#99](https://github.com/SwiftGen/StencilSwiftKit/pull/99)
+
+### Bug fixes
+
+* Fixed using filter expression in call node.  
+  [Ilya Puchka](https://github.com/ilyapuchka)
+  [#85](https://github.com/SwiftGen/StencilSwiftKit/pull/85)
+* Fixed compilation issue with Xcode 10 & Swift 4.2 by adding hints to help the compiler.  
+  [Olivier Halligon](https://github.com/AliSoftware)
+  [#93](https://github.com/SwiftGen/StencilSwiftKit/pull/93)
+* Migrated to PathKit for url filters. The dirname will return '.' for a filename without base directory.  
+  [Rahul Katariya](https://github.com/RahulKatariya)
+  [Philip Jander](https://github.com/janderit)
+  [#94](https://github.com/SwiftGen/StencilSwiftKit/pull/94)
 
 ### Internal Changes
 
@@ -113,18 +113,18 @@ _None_
 
 ## 2.3.0
 
-### Bug Fixes
-
-* Workaround for `parseString` to support `NSString`.  
-  [Antondomashnev](https://github.com/antondomashnev)
-  [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
-
 ### New Features
 
 * Added `Parameters.flatten(dictionary:)` method to do the opposite of
   `Parameters.parse(items:)` and turn a dictionary into the list of parameters to pass from the command line.  
   [Olivier Halligon](https://github.com/AliSoftware)
   [#70](https://github.com/SwiftGen/StencilSwiftKit/pull/70)
+
+### Bug Fixes
+
+* Workaround for `parseString` to support `NSString`.  
+  [Antondomashnev](https://github.com/antondomashnev)
+  [#68](https://github.com/SwiftGen/StencilSwiftKit/pull/68)
 
 ## 2.2.0
 
@@ -172,12 +172,6 @@ _None_
 Due to the removal of legacy code, there are a few breaking changes in this new version that affect both template writers as well as developers. We've provided a migration guide to help you through these changes, which you can find here:
 [Migration Guide for 2.0](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/MigrationGuide.md#stencilswiftkit-20-swiftgen-50)
 
-### Bug Fixes
-
-* Fix `snakeToCamelCase` parameters information in README.  
-  [Liquidsoul](https://github.com/Liquidsoul)
-  [#45](https://github.com/SwiftGen/StencilSwiftKit/issues/45)
-
 ### Breaking Changes
 
 * The `ParametersError` enum has been replaced by the `Parameters.Error` nested type.  
@@ -209,19 +203,25 @@ Due to the removal of legacy code, there are a few breaking changes in this new 
   [#47](https://github.com/SwiftGen/StencilSwiftKit/issues/47)
   [#48](https://github.com/SwiftGen/StencilSwiftKit/issues/48)
 
-## 1.0.2
-
 ### Bug Fixes
 
-* The context enrich function won't overwrite existing values in the `env` and `param` variables.  
-  [David Jennes](https://github.com/djbe)
-  [#29](https://github.com/SwiftGen/StencilSwiftKit/issues/29)
+* Fix `snakeToCamelCase` parameters information in README.  
+  [Liquidsoul](https://github.com/Liquidsoul)
+  [#45](https://github.com/SwiftGen/StencilSwiftKit/issues/45)
+
+## 1.0.2
 
 ### New Features
 
 * Added camelToSnakeCase filter.  
   [Gyuri Grell](https://github.com/ggrell)
   [#24](https://github.com/SwiftGen/StencilSwiftKit/pull/24)
+
+### Bug Fixes
+
+* The context enrich function won't overwrite existing values in the `env` and `param` variables.  
+  [David Jennes](https://github.com/djbe)
+  [#29](https://github.com/SwiftGen/StencilSwiftKit/issues/29)
 
 ### Internal Changes
 
