@@ -14,7 +14,9 @@ _None_
 
 ### Bug Fixes
 
-_None_
+* `swiftIdentifier`: fix crash on empty string.  
+  [David Jennes](https://github.com/djbe)
+  [#105](https://github.com/SwiftGen/StencilSwiftKit/pull/105)
 
 ### Internal Changes
 
