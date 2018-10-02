@@ -2,25 +2,13 @@
 
 ---
 
-## Master
-
-### Breaking Changes
-
-_None_
-
-### New Features
-
-_None_
+## 2.7.1
 
 ### Bug Fixes
 
 * `swiftIdentifier`: fix crash on empty string.  
   [David Jennes](https://github.com/djbe)
   [#105](https://github.com/SwiftGen/StencilSwiftKit/pull/105)
-
-### Internal Changes
-
-_None_
 
 ## 2.7.0
 
