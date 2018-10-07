@@ -93,6 +93,20 @@ class ParametersTests: XCTestCase {
                    "The order of arrays are properly preserved when flattened")
   }
 
+  func testFlattenBool() {
+    let trueFlag = Parameters.flatten(dictionary: ["test": true])
+    XCTAssertEqual(trueFlag, ["test"], "True flag is flattened to a param without value")
+
+    let falseFlag = Parameters.flatten(dictionary: ["test": false])
+    XCTAssertEqual(falseFlag, [], "False flag is flattened to nothing")
+
+    let stringFlag = Parameters.flatten(dictionary: ["test": "a"])
+    XCTAssertEqual(stringFlag, ["test=a"], "Non-boolean flag is flattened to a parameter with value")
+
+    let falseStringFlag = Parameters.flatten(dictionary: ["test": "false"])
+    XCTAssertEqual(falseStringFlag, ["test=false"], "Non-boolean flag is flattened to a parameter with value")
+  }
+
   func testParseInvalidSyntax() {
     // invalid character
     do {
