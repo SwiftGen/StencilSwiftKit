@@ -14,7 +14,9 @@ _None_
 
 ### Bug Fixes
 
-_None_
+* `Parameters`: ensure the `flatten` function correctly handles a flag with a `false` value.  
+  [David Jennes](https://github.com/djbe)
+  [#108](https://github.com/SwiftGen/StencilSwiftKit/pull/108)
 
 ### Internal Changes
 
