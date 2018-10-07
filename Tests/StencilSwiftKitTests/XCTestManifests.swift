@@ -51,6 +51,7 @@ extension ParametersTests {
     static let __allTests = [
         ("testBasic", testBasic),
         ("testDeepStructured", testDeepStructured),
+        ("testFlattenBool", testFlattenBool),
         ("testParseInvalidKey", testParseInvalidKey),
         ("testParseInvalidStructure", testParseInvalidStructure),
         ("testParseInvalidSyntax", testParseInvalidSyntax),
@@ -153,6 +154,7 @@ extension SwiftIdentifierTests {
         ("testBasicStringWithForbiddenCharsAndUnderscores", testBasicStringWithForbiddenCharsAndUnderscores),
         ("testEmojis", testEmojis),
         ("testEmojis2", testEmojis2),
+        ("testEmptyString", testEmptyString),
         ("testForbiddenChars", testForbiddenChars),
         ("testKeepUppercaseAcronyms", testKeepUppercaseAcronyms),
         ("testNumbersFirst", testNumbersFirst),
