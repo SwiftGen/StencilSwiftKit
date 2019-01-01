@@ -90,4 +90,4 @@ For easier use, you can use the `StencilContext.enrich(context:parameters:enviro
 
 # Licence
 
-This code and tool is under the MIT Licence. See the `LICENSE` file in this repository.
+This code and tool is under the MIT Licence. See the `LICENCE` file in this repository.
