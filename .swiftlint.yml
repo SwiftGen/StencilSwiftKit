@@ -12,6 +12,7 @@ opt_in_rules:
  - empty_string
  - fallthrough
  - fatal_error_message
+ - file_header
  - first_where
  - force_unwrapping
  - implicit_return
@@ -41,6 +42,14 @@ opt_in_rules:
  - yoda_condition
 
 # Rules customization
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/ StencilSwiftKit( UnitTests)?
+                    \/\/ Copyright © 2019 SwiftGen
+                    \/\/ MIT Licence
+                    \/\/
+
 line_length:
   warning: 120
   error: 200
