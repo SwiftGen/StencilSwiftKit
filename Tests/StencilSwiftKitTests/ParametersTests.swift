@@ -1,6 +1,6 @@
 //
-// ParametersTests.swift
-// Copyright (c) 2017 SwiftGen
+// StencilSwiftKit UnitTests
+// Copyright © 2019 SwiftGen
 // MIT Licence
 //
 
