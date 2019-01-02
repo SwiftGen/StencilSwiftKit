@@ -1,9 +1,7 @@
 //
-//  Context.swift
-//  Pods
-//
-//  Created by David Jennes on 14/02/2017.
-//
+// StencilSwiftKit
+// Copyright © 2019 SwiftGen
+// MIT Licence
 //
 
 import Foundation

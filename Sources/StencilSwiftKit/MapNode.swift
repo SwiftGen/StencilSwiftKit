@@ -1,7 +1,6 @@
 //
 // StencilSwiftKit
-// Copyright (c) 2017 Olivier Halligon
-// Created by Peter Livesey.
+// Copyright © 2019 SwiftGen
 // MIT Licence
 //
 

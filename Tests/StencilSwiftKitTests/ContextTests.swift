@@ -1,9 +1,7 @@
 //
-//  ContextTests.swift
-//  StencilSwiftKit
-//
-//  Created by David Jennes on 14/02/2017.
-//  Copyright © 2017 AliSoftware. All rights reserved.
+// StencilSwiftKit UnitTests
+// Copyright © 2019 SwiftGen
+// MIT Licence
 //
 
 import StencilSwiftKit
