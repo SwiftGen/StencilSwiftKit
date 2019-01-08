@@ -17,9 +17,10 @@ class SwiftIdentifierTests: XCTestCase {
   }
 
   func testBasicStringWithForbiddenCharsAndUnderscores() {
-    XCTAssertEqual(SwiftIdentifier.identifier(from: "Hello",
-                                              forbiddenChars: "l",
-                                              replaceWithUnderscores: true), "He__O")
+    XCTAssertEqual(
+      SwiftIdentifier.identifier(from: "Hello", forbiddenChars: "l", replaceWithUnderscores: true),
+      "He__O"
+    )
   }
 
   func testSpecialChars() {
@@ -45,7 +46,8 @@ class SwiftIdentifierTests: XCTestCase {
   func testForbiddenChars() {
     XCTAssertEqual(
       SwiftIdentifier.identifier(from: "hello$world^this*contains%a=lot@of<forbidden>chars!does#it/still:work.anyway?"),
-      "HelloWorldThisContainsALotOfForbiddenCharsDoesItStillWorkAnyway")
+      "HelloWorldThisContainsALotOfForbiddenCharsDoesItStillWorkAnyway"
+    )
   }
 
   func testEmptyString() {

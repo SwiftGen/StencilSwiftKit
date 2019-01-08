@@ -20,12 +20,8 @@ class ParametersTests: XCTestCase {
 
     // Test the opposite operation (flatten) as well
     let reverse = Parameters.flatten(dictionary: result)
-    XCTAssertEqual(reverse.count,
-                   items.count,
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
-    XCTAssertEqual(Set(reverse),
-                   Set(items),
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(reverse.count, items.count, "Flattening dictionary != original list")
+    XCTAssertEqual(Set(reverse), Set(items), "Flattening dictionary != original list")
   }
 
   func testStructured() throws {
@@ -40,12 +36,8 @@ class ParametersTests: XCTestCase {
 
     // Test the opposite operation (flatten) as well
     let reverse = Parameters.flatten(dictionary: result)
-    XCTAssertEqual(reverse.count,
-                   items.count,
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
-    XCTAssertEqual(Set(reverse),
-                   Set(items),
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(reverse.count, items.count, "Flattening dictionary != original list")
+    XCTAssertEqual(Set(reverse), Set(items), "Flattening dictionary != original list")
   }
 
   func testDeepStructured() throws {
@@ -61,12 +53,8 @@ class ParametersTests: XCTestCase {
 
     // Test the opposite operation (flatten) as well
     let reverse = Parameters.flatten(dictionary: result)
-    XCTAssertEqual(reverse.count,
-                   items.count,
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
-    XCTAssertEqual(Set(reverse),
-                   Set(items),
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
+    XCTAssertEqual(reverse.count, items.count, "Flattening dictionary != original list")
+    XCTAssertEqual(Set(reverse), Set(items), "Flattening dictionary != original list")
   }
 
   func testRepeated() throws {
@@ -82,15 +70,9 @@ class ParametersTests: XCTestCase {
 
     // Test the opposite operation (flatten) as well
     let reverse = Parameters.flatten(dictionary: result)
-    XCTAssertEqual(reverse.count,
-                   items.count,
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
-    XCTAssertEqual(Set(reverse),
-                   Set(items),
-                   "Flattening the resulting dictionary back did not result in the equivalent of the original list")
-    XCTAssertEqual(reverse,
-                   items,
-                   "The order of arrays are properly preserved when flattened")
+    XCTAssertEqual(reverse.count, items.count, "Flattening dictionary != original list")
+    XCTAssertEqual(Set(reverse), Set(items), "Flattening dictionary != original list")
+    XCTAssertEqual(reverse, items, "The order of arrays are properly preserved when flattened")
   }
 
   func testFlattenBool() {

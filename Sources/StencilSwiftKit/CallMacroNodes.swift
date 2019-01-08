@@ -17,10 +17,12 @@ struct CallableBlock {
 
   func context(_ context: Context, arguments: [Resolvable], variable: Variable) throws -> [String: Any] {
     guard parameters.count == arguments.count else {
-      throw TemplateSyntaxError("""
+      throw TemplateSyntaxError(
+        """
         Block '\(variable.variable)' accepts \(parameters.count) parameters, \
         \(arguments.count) given.
-        """)
+        """
+      )
     }
 
     var result = [String: Any]()
