@@ -177,12 +177,17 @@ class MapNodeTests: XCTestCase {
 
   func testMapLoopContext() throws {
     let context = Context(dictionary: MapNodeTests.context)
-    let node = MapNode(resolvable: Variable("items"), resultName: "result", mapVariable: nil, nodes: [
-      VariableNode(variable: "maploop.counter"),
-      VariableNode(variable: "maploop.first"),
-      VariableNode(variable: "maploop.last"),
-      VariableNode(variable: "maploop.item")
-    ])
+    let node = MapNode(
+      resolvable: Variable("items"),
+      resultName: "result",
+      mapVariable: nil,
+      nodes: [
+        VariableNode(variable: "maploop.counter"),
+        VariableNode(variable: "maploop.first"),
+        VariableNode(variable: "maploop.last"),
+        VariableNode(variable: "maploop.item")
+      ]
+    )
     _ = try node.render(context)
 
     guard let items = context["items"] as? [String], let result = context["result"] as? [String] else {

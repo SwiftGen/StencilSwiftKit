@@ -11,9 +11,11 @@ class ContextTests: XCTestCase {
   func testEmpty() throws {
     let context = [String: Any]()
 
-    let result = try StencilContext.enrich(context: context,
-                                           parameters: [],
-                                           environment: ["PATH": "foo:bar:baz"])
+    let result = try StencilContext.enrich(
+      context: context,
+      parameters: [],
+      environment: ["PATH": "foo:bar:baz"]
+    )
     XCTAssertEqual(result.count, 2, "2 items have been added")
 
     guard let env = result[StencilContext.environmentKey] as? [String: Any] else {
@@ -32,9 +34,11 @@ class ContextTests: XCTestCase {
   func testWithContext() throws {
     let context: [String: Any] = ["foo": "bar", "hello": true]
 
-    let result = try StencilContext.enrich(context: context,
-                                           parameters: [],
-                                           environment: ["PATH": "foo:bar:baz"])
+    let result = try StencilContext.enrich(
+      context: context,
+      parameters: [],
+      environment: ["PATH": "foo:bar:baz"]
+    )
     XCTAssertEqual(result.count, 4, "4 items have been added")
     XCTAssertEqual(result["foo"] as? String, "bar")
     XCTAssertEqual(result["hello"] as? Bool, true)
@@ -55,9 +59,11 @@ class ContextTests: XCTestCase {
   func testWithParameters() throws {
     let context = [String: Any]()
 
-    let result = try StencilContext.enrich(context: context,
-                                           parameters: ["foo=bar", "hello"],
-                                           environment: ["PATH": "foo:bar:baz"])
+    let result = try StencilContext.enrich(
+      context: context,
+      parameters: ["foo=bar", "hello"],
+      environment: ["PATH": "foo:bar:baz"]
+    )
     XCTAssertEqual(result.count, 2, "2 items have been added")
 
     guard let env = result[StencilContext.environmentKey] as? [String: Any] else {

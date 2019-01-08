@@ -86,30 +86,39 @@ class CallNodeTests: XCTestCase {
   }
 
   func testRenderWithParameters() throws {
-    let block = CallableBlock(parameters: ["a", "b", "c"], nodes: [
-      TextNode(text: "variables: "),
-      VariableNode(variable: "a"),
-      VariableNode(variable: "b"),
-      VariableNode(variable: "c")
-    ])
+    let block = CallableBlock(
+      parameters: ["a", "b", "c"],
+      nodes: [
+        TextNode(text: "variables: "),
+        VariableNode(variable: "a"),
+        VariableNode(variable: "b"),
+        VariableNode(variable: "c")
+      ]
+    )
     let context = Context(dictionary: ["myFunc": block])
-    let node = CallNode(variable: Variable("myFunc"), arguments: [
-      Variable("\"hello\""),
-      Variable("\"world\""),
-      Variable("\"test\"")
-    ])
+    let node = CallNode(
+      variable: Variable("myFunc"),
+      arguments: [
+        Variable("\"hello\""),
+        Variable("\"world\""),
+        Variable("\"test\"")
+      ]
+    )
     let output = try node.render(context)
 
     XCTAssertEqual(output, "variables: helloworldtest")
   }
 
   func testRenderWithParametersFail() {
-    let block = CallableBlock(parameters: ["a", "b", "c"], nodes: [
-      TextNode(text: "variables: "),
-      VariableNode(variable: "a"),
-      VariableNode(variable: "b"),
-      VariableNode(variable: "c")
-    ])
+    let block = CallableBlock(
+      parameters: ["a", "b", "c"],
+      nodes: [
+        TextNode(text: "variables: "),
+        VariableNode(variable: "a"),
+        VariableNode(variable: "b"),
+        VariableNode(variable: "c")
+      ]
+    )
     let context = Context(dictionary: ["myFunc": block])
 
     // must pass arguments
@@ -120,20 +129,26 @@ class CallNodeTests: XCTestCase {
 
     // not enough arguments
     do {
-      let node = CallNode(variable: Variable("myFunc"), arguments: [
-        Variable("\"hello\"")
-      ])
+      let node = CallNode(
+        variable: Variable("myFunc"),
+        arguments: [
+          Variable("\"hello\"")
+        ]
+      )
       XCTAssertThrowsError(try node.render(context))
     }
 
     // too many arguments
     do {
-      let node = CallNode(variable: Variable("myFunc"), arguments: [
-        Variable("\"hello\""),
-        Variable("\"world\""),
-        Variable("\"test\""),
-        Variable("\"test\"")
-      ])
+      let node = CallNode(
+        variable: Variable("myFunc"),
+        arguments: [
+          Variable("\"hello\""),
+          Variable("\"world\""),
+          Variable("\"test\""),
+          Variable("\"test\"")
+        ]
+      )
       XCTAssertThrowsError(try node.render(context))
     }
   }
