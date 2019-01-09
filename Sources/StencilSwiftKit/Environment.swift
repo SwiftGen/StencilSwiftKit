@@ -53,6 +53,7 @@ public extension Extension {
     registerTag("macro", parser: MacroNode.parse)
     registerTag("call", parser: CallNode.parse)
     registerTag("map", parser: MapNode.parse)
+    registerTag("import", parser: ImportNode.parse)
   }
 }
 

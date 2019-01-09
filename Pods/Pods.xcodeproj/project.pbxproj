@@ -41,6 +41,7 @@
 		564B9064A2280A5CF7CDEB035ABE5B01 /* Filters+Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F81F7F945E7EA85B1F4F7371DC3BC97 /* Filters+Strings.swift */; };
 		566A625DCC00E6BE80B9467690310FA8 /* Variable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D236592A0C3BCB8FE3E70CA315124D2 /* Variable.swift */; };
 		6701A482AEAA528C7F398025E46E5528 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C366D5EDBA91B57F5392D05B2365BA7 /* Node.swift */; };
+		6AEE121821E5FF4D00DB3D5B /* ImportNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEE121721E5FF4D00DB3D5B /* ImportNode.swift */; };
 		6D82A7470F8DE4CF327AECC7E715681A /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3775F211B265ECDCF48E2959DB4B8FE1 /* Environment.swift */; };
 		7295BAB45FC662B1CA2CE979701DBE31 /* NowTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C4115CB2AD96A6CE54729606D0435B /* NowTag.swift */; };
 		744AB7BB65C428F438AF05AF834843DA /* KeyPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B55299CFD5E1FD8FDBAE67700F7FA5 /* KeyPath.swift */; };
@@ -145,6 +146,7 @@
 		652C3649F7991B79FA33E0DAD18B3E67 /* Pods-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		66FB94C10869EC6910BDD1ED3B0099AA /* Filters.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Filters.swift; path = Sources/Filters.swift; sourceTree = "<group>"; };
 		69D11841D6CAF49D0092F3DD98B6C5F4 /* StencilSwiftKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "StencilSwiftKit-Info.plist"; sourceTree = "<group>"; };
+		6AEE121721E5FF4D00DB3D5B /* ImportNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImportNode.swift; path = Sources/StencilSwiftKit/ImportNode.swift; sourceTree = "<group>"; };
 		6D67066B7C7C28056F4873394EB928D7 /* SetNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SetNode.swift; path = Sources/StencilSwiftKit/SetNode.swift; sourceTree = "<group>"; };
 		74BFAE0A3E5F053BCEA7B99A3E35902A /* PathKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "PathKit-prefix.pch"; sourceTree = "<group>"; };
 		7D0820DE05590AC348A12CCAD55DF679 /* StencilSwiftKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = StencilSwiftKit.modulemap; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				E1653584522380918BCAD53DD1612F03 /* Filters.swift */,
 				15FAD5B78079BC51AD55AC121F5777AE /* Filters+Numbers.swift */,
 				4F81F7F945E7EA85B1F4F7371DC3BC97 /* Filters+Strings.swift */,
+				6AEE121721E5FF4D00DB3D5B /* ImportNode.swift */,
 				F63842371A614DF5159130AF8034E785 /* MapNode.swift */,
 				055B004D1FAD6CE16E3A55910D90DD30 /* Parameters.swift */,
 				6D67066B7C7C28056F4873394EB928D7 /* SetNode.swift */,
@@ -634,6 +637,7 @@
 				AB91B271B397341273CD2A9D21F19898 /* MapNode.swift in Sources */,
 				4025745F191260BEA8E817E6528EB196 /* Parameters.swift in Sources */,
 				1628BDDAC643BD394350AE8B62E1057C /* SetNode.swift in Sources */,
+				6AEE121821E5FF4D00DB3D5B /* ImportNode.swift in Sources */,
 				4953D5AF4C15B166CCF6527779455023 /* StencilSwiftKit-dummy.m in Sources */,
 				86D863E8996FEF799D7D7F5906D37EE5 /* StencilSwiftTemplate.swift in Sources */,
 				EA0C55454FCA6D6CB13F25B6630FCEEE /* SwiftIdentifier.swift in Sources */,
