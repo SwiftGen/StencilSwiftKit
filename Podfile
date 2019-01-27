@@ -5,5 +5,5 @@ raise 'Please use bundle exec to run the pod command' unless defined?(Bundler)
 
 target 'Tests' do
   pod 'StencilSwiftKit', path: '.'
-  pod 'SwiftLint', '~> 0.29'
+  pod 'SwiftLint', '~> 0.30'
 end
