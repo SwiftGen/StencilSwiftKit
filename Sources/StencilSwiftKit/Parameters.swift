@@ -156,7 +156,8 @@ public enum Parameters {
       }
     case let array as [Any]:
       values += array.flatMap { flatten(object: $0, keyPrefix: keyPrefix) }
-    default: break
+    default:
+      break
     }
     return values
   }
