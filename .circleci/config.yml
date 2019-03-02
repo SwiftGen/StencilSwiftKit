@@ -132,13 +132,8 @@ workflows:
   version: 2
   lint-buildandtest-checkdeploy:
     jobs:
+      - check-deploy
       - lint
       - spm-linux-build-and-test
       - spm-mac-build-and-test
       - xcode-build-and-test
-      - check-deploy:
-          requires:
-            - lint
-            - spm-linux-build-and-test
-            - spm-mac-build-and-test
-            - xcode-build-and-test
