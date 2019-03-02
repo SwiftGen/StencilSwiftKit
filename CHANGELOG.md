@@ -21,6 +21,9 @@ _None_
 * Update to SwiftLint 0.31.0 and enable some extra SwiftLint rules.  
   [David Jennes](https://github.com/djbe)
   [#116](https://github.com/SwiftGen/StencilSwiftKit/pull/116)
+* Updated to CocoaPods 1.7.0 (Beta 1).  
+  [David Jennes](https://github.com/djbe)
+  [#118](https://github.com/SwiftGen/StencilSwiftKit/pull/118)
 
 ## 2.7.2
 
