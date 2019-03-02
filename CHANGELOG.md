@@ -18,7 +18,9 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Update to SwiftLint 0.31.0 and enable some extra SwiftLint rules.  
+  [David Jennes](https://github.com/djbe)
+  [#116](https://github.com/SwiftGen/StencilSwiftKit/pull/116)
 
 ## 2.7.2
 
