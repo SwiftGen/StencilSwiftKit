@@ -10,7 +10,9 @@ _None_
 
 ### New Features
 
-_None_
+* Added support for Swift 5.  
+  [David Jennes](https://github.com/djbe)
+  [#119](https://github.com/SwiftGen/StencilSwiftKit/pull/119)
 
 ### Bug Fixes
 
