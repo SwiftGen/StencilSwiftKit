@@ -13,8 +13,6 @@ defaults:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
       BUNDLE_PATH: vendor/bundle
-    docker:
-      - image: norionomura/jazzy:swift-4.2.0
     shell: /bin/bash --login -eo pipefail
   - &prepare-storage
     run:
@@ -80,9 +78,11 @@ jobs:
       - *fetch-xcode-logs
       - *store-artifacts
 
-  spm-linux-build-and-test:
+  spm-linux-4.0-build-and-test:
     <<: *linux-config
-    steps:
+    docker:
+      - image: norionomura/jazzy:swift-4.0
+    steps: &spm-steps
       - *prepare-storage
       - checkout
       - *restore-gems
@@ -92,6 +92,20 @@ jobs:
           name: Run all tests
           command: bundle exec rake spm:test
       - *store-artifacts
+
+  spm-linux-4.1-build-and-test:
+    <<: *linux-config
+    docker:
+      - image: norionomura/jazzy:swift-4.1
+    steps:
+      *spm-steps
+
+  spm-linux-4.2-build-and-test:
+    <<: *linux-config
+    docker:
+      - image: norionomura/jazzy:swift-4.2
+    steps:
+      *spm-steps
 
   spm-mac-build-and-test:
     <<: *macos-config
@@ -128,12 +142,16 @@ workflows:
   lint-buildandtest-checkdeploy:
     jobs:
       - lint
-      - spm-linux-build-and-test
+      - spm-linux-4.0-build-and-test
+      - spm-linux-4.1-build-and-test
+      - spm-linux-4.2-build-and-test
       - spm-mac-build-and-test
       - xcode-build-and-test
       - check-deploy:
           requires:
             - lint
-            - spm-linux-build-and-test
+            - spm-linux-4.0-build-and-test
+            - spm-linux-4.1-build-and-test
+            - spm-linux-4.2-build-and-test
             - spm-mac-build-and-test
             - xcode-build-and-test
