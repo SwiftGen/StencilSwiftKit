@@ -12,7 +12,7 @@
   "platforms": {
     "osx": "10.9"
   },
-  "swift_version": "4.2",
+  "swift_version": "5",
   "cocoapods_version": ">= 1.4.0",
   "source": {
     "git": "https://github.com/SwiftGen/StencilSwiftKit.git",
