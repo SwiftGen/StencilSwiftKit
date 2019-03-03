@@ -95,7 +95,8 @@ extension Filters.Strings {
     while idx < scalars.endIndex, let scalar = UnicodeScalar(scalars[idx].value), characterSet.contains(scalar) {
       idx = scalars.index(after: idx)
     }
-    if idx > scalars.index(after: start) && idx < scalars.endIndex,
+    if !string.isEmpty,
+      idx > scalars.index(after: start) && idx < scalars.endIndex,
       let scalar = UnicodeScalar(scalars[idx].value),
       CharacterSet.lowercaseLetters.contains(scalar) {
       idx = scalars.index(before: idx)
