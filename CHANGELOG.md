@@ -24,7 +24,7 @@ _None_
 
 ## 2.8.0
 
-* Updated Stencil to the latest version (0.13.1).
+* Updated Stencil to the latest version (0.13.1).  
   [Hector Matos](https://github.com/hectormatos2011)
   [#122](https://github.com/SwiftGen/StencilSwiftKit/pull/122)
 
