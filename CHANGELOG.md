@@ -22,6 +22,12 @@ _None_
   [David Jennes](https://github.com/djbe)
   [#116](https://github.com/SwiftGen/StencilSwiftKit/pull/116)
 
+## 2.8.0
+
+* Updated Stencil to the latest version (0.13.1).
+  [Hector Matos](https://github.com/hectormatos2011)
+  [#122](https://github.com/SwiftGen/StencilSwiftKit/pull/122)
+
 ## 2.7.2
 
 ### Bug Fixes
