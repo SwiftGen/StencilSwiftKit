@@ -474,7 +474,8 @@ extension StringFiltersTests {
       (Input(string: "string"), "ing", "oke", "stroke"),
       (Input(string: "string"), "folks", "mates", "string"),
       (Input(string: "hi mates!"), "hi", "Yo", "Yo mates!"),
-      (Input(string: "string with spaces"), " ", "_", "string_with_spaces")
+      (Input(string: "string with spaces"), " ", "_", "string_with_spaces"),
+      (Input(string: "string with numbers 42"), #"/\s\d+$/"#, "", "string with numbers")
     ]
 
     for (input, substring, replacement, expected) in expectations {

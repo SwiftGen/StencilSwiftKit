@@ -95,7 +95,7 @@ extension Filters.Strings {
     while idx < scalars.endIndex, let scalar = UnicodeScalar(scalars[idx].value), characterSet.contains(scalar) {
       idx = scalars.index(after: idx)
     }
-    if idx > scalars.index(after: start) && idx < scalars.endIndex,
+    if !string.isEmpty && idx > scalars.index(after: start) && idx < scalars.endIndex,
       let scalar = UnicodeScalar(scalars[idx].value),
       CharacterSet.lowercaseLetters.contains(scalar) {
       idx = scalars.index(before: idx)
@@ -264,7 +264,20 @@ extension Filters.Strings {
     let source = try Filters.parseString(from: value)
     let substring = try Filters.parseStringArgument(from: arguments, at: 0)
     let replacement = try Filters.parseStringArgument(from: arguments, at: 1)
+    if substring.first == "/" && substring.last == "/" {
+      let regex = String(substring.dropFirst().dropLast())
+      return replaceRegex(source: source, regex: regex, replacement: replacement)
+    }
     return source.replacingOccurrences(of: substring, with: replacement)
+  }
+
+  /// Replaces in the given string the given regular expression with the replacement
+  /// - Parameters:
+  ///   - source: The source string
+  ///   - regex: The regular expression
+  ///   - replacement: The replacement string
+  private static func replaceRegex(source: String, regex: String, replacement: String) -> String {
+    return source.replacingOccurrences(of: regex, with: replacement, options: .regularExpression)
   }
 
   /// Converts an arbitrary string to a valid swift identifier. Takes an optional Mode argument:
