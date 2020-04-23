@@ -79,7 +79,7 @@ class CallNodeTests: XCTestCase {
   }
 
   func testRenderFail() {
-    let context = Context(dictionary: [:])
+    let context = Context(dictionary: ["": ""])
     let node = CallNode(variable: Variable("myFunc"), arguments: [])
 
     XCTAssertThrowsError(try node.render(context))

@@ -99,14 +99,14 @@ class SetNodeTests: XCTestCase {
   func testRender() throws {
     do {
       let node = SetNode(variableName: "value", content: .nodes([TextNode(text: "true")]))
-      let context = Context(dictionary: [:])
+      let context = Context(dictionary: ["": ""])
       let output = try node.render(context)
       XCTAssertEqual(output, "")
     }
 
     do {
       let node = SetNode(variableName: "value", content: .reference(resolvable: Variable("test")))
-      let context = Context(dictionary: [:])
+      let context = Context(dictionary: ["": ""])
       let output = try node.render(context)
       XCTAssertEqual(output, "")
     }
@@ -114,7 +114,7 @@ class SetNodeTests: XCTestCase {
 
   func testContextModification() throws {
     // start empty
-    let context = Context(dictionary: [:])
+    let context = Context(dictionary: ["": ""])
     XCTAssertNil(context["a"])
     XCTAssertNil(context["b"])
     XCTAssertNil(context["c"])
@@ -272,8 +272,7 @@ class SetNodeTests: XCTestCase {
   func testSetWithFilterExpressionParameter() throws {
     let context = Context(dictionary: ["greet": "hello"])
 
-    let parser = TokenParser(tokens: [], environment: stencilSwiftEnvironment())
-    let argument = try FilterExpression(token: "greet|uppercase", parser: parser)
+    let argument = try FilterExpression(token: "greet|uppercase", environment: stencilSwiftEnvironment())
     let node = SetNode(variableName: "a", content: .reference(resolvable: argument))
 
     _ = try node.render(context)

@@ -7,7 +7,7 @@
 import Stencil
 
 public extension Extension {
-  public func registerStencilSwiftExtensions() {
+  func registerStencilSwiftExtensions() {
     registerTags()
     registerStringsFilters()
     registerNumbersFilters()
