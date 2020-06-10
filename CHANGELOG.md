@@ -2,7 +2,7 @@
 
 ---
 
-## Master
+## Stable Branch
 
 ### Breaking Changes
 
@@ -67,7 +67,7 @@ _None_
 ### New Features
 
 * The `set` tag can now directly accept an expression as value, see the
-  [documentation](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/tag-set.md)
+  [documentation](Documentation/tag-set.md)
   for an explanation on how this differs with the normal `set`/`endset`
   pair.  
   [David Jennes](https://github.com/djbe)
@@ -195,7 +195,7 @@ _None_
 ## 2.0.0
 
 Due to the removal of legacy code, there are a few breaking changes in this new version that affect both template writers as well as developers. We've provided a migration guide to help you through these changes, which you can find here:
-[Migration Guide for 2.0](https://github.com/SwiftGen/StencilSwiftKit/blob/master/Documentation/MigrationGuide.md#stencilswiftkit-20-swiftgen-50)
+[Migration Guide for 2.0](Documentation/MigrationGuide.md#stencilswiftkit-20-swiftgen-50)
 
 ### Breaking Changes
 
