@@ -62,11 +62,11 @@ namespace :release do
       "Please add an entry for #{podspec_version} in CHANGELOG.md"
     )
 
-    changelog_master = system("grep -qi '^## Master' CHANGELOG.md")
+    changelog_has_stable = system("grep -qi '^## Stable Branch' CHANGELOG.md")
     results << Utils.table_result(
-      !changelog_master,
-      'CHANGELOG, No master',
-      'Please remove entry for master in CHANGELOG'
+      !changelog_has_stable,
+      'CHANGELOG, No stable',
+      'Please remove section for stable branch in CHANGELOG'
     )
 
     tag_set = !`git ls-remote --tags . refs/tags/#{podspec_version}`.empty?
