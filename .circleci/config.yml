@@ -23,8 +23,8 @@ defaults:
   - &restore-gems
     restore_cache:
       keys:
-        - gems-{{ checksum "Gemfile.lock" }}
-        - gems-
+        - &cache-key v1-gems-{{ checksum "Gemfile.lock" }}
+        - v1-gems-
   - &install-gems
     run:
       name: Bundle install
@@ -34,7 +34,7 @@ defaults:
         BUNDLE_RETRY: 3
   - &store-gems
     save_cache:
-      key: gems-{{ checksum "Gemfile.lock" }}
+      key: *cache-key
       paths:
         - vendor/bundle
   - &fetch-xcode-logs
