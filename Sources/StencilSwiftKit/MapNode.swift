@@ -14,7 +14,7 @@ class MapNode: NodeType {
   let token: Token?
 
   class func parse(parser: TokenParser, token: Token) throws -> NodeType {
-    let components = token.components()
+    let components = token.components
 
     func hasToken(_ token: String, at index: Int) -> Bool {
       return components.indices ~= index + 1 && components[index] == token

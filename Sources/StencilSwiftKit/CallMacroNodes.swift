@@ -41,7 +41,7 @@ class MacroNode: NodeType {
   let token: Token?
 
   class func parse(_ parser: TokenParser, token: Token) throws -> NodeType {
-    let components = token.components()
+    let components = token.components
     guard components.count >= 2 else {
       throw TemplateSyntaxError("'macro' tag takes at least one argument, the name of the variable to set.")
     }
@@ -76,7 +76,7 @@ class CallNode: NodeType {
   let token: Token?
 
   class func parse(_ parser: TokenParser, token: Token) throws -> NodeType {
-    let components = token.components()
+    let components = token.components
     guard components.count >= 2 else {
       throw TemplateSyntaxError("'call' tag takes at least one argument, the name of the block to call.")
     }

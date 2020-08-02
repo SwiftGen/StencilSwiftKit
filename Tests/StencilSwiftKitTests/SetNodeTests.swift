@@ -272,8 +272,8 @@ class SetNodeTests: XCTestCase {
   func testSetWithFilterExpressionParameter() throws {
     let context = Context(dictionary: ["greet": "hello"])
 
-    let parser = TokenParser(tokens: [], environment: stencilSwiftEnvironment())
-    let argument = try FilterExpression(token: "greet|uppercase", parser: parser)
+    let environment = stencilSwiftEnvironment()
+    let argument = try FilterExpression(token: "greet|uppercase", environment: environment)
     let node = SetNode(variableName: "a", content: .reference(resolvable: argument))
 
     _ = try node.render(context)
