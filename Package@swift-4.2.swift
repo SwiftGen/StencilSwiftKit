@@ -4,10 +4,10 @@ import PackageDescription
 let package = Package(
   name: "StencilSwiftKit",
   products: [
-      .library(name: "StencilSwiftKit", targets: ["StencilSwiftKit"])
+    .library(name: "StencilSwiftKit", targets: ["StencilSwiftKit"])
   ],
   dependencies: [
-      .package(url: "https://github.com/stencilproject/Stencil.git", .branch("master"))
+    .package(url: "https://github.com/stencilproject/Stencil.git", .upToNextMajor(from: "0.14.0"))
   ],
   targets: [
     .target(
