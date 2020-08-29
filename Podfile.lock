@@ -1,0 +1,31 @@
+PODS:
+  - PathKit (1.0.0)
+  - Stencil (0.14.0):
+    - PathKit (~> 1.0.0)
+  - StencilSwiftKit (2.7.2):
+    - Stencil (~> 0.14.0)
+  - SwiftLint (0.40.1)
+
+DEPENDENCIES:
+  - StencilSwiftKit (from `.`)
+  - SwiftLint (~> 0.31)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - PathKit
+    - Stencil
+    - SwiftLint
+
+EXTERNAL SOURCES:
+  StencilSwiftKit:
+    :path: "."
+
+SPEC CHECKSUMS:
+  PathKit: 364e0de7fb5adb142aecab4e112187e5548fc4b6
+  Stencil: 19487b54873a6ed8d8e4cccc4b45c1a601941f06
+  StencilSwiftKit: 2e8f94e444681a1c8f22dce5c5d2dd8af158e80a
+  SwiftLint: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
+
+PODFILE CHECKSUM: ea156eb15e31a283c83a103d9155c8b32b3598c1
+
+COCOAPODS: 1.7.5
