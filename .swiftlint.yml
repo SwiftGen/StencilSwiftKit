@@ -24,7 +24,6 @@ opt_in_rules:
  - first_where
  - force_unwrapping
  - identical_operands
- - implicit_return
  - implicitly_unwrapped_optional
  - joined_default_parameter
  - last_where
