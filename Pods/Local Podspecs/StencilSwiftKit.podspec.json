@@ -21,7 +21,7 @@
   "source_files": "Sources/**/*.swift",
   "dependencies": {
     "Stencil": [
-      "~> 0.13.1"
+      "~> 0.14.0"
     ]
   },
   "frameworks": "Foundation"
