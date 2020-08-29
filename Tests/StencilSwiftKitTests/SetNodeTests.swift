@@ -114,7 +114,7 @@ class SetNodeTests: XCTestCase {
 
   func testContextModification() throws {
     // start empty
-    let context = Context(dictionary: [:])
+    let context = Context(dictionary: ["": ""])
     XCTAssertNil(context["a"])
     XCTAssertNil(context["b"])
     XCTAssertNil(context["c"])
