@@ -1,3 +1,6 @@
+orbs:
+  bundle-install: toshimaru/bundle-install@0.3.1
+
 defaults:
   - &macos-config
     parallelism: 1
@@ -20,23 +23,6 @@ defaults:
     run:
       name: Create directories for artifacts and reports
       command: mkdir -p $CIRCLE_ARTIFACTS $CIRCLE_TEST_REPORTS
-  - &restore-gems
-    restore_cache:
-      keys:
-        - &cache-key v1-gems-{{ checksum "Gemfile.lock" }}
-        - v1-gems-
-  - &install-gems
-    run:
-      name: Bundle install
-      command: bundle check || bundle install
-      environment:
-        BUNDLE_JOBS: 4
-        BUNDLE_RETRY: 3
-  - &store-gems
-    save_cache:
-      key: *cache-key
-      paths:
-        - vendor/bundle
   - &fetch-xcode-logs
     run:
       name: Getting Xcode activity logs
@@ -46,16 +32,15 @@ defaults:
       path: /tmp/circleci-artifacts
 
 
-version: 2
+version: 2.1
 jobs:
   lint:
     <<: *macos-config
     steps:
       - *prepare-storage
       - checkout
-      - *restore-gems
-      - *install-gems
-      - *store-gems
+      - bundle-install/bundle-install:
+          cache_key_prefix: v1-macos
       - run:
           name: Lint source code
           command: bundle exec rake lint:code
@@ -69,9 +54,8 @@ jobs:
     steps:
       - *prepare-storage
       - checkout
-      - *restore-gems
-      - *install-gems
-      - *store-gems
+      - bundle-install/bundle-install:
+          cache_key_prefix: v1-macos
       - run:
           name: Run all tests
           command: bundle exec rake xcode:test
@@ -85,9 +69,8 @@ jobs:
     steps:
       - *prepare-storage
       - checkout
-      - *restore-gems
-      - *install-gems
-      - *store-gems
+      - bundle-install/bundle-install:
+          cache_key_prefix: v1-linux
       - run:
           name: Run all tests
           command: bundle exec rake spm:test
@@ -98,9 +81,8 @@ jobs:
     steps:
       - *prepare-storage
       - checkout
-      - *restore-gems
-      - *install-gems
-      - *store-gems
+      - bundle-install/bundle-install:
+          cache_key_prefix: v1-macos
       - run:
           name: Run all tests
           command: bundle exec rake spm:test
@@ -111,9 +93,8 @@ jobs:
     steps:
       - *prepare-storage
       - checkout
-      - *restore-gems
-      - *install-gems
-      - *store-gems
+      - bundle-install/bundle-install:
+          cache_key_prefix: v1-macos
       - run:
           name: Download podspec repo
           command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
@@ -124,7 +105,6 @@ jobs:
 
 
 workflows:
-  version: 2
   lint-buildandtest-checkdeploy:
     jobs:
       - lint
