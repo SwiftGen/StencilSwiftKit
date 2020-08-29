@@ -104,7 +104,7 @@ class MacroNodeTests: XCTestCase {
 
   func testContextModificationWithParameters() throws {
     let node = MacroNode(variableName: "myFunc", parameters: ["a", "b", "c"], nodes: [TextNode(text: "hello")])
-    let context = Context(dictionary: ["":""])
+    let context = Context(dictionary: ["": ""])
     _ = try node.render(context)
 
     guard let block = context["myFunc"] as? CallableBlock else {
