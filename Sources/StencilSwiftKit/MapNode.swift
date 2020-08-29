@@ -17,11 +17,11 @@ class MapNode: NodeType {
     let components = token.components
 
     func hasToken(_ token: String, at index: Int) -> Bool {
-      return components.indices ~= index + 1 && components[index] == token
+      components.indices ~= index + 1 && components[index] == token
     }
 
     func endsOrHasToken(_ token: String, at index: Int) -> Bool {
-      return components.count == index || hasToken(token, at: index)
+        components.count == index || hasToken(token, at: index)
     }
 
     guard hasToken("into", at: 2) && endsOrHasToken("using", at: 4) else {
