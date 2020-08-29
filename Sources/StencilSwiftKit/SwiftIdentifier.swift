@@ -9,7 +9,7 @@ import Foundation
 typealias CharRange = CountableClosedRange<Int>
 
 private func mr(_ char: Int) -> CharRange {
-  char...char
+  return char...char
 }
 
 // Official list of valid identifier characters

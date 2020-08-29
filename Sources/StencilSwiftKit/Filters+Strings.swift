@@ -169,7 +169,7 @@ extension Filters.Strings {
 
     // only if passed true, strip the prefix underscores
     var prefixUnderscores = ""
-    var result: String { prefixUnderscores + unprefixed }
+    var result: String { return prefixUnderscores + unprefixed }
     if stripLeading {
       return result
     }

@@ -22,7 +22,7 @@ final class StringFiltersTests: XCTestCase {
     }
 
     var description: String {
-      stringRepresentation
+      return stringRepresentation
     }
   }
 

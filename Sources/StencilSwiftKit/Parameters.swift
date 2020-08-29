@@ -51,7 +51,7 @@ public enum Parameters {
   ///       flatten(["a":["b":1,"c":[2,3]]])
   ///       // ["a.b=1","a.c=2","a.c=3"]
   public static func flatten(dictionary: StringDict) -> [String] {
-    flatten(object: dictionary, keyPrefix: "")
+    return flatten(object: dictionary, keyPrefix: "")
   }
 
   // MARK: - Private methods
@@ -112,7 +112,7 @@ public enum Parameters {
 
   // a valid key is not empty and only alphanumerical or dot
   private static func validate(key: String) -> Bool {
-    !key.isEmpty &&
+    return !key.isEmpty &&
       key.rangeOfCharacter(from: notAlphanumericsAndDot) == nil
   }
 
