@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/SwiftGen/StencilSwiftKit/tree/stable.svg?style=svg)](https://circleci.com/gh/SwiftGen/StencilSwiftKit/tree/stable)
 [![CocoaPods Compatible](https://img.shields.io/cocoapods/v/StencilSwiftKit.svg)](https://img.shields.io/cocoapods/v/StencilSwiftKit.svg)
 [![Platform](https://img.shields.io/cocoapods/p/StencilSwiftKit.svg?style=flat)](http://cocoadocs.org/docsets/StencilSwiftKit)
-![Swift 4.0](https://img.shields.io/badge/Swift-4.0-orange.svg)
+![Swift 5.0](https://img.shields.io/badge/Swift-5.0-orange.svg)
 
 `StencilSwiftKit` is a framework bringing additional [Stencil](https://github.com/stencilproject/Stencil) nodes & filters dedicated to Swift code generation.
 
