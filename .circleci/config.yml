@@ -95,13 +95,18 @@ jobs:
       - checkout
       - bundle-install/bundle-install:
           cache_key_prefix: v1-macos
-      - run:
-          name: Download podspec repo
-          command: curl https://cocoapods-specs.circleci.com/fetch-cocoapods-repo-from-s3.sh | bash -s cf
+      - restore_cache:
+          keys:
+            - cocoapods-{{ checksum "Podfile.lock" }}
+            - cocoapods-
       - run:
           name: Lint podspec
           command: bundle exec rake pod:lint
       - *store-artifacts
+      -  save_cache:
+          key: cocoapods-{{ checksum "Podfile.lock" }}
+          paths:
+            - ~/.cocoapods
 
 
 workflows:
