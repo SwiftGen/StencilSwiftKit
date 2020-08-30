@@ -73,7 +73,7 @@ jobs:
           cache_key_prefix: v1-linux
       - run:
           name: Run all tests
-          command: bundle install && bundle exec rake spm:test
+          command: bundle exec rake spm:test
       - *store-artifacts
 
   spm-mac-build-and-test:
