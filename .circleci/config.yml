@@ -62,7 +62,7 @@ jobs:
       - *fetch-xcode-logs
       - *store-artifacts
 
-  spm-linux-4.2-build-and-test:
+  spm-linux-four-two-build-and-test:
     <<: *linux-config
     docker:
       - image: marekfort/docker-stencilswiftkit:swift-4.2
@@ -77,7 +77,7 @@ jobs:
       - *store-artifacts
 
 
-  spm-linux-5.2-build-and-test:
+  spm-linux-five-two-build-and-test:
     <<: *linux-config
     docker:
       - image: marekfort/docker-stencilswiftkit:swift-5.2
@@ -128,14 +128,14 @@ workflows:
   lint-buildandtest-checkdeploy:
     jobs:
       - lint
-      - spm-linux-4.2-build-and-test
-      - spm-linux-5.2-build-and-test
+      - spm-linux-four-two-build-and-test
+      - spm-linux-five-two-build-and-test
       - spm-mac-build-and-test
       - xcode-build-and-test
       - check-deploy:
           requires:
             - lint
-            - spm-linux-4.2-build-and-test
-            - spm-linux-5.2-build-and-test
+            - spm-linux-four-two-build-and-test
+            - spm-linux-five-two-build-and-test
             - spm-mac-build-and-test
             - xcode-build-and-test
