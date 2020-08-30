@@ -16,6 +16,8 @@ defaults:
       CIRCLE_ARTIFACTS: /tmp/circleci-artifacts
       CIRCLE_TEST_REPORTS: /tmp/circleci-test-results
       BUNDLE_PATH: vendor/bundle
+    docker:
+      - image: marekfort/docker-stencilswiftkit:swift-5.2
     shell: /bin/bash --login -eo pipefail
   - &prepare-storage
     run:
@@ -62,25 +64,8 @@ jobs:
       - *fetch-xcode-logs
       - *store-artifacts
 
-  spm-linux-four-two-build-and-test:
+  spm-linux-build-and-test:
     <<: *linux-config
-    docker:
-      - image: marekfort/docker-stencilswiftkit:swift-4.2
-    steps:
-      - *prepare-storage
-      - checkout
-      - bundle-install/bundle-install:
-          cache_key_prefix: v1-linux
-      - run:
-          name: Run all tests
-          command: bundle install && bundle exec rake spm:test
-      - *store-artifacts
-
-
-  spm-linux-five-two-build-and-test:
-    <<: *linux-config
-    docker:
-      - image: marekfort/docker-stencilswiftkit:swift-5.2
     steps:
       - *prepare-storage
       - checkout
@@ -128,14 +113,12 @@ workflows:
   lint-buildandtest-checkdeploy:
     jobs:
       - lint
-      - spm-linux-four-two-build-and-test
-      - spm-linux-five-two-build-and-test
+      - spm-linux-build-and-test
       - spm-mac-build-and-test
       - xcode-build-and-test
       - check-deploy:
           requires:
             - lint
-            - spm-linux-four-two-build-and-test
-            - spm-linux-five-two-build-and-test
+            - spm-linux-build-and-test
             - spm-mac-build-and-test
             - xcode-build-and-test
