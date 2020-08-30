@@ -18,8 +18,8 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/aligatr'
 
   s.platform = :osx, '10.9'
-  s.swift_version = '4.2'
-  s.cocoapods_version = '>= 1.4.0'
+  s.swift_versions = ["4.2", "5.0"]
+  s.cocoapods_version = '>= 1.9.0'
 
   s.source       = {
     git: 'https://github.com/SwiftGen/StencilSwiftKit.git',
