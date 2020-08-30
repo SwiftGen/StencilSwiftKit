@@ -135,6 +135,7 @@ workflows:
       - check-deploy:
           requires:
             - lint
-            - spm-linux-build-and-test
+            - spm-linux-4.2-build-and-test
+            - spm-linux-5.2-build-and-test
             - spm-mac-build-and-test
             - xcode-build-and-test
