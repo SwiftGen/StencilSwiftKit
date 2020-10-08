@@ -15,8 +15,8 @@ typealias NSRegularExpression = RegularExpression
 open class StencilSwiftTemplate: Template {
   public required init(templateString: String, environment: Environment? = nil, name: String? = nil) {
     let templateStringWithMarkedNewlines = templateString
-        .replacingOccurrences(of: "\n\n", with: "\n\u{000b}\n")
-        .replacingOccurrences(of: "\n\n", with: "\n\u{000b}\n")
+      .replacingOccurrences(of: "\n\n", with: "\n\u{000b}\n")
+      .replacingOccurrences(of: "\n\n", with: "\n\u{000b}\n")
     super.init(templateString: templateStringWithMarkedNewlines, environment: environment, name: name)
   }
 

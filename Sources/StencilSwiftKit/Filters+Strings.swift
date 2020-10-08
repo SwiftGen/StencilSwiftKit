@@ -11,8 +11,8 @@ import Stencil
 // MARK: - Strings Filters
 
 extension Filters {
-    enum Strings {
-    }
+  enum Strings {
+  }
 }
 
 enum RemoveNewlinesModes: String {

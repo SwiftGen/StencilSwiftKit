@@ -25,11 +25,11 @@ class MapNode: NodeType {
     }
 
     guard hasToken("into", at: 2) && endsOrHasToken("using", at: 4) else {
-        throw TemplateSyntaxError(
-          """
-          'map' statements should use the following 'map {array} into \
-          {varname} [using {element}]'.
-          """
+      throw TemplateSyntaxError(
+        """
+        'map' statements should use the following 'map {array} into \
+        {varname} [using {element}]'.
+        """
       )
     }
 
