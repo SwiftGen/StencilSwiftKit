@@ -52,10 +52,10 @@ CACHE_KEYS:
       SwiftLint:
         :debug: 1c745809f0563c8c5f3436c1fbfc0fd3
         :release: 1c745809f0563c8c5f3436c1fbfc0fd3
-    CHECKSUM: bbfed21bf4451dcbd0f5cdbee44a18e06cf91b12
+    CHECKSUM: dfd554ff0dff17288ee574814ccdd5cea85d76f7
     PROJECT_NAME: SwiftLint
     SPECS:
-      - SwiftLint (0.40.1)
+      - SwiftLint (0.40.3)
 OBJECT_VERSION: 47
 PLUGINS:
   cocoapods-stats:
