@@ -10,7 +10,16 @@ _None_
 
 ### New Features
 
-_None_
+* Added support for Swift 5.  
+  [David Jennes](https://github.com/djbe)
+  [@fortmarek](https://github.com/fortmarek)
+  [#119](https://github.com/SwiftGen/StencilSwiftKit/pull/119)
+  [#122](https://github.com/SwiftGen/StencilSwiftKit/pull/122)
+  [#125](https://github.com/SwiftGen/StencilSwiftKit/pull/125)
+  [#127](https://github.com/SwiftGen/StencilSwiftKit/pull/127)
+* Updated Stencil to the latest version (0.14).  
+  [@fortmarek](https://github.com/fortmarek)
+  [#127](https://github.com/SwiftGen/StencilSwiftKit/pull/127)
 
 ### Bug Fixes
 
@@ -18,9 +27,11 @@ _None_
 
 ### Internal Changes
 
-* Update to SwiftLint 0.31.0 and enable some extra SwiftLint rules.  
+* Update to SwiftLint 0.40.3 and enable some extra SwiftLint rules.  
   [David Jennes](https://github.com/djbe)
+  [@fortmarek](https://github.com/fortmarek)
   [#116](https://github.com/SwiftGen/StencilSwiftKit/pull/116)
+  [#127](https://github.com/SwiftGen/StencilSwiftKit/pull/127)
 
 ## 2.7.2
 
