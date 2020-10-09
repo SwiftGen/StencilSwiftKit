@@ -1,13 +1,13 @@
 //
 // StencilSwiftKit
-// Copyright © 2019 SwiftGen
+// Copyright © 2020 SwiftGen
 // MIT Licence
 //
 
 import Stencil
 
 public extension Extension {
-  public func registerStencilSwiftExtensions() {
+  func registerStencilSwiftExtensions() {
     registerTags()
     registerStringsFilters()
     registerNumbersFilters()

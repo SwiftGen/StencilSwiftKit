@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit
-// Copyright © 2019 SwiftGen
+// Copyright © 2020 SwiftGen
 // MIT Licence
 //
 
@@ -11,8 +11,8 @@ import Stencil
 // MARK: - Strings Filters
 
 extension Filters {
-    enum Strings {
-    }
+  enum Strings {
+  }
 }
 
 enum RemoveNewlinesModes: String {
@@ -88,6 +88,7 @@ extension Filters.Strings {
   /// e.g. "PeoplePicker" gives "peoplePicker" but "URLChooser" gives "urlChooser"
   static func lowerFirstWord(_ value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
+    guard !string.isEmpty else { return "" }
     let characterSet = CharacterSet.uppercaseLetters
     let scalars = string.unicodeScalars
     let start = scalars.startIndex

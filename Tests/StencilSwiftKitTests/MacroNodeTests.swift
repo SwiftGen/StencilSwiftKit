@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2019 SwiftGen
+// Copyright © 2020 SwiftGen
 // MIT Licence
 //
 
@@ -90,7 +90,7 @@ class MacroNodeTests: XCTestCase {
 
   func testContextModification() throws {
     let node = MacroNode(variableName: "myFunc", parameters: [], nodes: [TextNode(text: "hello")])
-    let context = Context(dictionary: [:])
+    let context = Context(dictionary: ["": ""])
     _ = try node.render(context)
 
     guard let block = context["myFunc"] as? CallableBlock else {
@@ -104,7 +104,7 @@ class MacroNodeTests: XCTestCase {
 
   func testContextModificationWithParameters() throws {
     let node = MacroNode(variableName: "myFunc", parameters: ["a", "b", "c"], nodes: [TextNode(text: "hello")])
-    let context = Context(dictionary: [:])
+    let context = Context(dictionary: ["": ""])
     _ = try node.render(context)
 
     guard let block = context["myFunc"] as? CallableBlock else {
@@ -130,8 +130,8 @@ class MacroNodeTests: XCTestCase {
   func testCallableBlockWithFilterExpressionParameter() throws {
     let block = CallableBlock(parameters: ["greeting"], nodes: [])
 
-    let parser = TokenParser(tokens: [], environment: stencilSwiftEnvironment())
-    let arguments = try [FilterExpression(token: "greet|uppercase", parser: parser)]
+    let environment = stencilSwiftEnvironment()
+    let arguments = try [FilterExpression(token: "greet|uppercase", environment: environment)]
     let context = Context(dictionary: ["greet": "hello"])
 
     let result = try block.context(context, arguments: arguments, variable: Variable("myFunc"))

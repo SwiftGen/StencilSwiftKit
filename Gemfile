@@ -10,7 +10,7 @@ end
 
 # In addition to :build, for contributing
 group :development do
-	gem 'cocoapods', '~> 1.6.0'
+	gem 'cocoapods', '~> 1.9'
 	gem 'rubocop', '~> 0.65'
 end
 

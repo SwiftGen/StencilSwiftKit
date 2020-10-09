@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit
-// Copyright © 2019 SwiftGen
+// Copyright © 2020 SwiftGen
 // MIT Licence
 //
 
@@ -17,7 +17,7 @@ class SetNode: NodeType {
   let token: Token?
 
   class func parse(_ parser: TokenParser, token: Token) throws -> NodeType {
-    let components = token.components()
+    let components = token.components
     guard components.count <= 3 else {
       throw TemplateSyntaxError(
         """

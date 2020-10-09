@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit
-// Copyright © 2019 SwiftGen
+// Copyright © 2020 SwiftGen
 // MIT Licence
 //
 
@@ -23,10 +23,10 @@ enum Filters {
   /// - Throws: Filters.Error.invalidInputType
   static func parseString(from value: Any?) throws -> String {
     if let losslessString = value as? LosslessStringConvertible {
-        return String(describing: losslessString)
+      return String(describing: losslessString)
     }
     if let string = value as? String {
-        return string
+      return string
     }
     #if os(Linux)
     if let string = value as? NSString {
@@ -46,13 +46,13 @@ enum Filters {
   /// - Throws: Filters.Error.invalidInputType
   static func parseStringArgument(from arguments: [Any?], at index: Int = 0) throws -> String {
     guard index < arguments.count else {
-        throw Error.invalidInputType
+      throw Error.invalidInputType
     }
     if let losslessString = arguments[index] as? LosslessStringConvertible {
-        return String(describing: losslessString)
+      return String(describing: losslessString)
     }
     if let string = arguments[index] as? String {
-        return string
+      return string
     }
     throw Error.invalidInputType
   }
