@@ -97,14 +97,12 @@ class Utils
 
   # run a command, pipe output through 'xcpretty' and store the output in CI artifacts
   def self.xcpretty(cmd, task, subtask)
-    name = (task.name + (subtask.empty? ? '' : "_#{subtask}")).gsub(/[:-]/, '_')
     command = [*cmd].join(' && ')
 
     if ENV['CI']
-      Rake.sh "set -o pipefail && (#{command}) | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\" | " \
-        "bundle exec xcpretty --color --report junit --output \"#{ENV['CIRCLE_TEST_REPORTS']}/xcode/#{name}.xml\""
+      Rake.sh %(set -o pipefail && (#{command}) | bundle exec xcpretty --color --report junit)
     elsif system('which xcpretty > /dev/null')
-      Rake.sh %(set -o pipefail && (#{command}) | bundle exec xcpretty -c)
+      Rake.sh %(set -o pipefail && (#{command}) | bundle exec xcpretty --color)
     else
       Rake.sh command
     end
@@ -113,15 +111,14 @@ class Utils
 
   # run a command and store the output in CI artifacts
   def self.plain(cmd, task, subtask)
-    name = (task.name + (subtask.empty? ? '' : "_#{subtask}")).gsub(/[:-]/, '_')
     command = [*cmd].join(' && ')
 
     if ENV['CI']
       if OS.mac?
-        Rake.sh %(set -o pipefail && (#{command}) | tee "#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log")
+        Rake.sh %(set -o pipefail && (#{command}))
       else
         # dash on linux doesn't support `set -o`
-        Rake.sh %(/bin/bash -eo pipefail -c "#{command} | tee \"#{ENV['CIRCLE_ARTIFACTS']}/#{name}_raw.log\"")
+        Rake.sh %(/bin/bash -eo pipefail -c "#{command}")
       end
     else
       Rake.sh command
