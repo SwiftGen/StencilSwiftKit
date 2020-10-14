@@ -8,21 +8,9 @@ end
 
 ## [ Constants ] ##############################################################
 
-WORKSPACE = 'StencilSwiftKit'.freeze
-SCHEME_NAME = 'Tests'.freeze
-CONFIGURATION = 'Debug'.freeze
 POD_NAME = 'StencilSwiftKit'.freeze
 MIN_XCODE_VERSION = 12.0
-
-## [ Generate SPM files ] #####################################################
-
-namespace :spm do
-  desc 'Generate the tests manifest for SPM'
-  task :generate_test_manifests do |task|
-    File.delete("Tests/#{WORKSPACE}Tests/XCTestManifests.swift")
-    Utils.run('swift test --generate-linuxmain', task, xcrun: true)
-  end
-end
+BUILD_DIR = File.absolute_path('./.build')
 
 ## [ Release a new version ] ##################################################
 
@@ -45,14 +33,6 @@ namespace :release do
     # Extract version from podspec
     podspec_version = Utils.podspec_version(POD_NAME)
     Utils.table_info("#{POD_NAME}.podspec", podspec_version)
-
-    # Check if version in Podfile.lock matches
-    podfile_lock_version = Utils.podfile_lock_version(POD_NAME)
-    results << Utils.table_result(
-      podfile_lock_version == podspec_version,
-      'Podfile.lock',
-      'Please run pod install'
-    )
 
     # Check if entry present in CHANGELOG
     changelog_entry = system(%(grep -q '^## #{Regexp.quote(podspec_version)}$' CHANGELOG.md))
