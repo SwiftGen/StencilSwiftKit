@@ -36,6 +36,9 @@
 * Dropped support for Swift 4.2.  
   [David Jennes](https://github.com/djbe)
   [#132](https://github.com/SwiftGen/StencilSwiftKit/pull/132)
+* Switched the whole project over to use Swift Package Manager, restructuring some of the internals in the process.  
+  [David Jennes](https://github.com/djbe)
+  [#130](https://github.com/SwiftGen/StencilSwiftKit/pull/130)
 
 ## 2.7.2
 
