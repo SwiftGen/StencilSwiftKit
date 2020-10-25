@@ -34,6 +34,9 @@ _None_
   [@fortmarek](https://github.com/fortmarek)
   [#116](https://github.com/SwiftGen/StencilSwiftKit/pull/116)
   [#127](https://github.com/SwiftGen/StencilSwiftKit/pull/127)
+* Switch from CircleCI to GitHub Actions.  
+  [David Jennes](https://github.com/djbe)
+  [#128](https://github.com/SwiftGen/StencilSwiftKit/pull/128)
 
 ## 2.7.2
 
