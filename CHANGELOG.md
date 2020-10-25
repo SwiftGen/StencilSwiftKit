@@ -23,7 +23,9 @@ _None_
 
 ### Bug Fixes
 
-_None_
+* Fix crash with the `lowerFirstWord` filter when running on empty strings.  
+  [@fortmarek](https://github.com/fortmarek)
+  [#127](https://github.com/SwiftGen/StencilSwiftKit/pull/127)
 
 ### Internal Changes
 
