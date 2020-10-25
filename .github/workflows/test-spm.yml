@@ -11,9 +11,6 @@ on:
       - '.github/workflows/test-spm.yml'
       - '**/*.swift'
 
-env:
-  xcode-version: 12.0.0
-
 jobs:
   linux:
     name: Linux
@@ -57,11 +54,6 @@ jobs:
       - 
         name: Checkout
         uses: actions/checkout@v2
-      -
-        name: Xcode Select
-        uses: devbotsxyz/xcode-select@v1.0.0
-        with:
-          version: ${{ env.xcode-version }}
       - 
         name: Setup Ruby
         uses: ruby/setup-ruby@v1
