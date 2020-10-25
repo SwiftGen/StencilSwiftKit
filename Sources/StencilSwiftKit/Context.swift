@@ -9,7 +9,7 @@ import Foundation
 public enum StencilContext {
   public static let environmentKey = "env"
   public static let parametersKey = "param"
-  
+
   /// Enriches a stencil context with parsed parameters and environment variables
   ///
   /// - Parameters:
