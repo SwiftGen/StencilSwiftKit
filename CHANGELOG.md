@@ -6,7 +6,9 @@
 
 ### Breaking Changes
 
-_None_
+* Dropped support for Swift 4.2. We're not bumping the major version, as all Swift compilers that supported version 4.2 also support 5.0.  
+  [David Jennes](https://github.com/djbe)
+  [#132](https://github.com/SwiftGen/StencilSwiftKit/pull/132)
 
 ### New Features
 
