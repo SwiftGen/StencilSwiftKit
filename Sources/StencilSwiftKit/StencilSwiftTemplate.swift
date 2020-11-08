@@ -22,7 +22,7 @@ open class StencilSwiftTemplate: Template {
 
   // swiftlint:disable:next discouraged_optional_collection
   override open func render(_ dictionary: [String: Any]? = nil) throws -> String {
-    return try removeExtraLines(from: super.render(dictionary))
+    try removeExtraLines(from: super.render(dictionary))
   }
 
   // Workaround until Stencil fixes https://github.com/stencilproject/Stencil/issues/22
