@@ -28,8 +28,7 @@ opt_in_rules:
  - flatmap_over_map_reduce
  - force_unwrapping
  - identical_operands
- # Enable this once we drop Swift 4
- # - implicit_return
+ - implicit_return
  - implicitly_unwrapped_optional
  - indentation_width
  - joined_default_parameter
