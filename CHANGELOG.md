@@ -4,12 +4,6 @@
 
 ## Stable Branch
 
-### Breaking Changes
-
-* Dropped support for Swift 4.2. We're not bumping the major version, as all Swift compilers that supported version 4.2 also support 5.0.  
-  [David Jennes](https://github.com/djbe)
-  [#132](https://github.com/SwiftGen/StencilSwiftKit/pull/132)
-
 ### New Features
 
 * Added support for Swift 5.  
@@ -39,6 +33,9 @@
 * Switch from CircleCI to GitHub Actions.  
   [David Jennes](https://github.com/djbe)
   [#128](https://github.com/SwiftGen/StencilSwiftKit/pull/128)
+* Dropped support for Swift 4.2.  
+  [David Jennes](https://github.com/djbe)
+  [#132](https://github.com/SwiftGen/StencilSwiftKit/pull/132)
 
 ## 2.7.2
 
