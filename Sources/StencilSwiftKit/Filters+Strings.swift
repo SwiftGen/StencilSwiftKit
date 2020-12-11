@@ -180,6 +180,14 @@ extension Filters.Strings {
     return result
   }
 
+  static func unicodeCase(value: Any?) throws -> Any? {
+    guard let string = value as? String else { throw Filters.Error.invalidInputType }
+    let escapingCharacterSet = CharacterSet(charactersIn: "\\")
+    let unicode = string.trimmingCharacters(in: escapingCharacterSet)
+
+    return "\\u{" + unicode + "}"
+  }
+
   // MARK: Private
 
   private static func containsAnyLowercasedChar(_ string: String) throws -> Bool {

@@ -42,6 +42,7 @@ public extension Extension {
     registerFilter("snakeToCamelCase", filter: Filters.Strings.snakeToCamelCase)
     registerFilter("swiftIdentifier", filter: Filters.Strings.swiftIdentifier)
     registerFilter("titlecase", filter: Filters.Strings.upperFirstLetter)
+    registerFilter("unicodeCase", filter: Filters.Strings.unicodeCase)
     registerFilter("upperFirstLetter", filter: Filters.Strings.upperFirstLetter)
     registerFilter("contains", filter: Filters.Strings.contains)
     registerFilter("hasPrefix", filter: Filters.Strings.hasPrefix)
