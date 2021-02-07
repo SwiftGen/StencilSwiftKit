@@ -8,7 +8,7 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class SetNodeTests: XCTestCase {
+final class SetNodeTests: XCTestCase {
   func testParserRenderMode() {
     let tokens: [Token] = [
       .block(value: "set value", at: .unknown),

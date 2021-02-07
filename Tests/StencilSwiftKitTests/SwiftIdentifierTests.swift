@@ -7,7 +7,7 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class SwiftIdentifierTests: XCTestCase {
+final class SwiftIdentifierTests: XCTestCase {
   func testBasicString() {
     XCTAssertEqual(SwiftIdentifier.identifier(from: "Hello"), "Hello")
   }

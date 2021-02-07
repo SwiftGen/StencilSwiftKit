@@ -7,7 +7,7 @@
 import StencilSwiftKit
 import XCTest
 
-class ContextTests: XCTestCase {
+final class ContextTests: XCTestCase {
   func testEmpty() throws {
     let context = [String: Any]()
 

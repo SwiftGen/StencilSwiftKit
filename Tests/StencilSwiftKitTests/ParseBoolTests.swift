@@ -7,7 +7,7 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class ParseBoolTests: XCTestCase {
+final class ParseBoolTests: XCTestCase {
   func testParseBool_TrueWithString() throws {
     XCTAssertEqual(try Filters.parseBool(from: ["true"]), .some(true))
     XCTAssertEqual(try Filters.parseBool(from: ["yes"]), .some(true))

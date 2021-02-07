@@ -10,7 +10,7 @@
 import XCTest
 
 final class StringFiltersTests: XCTestCase {
-  struct Input: LosslessStringConvertible, Hashable {
+  private struct Input: LosslessStringConvertible, Hashable {
     let stringRepresentation: String
 
     init(string: String) {

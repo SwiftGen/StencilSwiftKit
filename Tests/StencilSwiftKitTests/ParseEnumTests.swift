@@ -7,8 +7,8 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class ParseEnumTests: XCTestCase {
-  enum Test: String {
+final class ParseEnumTests: XCTestCase {
+  private enum Test: String {
     case foo
     case bar
     case baz

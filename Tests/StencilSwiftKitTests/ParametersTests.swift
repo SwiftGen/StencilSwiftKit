@@ -7,7 +7,7 @@
 import StencilSwiftKit
 import XCTest
 
-class ParametersTests: XCTestCase {
+final class ParametersTests: XCTestCase {
   func testBasic() throws {
     let items = ["a=1", "b=hello", "c=x=y", "d"]
     let result = try Parameters.parse(items: items)

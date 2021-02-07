@@ -8,7 +8,7 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class MacroNodeTests: XCTestCase {
+final class MacroNodeTests: XCTestCase {
   func testParser() {
     let tokens: [Token] = [
       .block(value: "macro myFunc", at: .unknown),
