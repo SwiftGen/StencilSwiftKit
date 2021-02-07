@@ -1,13 +1,13 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
 import StencilSwiftKit
 import XCTest
 
-class ParametersTests: XCTestCase {
+final class ParametersTests: XCTestCase {
   func testBasic() throws {
     let items = ["a=1", "b=hello", "c=x=y", "d"]
     let result = try Parameters.parse(items: items)

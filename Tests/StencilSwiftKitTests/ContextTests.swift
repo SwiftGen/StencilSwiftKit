@@ -1,13 +1,13 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
 import StencilSwiftKit
 import XCTest
 
-class ContextTests: XCTestCase {
+final class ContextTests: XCTestCase {
   func testEmpty() throws {
     let context = [String: Any]()
 

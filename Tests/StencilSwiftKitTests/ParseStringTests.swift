@@ -1,14 +1,14 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
 @testable import StencilSwiftKit
 import XCTest
 
-class ParseStringTests: XCTestCase {
-  struct TestLosslessConvertible: LosslessStringConvertible {
+final class ParseStringTests: XCTestCase {
+  private struct TestLosslessConvertible: LosslessStringConvertible {
     static let stringRepresentation = "TestLosslessConvertibleStringRepresentation"
 
     var description: String {
@@ -19,7 +19,7 @@ class ParseStringTests: XCTestCase {
     init?(_ description: String) {}
   }
 
-  struct TestConvertible: CustomStringConvertible {
+  private struct TestConvertible: CustomStringConvertible {
     static let stringRepresentation = "TestConvertibleStringRepresentation"
 
     var description: String {
@@ -27,7 +27,7 @@ class ParseStringTests: XCTestCase {
     }
   }
 
-  struct TestNotConvertible {}
+  private struct TestNotConvertible {}
 
   func testParseString_FromValue_WithNSStringValue() throws {
     let value = try Filters.parseString(from: NSString(string: "foo"))

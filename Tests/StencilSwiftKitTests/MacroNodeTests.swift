@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
@@ -8,7 +8,7 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class MacroNodeTests: XCTestCase {
+final class MacroNodeTests: XCTestCase {
   func testParser() {
     let tokens: [Token] = [
       .block(value: "macro myFunc", at: .unknown),

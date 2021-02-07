@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
@@ -10,7 +10,7 @@
 import XCTest
 
 final class StringFiltersTests: XCTestCase {
-  struct Input: LosslessStringConvertible, Hashable {
+  private struct Input: LosslessStringConvertible, Hashable {
     let stringRepresentation: String
 
     init(string: String) {

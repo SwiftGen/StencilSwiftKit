@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
@@ -8,7 +8,7 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class SetNodeTests: XCTestCase {
+final class SetNodeTests: XCTestCase {
   func testParserRenderMode() {
     let tokens: [Token] = [
       .block(value: "set value", at: .unknown),

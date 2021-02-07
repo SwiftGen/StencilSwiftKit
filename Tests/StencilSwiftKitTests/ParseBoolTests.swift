@@ -1,13 +1,13 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
 @testable import StencilSwiftKit
 import XCTest
 
-class ParseBoolTests: XCTestCase {
+final class ParseBoolTests: XCTestCase {
   func testParseBool_TrueWithString() throws {
     XCTAssertEqual(try Filters.parseBool(from: ["true"]), .some(true))
     XCTAssertEqual(try Filters.parseBool(from: ["yes"]), .some(true))

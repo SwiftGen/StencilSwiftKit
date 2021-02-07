@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit UnitTests
-// Copyright © 2020 SwiftGen
+// Copyright © 2021 SwiftGen
 // MIT Licence
 //
 
@@ -8,8 +8,8 @@
 @testable import StencilSwiftKit
 import XCTest
 
-class MapNodeTests: XCTestCase {
-  static let context = [
+final class MapNodeTests: XCTestCase {
+  private static let context = [
     "items": ["one", "two", "three"]
   ]
 
