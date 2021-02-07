@@ -16,7 +16,7 @@ BUILD_DIR = File.absolute_path('./.build')
 
 namespace :release do
   desc 'Create a new release on CocoaPods'
-  task :new => [:check_versions, 'xcode:test', :cocoapods]
+  task :new => [:check_versions, 'spm:test', :cocoapods]
 
   desc 'Check if all versions from the podspecs and CHANGELOG match'
   task :check_versions do
@@ -69,4 +69,4 @@ namespace :release do
   end
 end
 
-task :default => 'xcode:test'
+task :default => 'spm:test'
