@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PROJECT_DIR="${PROJECT_DIR:-`cd "$(dirname $0)/..";pwd`}"
-SWIFTLINT="${PROJECT_DIR}/Pods/SwiftLint/swiftlint"
+SWIFTLINT="${PROJECT_DIR}/.build/swiftlint/swiftlint"
 CONFIG="${PROJECT_DIR}/.swiftlint.yml"
 if [ $CI ]; then
 	REPORTER="--reporter github-actions-logging"
