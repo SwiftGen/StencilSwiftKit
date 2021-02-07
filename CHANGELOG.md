@@ -39,6 +39,9 @@
 * Switched the whole project over to use Swift Package Manager, restructuring some of the internals in the process.  
   [David Jennes](https://github.com/djbe)
   [#130](https://github.com/SwiftGen/StencilSwiftKit/pull/130)
+* Made the filter implementations public, so they can be used in other libraries.  
+  [David Jennes](https://github.com/djbe)
+  [#136](https://github.com/SwiftGen/StencilSwiftKit/pull/136)
 
 ## 2.7.2
 
