@@ -25,11 +25,12 @@
 
 ### Internal Changes
 
-* Update to SwiftLint 0.40.3 and enable some extra SwiftLint rules.  
+* Update to SwiftLint 0.42.0 and enable some extra SwiftLint rules.  
   [David Jennes](https://github.com/djbe)
   [@fortmarek](https://github.com/fortmarek)
   [#116](https://github.com/SwiftGen/StencilSwiftKit/pull/116)
   [#127](https://github.com/SwiftGen/StencilSwiftKit/pull/127)
+  [#137](https://github.com/SwiftGen/StencilSwiftKit/pull/137)
 * Switch from CircleCI to GitHub Actions.  
   [David Jennes](https://github.com/djbe)
   [#128](https://github.com/SwiftGen/StencilSwiftKit/pull/128)
