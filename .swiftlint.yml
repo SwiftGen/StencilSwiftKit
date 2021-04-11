@@ -1,9 +1,10 @@
-swiftlint_version: 0.42.0
+swiftlint_version: 0.44.0
 
 opt_in_rules:
  - anyobject_protocol
  - array_init
  - attributes
+ - balanced_xctest_lifecycle
  - closure_body_length
  - closure_end_indentation
  - closure_spacing
@@ -14,6 +15,9 @@ opt_in_rules:
  - contains_over_first_not_nil
  - contains_over_range_nil_comparison
  - convenience_type
+ - discarded_notification_center_observer
+ - discouraged_assert
+ - discouraged_none_name
  - discouraged_optional_boolean
  - discouraged_optional_collection
  - empty_collection_literal
@@ -30,10 +34,12 @@ opt_in_rules:
  - identical_operands
  - implicit_return
  - implicitly_unwrapped_optional
+ - inclusive_language
  - indentation_width
  - joined_default_parameter
  - last_where
  - legacy_multiple
+ - legacy_objc_type
  - legacy_random
  - literal_expression_end_indentation
  - lower_acl_than_parent
@@ -55,6 +61,7 @@ opt_in_rules:
  - prefer_zero_over_explicit_init
  - private_action
  - private_outlet
+ - private_subject
  - prohibited_super_call
  - raw_value_for_camel_cased_codable_enum
  - reduce_into
@@ -64,19 +71,18 @@ opt_in_rules:
  - static_operator
  - strong_iboutlet
  - switch_case_on_newline
+ - test_case_accessibility
  - toggle_bool
  - trailing_closure
  - unavailable_function
  - unneeded_parentheses_in_closure_argument
  - unowned_variable_capture
+ - unused_closure_parameter
  - vertical_parameter_alignment_on_call
  - vertical_whitespace_closing_braces
  - vertical_whitespace_opening_braces
  - xct_specific_matcher
  - yoda_condition
- - test_case_accessibility
- - inclusive_language
- - unused_closure_parameter
 
 # Rules customization
 conditional_returns_on_newline:
