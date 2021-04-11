@@ -29,6 +29,7 @@ public enum Filters {
       return string
     }
     #if os(Linux)
+    // swiftlint:disable:next legacy_objc_type
     if let string = value as? NSString {
       return String(describing: string)
     }
