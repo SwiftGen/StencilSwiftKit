@@ -29,10 +29,12 @@ final class ParseStringTests: XCTestCase {
 
   private struct TestNotConvertible {}
 
+  // swiftlint:disable legacy_objc_type
   func testParseString_FromValue_WithNSStringValue() throws {
     let value = try Filters.parseString(from: NSString(string: "foo"))
     XCTAssertEqual(value, "foo")
   }
+  // swiftlint:enable legacy_objc_type
 
   func testParseString_FromValue_WithStringValue() throws {
     let value = try Filters.parseString(from: "foo")
