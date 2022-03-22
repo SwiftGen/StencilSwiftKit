@@ -18,7 +18,7 @@ jobs:
         # Note: we can't use `ruby/setup-ruby` on custom docker images, so we
         # have to do our own caching
         name: Cache gems
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-gems-
       - 
         name: Cache SPM
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .build
           key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
@@ -55,7 +55,7 @@ jobs:
           bundler-cache: true
       - 
         name: Cache SPM
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: .build
           key: ${{ runner.os }}-spm-${{ hashFiles('**/Package.resolved') }}
