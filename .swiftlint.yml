@@ -1,6 +1,8 @@
-swiftlint_version: 0.44.0
+swiftlint_version: 0.47.1
 
 opt_in_rules:
+ - accessibility_label_for_image
+ - anonymous_argument_in_multiline_closure
  - anyobject_protocol
  - array_init
  - attributes
@@ -31,6 +33,7 @@ opt_in_rules:
  - first_where
  - flatmap_over_map_reduce
  - force_unwrapping
+ - ibinspectable_in_extension
  - identical_operands
  - implicit_return
  - implicitly_unwrapped_optional
@@ -43,6 +46,7 @@ opt_in_rules:
  - legacy_random
  - literal_expression_end_indentation
  - lower_acl_than_parent
+ - missing_docs
  - modifier_order
  - multiline_arguments
  - multiline_arguments_brackets
@@ -57,8 +61,11 @@ opt_in_rules:
  - optional_enum_case_matching
  - overridden_super_call
  - override_in_extension
+ - pattern_matching_keywords
+ - prefer_self_in_static_references
  - prefer_self_type_over_type_of_self
  - prefer_zero_over_explicit_init
+ - prefixed_toplevel_constant
  - private_action
  - private_outlet
  - private_subject
@@ -66,9 +73,14 @@ opt_in_rules:
  - raw_value_for_camel_cased_codable_enum
  - reduce_into
  - redundant_nil_coalescing
+ - redundant_type_annotation
+ - required_enum_case
+ - return_value_from_void_function
+ - single_test_class
  - sorted_first_last
  - sorted_imports
  - static_operator
+ - strict_fileprivate
  - strong_iboutlet
  - switch_case_on_newline
  - test_case_accessibility
@@ -81,6 +93,7 @@ opt_in_rules:
  - vertical_parameter_alignment_on_call
  - vertical_whitespace_closing_braces
  - vertical_whitespace_opening_braces
+ - weak_delegate
  - xct_specific_matcher
  - yoda_condition
 

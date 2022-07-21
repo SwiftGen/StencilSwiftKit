@@ -11,14 +11,17 @@ import Stencil
 // MARK: - Strings Filters
 
 public extension Filters {
+  /// Filters for operations related to strings
   enum Strings {
   }
 }
 
+/// Possible modes for removeNewlines filter
 public enum RemoveNewlinesModes: String {
   case all, leading
 }
 
+/// Possible modes for swiftIdentifier filter
 public enum SwiftIdentifierModes: String {
   case normal, pretty
 }
@@ -229,6 +232,12 @@ private extension Filters.Strings {
 // MARK: - String Filters: Mutation filters
 
 public extension Filters.Strings {
+  /// Tries to parse the value as a `String`, and then checks if the string is one of the reserved keywords.
+  /// If so, escapes it using backticks
+  ///
+  /// - Parameter in: the string to possibly escape
+  /// - Returns: if the string is a reserved keyword, the escaped string, otherwise the original one
+  /// - Throws: Filters.Error.invalidInputType
   static func escapeReservedKeywords(value: Any?) throws -> Any? {
     let string = try Filters.parseString(from: value)
     return escapeReservedKeywords(in: string)

@@ -18,6 +18,7 @@ public enum Parameters {
   }
 
   typealias Parameter = (key: String, value: Any)
+  /// A string-keyed dictionary
   public typealias StringDict = [String: Any]
 
   /// Transforms a list of strings representing structured-key/value pairs, like
@@ -32,8 +33,8 @@ public enum Parameters {
   /// - Throws: `Parameters.Error`
   public static func parse(items: [String]) throws -> StringDict {
     let parameters: [Parameter] = try items.map(createParameter)
-    return try parameters.reduce(StringDict()) {
-      try parse(parameter: $1, result: $0)
+    return try parameters.reduce(StringDict()) { result, parameter in
+      try parse(parameter: parameter, result: result)
     }
   }
 

@@ -145,7 +145,7 @@ final class MapNodeTests: XCTestCase {
   }
 
   func testRender() throws {
-    let context = Context(dictionary: MapNodeTests.context)
+    let context = Context(dictionary: Self.context)
     let node = MapNode(
       resolvable: Variable("items"),
       resultName: "result",
@@ -158,7 +158,7 @@ final class MapNodeTests: XCTestCase {
   }
 
   func testContext() throws {
-    let context = Context(dictionary: MapNodeTests.context)
+    let context = Context(dictionary: Self.context)
     let node = MapNode(
       resolvable: Variable("items"),
       resultName: "result",
@@ -171,12 +171,12 @@ final class MapNodeTests: XCTestCase {
       XCTFail("Unable to render map")
       return
     }
-    XCTAssertEqual(items, MapNodeTests.context["items"] ?? [])
+    XCTAssertEqual(items, Self.context["items"] ?? [])
     XCTAssertEqual(result, ["hello", "hello", "hello"])
   }
 
   func testMapLoopContext() throws {
-    let context = Context(dictionary: MapNodeTests.context)
+    let context = Context(dictionary: Self.context)
     let node = MapNode(
       resolvable: Variable("items"),
       resultName: "result",
@@ -194,7 +194,7 @@ final class MapNodeTests: XCTestCase {
       XCTFail("Unable to render map")
       return
     }
-    XCTAssertEqual(items, MapNodeTests.context["items"] ?? [])
+    XCTAssertEqual(items, Self.context["items"] ?? [])
     XCTAssertEqual(result, ["0truefalseone", "1falsefalsetwo", "2falsetruethree"])
   }
 }

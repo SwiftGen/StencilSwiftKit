@@ -15,7 +15,7 @@ private func mr(_ char: Int) -> CharRange {
 // Official list of valid identifier characters
 // swiftlint:disable:next line_length
 // from: https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html#//apple_ref/doc/uid/TP40014097-CH30-ID410
-private let headRanges: [CharRange] = [
+private let kHeadRanges: [CharRange] = [
   0x61...0x7a as CharRange,
   0x41...0x5a as CharRange,
   mr(0x5f), mr(0xa8), mr(0xaa), mr(0xad), mr(0xaf),
@@ -65,7 +65,7 @@ private let headRanges: [CharRange] = [
   0xe0000...0xefffd as CharRange
 ]
 
-private let tailRanges: [CharRange] = [
+private let kTailRanges: [CharRange] = [
   0x30...0x39, 0x300...0x36F, 0x1dc0...0x1dff, 0x20d0...0x20ff, 0xfe20...0xfe2f
 ]
 
@@ -75,7 +75,7 @@ private func identifierCharacterSets(exceptions: String) -> (head: NSMutableChar
   }
 
   let head = NSMutableCharacterSet()
-  for range in headRanges {
+  for range in kHeadRanges {
     addRange(head, range)
   }
   head.removeCharacters(in: exceptions)
@@ -83,7 +83,7 @@ private func identifierCharacterSets(exceptions: String) -> (head: NSMutableChar
   guard let tail = head.mutableCopy() as? NSMutableCharacterSet else {
     fatalError("Internal error: mutableCopy() should have returned a valid NSMutableCharacterSet")
   }
-  for range in tailRanges {
+  for range in kTailRanges {
     addRange(tail, range)
   }
   tail.removeCharacters(in: exceptions)
