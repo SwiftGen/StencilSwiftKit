@@ -482,6 +482,18 @@ extension StringFiltersTests {
       XCTAssertEqual(result, expected)
     }
   }
+
+  func testReplaceRegex() throws {
+    let expectations = [
+      (Input(string: "string"), "ing", "oke", "stroke"),
+      (Input(string: "string with numbers 42"), "\\s\\d+$", "", "string with numbers")
+    ]
+
+    for (input, substring, replacement, expected) in expectations {
+      let result = try Filters.Strings.replace(input, arguments: [substring, replacement, "regex"]) as? String
+        XCTAssertEqual(result, expected)
+      }
+  }
 }
 
 extension StringFiltersTests {
