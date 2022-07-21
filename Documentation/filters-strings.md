@@ -99,28 +99,32 @@ Transforms an arbitrary string so that only the first "word" is lowercased.
 
 ## Filter: `removeNewlines`
 
-This filter has a couple of modes that you can specifiy using an optional mode argument:
+This filter has a couple of modes that you can specify using an optional mode argument:
 
 - **all** (default): Removes all newlines and whitespace characters from the string.
 - **leading**: Removes leading whitespace characters from each line, and all newlines. Also trims the end result.
 
-| Input                  | Output (`all`)   | Output (leading)   |
-|------------------------|------------------|--------------------|
-| `  \ntest`             | `test`           | `test`             |
-| `test \n\t `           | `test`           | `test`             |
-| `test\n  test`         | `testtest`       | `testtest`         |
-| `test, \ntest, \ntest` | `test,test,test` | `test, test, test` |
-| ` test test `          | `testtest`       | `test test`        |
+| Input                  | Output (`all`)   | Output (`leading`)   |
+|------------------------|------------------|----------------------|
+| `  \ntest`             | `test`           | `test`               |
+| `test \n\t `           | `test`           | `test`               |
+| `test\n  test`         | `testtest`       | `testtest`           |
+| `test, \ntest, \ntest` | `test,test,test` | `test, test, test`   |
+| ` test test `          | `testtest`       | `test test`          |
 
 ## Filter: `replace`
 
-Replaces the given substring with the given replacement in the source string.
-Works the same as Swift's `String.replacingOccurrences`.
+This filter receives at least 2 parameters: a search parameter and a replacement.
+This filter has a couple of modes that you can specify using an optional mode argument:
 
-| Input (search, replacement) | Output   |
-|-----------------------------|----------|
-| `Hello` (`l`, `k`)          | `Hekko`  |
-| `Europe` (`e`, `a`)         | `Europa` |
+- **normal** (default): Simple find and replace.
+- **regex**: Enables the use of regular expressions in the search parameter.
+
+| Input (search, replacement) | Output (`normal`) | Output (`regex`) |
+|-----------------------------|-------------------|------------------|
+| `Hello` (`l`, `k`)          | `Hekko`           | `Hekko`          |
+| `Europe` (`e`, `a`)         | `Europa`          | `Europa`         |
+| `Hey1World2!` (`\d`, ` `)   | `Hey1World2!`     | `Hey World !`    |
 
 ## Filter: `snakeToCamelCase`
 
@@ -137,12 +141,12 @@ This filter accepts an optional boolean parameter that controls the prefixing be
 - **false** (default): don't remove any empty components.
 - **true**: trim empty components from the beginning of the string
 
-| Input          | Output (false) | Output (true) |
-|----------------|----------------|---------------|
-| `snake_case`   | `SnakeCase`    | `SnakeCase`   |
-| `snAke_case`   | `SnAkeCase`    | `SnAkeCase`   |
-| `SNAKE_CASE`   | `SnakeCase`    | `SnakeCase`   |
-| `__snake_case` | `__SnakeCase`  | `SnakeCase`   |
+| Input          | Output (`false`) | Output (`true`) |
+|----------------|------------------|-----------------|
+| `snake_case`   | `SnakeCase`      | `SnakeCase`     |
+| `snAke_case`   | `SnAkeCase`      | `SnAkeCase`     |
+| `SNAKE_CASE`   | `SnakeCase`      | `SnakeCase`     |
+| `__snake_case` | `__SnakeCase`    | `SnakeCase`     |
 
 ## Filter: `swiftIdentifier`
 
@@ -155,20 +159,20 @@ Transforms an arbitrary string into a valid Swift identifier (using only valid c
 The list of allowed characters can be found here:
 https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/LexicalStructure.html
 
-This filter has a couple of modes that you can specifiy using an optional mode argument:
+This filter has a couple of modes that you can specify using an optional mode argument:
 
 - **normal** (default): apply the steps mentioned above (uppercase first, prefix if needed, replace invalid characters with `_`)
 - **pretty**: Same as normal, but afterwards it will apply the `snakeToCamelCase` filter, and other manipulations, for a prettier (but still valid) identifier.
 
-| Input                  | Output (normal)         | Output (pretty)      |
-|------------------------|-------------------------|----------------------|
-| `hello`                | `Hello`                 | `Hello`              |
-| `42hello`              | `_42hello`              | `_42hello`           |
-| `some$URL`             | `Some_URL`              | `SomeURL`            |
-| `25 Ultra Light`       | `_25_Ultra_Light`       | `_25UltraLight`      |
-| `26_extra_ultra_light` | `_26_extra_ultra_light` | `_26ExtraUltraLight` |
-| `apples.count`         | `Apples_Count`          | `ApplesCount`        |
-| `foo_bar.baz.qux-yay`  | `Foo_bar_Baz_Qux_Yay`   | `FooBarBazQuxYay`    |
+| Input                  | Output (`normal`)         | Output (`pretty`)      |
+|------------------------|---------------------------|------------------------|
+| `hello`                | `Hello`                   | `Hello`                |
+| `42hello`              | `_42hello`                | `_42hello`             |
+| `some$URL`             | `Some_URL`                | `SomeURL`              |
+| `25 Ultra Light`       | `_25_Ultra_Light`         | `_25UltraLight`        |
+| `26_extra_ultra_light` | `_26_extra_ultra_light`   | `_26ExtraUltraLight`   |
+| `apples.count`         | `Apples_Count`            | `ApplesCount`          |
+| `foo_bar.baz.qux-yay`  | `Foo_bar_Baz_Qux_Yay`     | `FooBarBazQuxYay`      |
 
 
 ## Filter: `titlecase`
