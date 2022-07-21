@@ -10,7 +10,9 @@ _None_
 
 ### New Features
 
-_None_
+* `stencilSwiftEnvironment` now accepts a list of paths (for the template loader) & extensions.  
+  [David Jennes](https://github.com/djbe)
+  [#154](https://github.com/SwiftGen/StencilSwiftKit/pull/154)
 
 ### Bug Fixes
 
