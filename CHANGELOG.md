@@ -2,11 +2,7 @@
 
 ---
 
-## Stable Branch
-
-### Breaking Changes
-
-_None_
+## 2.9.0
 
 ### New Features
 
@@ -21,10 +17,6 @@ _None_
   [JanGorman](https://github.com/JanGorman)
   [#123](https://github.com/SwiftGen/StencilSwiftKit/pull/123)
   [#155](https://github.com/SwiftGen/StencilSwiftKit/pull/155)
-
-### Bug Fixes
-
-_None_
 
 ### Internal Changes
 

@@ -1,0 +1,26 @@
+name: Push CocoaPods
+
+on:
+  push:
+    tags:
+      - '*'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Push CocoaPods
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Set up Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          bundler-cache: true
+      -
+        name: Push to CocoaPods
+        run: bundle exec pod trunk push StencilSwiftKit.podspec
+        env:
+          COCOAPODS_TRUNK_TOKEN: "${{secrets.COCOAPODS_TRUNK_TOKEN}}"

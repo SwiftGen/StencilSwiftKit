@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'StencilSwiftKit'
-  s.version      = '2.8.0'
+  s.version      = '2.9.0'
   s.summary      = 'Stencil additions dedicated for Swift code generation'
 
   s.description  = <<-DESC
@@ -13,7 +13,8 @@ Pod::Spec.new do |s|
   s.homepage     = 'https://github.com/SwiftGen/StencilSwiftKit'
   s.license      = 'MIT'
   s.author       = {
-    'Olivier Halligon' => 'olivier@halligon.net'
+    'Olivier Halligon' => 'olivier@halligon.net',
+    'David Jennes' => 'david.jennes@gmail.com'
   }
   s.social_media_url = 'https://twitter.com/aligatr'
 

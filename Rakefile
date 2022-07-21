@@ -16,7 +16,7 @@ BUILD_DIR = File.absolute_path('./.build')
 
 namespace :release do
   desc 'Create a new release on CocoaPods'
-  task :new => [:check_versions, 'spm:test', :cocoapods]
+  task :new => [:check_versions, :check_tag_and_ask_to_release, 'spm:test', :cocoapods]
 
   desc 'Check if all versions from the podspecs and CHANGELOG match'
   task :check_versions do
@@ -48,6 +48,14 @@ namespace :release do
       'CHANGELOG, No stable',
       'Please remove section for stable branch in CHANGELOG'
     )
+
+    exit 1 unless results.all?
+  end
+
+  desc "Check tag and ask to release"
+  task :check_tag_and_ask_to_release do
+    results = []
+    podspec_version = Utils.podspec_version(POD_NAME)
 
     tag_set = !`git ls-remote --tags . refs/tags/#{podspec_version}`.empty?
     results << Utils.table_result(
