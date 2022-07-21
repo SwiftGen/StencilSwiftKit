@@ -21,6 +21,10 @@ public enum RemoveNewlinesModes: String {
   case all, leading
 }
 
+public enum ReplaceModes: String {
+  case normal, regex
+}
+
 /// Possible modes for swiftIdentifier filter
 public enum SwiftIdentifierModes: String {
   case normal, pretty
@@ -255,7 +259,14 @@ public extension Filters.Strings {
     let source = try Filters.parseString(from: value)
     let substring = try Filters.parseStringArgument(from: arguments, at: 0)
     let replacement = try Filters.parseStringArgument(from: arguments, at: 1)
-    return source.replacingOccurrences(of: substring, with: replacement)
+    let mode = try Filters.parseEnum(from: arguments, at: 2, default: ReplaceModes.normal)
+
+    switch mode {
+    case .normal:
+      return source.replacingOccurrences(of: substring, with: replacement)
+    case .regex:
+      return source.replacingOccurrences(of: substring, with: replacement, options: .regularExpression)
+    }
   }
 
   /// Converts an arbitrary string to a valid swift identifier. Takes an optional Mode argument:
