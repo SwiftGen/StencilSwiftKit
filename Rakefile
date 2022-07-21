@@ -9,7 +9,7 @@ end
 ## [ Constants ] ##############################################################
 
 POD_NAME = 'StencilSwiftKit'.freeze
-MIN_XCODE_VERSION = 12.0
+MIN_XCODE_VERSION = 13.0
 BUILD_DIR = File.absolute_path('./.build')
 
 ## [ Release a new version ] ##################################################
