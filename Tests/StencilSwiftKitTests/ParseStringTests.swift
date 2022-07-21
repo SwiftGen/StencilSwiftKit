@@ -12,7 +12,7 @@ final class ParseStringTests: XCTestCase {
     static let stringRepresentation = "TestLosslessConvertibleStringRepresentation"
 
     var description: String {
-      TestLosslessConvertible.stringRepresentation
+      Self.stringRepresentation
     }
 
     init() {}
@@ -23,7 +23,7 @@ final class ParseStringTests: XCTestCase {
     static let stringRepresentation = "TestConvertibleStringRepresentation"
 
     var description: String {
-      TestConvertible.stringRepresentation
+      Self.stringRepresentation
     }
   }
 

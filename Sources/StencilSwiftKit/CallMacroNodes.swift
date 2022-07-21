@@ -6,7 +6,7 @@
 
 import Stencil
 
-struct CallableBlock {
+internal struct CallableBlock {
   let parameters: [String]
   let nodes: [NodeType]
 
@@ -34,7 +34,7 @@ struct CallableBlock {
   }
 }
 
-class MacroNode: NodeType {
+internal class MacroNode: NodeType {
   let variableName: String
   let parameters: [String]
   let nodes: [NodeType]
@@ -70,7 +70,7 @@ class MacroNode: NodeType {
   }
 }
 
-class CallNode: NodeType {
+internal class CallNode: NodeType {
   let variable: Variable
   let arguments: [Resolvable]
   let token: Token?
@@ -82,8 +82,8 @@ class CallNode: NodeType {
     }
 
     let variable = Variable(components[1])
-    let arguments = try Array(components.dropFirst(2)).map {
-      try parser.compileResolvable($0, containedIn: token)
+    let arguments = try Array(components.dropFirst(2)).map { part in
+      try parser.compileResolvable(part, containedIn: token)
     }
 
     return CallNode(variable: variable, arguments: arguments, token: token)

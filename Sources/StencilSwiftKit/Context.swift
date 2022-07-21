@@ -6,8 +6,11 @@
 
 import Foundation
 
+/// Helper for enriching a Stencil context with environment or parameters
 public enum StencilContext {
+  /// Stencil context key where environment data will be set
   public static let environmentKey = "env"
+  /// Stencil context key where parameter data will be set
   public static let parametersKey = "param"
 
   /// Enriches a stencil context with parsed parameters and environment variables

@@ -7,15 +7,16 @@
 import Stencil
 
 public extension Extension {
+  /// Registers this package's tags and filters
   func registerStencilSwiftExtensions() {
     registerTags()
     registerStringsFilters()
     registerNumbersFilters()
   }
+}
 
-  // MARK: - Private
-
-  private func registerFilter(_ name: String, filter: @escaping Filters.BooleanWithArguments) {
+private extension Extension {
+  func registerFilter(_ name: String, filter: @escaping Filters.BooleanWithArguments) {
     typealias GenericFilter = (Any?, [Any?]) throws -> Any?
     let inverseFilter: GenericFilter = { value, arguments in
       try !filter(value, arguments)
@@ -24,13 +25,13 @@ public extension Extension {
     registerFilter("!\(name)", filter: inverseFilter)
   }
 
-  private func registerNumbersFilters() {
+  func registerNumbersFilters() {
     registerFilter("hexToInt", filter: Filters.Numbers.hexToInt)
     registerFilter("int255toFloat", filter: Filters.Numbers.int255toFloat)
     registerFilter("percent", filter: Filters.Numbers.percent)
   }
 
-  private func registerStringsFilters() {
+  func registerStringsFilters() {
     registerFilter("basename", filter: Filters.Strings.basename)
     registerFilter("camelToSnakeCase", filter: Filters.Strings.camelToSnakeCase)
     registerFilter("dirname", filter: Filters.Strings.dirname)
@@ -48,7 +49,7 @@ public extension Extension {
     registerFilter("hasSuffix", filter: Filters.Strings.hasSuffix)
   }
 
-  private func registerTags() {
+  func registerTags() {
     registerTag("set", parser: SetNode.parse)
     registerTag("macro", parser: MacroNode.parse)
     registerTag("call", parser: CallNode.parse)
@@ -56,6 +57,9 @@ public extension Extension {
   }
 }
 
+/// Creates an Environment for Stencil to load & render templates
+///
+/// - Returns: A fully configured `Environment`
 public func stencilSwiftEnvironment() -> Environment {
   let ext = Extension()
   ext.registerStencilSwiftExtensions()

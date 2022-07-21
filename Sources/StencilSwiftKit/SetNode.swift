@@ -6,7 +6,7 @@
 
 import Stencil
 
-class SetNode: NodeType {
+internal class SetNode: NodeType {
   enum Content {
     case nodes([NodeType])
     case reference(resolvable: Resolvable)
