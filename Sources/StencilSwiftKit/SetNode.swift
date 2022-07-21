@@ -1,12 +1,12 @@
 //
 // StencilSwiftKit
-// Copyright © 2021 SwiftGen
+// Copyright © 2022 SwiftGen
 // MIT Licence
 //
 
 import Stencil
 
-internal class SetNode: NodeType {
+internal final class SetNode: NodeType {
   enum Content {
     case nodes([NodeType])
     case reference(resolvable: Resolvable)

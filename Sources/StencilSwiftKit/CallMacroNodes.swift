@@ -1,6 +1,6 @@
 //
 // StencilSwiftKit
-// Copyright © 2021 SwiftGen
+// Copyright © 2022 SwiftGen
 // MIT Licence
 //
 
@@ -34,7 +34,7 @@ internal struct CallableBlock {
   }
 }
 
-internal class MacroNode: NodeType {
+internal final class MacroNode: NodeType {
   let variableName: String
   let parameters: [String]
   let nodes: [NodeType]
@@ -70,7 +70,7 @@ internal class MacroNode: NodeType {
   }
 }
 
-internal class CallNode: NodeType {
+internal final class CallNode: NodeType {
   let variable: Variable
   let arguments: [Resolvable]
   let token: Token?

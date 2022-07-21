@@ -1,12 +1,12 @@
 //
 // StencilSwiftKit
-// Copyright © 2021 SwiftGen
+// Copyright © 2022 SwiftGen
 // MIT Licence
 //
 
 import Stencil
 
-internal class MapNode: NodeType {
+internal final class MapNode: NodeType {
   let resolvable: Resolvable
   let resultName: String
   let mapVariable: String?
