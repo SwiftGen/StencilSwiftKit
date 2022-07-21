@@ -1,4 +1,4 @@
-name: Cocoapods
+name: Lint Cocoapods
 
 on:
   push:
