@@ -6,7 +6,7 @@
 
 import Stencil
 
-internal class MapNode: NodeType {
+internal final class MapNode: NodeType {
   let resolvable: Resolvable
   let resultName: String
   let mapVariable: String?

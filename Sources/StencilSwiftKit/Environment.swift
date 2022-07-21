@@ -71,3 +71,17 @@ public func stencilSwiftEnvironment(templatePaths: [Path] = [], extensions: [Ext
 
   return Environment(loader: loader, extensions: extensions + [ext], templateClass: StencilSwiftTemplate.self)
 }
+
+/// Creates an Environment for Stencil to load & render templates
+///
+/// - Parameters:
+///   - templates: Templates that can be included, imported, etc…
+///   - extensions: Additional extensions with filters/tags/… you want to provide to Stencil
+/// - Returns: A fully configured `Environment`
+public func stencilSwiftEnvironment(templates: [String: String], extensions: [Extension] = []) -> Environment {
+	let loader = DictionaryLoader(templates: templates)
+	let ext = Extension()
+	ext.registerStencilSwiftExtensions()
+
+	return Environment(loader: loader, extensions: extensions + [ext], templateClass: StencilSwiftTemplate.self)
+}
