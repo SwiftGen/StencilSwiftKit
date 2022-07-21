@@ -13,6 +13,13 @@ _None_
 * `stencilSwiftEnvironment` now accepts a list of paths (for the template loader) & extensions.  
   [David Jennes](https://github.com/djbe)
   [#154](https://github.com/SwiftGen/StencilSwiftKit/pull/154)
+* The string filter `replace` can now accept an optional parameter `regex` to enable regular expressions, see the
+  [documentation](Documentation/filters-strings.md)
+  for more information.  
+  [David Jennes](https://github.com/djbe)
+  [JanGorman](https://github.com/JanGorman)
+  [#123](https://github.com/SwiftGen/StencilSwiftKit/pull/123)
+  [#155](https://github.com/SwiftGen/StencilSwiftKit/pull/155)
 
 ### Bug Fixes
 
