@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 # Used constants:
 # - BUILD_DIR
 
 namespace :lint do
-  SWIFTLINT = 'Scripts/SwiftLint.sh'
+  SWIFTLINT = 'rakelib/lint.sh'
   SWIFTLINT_VERSION = '0.47.1'
 
   task :install do |task| 

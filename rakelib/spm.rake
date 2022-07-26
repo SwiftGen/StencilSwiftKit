@@ -1,6 +1,7 @@
-# Used constants:
-# none
+# frozen_string_literal: true
 
+# Used constants:
+# _none_
 
 namespace :spm do
   desc 'Build using SPM'

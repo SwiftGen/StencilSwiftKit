@@ -18,7 +18,9 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Add `Danger` to check pull requests.  
+  [David Jennes](https://github.com/djbe)
+  [#158](https://github.com/SwiftGen/StencilSwiftKit/pull/158)
 
 ## 2.9.0
 
@@ -28,9 +30,7 @@ _None_
   [David Jennes](https://github.com/djbe)
   [#154](https://github.com/SwiftGen/StencilSwiftKit/pull/154)
   [#156](https://github.com/SwiftGen/StencilSwiftKit/pull/156)
-* The string filter `replace` can now accept an optional parameter `regex` to enable regular expressions, see the
-  [documentation](Documentation/filters-strings.md)
-  for more information.  
+* The string filter `replace` can now accept an optional parameter `regex` to enable regular expressions, see the [documentation](Documentation/filters-strings.md) for more information.  
   [David Jennes](https://github.com/djbe)
   [JanGorman](https://github.com/JanGorman)
   [#123](https://github.com/SwiftGen/StencilSwiftKit/pull/123)
@@ -129,10 +129,7 @@ _None_
 
 ### New Features
 
-* The `set` tag can now directly accept an expression as value, see the
-  [documentation](Documentation/tag-set.md)
-  for an explanation on how this differs with the normal `set`/`endset`
-  pair.  
+* The `set` tag can now directly accept an expression as value, see the [documentation](Documentation/tag-set.md) for an explanation on how this differs with the normal `set`/`endset` pair.  
   [David Jennes](https://github.com/djbe)
   [#87](https://github.com/SwiftGen/StencilSwiftKit/pull/87)
 * Updated Stencil to the latest version (0.12.1).  

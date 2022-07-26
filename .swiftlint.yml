@@ -11,6 +11,7 @@ opt_in_rules:
  - closure_end_indentation
  - closure_spacing
  - collection_alignment
+ - comment_spacing
  - conditional_returns_on_newline
  - contains_over_filter_count
  - contains_over_filter_is_empty
@@ -61,7 +62,6 @@ opt_in_rules:
  - optional_enum_case_matching
  - overridden_super_call
  - override_in_extension
- - pattern_matching_keywords
  - prefer_self_in_static_references
  - prefer_self_type_over_type_of_self
  - prefer_zero_over_explicit_init
