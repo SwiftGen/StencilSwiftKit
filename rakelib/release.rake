@@ -14,7 +14,7 @@ end
 
 namespace :release do
   desc 'Create a new release on CocoaPods'
-  task :new => [:check_versions, :check_tag_and_ask_to_release, 'spm:test', :cocoapods]
+  task :new => [:check_versions, :check_tag_and_ask_to_release, 'spm:test', :github, :cocoapods]
 
   desc 'Check if all versions from the podspecs and CHANGELOG match'
   task :check_versions do
@@ -66,6 +66,21 @@ namespace :release do
 
     print "Release version #{podspec_version} [Y/n]? "
     exit 2 unless STDIN.gets.chomp == 'Y'
+  end
+
+  desc "Create a new GitHub release"
+  task :github do
+    require 'octokit'
+
+    client = Utils.octokit_client
+    tag = Utils.top_changelog_version
+    body = Utils.top_changelog_entry
+
+    raise 'Must be a valid version' if tag == 'Stable Branch'
+
+    repo_name = File.basename(`git remote get-url origin`.chomp, '.git').freeze
+    puts "Pushing release notes for tag #{tag}"
+    client.create_release("SwiftGen/#{repo_name}", tag, name: tag, body: body)
   end
 
   desc "pod trunk push #{POD_NAME} to CocoaPods"
