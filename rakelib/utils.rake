@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 # Used constants:
 # - MIN_XCODE_VERSION
 
 require 'json'
-require 'octokit'
+require 'open3'
 require 'pathname'
 
 # Utility functions to run Xcode commands, extract versionning info and logs messages
 #
 class Utils
-  COLUMN_WIDTH = 30
+  COLUMN_WIDTHS = [45, 12].freeze
 
   ## [ Run commands ] #########################################################
 
@@ -20,9 +22,9 @@ class Utils
   # run a command using xcrun and xcpretty if applicable
   def self.run(command, task, subtask = '', xcrun: false, formatter: :raw)
     commands = if xcrun and OS.mac?
-                 [*command].map { |cmd| "#{version_select} xcrun #{cmd}" }
+                 Array(command).map { |cmd| "#{version_select} xcrun #{cmd}" }
                else
-                 [*command]
+                 Array(command)
                end
     case formatter
     when :xcpretty then xcpretty(commands, task, subtask)
@@ -34,24 +36,56 @@ class Utils
 
   ## [ Convenience Helpers ] ##################################################
 
-  def self.podspec_version(file = '*')
-    JSON.parse(`bundle exec pod ipc spec #{file}.podspec`)['version']
+  def self.podspec_as_json(file)
+    file += '.podspec' unless file.include?('.podspec')
+    json, _, _ = Open3.capture3('bundle', 'exec', 'pod', 'ipc', 'spec', file)
+    JSON.parse(json)
+  end
+
+  def self.podspec_version(file)
+    podspec_as_json(file)['version']
+  end
+
+  def self.pod_trunk_last_version(pod)
+    require 'yaml'
+    stdout, _, _ = Open3.capture3('bundle', 'exec', 'pod', 'trunk', 'info', pod)
+    stdout.sub!("\n#{pod}\n", '')
+    last_version_line = YAML.safe_load(stdout).first['Versions'].last
+    /^[0-9.]*/.match(last_version_line)[0] # Just the 'x.y.z' part
+  end
+
+  def self.spm_own_version(dep)
+    dependencies = JSON.load(File.new('Package.resolved'))['object']['pins']
+    dependencies.find { |d| d['package'] == dep }['state']['version']
+  end  
+
+  def self.spm_resolved_version(dep)
+    dependencies = JSON.load(File.new('Package.resolved'))['object']['pins']
+    dependencies.find { |d| d['package'] == dep }['state']['version']
+  end
+
+  def self.last_git_tag_version
+    `git describe --tags --abbrev=0`.strip
   end
 
   def self.octokit_client
-    token   = File.exist?('.apitoken') && File.read('.apitoken')
+    token   = ENV['DANGER_GITHUB_API_TOKEN']
+    token ||= File.exist?('.apitoken') && File.read('.apitoken')
     token ||= File.exist?('../.apitoken') && File.read('../.apitoken')
     Utils.print_error('No .apitoken file found') unless token
+    require 'octokit'
     Octokit::Client.new(access_token: token)
   end
 
   def self.top_changelog_version(changelog_file = 'CHANGELOG.md')
-    `grep -m 1 '^## ' "#{changelog_file}" | sed 's/## //'`.strip
+    header, _, _ = Open3.capture3('grep', '-m', '1', '^## ', changelog_file)
+    header.gsub('## ', '').strip
   end
 
   def self.top_changelog_entry(changelog_file = 'CHANGELOG.md')
     tag = top_changelog_version
-    `sed -n /'^## #{tag}$'/,/'^## '/p "#{changelog_file}"`.gsub(/^## .*$/, '').strip
+    stdout, _, _ = Open3.capture3('sed', '-n', "/^## #{tag}$/,/^## /p", changelog_file)
+    stdout.gsub(/^## .*$/, '').strip
   end
 
   ## [ Print info/errors ] ####################################################
@@ -72,16 +106,22 @@ class Utils
   end
 
   # format an info message in a 2 column table
+  def self.table_header(col1, col2)
+    puts "| #{col1.ljust(COLUMN_WIDTHS[0])} | #{col2.ljust(COLUMN_WIDTHS[1])} |"
+    puts "| #{'-' * COLUMN_WIDTHS[0]} | #{'-' * COLUMN_WIDTHS[1]} |"
+  end
+
+  # format an info message in a 2 column table
   def self.table_info(label, msg)
-    puts "#{label.ljust(COLUMN_WIDTH)} 👉  #{msg}"
+    puts "| #{label.ljust(COLUMN_WIDTHS[0])} | 👉  #{msg.ljust(COLUMN_WIDTHS[1] - 4)} |"
   end
 
   # format a result message in a 2 column table
   def self.table_result(result, label, error_msg)
     if result
-      puts "#{label.ljust(COLUMN_WIDTH)} ✅"
+      puts "| #{label.ljust(COLUMN_WIDTHS[0])} | #{'✅'.ljust(COLUMN_WIDTHS[1] - 1)} |"
     else
-      puts "#{label.ljust(COLUMN_WIDTH)} ❌  - #{error_msg}"
+      puts "| #{label.ljust(COLUMN_WIDTHS[0])} | ❌  - #{error_msg.ljust(COLUMN_WIDTHS[1] - 6)} |"
     end
     result
   end
@@ -90,12 +130,12 @@ class Utils
 
   # run a command, pipe output through 'xcpretty' and store the output in CI artifacts
   def self.xcpretty(cmd, task, subtask)
-    command = [*cmd].join(' && ')
+    command = Array(cmd).join(' && \\' + "\n")
 
     if ENV['CI']
-      Rake.sh %(set -o pipefail && (#{command}) | bundle exec xcpretty --color --report junit)
+      Rake.sh %(set -o pipefail && (\\\n#{command} \\\n) | bundle exec xcpretty --color --report junit)
     elsif system('which xcpretty > /dev/null')
-      Rake.sh %(set -o pipefail && (#{command}) | bundle exec xcpretty --color)
+      Rake.sh %(set -o pipefail && (\\\n#{command} \\\n) | bundle exec xcpretty --color)
     else
       Rake.sh command
     end
@@ -104,7 +144,7 @@ class Utils
 
   # run a command and store the output in CI artifacts
   def self.plain(cmd, task, subtask)
-    command = [*cmd].join(' && ')
+    command = Array(cmd).join(' && \\' + "\n")
 
     if ENV['CI']
       if OS.mac?
@@ -211,7 +251,7 @@ class String
   # only enable formatting if terminal supports it
   if `tput colors`.chomp.to_i >= 8
     def format(*styles)
-      styles.reduce('') { |r, s| r << "\e[#{FORMATTING[s]}m" } << "#{self}\e[0m"
+      styles.map { |s| "\e[#{FORMATTING[s]}m" }.join + self + "\e[0m"
     end
   else
     def format(*_styles)
