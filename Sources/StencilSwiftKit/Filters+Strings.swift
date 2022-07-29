@@ -28,7 +28,7 @@ public enum ReplaceModes: String {
 
 /// Possible modes for swiftIdentifier filter
 public enum SwiftIdentifierModes: String {
-  case normal, pretty
+  case valid, normal, pretty
 }
 
 // MARK: - String Filters: Boolean filters
@@ -271,10 +271,10 @@ public extension Filters.Strings {
   }
 
   /// Converts an arbitrary string to a valid swift identifier. Takes an optional Mode argument:
-  ///   - normal (default): uppercase the first character, prefix with an underscore if starting
-  ///     with a number, replace invalid characters by underscores
-  ///   - leading: same as the above, but apply the snaceToCamelCase filter first for a nicer
-  ///     identifier
+  ///   - valid: prefix with an underscore if starting with a number, replace invalid characters by underscores
+  ///   - normal (default): uppercase the first character, prefix with an underscore if starting with a number, replace
+  ///     invalid characters by underscores
+  ///   - leading: same as the above, but apply the snaceToCamelCase filter first for a nicer identifier
   ///
   /// - Parameters:
   ///   - value: the value to be processed
@@ -286,10 +286,12 @@ public extension Filters.Strings {
     let mode = try Filters.parseEnum(from: arguments, default: SwiftIdentifierModes.normal)
 
     switch mode {
+    case .valid:
+      return SwiftIdentifier.identifier(from: string, capitalizeComponents: false, replaceWithUnderscores: true)
     case .normal:
-      return SwiftIdentifier.identifier(from: string, replaceWithUnderscores: true)
+      return SwiftIdentifier.identifier(from: string, capitalizeComponents: true, replaceWithUnderscores: true)
     case .pretty:
-      string = SwiftIdentifier.identifier(from: string, replaceWithUnderscores: true)
+      string = SwiftIdentifier.identifier(from: string, capitalizeComponents: true, replaceWithUnderscores: true)
       string = try snakeToCamelCase(string, stripLeading: true)
       return SwiftIdentifier.prefixWithUnderscoreIfNeeded(string: string)
     }

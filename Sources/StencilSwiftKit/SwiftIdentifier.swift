@@ -86,14 +86,18 @@ private extension CharacterSet {
 }
 
 enum SwiftIdentifier {
-  static func identifier(from string: String, replaceWithUnderscores underscores: Bool = false) -> String {
+  static func identifier(
+    from string: String,
+    capitalizeComponents: Bool = true,
+    replaceWithUnderscores underscores: Bool = false
+  ) -> String {
     let parts = string.components(separatedBy: CharacterSet.illegalIdentifierTail.inverted)
     let replacement = underscores ? "_" : ""
-    let mappedParts = parts.map { (string: String) -> String in
+    let mappedParts = !capitalizeComponents ? parts : parts.map { part in
       // Can't use capitalizedString here because it will lowercase all letters after the first
       // e.g. "SomeNiceIdentifier".capitalizedString will because "Someniceidentifier" which is not what we want
-      guard let first = string.unicodeScalars.first else { return string }
-      return String(first).uppercased() + String(string.unicodeScalars.dropFirst())
+      guard let first = part.unicodeScalars.first else { return part }
+      return String(first).uppercased() + String(part.unicodeScalars.dropFirst())
     }
 
     let result = mappedParts.joined(separator: replacement)
