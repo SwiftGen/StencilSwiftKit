@@ -6,11 +6,18 @@
 
 ### Breaking Changes
 
-_None_
+* With the Stencil update, we're deprecating our `StencilSwiftTemplate` template class which contained a workaround that's no longer needed. It will also no longer be set by default by the `stencilSwiftEnvironment` builder.  
+  [David Jennes](https://github.com/djbe)
+  [#159](https://github.com/SwiftGen/StencilSwiftKit/pull/159)
+* With the Stencil update, we're deprecating our `removeNewlines` filter, as this can now be achieved by the built-in Stencil syntax.  
+  [David Jennes](https://github.com/djbe)
+  [#159](https://github.com/SwiftGen/StencilSwiftKit/pull/159)
 
 ### New Features
 
-_None_
+* Updated to Stencil 0.15.0, which contains many improvements, chief amongst them is whitespace behaviour control.  
+  [David Jennes](https://github.com/djbe)
+  [#159](https://github.com/SwiftGen/StencilSwiftKit/pull/159)
 
 ### Bug Fixes
 
