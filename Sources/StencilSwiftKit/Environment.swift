@@ -63,13 +63,24 @@ private extension Extension {
 /// - Parameters:
 ///   - templatePaths: Paths where Stencil can search for templates, used for example for `include` tags
 ///   - extensions: Additional extensions with filters/tags/… you want to provide to Stencil
+///   - templateClass: Custom template class to process templates
+///   - trimBehaviour: Globally control how whitespace is handled, defaults to `smart`.
 /// - Returns: A fully configured `Environment`
-public func stencilSwiftEnvironment(templatePaths: [Path] = [], extensions: [Extension] = []) -> Environment {
-  let loader = FileSystemLoader(paths: templatePaths)
+public func stencilSwiftEnvironment(
+  templatePaths: [Path] = [],
+  extensions: [Extension] = [],
+  templateClass: Template.Type = Template.self,
+  trimBehaviour: TrimBehaviour = .smart
+) -> Environment {
   let ext = Extension()
   ext.registerStencilSwiftExtensions()
 
-  return Environment(loader: loader, extensions: extensions + [ext], templateClass: StencilSwiftTemplate.self)
+  return Environment(
+    loader: FileSystemLoader(paths: templatePaths),
+    extensions: extensions + [ext],
+    templateClass: templateClass,
+    trimBehaviour: trimBehaviour
+  )
 }
 
 /// Creates an Environment for Stencil to load & render templates
@@ -77,11 +88,22 @@ public func stencilSwiftEnvironment(templatePaths: [Path] = [], extensions: [Ext
 /// - Parameters:
 ///   - templates: Templates that can be included, imported, etc…
 ///   - extensions: Additional extensions with filters/tags/… you want to provide to Stencil
+///   - templateClass: Custom template class to process templates
+///   - trimBehaviour: Globally control how whitespace is handled, defaults to `smart`.
 /// - Returns: A fully configured `Environment`
-public func stencilSwiftEnvironment(templates: [String: String], extensions: [Extension] = []) -> Environment {
-	let loader = DictionaryLoader(templates: templates)
-	let ext = Extension()
-	ext.registerStencilSwiftExtensions()
+public func stencilSwiftEnvironment(
+  templates: [String: String],
+  extensions: [Extension] = [],
+  templateClass: Template.Type = Template.self,
+  trimBehaviour: TrimBehaviour = .smart
+) -> Environment {
+  let ext = Extension()
+  ext.registerStencilSwiftExtensions()
 
-	return Environment(loader: loader, extensions: extensions + [ext], templateClass: StencilSwiftTemplate.self)
+  return Environment(
+    loader: DictionaryLoader(templates: templates),
+    extensions: extensions + [ext],
+    templateClass: templateClass,
+    trimBehaviour: trimBehaviour
+  )
 }
