@@ -146,18 +146,19 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 
 This filter has a couple of modes that you can specify using an optional mode argument:
 
-- **normal** (default): apply the steps mentioned above (uppercase first, prefix if needed, replace invalid characters with `_`)
+- **valid**: Only do the bare minimum for a valid identifier, i.e. the steps mentioned above **except** uppercasing characters.
+- **normal** (default): apply the steps mentioned above (uppercase first, prefix if needed, replace invalid characters with `_`).
 - **pretty**: Same as normal, but afterwards it will apply the `snakeToCamelCase` filter, and other manipulations, for a prettier (but still valid) identifier.
 
-| Input                  | Output (`normal`)         | Output (`pretty`)      |
-|------------------------|---------------------------|------------------------|
-| `hello`                | `Hello`                   | `Hello`                |
-| `42hello`              | `_42hello`                | `_42hello`             |
-| `some$URL`             | `Some_URL`                | `SomeURL`              |
-| `25 Ultra Light`       | `_25_Ultra_Light`         | `_25UltraLight`        |
-| `26_extra_ultra_light` | `_26_extra_ultra_light`   | `_26ExtraUltraLight`   |
-| `apples.count`         | `Apples_Count`            | `ApplesCount`          |
-| `foo_bar.baz.qux-yay`  | `Foo_bar_Baz_Qux_Yay`     | `FooBarBazQuxYay`      |
+| Input                  | Output (`valid`)        | Output (`normal`)       | Output (`pretty`)    |
+|------------------------|-------------------------|-------------------------|----------------------|
+| `hello`                | `hello`                 | `Hello`                 | `Hello`              |
+| `42hello`              | `_42hello`              | `_42hello`              | `_42hello`           |
+| `some$URL`             | `some_URL`              | `Some_URL`              | `SomeURL`            |
+| `25 Ultra Light`       | `_25_Ultra_Light`       | `_25_Ultra_Light`       | `_25UltraLight`      |
+| `26_extra_ultra_light` | `_26_extra_ultra_light` | `_26_extra_ultra_light` | `_26ExtraUltraLight` |
+| `apples.count`         | `apples_count`          | `Apples_Count`          | `ApplesCount`        |
+| `foo_bar.baz.qux-yay`  | `foo_bar_baz_qux_yay`   | `Foo_bar_Baz_Qux_Yay`   | `FooBarBazQuxYay`    |
 
 
 ## Filter: `titlecase`
