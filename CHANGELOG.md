@@ -21,6 +21,9 @@
 * Added an `import` tag for reusing macro's in multiple templates from a common imported file.  
   [David Jennes](https://github.com/djbe)
   [#111](https://github.com/SwiftGen/StencilSwiftKit/pull/111)
+* The `swiftIdentifier` now supports a `valid` mode, where it will do the bare minimum to get a valid identifier. I.e. it will not change the case of characters at all (compared to `normal` mode).  
+  [David Jennes](https://github.com/djbe)
+  [#160](https://github.com/SwiftGen/StencilSwiftKit/pull/160)
 
 ### Bug Fixes
 
