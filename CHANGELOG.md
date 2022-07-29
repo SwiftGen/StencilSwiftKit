@@ -18,6 +18,9 @@
 * Updated to Stencil 0.15.0, which contains many improvements, chief amongst them is whitespace behaviour control.  
   [David Jennes](https://github.com/djbe)
   [#159](https://github.com/SwiftGen/StencilSwiftKit/pull/159)
+* Added an `import` tag for reusing macro's in multiple templates from a common imported file.  
+  [David Jennes](https://github.com/djbe)
+  [#111](https://github.com/SwiftGen/StencilSwiftKit/pull/111)
 
 ### Bug Fixes
 
