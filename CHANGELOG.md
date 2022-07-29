@@ -2,7 +2,7 @@
 
 ---
 
-## Stable Branch
+## 2.10.0
 
 ### Breaking Changes
 
@@ -24,10 +24,6 @@
 * The `swiftIdentifier` now supports a `valid` mode, where it will do the bare minimum to get a valid identifier. I.e. it will not change the case of characters at all (compared to `normal` mode).  
   [David Jennes](https://github.com/djbe)
   [#160](https://github.com/SwiftGen/StencilSwiftKit/pull/160)
-
-### Bug Fixes
-
-_None_
 
 ### Internal Changes
 
