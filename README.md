@@ -17,6 +17,9 @@
 * [Set](Documentation/tag-set.md)
   * `{% set <Name> %}…{% endset %}`
   * Renders the nodes inside this block immediately, and stores the result in the `<Name>`  variable of the current context.
+* [Import](Documentation/tag-import.md)
+  * `{% import "common.stencil" %}`
+  * Imports any macro & set definitions from `common.stencil` into the current context.
 * [Map](Documentation/tag-map.md)
   * `{% map <Variable> into <Name> using <ItemName> %}…{% endmap %}`
   * Apply a `map` operator to an array, and store the result into a new array variable `<Name>` in the current context.
