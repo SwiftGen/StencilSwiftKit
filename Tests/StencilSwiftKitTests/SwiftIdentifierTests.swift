@@ -61,6 +61,29 @@ extension SwiftIdentifierTests {
     }
   }
 
+  func testSwiftIdentifier_WithValid() throws {
+    let expectations = [
+      "hello": "hello",
+      "42hello": "_42hello",
+      "some$URL": "some_URL",
+      "with space": "with_space",
+      "apples.count": "apples_count",
+      ".SFNSDisplay": "_SFNSDisplay",
+      "Show-NavCtrl": "Show_NavCtrl",
+      "HEADER_TITLE": "HEADER_TITLE",
+      "multiLine\nKey": "multiLine_Key",
+      "foo_bar.baz.qux-yay": "foo_bar_baz_qux_yay",
+      "25 Ultra Light": "_25_Ultra_Light",
+      "26_extra_ultra_light": "_26_extra_ultra_light",
+      "12 @ 34 % 56 + 78 Hello world": "_12___34___56___78_Hello_world"
+    ]
+
+    for (input, expected) in expectations {
+      let result = try Filters.Strings.swiftIdentifier(input, arguments: ["valid"]) as? String
+      XCTAssertEqual(result, expected)
+    }
+  }
+
   func testSwiftIdentifier_WithNormal() throws {
     let expectations = [
       "hello": "Hello",
