@@ -17,6 +17,7 @@ public extension Filters {
 }
 
 /// Possible modes for removeNewlines filter
+@available(*, deprecated, message: "No longer needed with Stencil whitespace control features")
 public enum RemoveNewlinesModes: String {
   case all, leading
 }
@@ -323,6 +324,7 @@ public extension Filters.Strings {
   ///   - arguments: the arguments to the function; expecting zero or one mode argument
   /// - Returns: the trimmed string
   /// - Throws: FilterError.invalidInputType if the value parameter isn't a string
+  @available(*, deprecated, message: "No longer needed with Stencil whitespace control features")
   static func removeNewlines(_ value: Any?, arguments: [Any?]) throws -> Any? {
     let string = try Filters.parseString(from: value)
     let mode = try Filters.parseEnum(from: arguments, default: RemoveNewlinesModes.all)
