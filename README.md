@@ -33,7 +33,6 @@
   * `hasPrefix` / `hasSuffix`: Check if a string starts/ends with a specific substring.
   * `lowerFirstLetter`: Lowercases only the first letter of a string.
   * `lowerFirstWord`: Lowercases only the first word of a string.
-  * `removeNewlines`: Removes newlines and other whitespace characters, depending on the mode ("all" or "leading").
   * `replace`: Replaces instances of a substring with a new string.
   * `snakeToCamelCase`: Transforms text from snake_case to camelCase. By default it keeps leading underscores, unless a single optional argument is set to "true", "yes" or "1".
   * `swiftIdentifier`: Transforms an arbitrary string into a valid Swift identifier (using only valid characters for a Swift identifier as defined in the Swift language reference). In "pretty" mode, it will also apply the snakeToCamelCase filter afterwards, and other manipulations if needed for a "prettier" but still valid identifier.

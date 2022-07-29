@@ -97,21 +97,6 @@ Transforms an arbitrary string so that only the first "word" is lowercased.
 | `PeoplePicker` | `peoplePicker` |
 | `URLChooser`   | `urlChooser`   |
 
-## Filter: `removeNewlines`
-
-This filter has a couple of modes that you can specify using an optional mode argument:
-
-- **all** (default): Removes all newlines and whitespace characters from the string.
-- **leading**: Removes leading whitespace characters from each line, and all newlines. Also trims the end result.
-
-| Input                  | Output (`all`)   | Output (`leading`)   |
-|------------------------|------------------|----------------------|
-| `  \ntest`             | `test`           | `test`               |
-| `test \n\t `           | `test`           | `test`               |
-| `test\n  test`         | `testtest`       | `testtest`           |
-| `test, \ntest, \ntest` | `test,test,test` | `test, test, test`   |
-| ` test test `          | `testtest`       | `test test`          |
-
 ## Filter: `replace`
 
 This filter receives at least 2 parameters: a search parameter and a replacement.
