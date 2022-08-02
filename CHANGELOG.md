@@ -18,7 +18,9 @@ _None_
 
 ### Internal Changes
 
-_None_
+* Pin Komondor to 1.1.3, to avoid issues with SPM for other packages depending on this package.  
+  [redryerye](https://github.com/redryerye)
+  [#162](https://github.com/SwiftGen/StencilSwiftKit/pull/162)
 
 ## 2.10.0
 
