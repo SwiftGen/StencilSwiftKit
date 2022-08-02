@@ -2,23 +2,11 @@
 
 ---
 
-## Stable Branch
-
-### Breaking Changes
-
-_None_
-
-### New Features
-
-_None_
-
-### Bug Fixes
-
-_None_
+## 2.10.1
 
 ### Internal Changes
 
-* Pin Komondor to 1.1.3, to avoid issues with SPM for other packages depending on this package.  
+* Pin `Komondor` to 1.1.3, to avoid issues with SPM for other packages depending on this package.  
   [redryerye](https://github.com/redryerye)
   [#162](https://github.com/SwiftGen/StencilSwiftKit/pull/162)
 
