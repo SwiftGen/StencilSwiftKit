@@ -2,6 +2,24 @@
 
 ---
 
+## Stable Branch
+
+### Breaking Changes
+
+_None_
+
+### New Features
+
+_None_
+
+### Bug Fixes
+
+_None_
+
+### Internal Changes
+
+_None_
+
 ## 2.10.1
 
 ### Internal Changes
